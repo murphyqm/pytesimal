@@ -27,24 +27,26 @@ from os import path
 # for laptop
 #fontpath = 'C:/Users/maeve/Downloads/Lato/Lato-Regular.ttf'
 
-if path.exists('/nfs/see-fs-02_users/eememq/Downloads/Lato/Lato-Regular.ttf'):
-    print("On work pc")
-    fontpath = '/nfs/see-fs-02_users/eememq/Downloads/Lato/Lato-Regular.ttf'
-elif path.exists('C:/Users/maeve/Downloads/Lato/Lato-Regular.ttf'):
-    print("On laptop")
-    fontpath = 'C:/Users/maeve/Downloads/Lato/Lato-Regular.ttf'
-else:
-    print("not recognised workspace - please add fontpath")
+# turning this off, don't think we need to change the fonts and it's causing problems
+# if path.exists('/nfs/see-fs-02_users/eememq/Downloads/Lato/Lato-Regular.ttf'):
+#     print("On work pc")
+#     fontpath = '/nfs/see-fs-02_users/eememq/Downloads/Lato/Lato-Regular.ttf'
+# elif path.exists('C:/Users/maeve/Downloads/Lato/Lato-Regular.ttf'):
+#     print("On laptop")
+#     fontpath = 'C:/Users/maeve/Downloads/Lato/Lato-Regular.ttf'
+# else:
+#     print("not recognised workspace - please add fontpath")
     
-print(fontpath)
+# print(fontpath)
 
-prop = font_manager.FontProperties(fname=fontpath)
-matplotlib.rcParams['font.family'] = prop.get_name()
-##If font can't be found:
-#import matplotlib
+# prop = font_manager.FontProperties(fname=fontpath)
+# matplotlib.rcParams['font.family'] = prop.get_name()
+
+# If font can't be found:
+# import matplotlib
 #
 #matplotlib.font_manager._rebuild()
-                                                                           
+#
 #smooth cmap
 custom_cmapy = clr.LinearSegmentedColormap.from_list('custom red/yellow', ['#143642','#C41230','#EC9A29'])
 custom_cmap_20 = clr.LinearSegmentedColormap.from_list('custom red/yellow', ['#143642','#C41230','#EC9A29'], N=20)
