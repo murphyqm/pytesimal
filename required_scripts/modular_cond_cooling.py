@@ -263,47 +263,50 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
 
     """## Temperature Timestepping"""
 
-    import temp_timestepping as t_s
+    #import temp_timestepping as t_s
     #pdb.set_trace()
 
-    if (model_type == 1):
-        # constant conductivity
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas)
-    elif (model_type == 2):
-        # simple variable thermal conductivity
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping_variablek(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas, p, c, B, k_0)
-    elif (model_type == 3):
-        # realistic variable thermal conductivity
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping_variablek_combo(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, c)
-    elif (model_type == 4):
-        # simple variable thermal conductivity with separated variables
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variablek_sep_terms(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas, p, c, B, k_0)
-    elif (model_type == 5):
-        # more realistic variable conductivity with separated variables
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variablek_sep_terms_realistic(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,  core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, c)
-    elif (model_type == 6):
-        # constant conductivity but no core
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.comp_to_analytical_timestepping(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas)
-    elif (model_type == 7):
+    # if (model_type == 1):
+    #     # constant conductivity
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas)
+    # elif (model_type == 2):
+    #     # simple variable thermal conductivity
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping_variablek(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas, p, c, B, k_0)
+    # elif (model_type == 3):
+    #     # realistic variable thermal conductivity
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping_variablek_combo(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, c)
+    # elif (model_type == 4):
+    #     # simple variable thermal conductivity with separated variables
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variablek_sep_terms(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas, p, c, B, k_0)
+    # elif (model_type == 5):
+    #     # more realistic variable conductivity with separated variables
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variablek_sep_terms_realistic(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,  core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, c)
+    # elif (model_type == 6):
+    #     # constant conductivity but no core
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.comp_to_analytical_timestepping(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas)
+        
+        
+        
+    if (model_type == 7):
         import modular_temp_timestepping as mtt
         # same as above but with separated variables
         temperatures, coretemp, latent, temp_list_mid_mantle,temp_list_shal,temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal, delt_listshal = mtt.comp_to_analytical_sep_terms(latent, temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas, p, c, B, k_0)
-    elif (model_type == 8):
-        # simple variable thermal conductivity with separated variables, non linear term = 0
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.non_lin_zero(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas, p, c, B, k_0)
+    # elif (model_type == 8):
+    #     # simple variable thermal conductivity with separated variables, non linear term = 0
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.non_lin_zero(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas, p, c, B, k_0)
 
-    elif (model_type ==9):
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variablek_sep_terms_w_regolith(latent,temp_init, temp_core_melting, temp_surface,
-                 cmb_conductivity, temperatures, dr, coretemp, timestep,
-                 core_density, core_cp, r_core, core_latent_heat, radii,
-                 times, kappas, p, c, B, k_0,where_regolith,kappa_reg)
-        #model_type = 8
+    # elif (model_type ==9):
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variablek_sep_terms_w_regolith(latent,temp_init, temp_core_melting, temp_surface,
+    #              cmb_conductivity, temperatures, dr, coretemp, timestep,
+    #              core_density, core_cp, r_core, core_latent_heat, radii,
+    #              times, kappas, p, c, B, k_0,where_regolith,kappa_reg)
+    #     #model_type = 8
 
-    elif (model_type ==10):
-        temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variablek_sep_terms_realistic_with_regolith(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, c,where_regolith,kappa_reg)
+    # elif (model_type ==10):
+    #     temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variablek_sep_terms_realistic_with_regolith(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, c,where_regolith,kappa_reg)
 
-    elif (model_type==11):
-        temperatures, coretemp, latent, temp_list_mid_mantle,temp_list_shal,temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variableCp_variablek_sep_terms_realistic_with_regolith(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, where_regolith,kappa_reg)
+    # elif (model_type==11):
+    #     temperatures, coretemp, latent, temp_list_mid_mantle,temp_list_shal,temp_list_cmb_5,A_1list,B_1list,C_1list,delt_list,A_1listcmb,B_1listcmb,C_1listcmb,delt_listcmb,A_1listshal,B_1listshal,C_1listshal,delt_listshal = t_s.timestepping_variableCp_variablek_sep_terms_realistic_with_regolith(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, where_regolith,kappa_reg)
    
     elif(model_type==17):
        import modular_temp_timestepping as mtt
