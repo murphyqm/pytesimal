@@ -100,6 +100,9 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
 
     compressed = "y" # to save output arrays as compressed
 
+    if not os.path.isdir("output_runs"):
+        os.mkdir("output_runs")
+
     if not os.path.isdir("output_runs/"+ str(folder)):
         os.mkdir("output_runs/"+ str(folder))
 
