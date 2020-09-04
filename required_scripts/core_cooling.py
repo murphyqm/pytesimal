@@ -10,21 +10,24 @@ import numpy as np
 
 def core_freezing(coretemp, max_time, times, latent,temp_core_melting,timestep=1E11):
     """
+    Function to calculate when the core freezes
     
+    Takes core temperature and returns boolean array of when the core is 
+    below the freezing/melting temperature
 
     Parameters
     ----------
-    coretemp : TYPE
+    coretemp : ARRAY
+        Array of temperatures in the core.
+    max_time : FLOAT
+        Length of time the model runs for.
+    times : ARRAY
         DESCRIPTION.
-    max_time : TYPE
+    latent : FLOAT
         DESCRIPTION.
-    times : TYPE
+    temp_core_melting : FLOAT
         DESCRIPTION.
-    latent : TYPE
-        DESCRIPTION.
-    temp_core_melting : TYPE
-        DESCRIPTION.
-    timestep : TYPE, optional
+    timestep : FLOAT, optional
         DESCRIPTION. The default is 1E11.
 
     Returns
