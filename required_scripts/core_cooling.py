@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-# editing this to replace 0 with NaN
-Created on Tue Feb 26 11:35:18 2019
+Function to calculate when the core solidifies.
 
-@author: eememq
+See function docstring. To be incorporated into another module.
 """
 import numpy as np
 
-def core_freezing(coretemp, max_time, times, latent,temp_core_melting,timestep=1E11):
+
+def core_freezing(coretemp, max_time, times, latent, temp_core_melting,
+                  timestep=1E11):
     """
-    Function to calculate when the core freezes
-    
-    Takes core temperature and returns boolean array of when the core is 
+    Calculate when the core starts and finishes solidifying.
+
+    Takes core temperature and returns boolean array of when the core is
     below the freezing/melting temperature
 
     Parameters
@@ -22,23 +23,28 @@ def core_freezing(coretemp, max_time, times, latent,temp_core_melting,timestep=1
     max_time : FLOAT
         Length of time the model runs for.
     times : ARRAY
-        DESCRIPTION.
-    latent : FLOAT
-        DESCRIPTION.
+        Array from 0 to the max time +0.5* the timestep, with a spacing equal
+        to the timestep
+    latent : LIST
+        List of total latent heat extracted since core began freezing, at each
+        timestep
     temp_core_melting : FLOAT
-        DESCRIPTION.
+        DMelting point of core material (in K)
     timestep : FLOAT, optional
-        DESCRIPTION. The default is 1E11.
+        Discretisation timestep in seconds. The default is 1E11.
 
     Returns
     -------
-    None.
+    core_frozen: boolean array where temperature <= 1200
+    times_frozen: array of indices of times where the temp <= 1200
+    time_core_frozen: when the core starts to freeze, in seconds
+    fully_frozen: when the core finished freezing, in seconds
 
     """
     # finding time where the core starts to freeze
     core_frozen = [coretemp <= temp_core_melting]
     # creates boolean array for temp<=1200
-    times_frozen = np.where(core_frozen)[2]
+    times_frozen = np.where(core_frozen)[2]  # see note below
     # np.where outputs indices where temp<=1200
 
     time_core_frozen = 0.0
@@ -49,7 +55,7 @@ def core_freezing(coretemp, max_time, times, latent,temp_core_melting,timestep=1
     else:
         time_core_frozen = times_frozen[2]
         # first time the temperature is less than 1200K
-        # changed to 2 instead of 0
+        # note: changed from 0 to 2 for testing
         time_core_frozen = (time_core_frozen)*(timestep)  # convert to seconds
 
     # find time core finishes freezing, time when latent heat is all
