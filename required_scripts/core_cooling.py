@@ -44,7 +44,7 @@ def core_freezing(coretemp, max_time, times, latent, temp_core_melting,
     # finding time where the core starts to freeze
     core_frozen = [coretemp <= temp_core_melting]
     # creates boolean array for temp<=1200
-    times_frozen = np.where(core_frozen)[2]  # see note below
+    times_frozen = np.where(core_frozen)[2]  # 0 and 1 give time = 0.0 Mya
     # np.where outputs indices where temp<=1200
 
     time_core_frozen = 0.0
@@ -53,9 +53,8 @@ def core_freezing(coretemp, max_time, times, latent, temp_core_melting,
         time_core_frozen = 0.0
         fully_frozen = 0.0
     else:
-        time_core_frozen = times_frozen[2]
+        time_core_frozen = times_frozen[0]
         # first time the temperature is less than 1200K
-        # note: changed from 0 to 2 for testing
         time_core_frozen = (time_core_frozen)*(timestep)  # convert to seconds
 
     # find time core finishes freezing, time when latent heat is all
