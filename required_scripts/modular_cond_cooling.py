@@ -5,7 +5,6 @@ Created on Mon Feb 17 08:41:44 2020
 
 @author: eememq
 
-Constant case for max t = 600 Mya
 """
 
 ###
@@ -327,17 +326,6 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     else:
         print("Please assign valid model type number")
 
-    # testing for realistic variable thermal conductivity:
-    #temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping_variablek_combo(latent,temp_init, temp_core_melting, temp_surface,cmb_conductivity, temperatures, dr, coretemp, timestep,core_density, core_cp, r_core, core_latent_heat, radii,times, kappas, p, c)
-
-
-    # testing for variable thermal conductivity:
-    #temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping_variablek(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas, p, c, B, k_0)
-
-
-    # For constant thermal conductivity:
-    #temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_10, temp_list_cmb_5 = t_s.timestepping(latent, temp_init, temp_core_melting, temp_surface, cmb_conductivity, temperatures, dr, coretemp, timestep, core_density, core_cp, r_core, core_latent_heat, radii, times, kappas)
-
     print("Time stepping completed, finding time of core solidification")
     """## Finding the Timing of Core Solidification"""
 
@@ -351,13 +339,7 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     dT_by_dt = np.gradient(temperatures, timestep, axis=1)
     dT_by_dt_core = np.gradient(coretemp, timestep, axis=1)
 
-    ## if you wanted to save the full array, could do this - but for plotting etc is easier to save as separate arrays as expected by the plotting functions!
-    #total_temp_array = np.concatenate((temperatures[-1:0:-1,:],coretemp[-1:0:-1,:]),axis=0)
-    #total_dT_array = np.concatenate((dT_by_dt[-1:0:-1,:],dT_by_dt_core[-1:0:-1,:]),axis=0)
-    #np.save("output_runs/"+ str(folder)+"/temp_array"+str(run_ID)+".npy",total_temp_array)
 
-    # Saving arrays
-    ##### Going to try saving to a compressed npz folder instead
     print("Saving arrays if requested")
 
     if (save_array == "y") and (compressed == "n"):
@@ -374,11 +356,7 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     # file prefix: "output_runs/"+ str(folder)+"/"+str(run_ID)+
 
     """#Get indices of cooling rates between T = 593 and T = 800 # """
-    #lower_T = 593
-    #upper_T = 800
-    #
-    #widman_window = np.where(temperatures >= 593 and <= 800)[0]
-    # need to do this for a specific r
+
     print("Importing cooling_calc module and calculating formation depths")
     """## Calculation of Cooling Rates and Depths"""
     import cooling_calc
@@ -471,14 +449,6 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     ol_depth_v_low= (c_d.Critical_Depth_ol(Miyamoto1997_v_low, temperatures,dT_by_dt, radii, r_planet, core_size_factor,time_core_frozen, fully_frozen))[0]
     Esquel_Depth_test= (c_d.Critical_Depth_ol(Esquel_cooling_rate, temperatures,dT_by_dt, radii, r_planet, core_size_factor,time_core_frozen, fully_frozen))[0]
 
-    # Saving depths for loading and later plotting:
-    ###I think this is incorrect
-    #if (save_array == "y"):
-    #    Depth_list = np.array([Esquel_Depth,Imilac_Depth,Brenham1_Depth,GlorM1_Depth,Seymchan1_Depth,Dora_Depth,Finmarken_Depth,Giroux_Depth,SBend_Depth,Springwater_Depth,Admire_Depth,Brahin_Depth,Fukang_Depth,ol_depth_low,ol_depth_high,ol_depth_v_low,Esquel_Depth_test])
-    #    np.save("output_runs/"+ str(folder)+"/"+str(run_ID)+"depths.npy",Depth_list)
-    #else:
-    #    pass
-    # this might work:
     print("saving depths")
     if (save_array == "y"):
         with open("output_runs/"+ str(folder)+"/"+str(run_ID)+"depths.pickle",'wb') as f:
@@ -488,6 +458,8 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
 
 
 
+    # Want to add this code to a separate function that can pull these out
+    # after the model has been run, given the temp array.
     # Producing lists of depths as csv file, CAN COMMENT OUT THIS SECTION IF NOT NEEDED #
     #
     #Depth_list = [Esquel_Depth,Imilac_Depth,Brenham1_Depth,GlorM1_Depth,Seymchan1_Depth,Dora_Depth,Finmarken_Depth,Giroux_Depth,SBend_Depth,Springwater_Depth,Admire_Depth,Brahin_Depth,Fukang_Depth,ol_depth_low,ol_depth_high,ol_depth_v_low,Esquel_Depth_test]
@@ -581,7 +553,7 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
         else:
             with open("output_runs/"+ str(folder)+"/temp_list_10_"+str(run_ID)+".csv","w") as f:
                 writer = csv.writer(f, delimiter='\n',quoting=csv.QUOTE_NONE)
-                writer.writerow(temp_list_10)
+                writer.writerow(temp_list_shal)
 
 
     else:
@@ -596,22 +568,6 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
         pass
 
 
-#    if (model_type == 5):
-#        with open("output_runs/"+ str(folder)+"/A_1_"+str(run_ID)+".csv","w") as f:
-#            writer = csv.writer(f, delimiter='\n',quoting=csv.QUOTE_NONE)
-#            writer.writerow(A_1list)
-#
-#        with open("output_runs/"+ str(folder)+"/B_1_"+str(run_ID)+".csv","w") as f:
-#            writer = csv.writer(f, delimiter='\n',quoting=csv.QUOTE_NONE)
-#            writer.writerow(B_1list)
-#
-#        with open("output_runs/"+ str(folder)+"/C_1_"+str(run_ID)+".csv","w") as f:
-#            writer = csv.writer(f, delimiter='\n',quoting=csv.QUOTE_NONE)
-#            writer.writerow(C_1list)
-#
-#        with open("output_runs/"+ str(folder)+"/delt_"+str(run_ID)+".csv","w") as f:
-#            writer = csv.writer(f, delimiter='\n',quoting=csv.QUOTE_NONE)
-#            writer.writerow(delt_list)
     if (model_type == 5):
         with open("output_runs/"+ str(folder)+"/A_1_mm"+str(run_ID)+".csv","w") as f:
             writer = csv.writer(f, delimiter='\n',quoting=csv.QUOTE_NONE)
@@ -775,7 +731,7 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
         '\nk0_core =  '+str(k0_core)+
         '\ntimestep = '+str(timestep)+
         '\ntime taken (seconds) = '+str(end - start) +
-        '\ncore begins to freeze = '+str(((time_core_frozen)))+
+        '\ncore begins to freeze = '+str(((time_core_frozen)/ myr))+
         '\ncore frozen = '+str(fully_frozen/ myr)+
         '\nEsquel depth = '+str(Esquel_Depth)+" at " + str(Esq_timing)+
         '\nImilac depth = '+str(Imilac_Depth)+" at " + str(Im_timing))
@@ -787,7 +743,7 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     print('\ncore begins to freeze = '+str(((time_core_frozen)/ myr))+
     '\nEsquel depth = '+str(Esquel_Depth)+ " at " + str(Esq_timing) +
     '\nImilac depth = '+str(Imilac_Depth)+ " at " + str(Im_timing)  +
-    '\ncore frozen = '+str((fully_frozen)))
+    '\ncore frozen = '+str((fully_frozen)/ myr))
 
     if return_vars == "y":
         begins_to_freeze = time_core_frozen/ myr
