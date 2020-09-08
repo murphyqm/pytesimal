@@ -20,34 +20,12 @@ import os.path
 from os import path
 
 
-"""## Setting up colourmaps, font paths etc. ##"""
-# for work pc
-#fontpath = '/nfs/see-fs-02_users/eememq/Downloads/Lato/Lato-Regular.ttf'
+"""## Setting up colourmaps ##"""
 
-# for laptop
-#fontpath = 'C:/Users/maeve/Downloads/Lato/Lato-Regular.ttf'
-
-# turning this off, don't think we need to change the fonts and it's causing problems
-# if path.exists('/nfs/see-fs-02_users/eememq/Downloads/Lato/Lato-Regular.ttf'):
-#     print("On work pc")
-#     fontpath = '/nfs/see-fs-02_users/eememq/Downloads/Lato/Lato-Regular.ttf'
-# elif path.exists('C:/Users/maeve/Downloads/Lato/Lato-Regular.ttf'):
-#     print("On laptop")
-#     fontpath = 'C:/Users/maeve/Downloads/Lato/Lato-Regular.ttf'
-# else:
-#     print("not recognised workspace - please add fontpath")
-    
-# print(fontpath)
-
-# prop = font_manager.FontProperties(fname=fontpath)
-# matplotlib.rcParams['font.family'] = prop.get_name()
-
-# If font can't be found:
-# import matplotlib
-#
-#matplotlib.font_manager._rebuild()
-#
-#smooth cmap
+# need to tidy this - lots of these aren't used/uneccessary
+# also think tstep is hardcoded - need to fix
+# look at more recent modular plotting functions and build similar with this
+# low on to-do list
 custom_cmapy = clr.LinearSegmentedColormap.from_list('custom red/yellow', ['#143642','#C41230','#EC9A29'])
 custom_cmap_20 = clr.LinearSegmentedColormap.from_list('custom red/yellow', ['#143642','#C41230','#EC9A29'], N=20)
 custom_cmapx = custom_cmap_20 
@@ -67,10 +45,7 @@ font_prop = font_manager.FontProperties(size=14)
 
 
 myr = 3.1556926E13
-#t_step = 2.0E11
-#def million_years(x, pos):
-#    "Converting from timesteps to myrs"
-#    return int((x * t_step)/ myr)
+
 
 
 def million_years(x, pos):
@@ -303,106 +278,3 @@ def cooling_rate_plot(dT_by_dt, dT_by_dt_core, Imilac_cooling_rate, Esquel_cooli
         pass
     plt.show()
   
-    
-############################################################################
-############################################################################
-############################################################################
-############################################################################
-# _______ ______  _____ _______ _____ _   _  _____ 
-#|__   __|  ____|/ ____|__   __|_   _| \ | |/ ____|
-#   | |  | |__  | (___    | |    | | |  \| | |  __ 
-#   | |  |  __|  \___ \   | |    | | | . ` | | |_ |
-#   | |  | |____ ____) |  | |   _| |_| |\  | |__| |
-#   |_|  |______|_____/   |_|  |_____|_| \_|\_____|
-#
-############################################################################
-############################################################################
-############################################################################
-############################################################################
-# currently working on plotting curvature stuff
-#
-#def dT_by_dr_plot(dT_by_dr, dT_by_dr_core, max_time, time_core_frozen, fully_frozen, r_planet, r_core, temperatures, coretemp,run_ID):
-#    """
-#    Returns a plot of depth vs time, with colour varying with cooling rate
-#    """
-#    fig, ax = plt.subplots(figsize=(12,6))
-#
-#    im = ax.imshow(np.concatenate((dT_by_dr[-1:0:-1,:],dT_by_dr_core[-1:0:-1,:]),axis=0), aspect='auto',vmin=-1E-12 ,cmap='binary') #'tab20b_r' #custom_cmapy ,vmin=-1E-12
-#    for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-#        label.set_fontsize(14)
-#    formatter = FuncFormatter(million_years)
-#    ax.xaxis.set_major_formatter(formatter)
-#    
-#    ticker_step = (100 * 1000000 * 365 * 24 * 3600)/1E11
-#    loc = plticker.MultipleLocator(base=ticker_step) # this locator puts ticks at regular intervals
-#    ax.xaxis.set_major_locator(loc)
-#    
-#    ax.set_xlabel("Time (Myr)")
-#    ax.set_ylabel("Depth (km)")
-#    ax.xaxis.label.set_size(14)
-#    ax.yaxis.label.set_size(14)
-#                         
-#
-#    #plot core lines if frozen before max time
-#    if time_core_frozen==0 or fully_frozen==0:
-#        ax.plot([0,max_time/(10**11)],[(r_planet/1000)-(r_core/1000),(r_planet/1000)-(r_core/1000)], lw=3, c="w", linestyle='-', alpha=0.4)
-#        plt.text(25,110,'CMB', color='w', alpha=0.5, fontsize=16)
-#        pass
-#
-#    else:
-#        #core begins to freeze line
-#        ax.plot([time_core_frozen/(10**11),time_core_frozen/(10**11)],[((r_planet)/1000)-3,(r_core/1000)], lw=3, c="w",linestyle= '--', alpha=0.5)
-#        #core finishes freezing
-#        ax.plot([fully_frozen/(10**11),fully_frozen/(10**11)],[((r_planet)/1000)-3,(r_core/1000)], lw=3, c="w",linestyle= '--', alpha=0.5)
-#        #Core location
-#        ax.plot([0,max_time/(10**11)],[(r_planet/1000)-(r_core/1000),(r_planet/1000)-(r_core/1000)], lw=3, c="w", linestyle='-',alpha=0.4)
-#        plt.text(25,110,'CMB', color='w', alpha=0.5, fontsize=16)
-#        #Add text labelling period of core solidification
-#        middle_of_core_solidification = (((fully_frozen+time_core_frozen)/2))/(10**11)-4700
-#        plt.text(middle_of_core_solidification,((r_planet/1000) -15),'Core \nFreezes', color='w',fontsize=14,alpha=0.5)
-#
-#
-#    plt.title('dT/dr', fontsize=18, pad=12)
-#    fmt1 = plticker.FuncFormatter(my_func)
-#    cb = fig.colorbar(im, format=fmt1, extend='min')
-#    cb.set_label('dT/dr', fontsize=14)
-#    cb.ax.tick_params(labelsize=14)
-#    cb.ax.invert_yaxis() 
-#    #plt.savefig('output_runs/cooling_rate_' + str(run_ID) + '.pdf', format='pdf', bbox_inches='tight')
-#    plt.show()
-#
-#def dTbydr_testing(dT_by_dr, dT_by_dr_core, max_time, time_core_frozen, fully_frozen, r_planet, r_core, temperatures, coretemp,run_ID):
-#    """
-#    Returns a plot of depth vs time, with colour varying with cooling rate
-#    """
-#    fig, ax = plt.subplots(figsize=(20,10))
-#
-#    im = ax.imshow(np.concatenate((dT_by_dr[-1:0:-1,:],dT_by_dr_core[-1:0:-1,:]),axis=0), aspect='auto',vmin=-1E-12 ,cmap='binary') #'tab20b_r' #custom_cmapy
-#
-#    ax.set_xlabel("Time")
-#    ax.set_ylabel("Depth (km)")
-#
-#
-#    #plot core lines if frozen before max time
-#    if time_core_frozen==0 or fully_frozen==0:
-#        pass
-#
-#    else:
-#        #core begins to freeze line
-#        ax.plot([time_core_frozen/(10**11),time_core_frozen/(10**11)],[((r_planet)/1000)-3,0], lw=1, c="k",linestyle= '--')
-#        #core finishes freezing
-#        ax.plot([fully_frozen/(10**11),fully_frozen/(10**11)],[((r_planet)/1000)-3,0], lw=1, c="k",linestyle= '--')
-#        #Core location
-#        ax.plot([0,max_time/(10**11)/2],[(r_planet/1000)-(r_core/1000),(r_planet/1000)-(r_core/1000)], lw=1, c="k", linestyle='--')
-#        #Add text labelling period of core solidification
-#        middle_of_core_solidification = (((fully_frozen+time_core_frozen)/2))/(10**11)-4700
-#        plt.text(middle_of_core_solidification,4,'Period of Core Solidification', color='w')
-#
-#
-#
-#    plt.title('dT/dr')
-#
-#    cb = fig.colorbar(im)
-#    cb.set_label('dT/dr')
-#    #plt.savefig('cooling_rate_' + str(run_ID) + '.pdf', format='pdf', dpi=1000)
-#    plt.show()

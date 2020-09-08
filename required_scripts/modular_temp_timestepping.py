@@ -4,6 +4,7 @@
 import numpy as np
 #import sys
 
+
 ###### Background info on functions used:
 
 # Conductivity
@@ -504,7 +505,6 @@ def comp_to_analytical_sep_terms(latent,temp_init, temp_core_melting, temp_surfa
             #invalid value encountered in double scalars
             #invalid value encountered in less_equal
             #core freezes after max time
-            # it actually produces output if you remove the timestep (but obviously incorrect)
             A_1 = []
             B_1 = []
             C_1 = []

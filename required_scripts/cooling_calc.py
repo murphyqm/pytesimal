@@ -33,5 +33,5 @@ def t_cooling(tw):
     
 def to_seconds(cooling_rate):
     myr = 3.1556926E13
-    new_cooling_rate = cooling_rate/myr #/1000000/365/24/60/60 # this really should be by million years but future problem
+    new_cooling_rate = cooling_rate/myr #/1000000/365/24/60/60 # fix to myr
     return(new_cooling_rate)

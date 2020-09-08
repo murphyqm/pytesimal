@@ -88,7 +88,7 @@ def Critical_Depth(CR, temperatures,dT_by_dt, radii, r_planet, core_size_factor,
 # Experimental function to calculate olivine cooling rate #
 ###########################################################
 
-
+# this function is defunct but could be fixed to produce something useful...
 
 #funtion finding the depth, given the cooling rate, and checks if the 593K contour crosses this depth during core solidification
 def Critical_Depth_ol(CR, temperatures,dT_by_dt, radii, r_planet, core_size_factor,time_core_frozen, fully_frozen): 
