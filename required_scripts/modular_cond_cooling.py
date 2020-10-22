@@ -199,9 +199,9 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     max_time = max_time * myr #sec
 
 
-    def K(k0, B, T):
-        K_new = k0 * (1 + B*T)
-        return K_new
+ #   def K(k0, B, T):
+ #       K_new = k0 * (1 + B*T)
+ #       return K_new
 
 #    def dt_new(k0,B,T,p,Cp,dr):
 #        K_1= K(k0, B, T)
