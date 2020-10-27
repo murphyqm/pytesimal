@@ -97,7 +97,7 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
 
     start = time.time()
 
-    compressed = "y" # to save output arrays as compressed
+    compressed = "y"  # to save output arrays as compressed
 
     if not os.path.isdir("output_runs"):
         os.mkdir("output_runs")
@@ -105,7 +105,8 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     if not os.path.isdir("output_runs/"+ str(folder)):
         os.mkdir("output_runs/"+ str(folder))
 
-    meteorite_depthlist_ID = "12aug" # Only need to change if you change list of meteorites for depth calculations
+    meteorite_depthlist_ID = "12aug"  # Only need to change if you change list
+    # of meteorites for depth calculations
 
     import numpy as np
     import csv
@@ -115,8 +116,8 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
 
     """## Defining Variables"""
 
-    #r_planet = 200000.0 # m, usually 200000.0
-    #core_size_factor = 0.5 # fraction of total radius usually 0.5
+    # r_planet = 200000.0 # m, usually 200000.0
+    # core_size_factor = 0.5 # fraction of total radius usually 0.5
     r_core = (r_planet)*core_size_factor # m
 
     if (model_type == 7):
@@ -125,35 +126,37 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
         pass
     
     kappa = cmb_conductivity/(olivine_density*olivine_cp)
-    #dr = 1000.0 # m
+    # dr = 1000.0 # m
 
-    #temp_init = 1600.0 # K
-    #temp_surface = 250.0 # K usually 250 K
-    #temp_core_melting = 1200.0 # K
+    # temp_init = 1600.0 # K
+    # temp_surface = 250.0 # K usually 250 K
+    # temp_core_melting = 1200.0 # K
 
-    #kappa = 5E-7 # 3.0485E-11 #5E-7  # m^2/s usually 5E-7; can be 1.515151E-6 to set cmb = 3; 5.827E-7 when B= 0.001,1.3635e-06 for constant comparison case
-    #kappa_reg = 5.0E-8 # m^2/s
-    #reg_fraction = 0.0
+    # kappa = 5E-7 # 3.0485E-11 #5E-7  
+    # m^2/s usually 5E-7; can be 1.515151E-6 to set cmb = 3; 
+    # 5.827E-7 when B= 0.001,1.3635e-06 for constant comparison case
+
+    # kappa_reg = 5.0E-8 # m^2/s
+    # reg_fraction = 0.0
     if reg_percent == "n":
-        reg_thickness = (reg_fraction*200000.0)*1.0 # m original=0.04, *1
+        reg_thickness = (reg_fraction*200000.0)*1.0  # m original=0.04, *1
     else:
         reg_thickness = (reg_fraction*r_planet)*1.0
 
-    #core_density = 7800.0 # kg/m^3
-    #olivine_density = 3300.0 # kg/m^3
-    #olivine_cp = 600.0 # J/kg/K ## where did this figure come from?
-    #core_cp = 850.0 # J/kg/K
-    #core_latent_heat = 270000.0 # J/kg
-    #cmb_conductivity = 3.0 # W/m/K
+    # core_density = 7800.0 # kg/m^3
+    # olivine_density = 3300.0 # kg/m^3
+    # olivine_cp = 600.0 # J/kg/K ## where did this figure come from?
+    # core_cp = 850.0 # J/kg/K
+    # core_latent_heat = 270000.0 # J/kg
+    # cmb_conductivity = 3.0 # W/m/K
 
     p = olivine_density
     c = olivine_cp
 
-
-    ## Basic set up:
-    k0_mantle = cmb_conductivity # 0.99
-    k0_reg = kappa_reg * p * c # 0.099
-    k0_core =  k0_mantle # 0.99
+    # Basic set up:
+    k0_mantle = cmb_conductivity  # 0.99
+    k0_reg = kappa_reg * p * c  # 0.099
+    k0_core = k0_mantle  # 0.99
     # k_core = kappa * core_cp * core_density # 3.315
 
     # Values from Haack 1990
@@ -173,12 +176,10 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     k0_core =  30.000 #w/m/K
     """
 
-    #max_time = 400 # million years (usually set to 400)
-
     print(run_ID)
-    ## setting suitable max times for certain radii
+    # setting suitable max times for certain radii
     if r_planet >= 100000:
-        max_time = 200 # Myr
+        max_time = 200  # Myr
     if r_planet >= 200000:
         max_time = 400
     if r_planet >= 300000:
@@ -186,29 +187,17 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     if r_planet >= 400000:
         max_time = 800
     if r_planet >= 500000:
-        max_time = 1000 
+        max_time = 1000
     if r_planet >= 600000:
         max_time = 1200
     if r_planet >= 650000:
         max_time = 1600
-        
+
     print(max_time)
     myr = 3.1556926E13
-    #sys.exit()
+    # sys.exit()
 
-    max_time = max_time * myr #sec
-
-
- #   def K(k0, B, T):
- #       K_new = k0 * (1 + B*T)
- #       return K_new
-
-#    def dt_new(k0,B,T,p,Cp,dr):
-#        K_1= K(k0, B, T)
-#        dt = ((dr)**2)*((p*Cp)/(K_1))
-#        return dt
-
-
+    max_time = max_time * myr  #sec
 
     """## Defining Variable Arrays"""
 
@@ -216,17 +205,16 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     radii = np.arange(r_core, r_planet, dr)
     core = np.arange(0, r_core-dr+0.5*dr, dr)
 
-
     # Set list of timesteps
     times = np.arange(0, max_time+0.5*timestep, timestep)
 
-    if model_type == 10: # added "9 or 1"
-        # Setup thermal diffusivity array, keeping track of regolith
+    if model_type == 10:  # added "9 or 1"
+        # Set up thermal diffusivity array, keeping track of regolith
         kappas = np.ones_like(radii) * kappa
         where_regolith = np.ones_like(radii)
         for i, r in enumerate(radii):
             d = r_planet - r
-            if d <= reg_thickness: #added or equals sign to see what results are...
+            if d <= reg_thickness:
                 kappas[i] = kappa_reg
                 where_regolith[i] = 0
 
@@ -235,7 +223,7 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
         where_regolith = np.ones_like(radii)
         for i, r in enumerate(radii):
             d = r_planet - r
-            if d < reg_thickness: #added or equals sign to see what results are...
+            if d < reg_thickness:
                 kappas[i] = kappa_reg
                 where_regolith[i] = 0
 
@@ -256,14 +244,14 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     # Core temperature array
     coretemp = np.zeros((core.size, times.size))
 
-    #empty list of latent heats
-    latent =[]
+    # empty list of latent heats
+    latent = []
     print("Variables have been set up, importing timestepping function")
 
     """## Temperature Timestepping"""
 
-    #import temp_timestepping as t_s
-    #pdb.set_trace()
+    # import temp_timestepping as t_s
+    # pdb.set_trace()
 
     # if (model_type == 1):
     #     # constant conductivity
@@ -335,21 +323,27 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
 
     """## Differentiation of Temperatures"""
 
-    #calculate rate of change of temperatures
+    # calculate rate of change of temperatures
     dT_by_dt = np.gradient(temperatures, timestep, axis=1)
     dT_by_dt_core = np.gradient(coretemp, timestep, axis=1)
-
 
     print("Saving arrays if requested")
 
     if (save_array == "y") and (compressed == "n"):
-        np.save("output_runs/"+ str(folder)+"/"+str(run_ID)+"temperatures_array.npy",temperatures)
-        np.save("output_runs/"+ str(folder)+"/"+str(run_ID)+"coretemp_array.npy",coretemp)
-        np.save("output_runs/"+ str(folder)+"/"+str(run_ID)+"dT_by_dt_array.npy",dT_by_dt)
-        np.save("output_runs/"+ str(folder)+"/"+str(run_ID)+"dT_by_dt_core.npy",dT_by_dt_core)
+        np.save("output_runs/" + str(folder) + "/"+str(run_ID) +
+                "temperatures_array.npy", temperatures)
+        np.save("output_runs/" + str(folder) + "/"+str(run_ID) +
+                "coretemp_array.npy", coretemp)
+        np.save("output_runs/" + str(folder) + "/"+str(run_ID) +
+                "dT_by_dt_array.npy", dT_by_dt)
+        np.save("output_runs/" + str(folder) + "/"+str(run_ID) +
+                "dT_by_dt_core.npy", dT_by_dt_core)
 
     elif (save_array == "y") and (compressed == "y"):
-        np.savez_compressed("output_runs/"+ str(folder)+"/"+str(run_ID)+"_total_arrays.npz",temperatures=temperatures, coretemp=coretemp, dT_by_dt=dT_by_dt, dT_by_dt_core=dT_by_dt_core)
+        np.savez_compressed("output_runs/" + str(folder) + "/"+str(run_ID) +
+                            "_total_arrays.npz", temperatures=temperatures,
+                            coretemp=coretemp, dT_by_dt=dT_by_dt,
+                            dT_by_dt_core=dT_by_dt_core)
     else:
         pass
 
@@ -362,9 +356,8 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     import cooling_calc
     import cooling_rate_data as c_r_d
 
-
-    d_im = 147 #cz diameter in nm
-    d_esq = 158 # cz diameter in nm
+    d_im = 147  # cz diameter in nm
+    d_esq = 158  # cz diameter in nm
     Imilac_cooling_rate = cooling_calc.to_seconds(cooling_calc.cz_cooling(d_im))
     Esquel_cooling_rate = cooling_calc.to_seconds(cooling_calc.cz_cooling(d_esq))
     Brenham1_cr = cooling_calc.to_seconds(c_r_d.Brenham1)
@@ -379,7 +372,6 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     Admire_cr = cooling_calc.to_seconds(c_r_d.Admire)
     Brahin_cr = cooling_calc.to_seconds(c_r_d.Brahin)
     Fukang_cr = cooling_calc.to_seconds(c_r_d.Fukang)
-
 
 
     import new_crit_depth as c_d
@@ -746,8 +738,8 @@ def conductive_cooling(run_ID,folder, kappa = 1.22100122100122E-06, B = 0.000, m
     '\ncore frozen = '+str((fully_frozen)/ myr))
 
     if return_vars == "y":
-        begins_to_freeze = time_core_frozen/ myr
-        finished_freezing = fully_frozen/ myr
-        return begins_to_freeze, finished_freezing
+        begins_to_freeze = time_core_frozen
+        finished_freezing = fully_frozen
+        return begins_to_freeze, finished_freezing, Esquel_Depth, Esq_timing, Imilac_Depth, Im_timing
     else:
         pass
