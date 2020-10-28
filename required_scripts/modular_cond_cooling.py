@@ -13,20 +13,40 @@ Created on Mon Feb 17 08:41:44 2020.
 #########################################################
 
 
-def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
-                       model_type=17, plotting="None", save_array="n",
-                       save_csv="n", timestep=1E11, r_planet=250000.0,
-                       core_size_factor=0.5, reg_fraction=0.032,
-                       max_time=400, temp_core_melting=1200.0,
-                       olivine_cp=819.0, olivine_density=3341.0,
-                       return_vars="n", save_param_file="y",
-                       cmb_conductivity=3.0, core_cp=850.0,
-                       core_density=7800.0, temp_init=1600.0,
-                       temp_surface=250.0, core_latent_heat=270000.0,
-                       kappa_reg=5.0E-8, dr=1000.0, reg_percent="y",
-                       cond_constant="y", density_constant="y",
-                       heat_cap_constant="y", non_lin_term="y",
-                       record_timings="n"):
+def conductive_cooling(
+    run_ID,
+    folder,
+    kappa=1.22100122100122e-06,
+    B=0.000,
+    model_type=17,
+    plotting="None",
+    save_array="n",
+    save_csv="n",
+    timestep=1e11,
+    r_planet=250000.0,
+    core_size_factor=0.5,
+    reg_fraction=0.032,
+    max_time=400,
+    temp_core_melting=1200.0,
+    olivine_cp=819.0,
+    olivine_density=3341.0,
+    return_vars="n",
+    save_param_file="y",
+    cmb_conductivity=3.0,
+    core_cp=850.0,
+    core_density=7800.0,
+    temp_init=1600.0,
+    temp_surface=250.0,
+    core_latent_heat=270000.0,
+    kappa_reg=5.0e-8,
+    dr=1000.0,
+    reg_percent="y",
+    cond_constant="y",
+    density_constant="y",
+    heat_cap_constant="y",
+    non_lin_term="y",
+    record_timings="n",
+):
     """
     Conductive cooling model.
 
@@ -121,6 +141,7 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
 
     import numpy as np
     import csv
+
     # import pdb
     # import sys
     import pickle
@@ -129,14 +150,14 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
 
     # r_planet = 200000.0 # m, usually 200000.0
     # core_size_factor = 0.5 # fraction of total radius usually 0.5
-    r_core = (r_planet)*core_size_factor  # m
+    r_core = (r_planet) * core_size_factor  # m
 
-    if (model_type == 7):
+    if model_type == 7:
         r_core = 0.0001
     else:
         pass
 
-    kappa = cmb_conductivity/(olivine_density*olivine_cp)
+    kappa = cmb_conductivity / (olivine_density * olivine_cp)
     # dr = 1000.0 # m
 
     # temp_init = 1600.0 # K
@@ -150,9 +171,9 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
     # kappa_reg = 5.0E-8 # m^2/s
     # reg_fraction = 0.0
     if reg_percent == "n":
-        reg_thickness = (reg_fraction*200000.0)*1.0  # m original=0.04, *1
+        reg_thickness = (reg_fraction * 200000.0) * 1.0  # m original=0.04, *1
     else:
-        reg_thickness = (reg_fraction*r_planet)*1.0
+        reg_thickness = (reg_fraction * r_planet) * 1.0
 
     # core_density = 7800.0 # kg/m^3
     # olivine_density = 3300.0 # kg/m^3
@@ -205,7 +226,7 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
         max_time = 1600
 
     print(max_time)
-    myr = 3.1556926E13
+    myr = 3.1556926e13
     # sys.exit()
 
     max_time = max_time * myr  # sec
@@ -214,10 +235,10 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
 
     # set up arrays for the core and the mantle
     radii = np.arange(r_core, r_planet, dr)
-    core = np.arange(0, r_core-dr+0.5*dr, dr)
+    core = np.arange(0, r_core - dr + 0.5 * dr, dr)
 
     # Set list of timesteps
-    times = np.arange(0, max_time+0.5*timestep, timestep)
+    times = np.arange(0, max_time + 0.5 * timestep, timestep)
 
     if model_type == 10:  # added "9 or 1"
         # Set up thermal diffusivity array, keeping track of regolith
@@ -241,11 +262,11 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
     # Setup thermal conductivity array for mantle, regolith - core is
     # not included in the radii array
     k_0 = np.ones_like(radii) * k0_mantle
-#    for i, r in enumerate(radii):
-#        d = r_planet - r
-#    #    d_mantle = r_planet - r_core
-#        if d < reg_thickness:
-#            k_0[i] = k0_reg
+    #    for i, r in enumerate(radii):
+    #        d = r_planet - r
+    #    #    d_mantle = r_planet - r_core
+    #        if d < reg_thickness:
+    #            k_0[i] = k0_reg
     #    if d > d_mantle:
     #        k_0[i] = k0_core
 
@@ -264,69 +285,150 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
     # import temp_timestepping as t_s
     # pdb.set_trace()
 
-    if (model_type == 7):
+    if model_type == 7:
         import modular_temp_timestepping as mtt
+
         # same as above but with separated variables
-        (temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_shal,
-         temp_list_cmb_5, A_1list, B_1list, C_1list, delt_list, A_1listcmb,
-         B_1listcmb, C_1listcmb, delt_listcmb, A_1listshal, B_1listshal,
-         C_1listshal,
-         delt_listshal) = mtt.comp_to_analytical_sep_terms(latent, temp_init,
-                                                           temp_core_melting,
-                                                           temp_surface,
-                                                           cmb_conductivity,
-                                                           temperatures, dr,
-                                                           coretemp, timestep,
-                                                           core_density,
-                                                           core_cp, r_core,
-                                                           core_latent_heat,
-                                                           radii, times,
-                                                           kappas, p, c, B,
-                                                           k_0)
+        (
+            temperatures,
+            coretemp,
+            latent,
+            temp_list_mid_mantle,
+            temp_list_shal,
+            temp_list_cmb_5,
+            A_1list,
+            B_1list,
+            C_1list,
+            delt_list,
+            A_1listcmb,
+            B_1listcmb,
+            C_1listcmb,
+            delt_listcmb,
+            A_1listshal,
+            B_1listshal,
+            C_1listshal,
+            delt_listshal,
+        ) = mtt.comp_to_analytical_sep_terms(
+            latent,
+            temp_init,
+            temp_core_melting,
+            temp_surface,
+            cmb_conductivity,
+            temperatures,
+            dr,
+            coretemp,
+            timestep,
+            core_density,
+            core_cp,
+            r_core,
+            core_latent_heat,
+            radii,
+            times,
+            kappas,
+            p,
+            c,
+            B,
+            k_0,
+        )
 
-    elif(model_type == 17):
+    elif model_type == 17:
         import modular_temp_timestepping as mtt
-        (temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_shal,
-         temp_list_cmb_5, A_1list, B_1list, C_1list, delt_list, A_1listcmb,
-         B_1listcmb, C_1listcmb, delt_listcmb, A_1listshal, B_1listshal,
-         C_1listshal, delt_listshal) = mtt.discretisation(latent, temp_init,
-                                                          temp_core_melting,
-                                                          temp_surface,
-                                                          cmb_conductivity,
-                                                          p, c, temperatures,
-                                                          dr, coretemp,
-                                                          timestep,
-                                                          core_density,
-                                                          core_cp, r_core,
-                                                          core_latent_heat,
-                                                          radii, times, kappas,
-                                                          where_regolith,
-                                                          kappa_reg,
-                                                          cond_constant,
-                                                          density_constant,
-                                                          heat_cap_constant,
-                                                          non_lin_term)
 
-    elif(model_type == 18):
+        (
+            temperatures,
+            coretemp,
+            latent,
+            temp_list_mid_mantle,
+            temp_list_shal,
+            temp_list_cmb_5,
+            A_1list,
+            B_1list,
+            C_1list,
+            delt_list,
+            A_1listcmb,
+            B_1listcmb,
+            C_1listcmb,
+            delt_listcmb,
+            A_1listshal,
+            B_1listshal,
+            C_1listshal,
+            delt_listshal,
+        ) = mtt.discretisation(
+            latent,
+            temp_init,
+            temp_core_melting,
+            temp_surface,
+            cmb_conductivity,
+            p,
+            c,
+            temperatures,
+            dr,
+            coretemp,
+            timestep,
+            core_density,
+            core_cp,
+            r_core,
+            core_latent_heat,
+            radii,
+            times,
+            kappas,
+            where_regolith,
+            kappa_reg,
+            cond_constant,
+            density_constant,
+            heat_cap_constant,
+            non_lin_term,
+        )
+
+    elif model_type == 18:
         import modular_temp_timestepping as mtt
-        (temperatures, coretemp, latent, temp_list_mid_mantle, temp_list_shal,
-         temp_list_cmb_5, A_1list, B_1list, C_1list, delt_list, A_1listcmb,
-         B_1listcmb, C_1listcmb, delt_listcmb, A_1listshal, B_1listshal,
-         C_1listshal,
-         delt_listshal) = mtt.simple_discretisation(latent, temp_init,
-                                                    temp_core_melting,
-                                                    temp_surface,
-                                                    cmb_conductivity, p, c, B,
-                                                    temperatures, dr, coretemp,
-                                                    timestep, core_density,
-                                                    core_cp, r_core,
-                                                    core_latent_heat, radii,
-                                                    times, kappas,
-                                                    where_regolith, kappa_reg,
-                                                    cond_constant,
-                                                    density_constant,
-                                                    heat_cap_constant,
-                                                    non_lin_term)
+
+        (
+            temperatures,
+            coretemp,
+            latent,
+            temp_list_mid_mantle,
+            temp_list_shal,
+            temp_list_cmb_5,
+            A_1list,
+            B_1list,
+            C_1list,
+            delt_list,
+            A_1listcmb,
+            B_1listcmb,
+            C_1listcmb,
+            delt_listcmb,
+            A_1listshal,
+            B_1listshal,
+            C_1listshal,
+            delt_listshal,
+        ) = mtt.simple_discretisation(
+            latent,
+            temp_init,
+            temp_core_melting,
+            temp_surface,
+            cmb_conductivity,
+            p,
+            c,
+            B,
+            temperatures,
+            dr,
+            coretemp,
+            timestep,
+            core_density,
+            core_cp,
+            r_core,
+            core_latent_heat,
+            radii,
+            times,
+            kappas,
+            where_regolith,
+            kappa_reg,
+            cond_constant,
+            density_constant,
+            heat_cap_constant,
+            non_lin_term,
+        )
 
     else:
         print("Please assign valid model type number")
@@ -336,9 +438,14 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
 
     import core_cooling as c_c
 
-    (core_frozen, times_frozen, time_core_frozen,
-     fully_frozen) = c_c.core_freezing(coretemp, max_time, times, latent,
-                                       temp_core_melting, timestep)
+    (
+        core_frozen,
+        times_frozen,
+        time_core_frozen,
+        fully_frozen,
+    ) = c_c.core_freezing(
+        coretemp, max_time, times, latent, temp_core_melting, timestep
+    )
 
     """## Differentiation of Temperatures"""
 
@@ -349,20 +456,51 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
     print("Saving arrays if requested")
 
     if (save_array == "y") and (compressed == "n"):
-        np.save("output_runs/" + str(folder) + "/"+str(run_ID) +
-                "temperatures_array.npy", temperatures)
-        np.save("output_runs/" + str(folder) + "/"+str(run_ID) +
-                "coretemp_array.npy", coretemp)
-        np.save("output_runs/" + str(folder) + "/"+str(run_ID) +
-                "dT_by_dt_array.npy", dT_by_dt)
-        np.save("output_runs/" + str(folder) + "/"+str(run_ID) +
-                "dT_by_dt_core.npy", dT_by_dt_core)
+        np.save(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "temperatures_array.npy",
+            temperatures,
+        )
+        np.save(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "coretemp_array.npy",
+            coretemp,
+        )
+        np.save(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "dT_by_dt_array.npy",
+            dT_by_dt,
+        )
+        np.save(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "dT_by_dt_core.npy",
+            dT_by_dt_core,
+        )
 
     elif (save_array == "y") and (compressed == "y"):
-        np.savez_compressed("output_runs/" + str(folder) + "/"+str(run_ID) +
-                            "_total_arrays.npz", temperatures=temperatures,
-                            coretemp=coretemp, dT_by_dt=dT_by_dt,
-                            dT_by_dt_core=dT_by_dt_core)
+        np.savez_compressed(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "_total_arrays.npz",
+            temperatures=temperatures,
+            coretemp=coretemp,
+            dT_by_dt=dT_by_dt,
+            dT_by_dt_core=dT_by_dt_core,
+        )
     else:
         pass
 
@@ -378,11 +516,15 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
     d_im = 147  # cz diameter in nm
     d_esq = 158  # cz diameter in nm
     Imilac_cooling_rate = cooling_calc.to_seconds(
-        cooling_calc.cz_cooling(d_im))
+        cooling_calc.cz_cooling(d_im)
+    )
     Esquel_cooling_rate = cooling_calc.to_seconds(
-        cooling_calc.cz_cooling(d_esq))
+        cooling_calc.cz_cooling(d_esq)
+    )
     Brenham1_cr = cooling_calc.to_seconds(c_r_d.Brenham1)
-    Glorietta_Mountain1_cr = cooling_calc.to_seconds(c_r_d.Glorietta_Mountain1)
+    Glorietta_Mountain1_cr = cooling_calc.to_seconds(
+        c_r_d.Glorietta_Mountain1
+    )
     Seymchan1_cr = cooling_calc.to_seconds(c_r_d.Seymchan1)
 
     Dora_cr = cooling_calc.to_seconds(c_r_d.Dora1)
@@ -395,122 +537,387 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
     Fukang_cr = cooling_calc.to_seconds(c_r_d.Fukang)
 
     import new_crit_depth as c_d
+
     ##########
     # DEPTHS #
     ##########
 
-    Esquel_Depth = (c_d.Critical_Depth(Esquel_cooling_rate, temperatures,
-                                       dT_by_dt, radii, r_planet,
-                                       core_size_factor, time_core_frozen,
-                                       fully_frozen))[0]
-    Imilac_Depth = (c_d.Critical_Depth(Imilac_cooling_rate, temperatures,
-                                       dT_by_dt, radii, r_planet,
-                                       core_size_factor, time_core_frozen,
-                                       fully_frozen))[0]
-    Esq_timing = (c_d.Critical_Depth(Esquel_cooling_rate, temperatures,
-                                     dT_by_dt, radii, r_planet,
-                                     core_size_factor, time_core_frozen,
-                                     fully_frozen))[3]
-    Im_timing = (c_d.Critical_Depth(Imilac_cooling_rate, temperatures,
-                                    dT_by_dt, radii, r_planet,
-                                    core_size_factor, time_core_frozen,
-                                    fully_frozen))[3]
-    Esq_result = (c_d.Critical_Depth(Esquel_cooling_rate, temperatures,
-                                     dT_by_dt, radii, r_planet,
-                                     core_size_factor, time_core_frozen,
-                                     fully_frozen))[1]
-    Im_result = (c_d.Critical_Depth(Imilac_cooling_rate, temperatures,
-                                    dT_by_dt, radii, r_planet,
-                                    core_size_factor, time_core_frozen,
-                                    fully_frozen))[1]
-    with open("output_runs/" +
-              str(folder)+"/"+str(run_ID)+"Im_Esq_result.pickle", 'wb') as f:
+    Esquel_Depth = (
+        c_d.Critical_Depth(
+            Esquel_cooling_rate,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Imilac_Depth = (
+        c_d.Critical_Depth(
+            Imilac_cooling_rate,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Esq_timing = (
+        c_d.Critical_Depth(
+            Esquel_cooling_rate,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[3]
+    Im_timing = (
+        c_d.Critical_Depth(
+            Imilac_cooling_rate,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[3]
+    Esq_result = (
+        c_d.Critical_Depth(
+            Esquel_cooling_rate,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[1]
+    Im_result = (
+        c_d.Critical_Depth(
+            Imilac_cooling_rate,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[1]
+    with open(
+        "output_runs/"
+        + str(folder)
+        + "/"
+        + str(run_ID)
+        + "Im_Esq_result.pickle",
+        "wb",
+    ) as f:
         pickle.dump([Esq_result, Im_result], f)
     print("Im: " + str(Im_result))
     print("Esq: " + str(Esq_result))
 
-    Brenham1_Depth = (c_d.Critical_Depth(Brenham1_cr, temperatures, dT_by_dt,
-                                         radii, r_planet, core_size_factor,
-                                         time_core_frozen, fully_frozen))[0]
-    GlorM1_Depth = (c_d.Critical_Depth(Glorietta_Mountain1_cr, temperatures,
-                                       dT_by_dt, radii, r_planet,
-                                       core_size_factor, time_core_frozen,
-                                       fully_frozen))[0]
-    Seymchan1_Depth = (c_d.Critical_Depth(Seymchan1_cr, temperatures,
-                                          dT_by_dt, radii, r_planet,
-                                          core_size_factor, time_core_frozen,
-                                          fully_frozen))[0]
+    Brenham1_Depth = (
+        c_d.Critical_Depth(
+            Brenham1_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    GlorM1_Depth = (
+        c_d.Critical_Depth(
+            Glorietta_Mountain1_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Seymchan1_Depth = (
+        c_d.Critical_Depth(
+            Seymchan1_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
 
-    Dora_Depth = (c_d.Critical_Depth(Dora_cr, temperatures, dT_by_dt, radii,
-                                     r_planet, core_size_factor,
-                                     time_core_frozen, fully_frozen))[0]
-    Finmarken_Depth = (c_d.Critical_Depth(Finmarken_cr, temperatures, dT_by_dt,
-                                          radii, r_planet, core_size_factor,
-                                          time_core_frozen, fully_frozen))[0]
-    Giroux_Depth = (c_d.Critical_Depth(Giroux_cr, temperatures, dT_by_dt,
-                                       radii, r_planet, core_size_factor,
-                                       time_core_frozen, fully_frozen))[0]
-    SBend_Depth = (c_d.Critical_Depth(SBend_cr, temperatures, dT_by_dt, radii,
-                                      r_planet, core_size_factor,
-                                      time_core_frozen, fully_frozen))[0]
-    Springwater_Depth = (c_d.Critical_Depth(Springwater_cr, temperatures,
-                                            dT_by_dt, radii, r_planet,
-                                            core_size_factor, time_core_frozen,
-                                            fully_frozen))[0]
-    Admire_Depth = (c_d.Critical_Depth(Admire_cr, temperatures, dT_by_dt,
-                                       radii, r_planet, core_size_factor,
-                                       time_core_frozen, fully_frozen))[0]
-    Brahin_Depth = (c_d.Critical_Depth(Brahin_cr, temperatures, dT_by_dt,
-                                       radii, r_planet, core_size_factor,
-                                       time_core_frozen, fully_frozen))[0]
-    Fukang_Depth = (c_d.Critical_Depth(Fukang_cr, temperatures, dT_by_dt,
-                                       radii, r_planet, core_size_factor,
-                                       time_core_frozen, fully_frozen))[0]
+    Dora_Depth = (
+        c_d.Critical_Depth(
+            Dora_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Finmarken_Depth = (
+        c_d.Critical_Depth(
+            Finmarken_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Giroux_Depth = (
+        c_d.Critical_Depth(
+            Giroux_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    SBend_Depth = (
+        c_d.Critical_Depth(
+            SBend_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Springwater_Depth = (
+        c_d.Critical_Depth(
+            Springwater_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Admire_Depth = (
+        c_d.Critical_Depth(
+            Admire_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Brahin_Depth = (
+        c_d.Critical_Depth(
+            Brahin_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Fukang_Depth = (
+        c_d.Critical_Depth(
+            Fukang_cr,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
 
     # other timings #####
     if record_timings == "y":
-        Brenham1_t = (c_d.Critical_Depth(Brenham1_cr, temperatures, dT_by_dt,
-                                         radii, r_planet, core_size_factor,
-                                         time_core_frozen, fully_frozen))[3]
-        GlorM1_t = (c_d.Critical_Depth(Glorietta_Mountain1_cr, temperatures,
-                                       dT_by_dt, radii, r_planet,
-                                       core_size_factor, time_core_frozen,
-                                       fully_frozen))[3]
-        Seymchan1_t = (c_d.Critical_Depth(Seymchan1_cr, temperatures, dT_by_dt,
-                                          radii, r_planet, core_size_factor,
-                                          time_core_frozen, fully_frozen))[3]
+        Brenham1_t = (
+            c_d.Critical_Depth(
+                Brenham1_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        GlorM1_t = (
+            c_d.Critical_Depth(
+                Glorietta_Mountain1_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        Seymchan1_t = (
+            c_d.Critical_Depth(
+                Seymchan1_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
 
-        Dora_t = (c_d.Critical_Depth(Dora_cr, temperatures, dT_by_dt, radii,
-                                     r_planet, core_size_factor,
-                                     time_core_frozen, fully_frozen))[3]
-        Finmarken_t = (c_d.Critical_Depth(Finmarken_cr, temperatures, dT_by_dt,
-                                          radii, r_planet, core_size_factor,
-                                          time_core_frozen, fully_frozen))[3]
-        Giroux_t = (c_d.Critical_Depth(Giroux_cr, temperatures, dT_by_dt,
-                                       radii, r_planet, core_size_factor,
-                                       time_core_frozen, fully_frozen))[3]
-        SBend_t = (c_d.Critical_Depth(SBend_cr, temperatures, dT_by_dt, radii,
-                                      r_planet, core_size_factor,
-                                      time_core_frozen, fully_frozen))[3]
-        Springwater_t = (c_d.Critical_Depth(Springwater_cr, temperatures,
-                                            dT_by_dt, radii, r_planet,
-                                            core_size_factor, time_core_frozen,
-                                            fully_frozen))[3]
-        Admire_t = (c_d.Critical_Depth(Admire_cr, temperatures, dT_by_dt,
-                                       radii, r_planet, core_size_factor,
-                                       time_core_frozen, fully_frozen))[3]
-        Brahin_t = (c_d.Critical_Depth(Brahin_cr, temperatures, dT_by_dt,
-                                       radii, r_planet, core_size_factor,
-                                       time_core_frozen, fully_frozen))[3]
-        Fukang_t = (c_d.Critical_Depth(Fukang_cr, temperatures, dT_by_dt,
-                                       radii, r_planet, core_size_factor,
-                                       time_core_frozen, fully_frozen))[3]
+        Dora_t = (
+            c_d.Critical_Depth(
+                Dora_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        Finmarken_t = (
+            c_d.Critical_Depth(
+                Finmarken_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        Giroux_t = (
+            c_d.Critical_Depth(
+                Giroux_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        SBend_t = (
+            c_d.Critical_Depth(
+                SBend_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        Springwater_t = (
+            c_d.Critical_Depth(
+                Springwater_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        Admire_t = (
+            c_d.Critical_Depth(
+                Admire_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        Brahin_t = (
+            c_d.Critical_Depth(
+                Brahin_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
+        Fukang_t = (
+            c_d.Critical_Depth(
+                Fukang_cr,
+                temperatures,
+                dT_by_dt,
+                radii,
+                r_planet,
+                core_size_factor,
+                time_core_frozen,
+                fully_frozen,
+            )
+        )[3]
 
-        with open("output_runs/" + str(folder) + "/"+str(run_ID) +
-                  "times.pickle", 'wb') as f:
-            pickle.dump([Esq_timing, Im_timing, Brenham1_t, GlorM1_t,
-                         Seymchan1_t, Dora_t, Finmarken_t, Giroux_t, SBend_t,
-                         Springwater_t, Admire_t, Brahin_t, Fukang_t], f)
+        with open(
+            "output_runs/" + str(folder) + "/" + str(run_ID) + "times.pickle",
+            "wb",
+        ) as f:
+            pickle.dump(
+                [
+                    Esq_timing,
+                    Im_timing,
+                    Brenham1_t,
+                    GlorM1_t,
+                    Seymchan1_t,
+                    Dora_t,
+                    Finmarken_t,
+                    Giroux_t,
+                    SBend_t,
+                    Springwater_t,
+                    Admire_t,
+                    Brahin_t,
+                    Fukang_t,
+                ],
+                f,
+            )
     else:
         pass
 
@@ -521,90 +928,180 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
     Miyamoto1997_high = cooling_calc.to_seconds(100000000)
     Miyamoto1997_v_low = cooling_calc.to_seconds(200000)
 
-    ol_depth_low = (c_d.Critical_Depth_ol(Miyamoto1997_low, temperatures,
-                                          dT_by_dt, radii, r_planet,
-                                          core_size_factor, time_core_frozen,
-                                          fully_frozen))[0]
-    ol_depth_high = (c_d.Critical_Depth_ol(Miyamoto1997_high, temperatures,
-                                           dT_by_dt, radii, r_planet,
-                                           core_size_factor, time_core_frozen,
-                                           fully_frozen))[0]
-    ol_depth_v_low = (c_d.Critical_Depth_ol(Miyamoto1997_v_low, temperatures,
-                                            dT_by_dt, radii, r_planet,
-                                            core_size_factor, time_core_frozen,
-                                            fully_frozen))[0]
-    Esquel_Depth_test = (c_d.Critical_Depth_ol(Esquel_cooling_rate,
-                                               temperatures, dT_by_dt, radii,
-                                               r_planet, core_size_factor,
-                                               time_core_frozen,
-                                               fully_frozen))[0]
+    ol_depth_low = (
+        c_d.Critical_Depth_ol(
+            Miyamoto1997_low,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    ol_depth_high = (
+        c_d.Critical_Depth_ol(
+            Miyamoto1997_high,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    ol_depth_v_low = (
+        c_d.Critical_Depth_ol(
+            Miyamoto1997_v_low,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
+    Esquel_Depth_test = (
+        c_d.Critical_Depth_ol(
+            Esquel_cooling_rate,
+            temperatures,
+            dT_by_dt,
+            radii,
+            r_planet,
+            core_size_factor,
+            time_core_frozen,
+            fully_frozen,
+        )
+    )[0]
 
     print("saving depths")
-    if (save_array == "y"):
-        with open("output_runs/" + str(folder) + "/" + str(run_ID) +
-                  "depths.pickle", 'wb') as f:
-            pickle.dump([Esquel_Depth, Imilac_Depth, Brenham1_Depth,
-                         GlorM1_Depth, Seymchan1_Depth, Dora_Depth,
-                         Finmarken_Depth, Giroux_Depth, SBend_Depth,
-                         Springwater_Depth, Admire_Depth, Brahin_Depth,
-                         Fukang_Depth, ol_depth_low, ol_depth_high,
-                         ol_depth_v_low, Esquel_Depth_test,
-                         Imilac_cooling_rate, Esquel_cooling_rate], f)
+    if save_array == "y":
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "depths.pickle",
+            "wb",
+        ) as f:
+            pickle.dump(
+                [
+                    Esquel_Depth,
+                    Imilac_Depth,
+                    Brenham1_Depth,
+                    GlorM1_Depth,
+                    Seymchan1_Depth,
+                    Dora_Depth,
+                    Finmarken_Depth,
+                    Giroux_Depth,
+                    SBend_Depth,
+                    Springwater_Depth,
+                    Admire_Depth,
+                    Brahin_Depth,
+                    Fukang_Depth,
+                    ol_depth_low,
+                    ol_depth_high,
+                    ol_depth_v_low,
+                    Esquel_Depth_test,
+                    Imilac_cooling_rate,
+                    Esquel_cooling_rate,
+                ],
+                f,
+            )
     else:
         pass
 
     """## Plotting of Temperatures and Cooling Rates"""
 
-    if (plotting == "both"):
+    if plotting == "both":
         print("Beginning plotting both")
         import temp_plotting_formatted
-        temp_plotting_formatted.temperature_plot(temperatures, coretemp,
-                                                 Esquel_Depth, Imilac_Depth,
-                                                 Brenham1_Depth,
-                                                 Seymchan1_Depth,
-                                                 GlorM1_Depth, Admire_Depth,
-                                                 Brahin_Depth, Fukang_Depth,
-                                                 r_core, max_time,
-                                                 time_core_frozen,
-                                                 fully_frozen, r_planet,
-                                                 run_ID)
 
-        temp_plotting_formatted.cooling_rate_plot(dT_by_dt, dT_by_dt_core,
-                                                  Imilac_cooling_rate,
-                                                  Esquel_cooling_rate,
-                                                  Esquel_Depth, Imilac_Depth,
-                                                  max_time, time_core_frozen,
-                                                  fully_frozen, r_planet,
-                                                  r_core, temperatures,
-                                                  coretemp, run_ID)
+        temp_plotting_formatted.temperature_plot(
+            temperatures,
+            coretemp,
+            Esquel_Depth,
+            Imilac_Depth,
+            Brenham1_Depth,
+            Seymchan1_Depth,
+            GlorM1_Depth,
+            Admire_Depth,
+            Brahin_Depth,
+            Fukang_Depth,
+            r_core,
+            max_time,
+            time_core_frozen,
+            fully_frozen,
+            r_planet,
+            run_ID,
+        )
 
-    elif (plotting == "temp"):
+        temp_plotting_formatted.cooling_rate_plot(
+            dT_by_dt,
+            dT_by_dt_core,
+            Imilac_cooling_rate,
+            Esquel_cooling_rate,
+            Esquel_Depth,
+            Imilac_Depth,
+            max_time,
+            time_core_frozen,
+            fully_frozen,
+            r_planet,
+            r_core,
+            temperatures,
+            coretemp,
+            run_ID,
+        )
+
+    elif plotting == "temp":
         print("Beginning plotting temp")
         import temp_plotting_formatted
-        temp_plotting_formatted.temperature_plot(temperatures, coretemp,
-                                                 Esquel_Depth, Imilac_Depth,
-                                                 Brenham1_Depth,
-                                                 Seymchan1_Depth,
-                                                 GlorM1_Depth, Admire_Depth,
-                                                 Brahin_Depth, Fukang_Depth,
-                                                 r_core, max_time,
-                                                 time_core_frozen,
-                                                 fully_frozen, r_planet,
-                                                 run_ID, timestep)
 
-    elif (plotting == "rate"):
+        temp_plotting_formatted.temperature_plot(
+            temperatures,
+            coretemp,
+            Esquel_Depth,
+            Imilac_Depth,
+            Brenham1_Depth,
+            Seymchan1_Depth,
+            GlorM1_Depth,
+            Admire_Depth,
+            Brahin_Depth,
+            Fukang_Depth,
+            r_core,
+            max_time,
+            time_core_frozen,
+            fully_frozen,
+            r_planet,
+            run_ID,
+            timestep,
+        )
+
+    elif plotting == "rate":
         print("Beginning plotting cooling rate")
         import temp_plotting_formatted
-        temp_plotting_formatted.cooling_rate_plot(dT_by_dt, dT_by_dt_core,
-                                                  Imilac_cooling_rate,
-                                                  Esquel_cooling_rate,
-                                                  Esquel_Depth, Imilac_Depth,
-                                                  max_time, time_core_frozen,
-                                                  fully_frozen, r_planet,
-                                                  r_core, temperatures,
-                                                  coretemp, run_ID)
 
-    elif (plotting == "None"):
+        temp_plotting_formatted.cooling_rate_plot(
+            dT_by_dt,
+            dT_by_dt_core,
+            Imilac_cooling_rate,
+            Esquel_cooling_rate,
+            Esquel_Depth,
+            Imilac_Depth,
+            max_time,
+            time_core_frozen,
+            fully_frozen,
+            r_planet,
+            r_core,
+            temperatures,
+            coretemp,
+            run_ID,
+        )
+
+    elif plotting == "None":
         print("No plotting requested")
         pass
 
@@ -618,170 +1115,258 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
     if save_csv == "y":
         print("Saving csv files")
 
-        with open("output_runs/" + str(folder) + "/temp_list_mid_mantle_" +
-                  str(run_ID) + ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/temp_list_mid_mantle_"
+            + str(run_ID)
+            + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(temp_list_mid_mantle)
 
-        with open("output_runs/" + str(folder) + "/temp_list_cmb_5_" +
-                  str(run_ID) + ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/temp_list_cmb_5_"
+            + str(run_ID)
+            + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(temp_list_cmb_5)
 
         # temp_list_shal may have to be replaced with temp_list_10
 
-        if (model_type == 7 or model_type == 17 or model_type == 18):
-            with open("output_runs/" + str(folder) + "/temp_list_10_" +
-                      str(run_ID) + ".csv", "w") as f:
-                writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        if model_type == 7 or model_type == 17 or model_type == 18:
+            with open(
+                "output_runs/"
+                + str(folder)
+                + "/temp_list_10_"
+                + str(run_ID)
+                + ".csv",
+                "w",
+            ) as f:
+                writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
                 writer.writerow(temp_list_shal)
 
         else:
-            with open("output_runs/" + str(folder) + "/temp_list_10_" +
-                      str(run_ID) + ".csv", "w") as f:
-                writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+            with open(
+                "output_runs/"
+                + str(folder)
+                + "/temp_list_10_"
+                + str(run_ID)
+                + ".csv",
+                "w",
+            ) as f:
+                writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
                 writer.writerow(temp_list_shal)
 
     else:
         pass
 
-    if (save_csv == "y") and (model_type == 5 or 4 or 7 or 8 or 9 or 10 or
-                              11 or 17 or 18):
+    if (save_csv == "y") and (
+        model_type == 5 or 4 or 7 or 8 or 9 or 10 or 11 or 17 or 18
+    ):
         print("saving time output to csv")
-        with open("output_runs/" + str(folder) + "/time_output_" +
-                  str(run_ID) + ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/time_output_"
+            + str(run_ID)
+            + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(times)
     else:
         pass
 
-    if (model_type == 5):
-        with open("output_runs/" + str(folder) + "/A_1_mm" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+    if model_type == 5:
+        with open(
+            "output_runs/" + str(folder) + "/A_1_mm" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1list)
 
-        with open("output_runs/" + str(folder) + "/B_1_mm" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/B_1_mm" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1list)
 
-        with open("output_runs/" + str(folder) + "/C_1_mm" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/C_1_mm" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1list)
 
-        with open("output_runs/" + str(folder) + "/delt_mm" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/delt_mm" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(delt_list)
 
         # CMB:
-        with open("output_runs/" + str(folder) + "/A_1_cmb" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/A_1_cmb" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1listcmb)
 
-        with open("output_runs/" + str(folder) + "/B_1_cmb" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/B_1_cmb" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1listcmb)
 
-        with open("output_runs/" + str(folder) + "/C_1_cmb" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/C_1_cmb" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1listcmb)
 
-        with open("output_runs/" + str(folder) + "/delt_cmb" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/delt_cmb" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(delt_listcmb)
 
         # shallow:
 
-        with open("output_runs/" + str(folder) + "/A_1_shal" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/A_1_shal" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1listshal)
 
-        with open("output_runs/" + str(folder) + "/B_1_shal" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/B_1_shal" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1listshal)
 
-        with open("output_runs/" + str(folder) + "/C_1_shal" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/C_1_shal" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1listshal)
 
-        with open("output_runs/" + str(folder) + "/delt_shal" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/delt_shal"
+            + str(run_ID)
+            + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(delt_listshal)
 
-    elif (save_csv == "y") and (model_type == 4 or 7 or 8 or 9 or 10 or 11 or
-                                17 or 18):
-        with open("output_runs/" + str(folder) + "/A_1_mm" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+    elif (save_csv == "y") and (
+        model_type == 4 or 7 or 8 or 9 or 10 or 11 or 17 or 18
+    ):
+        with open(
+            "output_runs/" + str(folder) + "/A_1_mm" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1list)
 
-        with open("output_runs/" + str(folder) + "/B_1_mm" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/B_1_mm" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1list)
 
-        with open("output_runs/" + str(folder) + "/C_1_mm" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/C_1_mm" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1list)
 
-        with open("output_runs/" + str(folder) + "/delt_mm" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/delt_mm" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(delt_list)
 
         # CMB:
-        with open("output_runs/" + str(folder) + "/A_1_cmb" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/A_1_cmb" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1listcmb)
 
-        with open("output_runs/" + str(folder) + "/B_1_cmb" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/B_1_cmb" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1listcmb)
 
-        with open("output_runs/" + str(folder) + "/C_1_cmb" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/C_1_cmb" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1listcmb)
 
-        with open("output_runs/" + str(folder) + "/delt_cmb" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/delt_cmb" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(delt_listcmb)
 
         # shallow:
 
-        with open("output_runs/" + str(folder) + "/A_1_shal" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/A_1_shal" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1listshal)
 
-        with open("output_runs/" + str(folder) + "/B_1_shal" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/B_1_shal" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1listshal)
 
-        with open("output_runs/" + str(folder) + "/C_1_shal" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/" + str(folder) + "/C_1_shal" + str(run_ID) + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1listshal)
 
-        with open("output_runs/" + str(folder) + "/delt_shal" + str(run_ID) +
-                  ".csv", "w") as f:
-            writer = csv.writer(f, delimiter='\n', quoting=csv.QUOTE_NONE)
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/delt_shal"
+            + str(run_ID)
+            + ".csv",
+            "w",
+        ) as f:
+            writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(delt_listshal)
     elif model_type == 1:
         pass
@@ -790,29 +1375,80 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
 
     ###################
 
-    if (save_array == "y"):
-        with open("output_runs/" + str(folder) + "/" + str(run_ID) +
-                  "other_vars.pickle", 'wb') as f:
-            pickle.dump([r_core, max_time, time_core_frozen, fully_frozen,
-                         r_planet, dr], f)
-        with open("output_runs/" + str(folder) + "/" + str(run_ID) +
-                  "basic_output.pickle", 'wb') as f:
-            pickle.dump([max_time, time_core_frozen, fully_frozen, B,
-                         k0_mantle, kappa, Esquel_Depth, Imilac_Depth,
-                         Esq_timing, Im_timing], f)
+    if save_array == "y":
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "other_vars.pickle",
+            "wb",
+        ) as f:
+            pickle.dump(
+                [
+                    r_core,
+                    max_time,
+                    time_core_frozen,
+                    fully_frozen,
+                    r_planet,
+                    dr,
+                ],
+                f,
+            )
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "basic_output.pickle",
+            "wb",
+        ) as f:
+            pickle.dump(
+                [
+                    max_time,
+                    time_core_frozen,
+                    fully_frozen,
+                    B,
+                    k0_mantle,
+                    kappa,
+                    Esquel_Depth,
+                    Imilac_Depth,
+                    Esq_timing,
+                    Im_timing,
+                ],
+                f,
+            )
 
     else:
-        with open("output_runs/" + str(folder) + "/"+str(run_ID) +
-                  "basic_output.pickle", 'wb') as f:
-            pickle.dump([max_time, time_core_frozen, fully_frozen, B,
-                         k0_mantle, kappa, Esquel_Depth, Imilac_Depth,
-                         Esq_timing, Im_timing], f)
+        with open(
+            "output_runs/"
+            + str(folder)
+            + "/"
+            + str(run_ID)
+            + "basic_output.pickle",
+            "wb",
+        ) as f:
+            pickle.dump(
+                [
+                    max_time,
+                    time_core_frozen,
+                    fully_frozen,
+                    B,
+                    k0_mantle,
+                    kappa,
+                    Esquel_Depth,
+                    Imilac_Depth,
+                    Esq_timing,
+                    Im_timing,
+                ],
+                f,
+            )
     print("Saving basic pickles")
 
-#    time_check1 = dt_new(k0_mantle,B,temp_init,p,c,dr)
-#    time_check2 = dt_new(k0_mantle,B,temp_surface,p,c,dr)
-#    print("Actual timestep:", timestep, "\n", "Courant criterion at CMB:",
-# time_check1, "\n", "Courant criterion at surface:", time_check2, "\n")
+    #    time_check1 = dt_new(k0_mantle,B,temp_init,p,c,dr)
+    #    time_check2 = dt_new(k0_mantle,B,temp_surface,p,c,dr)
+    #    print("Actual timestep:", timestep, "\n", "Courant criterion at CMB:",
+    # time_check1, "\n", "Courant criterion at surface:", time_check2, "\n")
     print("k0_mantle:", k0_mantle, "\nk0_reg:", k0_reg, "\nk0_core:", k0_core)
 
     end = time.time()
@@ -820,56 +1456,109 @@ def conductive_cooling(run_ID, folder, kappa=1.22100122100122E-06, B=0.000,
 
     if save_param_file == "y":
         print("Saving final parameters file... nearly there!")
-        f = open("output_runs/" + str(folder) + "/params_" + str(run_ID) +
-                 ".txt", 'w')
-        f.write('PARAMETERS \n##############################' +
-                '\nrun_ID = ' + str(run_ID) +
-                '\nmodel_type = ' + str(model_type) +
-                '\nmeteorite_depthlist_ID = ' + str(meteorite_depthlist_ID) +
-                '\nr_planet = ' + str(r_planet) +
-                '\ncore_size_factor = ' + str(core_size_factor) +
-                '\nr_core = ' + str(r_core) +
-                '\ndr = ' + str(dr) +
-                '\ntemp_init = ' + str(temp_init) +
-                '\ntemp_surface = ' + str(temp_surface) +
-                '\ntemp_core_melting = ' + str(temp_core_melting) +
-                '\nkappa = ' + str(kappa) +
-                '\nkappa_reg = ' + str(kappa_reg) +
-                '\nreg_thickness = ' + str(reg_thickness) +
-                '\ncore_density = ' + str(core_density) +
-                '\nolivine_density = ' + str(olivine_density) +
-                '\nolivine_cp = ' + str(olivine_cp) +
-                '\ncore_cp = ' + str(core_cp) +
-                '\ncore_latent_heat = ' + str(core_latent_heat) +
-                '\ncmb_conductivity = ' + str(cmb_conductivity) +
-                '\np = ' + str(p) +
-                '\nc = ' + str(c) +
-                '\nB = ' + str(B) +
-                '\nk0_mantle = ' + str(k0_mantle) +
-                '\nk0_reg = ' + str(k0_reg) +
-                '\nk0_core =  ' + str(k0_core) +
-                '\ntimestep = ' + str(timestep) +
-                '\ntime taken (seconds) = ' + str(end - start) +
-                '\ncore begins to freeze = ' + str(((time_core_frozen)/myr)) +
-                '\ncore frozen = ' + str(fully_frozen/myr) +
-                '\nEsquel depth = ' + str(Esquel_Depth) +
-                " at " + str(Esq_timing) +
-                '\nImilac depth = ' + str(Imilac_Depth) + " at " +
-                str(Im_timing))
+        f = open(
+            "output_runs/" + str(folder) + "/params_" + str(run_ID) + ".txt",
+            "w",
+        )
+        f.write(
+            "PARAMETERS \n##############################"
+            + "\nrun_ID = "
+            + str(run_ID)
+            + "\nmodel_type = "
+            + str(model_type)
+            + "\nmeteorite_depthlist_ID = "
+            + str(meteorite_depthlist_ID)
+            + "\nr_planet = "
+            + str(r_planet)
+            + "\ncore_size_factor = "
+            + str(core_size_factor)
+            + "\nr_core = "
+            + str(r_core)
+            + "\ndr = "
+            + str(dr)
+            + "\ntemp_init = "
+            + str(temp_init)
+            + "\ntemp_surface = "
+            + str(temp_surface)
+            + "\ntemp_core_melting = "
+            + str(temp_core_melting)
+            + "\nkappa = "
+            + str(kappa)
+            + "\nkappa_reg = "
+            + str(kappa_reg)
+            + "\nreg_thickness = "
+            + str(reg_thickness)
+            + "\ncore_density = "
+            + str(core_density)
+            + "\nolivine_density = "
+            + str(olivine_density)
+            + "\nolivine_cp = "
+            + str(olivine_cp)
+            + "\ncore_cp = "
+            + str(core_cp)
+            + "\ncore_latent_heat = "
+            + str(core_latent_heat)
+            + "\ncmb_conductivity = "
+            + str(cmb_conductivity)
+            + "\np = "
+            + str(p)
+            + "\nc = "
+            + str(c)
+            + "\nB = "
+            + str(B)
+            + "\nk0_mantle = "
+            + str(k0_mantle)
+            + "\nk0_reg = "
+            + str(k0_reg)
+            + "\nk0_core =  "
+            + str(k0_core)
+            + "\ntimestep = "
+            + str(timestep)
+            + "\ntime taken (seconds) = "
+            + str(end - start)
+            + "\ncore begins to freeze = "
+            + str(((time_core_frozen) / myr))
+            + "\ncore frozen = "
+            + str(fully_frozen / myr)
+            + "\nEsquel depth = "
+            + str(Esquel_Depth)
+            + " at "
+            + str(Esq_timing)
+            + "\nImilac depth = "
+            + str(Imilac_Depth)
+            + " at "
+            + str(Im_timing)
+        )
         f.close()
     else:
         pass
 
     print("Done ", str(run_ID) + "! On to the next job...")
-    print('\ncore begins to freeze = ' + str(((time_core_frozen)/myr)) +
-          '\nEsquel depth = ' + str(Esquel_Depth) + " at " + str(Esq_timing) +
-          '\nImilac depth = ' + str(Imilac_Depth) + " at " + str(Im_timing) +
-          '\ncore frozen = ' + str((fully_frozen)/myr))
+    print(
+        "\ncore begins to freeze = "
+        + str(((time_core_frozen) / myr))
+        + "\nEsquel depth = "
+        + str(Esquel_Depth)
+        + " at "
+        + str(Esq_timing)
+        + "\nImilac depth = "
+        + str(Imilac_Depth)
+        + " at "
+        + str(Im_timing)
+        + "\ncore frozen = "
+        + str((fully_frozen) / myr)
+    )
 
     if return_vars == "y":
         begins_to_freeze = time_core_frozen
         finished_freezing = fully_frozen
-        return begins_to_freeze, finished_freezing, Esquel_Depth, Esq_timing,
-        Imilac_Depth, Im_timing
+        return (
+            begins_to_freeze,
+            finished_freezing,
+            Esquel_Depth,
+            Esq_timing,
+            Imilac_Depth,
+            Im_timing,
+        )
     else:
         pass
