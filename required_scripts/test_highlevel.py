@@ -46,9 +46,8 @@ def test_def_const():
         Esq_timing,
         Imilac_Depth,
         Im_timing,
-    ) = mcc.conductive_cooling(
-        run_ID, folder, return_vars="y", save_param_file="n"
-    )
+    ) = mcc.conductive_cooling(run_ID, folder, return_vars="y",
+                               save_param_file="n")
     assert (
         vbegins_to_freeze,
         vfinished_freezing,
