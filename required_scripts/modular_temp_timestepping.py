@@ -1,63 +1,9 @@
 """Isothermal core cooling and FTCS discretisation for mantle."""
 
 import numpy as np
+import pickle
 
-# import sys
-
-
-# Background info on functions used:
-
-# Conductivity
-# constructed, from Su 2018 (Cp) and Xu et al., 2004
-
-# def conductivity(x):
-#    y = (80.4205952575632*(1.3193574749943*x**(-0.5) + 0.977581998039333 -
-# 28361.7649315602/x**2 - 6.05745211527538e-5/x**3)*(1/x)**0.5)
-#    return y
-# def conductivity_prime(x):
-#    y_prime = (80.4205952575632*(-0.659678737497148*x**(-1.5) +
-# 56723.5298631204/x**3 + 0.000181723563458261/x**4)*(1/x)**0.5 -
-# 40.2102976287816*(1.3193574749943*x**(-0.5) + 0.977581998039333 -
-# 28361.7649315602/x**2 - 6.05745211527538e-5/x**3)*(1/x)**0.5/x)
-#    return y_prime
-
-# Density with temperature
-# From Su, 2018
-
-# def alpha(T):
-#    """
-#    Function for the thermal expansion coefficient from Su et al., 2018
-#    """
-#    alpha = 3.304E-5 + (0.742E-8 * T) -0.538 *(T**-2)
-#    return alpha
-#
-# def rho(T, rho_0=3000.0,T0=295.0):
-#    """
-#    Function for temperature dependent density, defined above and using beta
-# from Su et al., 2018
-#
-#    Defaults for reference rho and T chosen from Bryson et al., 2015 with T0
-# set to room temperature
-#    """
-#    rho = rho_0 - alpha(T)*rho_0*(T-T0)
-#    return rho
-
-# Heat capacity
-# Su et al., 2018
-
-# def heat_cap(T):
-#    cp =  (995.1 + (1343*((T)**(-0.5))) - (2.887*(10**7)*((T)**(-2))) -
-# (6.166*(10**(-2))* (T)**(-3)))
-#    return cp
-
-# for the basic case: OLD VERSION, OUTDATED
-# def K(k0, B, T):
-#     K_new = k0 * (1.0 + B*T)
-#     return K_new
-
-# def dKdT(k0,B):
-#     dKdT_new = k0 * B
-#     return dKdT_new
+import sys
 
 
 def core_cooling(
@@ -128,6 +74,8 @@ def discretisation(
     density_constant="y",
     heat_cap_constant="y",
     non_lin_term="y",
+    is_a_test="n",
+    i_choice=126228,
 ):
     """
     Finite difference solver with variable k.
@@ -135,8 +83,6 @@ def discretisation(
     Uses variable heat capacity, conductivity, density as required.
 
     Uses diffusivity for regolith layer.
-
-    ## will change to record 1/3 and 2/3rds down into mantle... at some point
     """
     # putting in some bug tests
     print("***/n***/n***/n")
@@ -237,14 +183,6 @@ def discretisation(
             """
             rho = rho_0 - alpha(T) * rho_0 * (T - T0)
             return rho
-
-    # testing some values
-    # print("cond:")
-    # print(conductivity(300))
-    # print("dens:")
-    # print(rho(300))
-    # print("heat cap:")
-    # print(heat_cap(300))
 
     temp_list_mid_mantle = [temp_init]
     temp_list_shal = [temp_init]
@@ -399,9 +337,39 @@ def discretisation(
         coretemp[:, i] = temperatures[0, i]
         cmb_conductivity = conductivity(
             temperatures[0, i]
-        )  # this might break things
-        # ask Andrew if this should be i or i-1!
-        # print(A_1,B_1,C_1)
+        )
+        if is_a_test == "y" and i == i_choice:
+            # for edge case: i = 126228
+            label = "Variable: " + str(cond_constant) + ", i = " + str(i)
+            with open(
+                "output_runs/"
+                + "core_test_i_"
+                + str(i)
+                + "_var_"
+                + str(cond_constant)
+                + ".pickle",
+                "wb",
+            ) as f:
+                pickle.dump(
+                    [
+                        latent,
+                        i,
+                        dr,
+                        temperature_core,
+                        temp_core_melting,
+                        core_lh_extracted,
+                        max_core_lh,
+                        cmb_conductivity,
+                        temperatures,
+                        timestep,
+                        core_density,
+                        core_cp,
+                        r_core,
+                        label,
+                    ],
+                    f,
+                )
+                sys.exit()
 
         latent, core_lh_extracted, temperature_core = core_cooling(
             latent,
@@ -470,7 +438,7 @@ def simple_discretisation(
     non_lin_term="y",
 ):
     """
-    Finite difference solver with variable k.
+    Finite difference solver with variable k, linear function.
 
     Uses variable heat capacity, conductivity, density as required.
 
@@ -787,7 +755,7 @@ def comp_to_analytical_sep_terms(
     Finite difference solver with constant thermal conductivity, k.
 
     With possibility of exporting/printing temp info at a certain depth/tstep
-
+    To replicate analytical model of a sphere.
     attempting dT/dr = 0 at boundary
 
     """
@@ -928,3 +896,58 @@ def comp_to_analytical_sep_terms(
         C_1listshal,
         delt_listshal,
     )
+
+
+# Background info on functions used:
+
+# Conductivity
+# constructed, from Su 2018 (Cp) and Xu et al., 2004
+
+# def conductivity(x):
+#    y = (80.4205952575632*(1.3193574749943*x**(-0.5) + 0.977581998039333 -
+# 28361.7649315602/x**2 - 6.05745211527538e-5/x**3)*(1/x)**0.5)
+#    return y
+# def conductivity_prime(x):
+#    y_prime = (80.4205952575632*(-0.659678737497148*x**(-1.5) +
+# 56723.5298631204/x**3 + 0.000181723563458261/x**4)*(1/x)**0.5 -
+# 40.2102976287816*(1.3193574749943*x**(-0.5) + 0.977581998039333 -
+# 28361.7649315602/x**2 - 6.05745211527538e-5/x**3)*(1/x)**0.5/x)
+#    return y_prime
+
+# Density with temperature
+# From Su, 2018
+
+# def alpha(T):
+#    """
+#    Function for the thermal expansion coefficient from Su et al., 2018
+#    """
+#    alpha = 3.304E-5 + (0.742E-8 * T) -0.538 *(T**-2)
+#    return alpha
+#
+# def rho(T, rho_0=3000.0,T0=295.0):
+#    """
+#    Function for temperature dependent density, defined above and using beta
+# from Su et al., 2018
+#
+#    Defaults for reference rho and T chosen from Bryson et al., 2015 with T0
+# set to room temperature
+#    """
+#    rho = rho_0 - alpha(T)*rho_0*(T-T0)
+#    return rho
+
+# Heat capacity
+# Su et al., 2018
+
+# def heat_cap(T):
+#    cp =  (995.1 + (1343*((T)**(-0.5))) - (2.887*(10**7)*((T)**(-2))) -
+# (6.166*(10**(-2))* (T)**(-3)))
+#    return cp
+
+# for the basic case: OLD VERSION, OUTDATED
+# def K(k0, B, T):
+#     K_new = k0 * (1.0 + B*T)
+#     return K_new
+
+# def dKdT(k0,B):
+#     dKdT_new = k0 * B
+#     return dKdT_new
