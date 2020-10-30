@@ -6,9 +6,10 @@ Created on Tue Sep  8 08:26:11 2020.
 @author: maeve
 """
 import pickle
+import modular_cond_cooling as mcc
 
 # Tests to check tidying comments and variable names doesn't throw errors
-# import modular_cond_cooling as mcc
+
 
 folder = "setting_up_tests_oct_2020_2"
 
@@ -66,40 +67,40 @@ folder = "setting_up_tests_oct_2020_2"
 # )
 
 
-with open(
-    "output_runs/"
-    + "core_test01_variable"
-    + ".pickle",
-    "rb",
-) as f:
-    [
-        latent,
-        i,
-        dr,
-        temperature_core,
-        temp_core_melting,
-        core_lh_extracted,
-        max_core_lh,
-        cmb_conductivity,
-        temperatures,
-        timestep,
-        core_density,
-        core_cp,
-        r_core,
-        label,
-    ] = pickle.load(f)
+# with open(
+#     "output_runs/"
+#     + "core_test01_variable"
+#     + ".pickle",
+#     "rb",
+# ) as f:
+#     [
+#         latent,
+#         i,
+#         dr,
+#         temperature_core,
+#         temp_core_melting,
+#         core_lh_extracted,
+#         max_core_lh,
+#         cmb_conductivity,
+#         temperatures,
+#         timestep,
+#         core_density,
+#         core_cp,
+#         r_core,
+#         label,
+#     ] = pickle.load(f)
 
-print(latent,
-      i,
-      dr,
-      temperature_core,
-      temp_core_melting,
-      core_lh_extracted,
-      max_core_lh,
-      cmb_conductivity,
-      temperatures,
-      timestep,
-      core_density,
-      core_cp,
-      r_core,
-      label,)
+# print(latent,
+#       i,
+#       dr,
+#       temperature_core,
+#       temp_core_melting,
+#       core_lh_extracted,
+#       max_core_lh,
+#       cmb_conductivity,
+#       temperatures,
+#       timestep,
+#       core_density,
+#       core_cp,
+#       r_core,
+#       label,)

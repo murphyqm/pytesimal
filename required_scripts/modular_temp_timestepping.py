@@ -4,8 +4,23 @@ import numpy as np
 import pickle
 
 import sys
+from contracts import contract
 
 
+@contract(latent=list,
+          i=int,
+          dr=float,
+          temperature_core=float,
+          temp_core_melting=float,
+          core_lh_extracted=float,
+          max_core_lh=float,
+          cmb_conductivity='float,>0',
+          temperatures=np.ndarray,
+          timestep=float,
+          core_density=float,
+          core_cp=float,
+          r_core=float,
+          )
 def core_cooling(
     latent,
     i,
@@ -75,7 +90,7 @@ def discretisation(
     heat_cap_constant="y",
     non_lin_term="y",
     is_a_test="n",
-    i_choice=126228,
+    i_choice=126228,  # 126228
 ):
     """
     Finite difference solver with variable k.
@@ -342,7 +357,7 @@ def discretisation(
             # for edge case: i = 126228
             label = "Variable: " + str(cond_constant) + ", i = " + str(i)
             with open(
-                "output_runs/"
+                "output_runs/default_tests/"
                 + "core_test_i_"
                 + str(i)
                 + "_var_"
@@ -360,7 +375,7 @@ def discretisation(
                         core_lh_extracted,
                         max_core_lh,
                         cmb_conductivity,
-                        temperatures,
+                        # temperatures,
                         timestep,
                         core_density,
                         core_cp,
