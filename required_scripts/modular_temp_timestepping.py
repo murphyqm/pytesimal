@@ -91,6 +91,7 @@ def discretisation(
     non_lin_term="y",
     is_a_test="n",
     i_choice=126228,  # 126228
+    TESTING="n",
 ):
     """
     Finite difference solver with variable k.
@@ -385,6 +386,44 @@ def discretisation(
                     f,
                 )
                 sys.exit()
+        else:
+            pass
+        if TESTING == "n":
+            pass
+        else:
+            if i == 1 or i == 1000 or i == 126228:
+                label = "Variable: "
+                + str(cond_constant)
+                + ", i = "
+                + str(i)
+                with open(
+                    "output_runs/testing_output/"
+                    + "core_test_i_"
+                    + str(i)
+                    + "_var_"
+                    + str(cond_constant)
+                    + ".pickle",
+                    "wb",
+                ) as f:
+                    pickle.dump(
+                        [
+                            latent,
+                            i,
+                            dr,
+                            temperature_core,
+                            temp_core_melting,
+                            core_lh_extracted,
+                            max_core_lh,
+                            cmb_conductivity,
+                            # temperatures,
+                            timestep,
+                            core_density,
+                            core_cp,
+                            r_core,
+                            label,
+                        ],
+                        f,
+                    )
 
         latent, core_lh_extracted, temperature_core = core_cooling(
             latent,
