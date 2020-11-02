@@ -392,10 +392,9 @@ def discretisation(
             pass
         else:
             if i == 1 or i == 1000 or i == 126228:
-                label = "Variable: "
-                + str(cond_constant)
-                + ", i = "
-                + str(i)
+                label = "Variable: " \
+                    + str(cond_constant) \
+                    + ", i = " + str(i)
                 with open(
                     "output_runs/testing_output/"
                     + "core_test_i_"

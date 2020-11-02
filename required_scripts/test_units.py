@@ -7,6 +7,7 @@ Created on Fri Oct 30 13:34:35 2020
 """
 import pickle
 import modular_cond_cooling as mcc
+
 folder = "auto_pytest"
 
 
@@ -155,7 +156,7 @@ def test_core_var():
             + "core_test_i_"
             + str(i)
             + "_var_"
-            + "y"
+            + "n"
             + ".pickle",
             "rb",
         ) as f:
@@ -190,7 +191,3 @@ def test_core_var():
                 dlabel,
             ]
         assert new_list == default_list
-
-
-test_core_const()
-test_core_var()
