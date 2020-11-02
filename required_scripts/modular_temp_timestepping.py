@@ -1,8 +1,9 @@
 """Isothermal core cooling and FTCS discretisation for mantle."""
 
+import os
 import numpy as np
 import pickle
-
+import inspect
 import sys
 from contracts import contract
 
@@ -395,13 +396,16 @@ def discretisation(
                 label = "Variable: " \
                     + str(cond_constant) \
                     + ", i = " + str(i)
+                string = "core_test_i_" \
+                    + str(i) \
+                    + "_var_" \
+                    + str(cond_constant) \
+                    + ".pickle"
+                folder1 = "output_runs/testing_output/"
+                DATA = os.path.join(os.path.dirname(os.path.abspath(
+                    inspect.getfile(inspect.currentframe()))), folder1, string)
                 with open(
-                    "output_runs/testing_output/"
-                    + "core_test_i_"
-                    + str(i)
-                    + "_var_"
-                    + str(cond_constant)
-                    + ".pickle",
+                    DATA,
                     "wb",
                 ) as f:
                     pickle.dump(

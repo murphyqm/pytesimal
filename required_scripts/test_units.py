@@ -8,6 +8,22 @@ Created on Fri Oct 30 13:34:35 2020
 import pickle
 import modular_cond_cooling as mcc
 
+import os
+import inspect
+
+# i=2
+# folder1 = "output_runs/testing_output/"
+# folder2 = "default_test_results/"
+# string = "core_test_i_" \
+#             + str(i) \
+#             + "_var_" \
+#             + "y" \
+#             + ".pickle"
+
+# DATA = os.path.join(os.path.dirname(os.path.abspath(
+#     inspect.getfile(inspect.currentframe()))), folder1, string)
+# print(DATA)
+
 folder = "auto_pytest"
 
 
@@ -16,14 +32,20 @@ def test_core_const():
     mcc.conductive_cooling(run_ID, folder, return_vars="n",
                            save_param_file="n", tests="y")
     vals = [1, 1000, 126228]
+    folder1 = "output_runs/testing_output/"
+    folder2 = "default_test_results/"
     for i in vals:
+        string = "core_test_i_" \
+            + str(i) \
+            + "_var_" \
+            + "y" \
+            + ".pickle"
+        DATA = os.path.join(os.path.dirname(os.path.abspath(
+            inspect.getfile(inspect.currentframe()))), folder1, string)
+        DATA2 = os.path.join(os.path.dirname(os.path.abspath(
+            inspect.getfile(inspect.currentframe()))), folder2, string)
         with open(
-            "output_runs/testing_output/"
-            + "core_test_i_"
-            + str(i)
-            + "_var_"
-            + "y"
-            + ".pickle",
+            DATA,
             "rb",
         ) as f:
             [
@@ -57,12 +79,7 @@ def test_core_const():
                 label,
             ]
         with open(
-            "default_test_results/"
-            + "core_test_i_"
-            + str(i)
-            + "_var_"
-            + "y"
-            + ".pickle",
+            DATA2,
             "rb",
         ) as f:
             [
@@ -111,14 +128,20 @@ def test_core_var():
         tests="y"
     )
     vals = [1, 1000, 126228]
+    folder1 = "output_runs/testing_output/"
+    folder2 = "default_test_results/"
     for i in vals:
+        string = "core_test_i_" \
+            + str(i) \
+            + "_var_" \
+            + "n" \
+            + ".pickle"
+        DATA = os.path.join(os.path.dirname(os.path.abspath(
+            inspect.getfile(inspect.currentframe()))), folder1, string)
+        DATA2 = os.path.join(os.path.dirname(os.path.abspath(
+            inspect.getfile(inspect.currentframe()))), folder2, string)
         with open(
-            "output_runs/testing_output/"
-            + "core_test_i_"
-            + str(i)
-            + "_var_"
-            + "n"
-            + ".pickle",
+            DATA,
             "rb",
         ) as f:
             [
@@ -152,12 +175,7 @@ def test_core_var():
                 label,
             ]
         with open(
-            "default_test_results/"
-            + "core_test_i_"
-            + str(i)
-            + "_var_"
-            + "n"
-            + ".pickle",
+            DATA2,
             "rb",
         ) as f:
             [
