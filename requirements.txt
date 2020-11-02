@@ -6,3 +6,4 @@ contracts
 time
 os
 csv
+inspect
