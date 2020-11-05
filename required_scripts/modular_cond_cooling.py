@@ -46,6 +46,7 @@ def conductive_cooling(
     heat_cap_constant="y",
     non_lin_term="y",
     record_timings="n",
+    tests="n",
 ):
     """
     Conductive cooling model.
@@ -378,6 +379,9 @@ def conductive_cooling(
             density_constant,
             heat_cap_constant,
             non_lin_term,
+            is_a_test="n",
+            i_choice=126228,  # 126228
+            TESTING=tests,
         )
 
     elif model_type == 18:
