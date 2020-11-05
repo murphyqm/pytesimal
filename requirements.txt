@@ -1,8 +1,6 @@
 numpy
 pytest
-sys
 contracts
 time
-os
 csv
 inspect
