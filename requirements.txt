@@ -1,6 +1,5 @@
 numpy
 pytest
 contracts
-time
 csv
 inspect
