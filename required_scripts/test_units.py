@@ -11,19 +11,6 @@ import modular_cond_cooling as mcc
 import os
 import inspect
 
-# i=2
-# folder1 = "output_runs/testing_output/"
-# folder2 = "default_test_results/"
-# string = "core_test_i_" \
-#             + str(i) \
-#             + "_var_" \
-#             + "y" \
-#             + ".pickle"
-
-# DATA = os.path.join(os.path.dirname(os.path.abspath(
-#     inspect.getfile(inspect.currentframe()))), folder1, string)
-# print(DATA)
-
 folder = "auto_pytest"
 
 
