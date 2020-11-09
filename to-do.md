@@ -15,7 +15,7 @@ This also won't change the interface too much - except that absolute paths will 
 Will maintain an outputs folder still for testing purposes - need to decide how that will work/what will still save there.
 Will need to think about how this will affect tests... and elsewhere where foldername is req'd...
 
-Also want to look into parellelising Travis.ci testing: https://docs.travis-ci.com/user/speeding-up-the-build/
+Also want to look into [parellelising Travis.ci testing](https://docs.travis-ci.com/user/speeding-up-the-build/)
 
 - Going for it - removing "output_runs" from file path (except testing scripts)
 - Tests are passing - seems to work well! Now to figure out how to load from outside the directory, so scripts don't need to be run inside "planetesimal-cooling"
@@ -24,7 +24,7 @@ Also want to look into parellelising Travis.ci testing: https://docs.travis-ci.c
 
 Could just temporarily change the working path:
 
-```
+```python
 import os
 
 os.chdir("**Put here the directory where you have the file with your function**")
