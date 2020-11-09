@@ -11,7 +11,7 @@ import modular_cond_cooling as mcc
 import os
 import inspect
 
-folder = "auto_pytest"
+folder = "output_runs/auto_pytest"
 
 
 def test_core_const():

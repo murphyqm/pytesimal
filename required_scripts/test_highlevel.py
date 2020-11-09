@@ -8,7 +8,7 @@ Created on Tue Oct 27 13:14:58 2020
 
 import modular_cond_cooling as mcc
 
-folder = "auto_pytest"
+folder = "output_runs/auto_pytest"
 
 
 def test_def_const():

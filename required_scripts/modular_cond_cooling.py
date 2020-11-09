@@ -131,11 +131,11 @@ def conductive_cooling(
 
     compressed = "y"  # to save output arrays as compressed
 
-    if not os.path.isdir("output_runs"):
-        os.mkdir("output_runs")
+    # if not os.path.isdir("output_runs"):
+    #     os.mkdir("output_runs")
 
-    if not os.path.isdir("output_runs/" + str(folder)):
-        os.mkdir("output_runs/" + str(folder))
+    if not os.path.isdir(str(folder)):
+        os.mkdir(str(folder))
 
     meteorite_depthlist_ID = "12aug"  # Only need to change if you change list
     # of meteorites for depth calculations
@@ -461,32 +461,28 @@ def conductive_cooling(
 
     if (save_array == "y") and (compressed == "n"):
         np.save(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "temperatures_array.npy",
             temperatures,
         )
         np.save(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "coretemp_array.npy",
             coretemp,
         )
         np.save(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "dT_by_dt_array.npy",
             dT_by_dt,
         )
         np.save(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "dT_by_dt_core.npy",
@@ -495,8 +491,7 @@ def conductive_cooling(
 
     elif (save_array == "y") and (compressed == "y"):
         np.savez_compressed(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "_total_arrays.npz",
@@ -619,8 +614,7 @@ def conductive_cooling(
         )
     )[1]
     with open(
-        "output_runs/"
-        + str(folder)
+        str(folder)
         + "/"
         + str(run_ID)
         + "Im_Esq_result.pickle",
@@ -901,7 +895,7 @@ def conductive_cooling(
         )[3]
 
         with open(
-            "output_runs/" + str(folder) + "/" + str(run_ID) + "times.pickle",
+            str(folder) + "/" + str(run_ID) + "times.pickle",
             "wb",
         ) as f:
             pickle.dump(
@@ -984,8 +978,7 @@ def conductive_cooling(
     print("saving depths")
     if save_array == "y":
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "depths.pickle",
@@ -1120,8 +1113,7 @@ def conductive_cooling(
         print("Saving csv files")
 
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/temp_list_mid_mantle_"
             + str(run_ID)
             + ".csv",
@@ -1131,8 +1123,7 @@ def conductive_cooling(
             writer.writerow(temp_list_mid_mantle)
 
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/temp_list_cmb_5_"
             + str(run_ID)
             + ".csv",
@@ -1145,8 +1136,7 @@ def conductive_cooling(
 
         if model_type == 7 or model_type == 17 or model_type == 18:
             with open(
-                "output_runs/"
-                + str(folder)
+                str(folder)
                 + "/temp_list_10_"
                 + str(run_ID)
                 + ".csv",
@@ -1157,8 +1147,7 @@ def conductive_cooling(
 
         else:
             with open(
-                "output_runs/"
-                + str(folder)
+                str(folder)
                 + "/temp_list_10_"
                 + str(run_ID)
                 + ".csv",
@@ -1175,8 +1164,7 @@ def conductive_cooling(
     ):
         print("saving time output to csv")
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/time_output_"
             + str(run_ID)
             + ".csv",
@@ -1189,28 +1177,28 @@ def conductive_cooling(
 
     if model_type == 5:
         with open(
-            "output_runs/" + str(folder) + "/A_1_mm" + str(run_ID) + ".csv",
+            str(folder) + "/A_1_mm" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1list)
 
         with open(
-            "output_runs/" + str(folder) + "/B_1_mm" + str(run_ID) + ".csv",
+            str(folder) + "/B_1_mm" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1list)
 
         with open(
-            "output_runs/" + str(folder) + "/C_1_mm" + str(run_ID) + ".csv",
+            str(folder) + "/C_1_mm" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1list)
 
         with open(
-            "output_runs/" + str(folder) + "/delt_mm" + str(run_ID) + ".csv",
+            str(folder) + "/delt_mm" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
@@ -1218,28 +1206,28 @@ def conductive_cooling(
 
         # CMB:
         with open(
-            "output_runs/" + str(folder) + "/A_1_cmb" + str(run_ID) + ".csv",
+            str(folder) + "/A_1_cmb" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1listcmb)
 
         with open(
-            "output_runs/" + str(folder) + "/B_1_cmb" + str(run_ID) + ".csv",
+            str(folder) + "/B_1_cmb" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1listcmb)
 
         with open(
-            "output_runs/" + str(folder) + "/C_1_cmb" + str(run_ID) + ".csv",
+            str(folder) + "/C_1_cmb" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1listcmb)
 
         with open(
-            "output_runs/" + str(folder) + "/delt_cmb" + str(run_ID) + ".csv",
+            str(folder) + "/delt_cmb" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
@@ -1248,29 +1236,28 @@ def conductive_cooling(
         # shallow:
 
         with open(
-            "output_runs/" + str(folder) + "/A_1_shal" + str(run_ID) + ".csv",
+            str(folder) + "/A_1_shal" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1listshal)
 
         with open(
-            "output_runs/" + str(folder) + "/B_1_shal" + str(run_ID) + ".csv",
+            str(folder) + "/B_1_shal" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1listshal)
 
         with open(
-            "output_runs/" + str(folder) + "/C_1_shal" + str(run_ID) + ".csv",
+            str(folder) + "/C_1_shal" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1listshal)
 
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/delt_shal"
             + str(run_ID)
             + ".csv",
@@ -1283,28 +1270,28 @@ def conductive_cooling(
         model_type == 4 or 7 or 8 or 9 or 10 or 11 or 17 or 18
     ):
         with open(
-            "output_runs/" + str(folder) + "/A_1_mm" + str(run_ID) + ".csv",
+            str(folder) + "/A_1_mm" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1list)
 
         with open(
-            "output_runs/" + str(folder) + "/B_1_mm" + str(run_ID) + ".csv",
+            str(folder) + "/B_1_mm" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1list)
 
         with open(
-            "output_runs/" + str(folder) + "/C_1_mm" + str(run_ID) + ".csv",
+            str(folder) + "/C_1_mm" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1list)
 
         with open(
-            "output_runs/" + str(folder) + "/delt_mm" + str(run_ID) + ".csv",
+            str(folder) + "/delt_mm" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
@@ -1312,28 +1299,28 @@ def conductive_cooling(
 
         # CMB:
         with open(
-            "output_runs/" + str(folder) + "/A_1_cmb" + str(run_ID) + ".csv",
+            str(folder) + "/A_1_cmb" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1listcmb)
 
         with open(
-            "output_runs/" + str(folder) + "/B_1_cmb" + str(run_ID) + ".csv",
+            str(folder) + "/B_1_cmb" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1listcmb)
 
         with open(
-            "output_runs/" + str(folder) + "/C_1_cmb" + str(run_ID) + ".csv",
+            str(folder) + "/C_1_cmb" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1listcmb)
 
         with open(
-            "output_runs/" + str(folder) + "/delt_cmb" + str(run_ID) + ".csv",
+            str(folder) + "/delt_cmb" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
@@ -1342,29 +1329,28 @@ def conductive_cooling(
         # shallow:
 
         with open(
-            "output_runs/" + str(folder) + "/A_1_shal" + str(run_ID) + ".csv",
+            str(folder) + "/A_1_shal" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(A_1listshal)
 
         with open(
-            "output_runs/" + str(folder) + "/B_1_shal" + str(run_ID) + ".csv",
+            str(folder) + "/B_1_shal" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(B_1listshal)
 
         with open(
-            "output_runs/" + str(folder) + "/C_1_shal" + str(run_ID) + ".csv",
+            str(folder) + "/C_1_shal" + str(run_ID) + ".csv",
             "w",
         ) as f:
             writer = csv.writer(f, delimiter="\n", quoting=csv.QUOTE_NONE)
             writer.writerow(C_1listshal)
 
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/delt_shal"
             + str(run_ID)
             + ".csv",
@@ -1381,8 +1367,7 @@ def conductive_cooling(
 
     if save_array == "y":
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "other_vars.pickle",
@@ -1400,8 +1385,7 @@ def conductive_cooling(
                 f,
             )
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "basic_output.pickle",
@@ -1425,8 +1409,7 @@ def conductive_cooling(
 
     else:
         with open(
-            "output_runs/"
-            + str(folder)
+            str(folder)
             + "/"
             + str(run_ID)
             + "basic_output.pickle",
@@ -1461,7 +1444,7 @@ def conductive_cooling(
     if save_param_file == "y":
         print("Saving final parameters file... nearly there!")
         f = open(
-            "output_runs/" + str(folder) + "/params_" + str(run_ID) + ".txt",
+            str(folder) + "/params_" + str(run_ID) + ".txt",
             "w",
         )
         f.write(
