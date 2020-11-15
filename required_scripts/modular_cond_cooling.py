@@ -976,7 +976,7 @@ def conductive_cooling(
     )[0]
 
     print("saving depths")
-    if save_array == "y":
+    if save_array == "y" or record_timings == "y":
         with open(
             str(folder)
             + "/"
