@@ -1008,6 +1008,26 @@ def conductive_cooling(
                 ],
                 f,
             )
+            with open(
+                str(folder)
+                + "/"
+                + str(run_ID)
+                + "input_params.pickle",
+                "wb",
+            ) as f:
+                pickle.dump(
+                    [
+                        r_core,
+                        max_time,
+                        time_core_frozen,
+                        fully_frozen,
+                        r_planet,
+                        dr,
+                        core_size_factor,
+                        reg_fraction,
+                    ],
+                    f,
+                )
     else:
         pass
 
