@@ -124,13 +124,13 @@ def Critical_Depth(
     )  # finds the first 'maximum' which is the first TRUE,
     # or the first crossing
     Time_of_Crossing = crossing_index * (10 ** 11)  # converts to seconds
-    radii_index = int(((d_val)[crossing == True]))
+    radii_index = int(((d_val)[crossing is True]))
 
     # check to see if the depth crosses the 593K contour during solidification
     # or before/after
     if time_core_frozen == 0:
         x = "Core Freezes after Max Time"
-        depth = ((r_planet) - radii[int(((d_val)[crossing == True]))]) / dr
+        depth = ((r_planet) - radii[int(((d_val)[crossing is True]))]) / dr
         return (depth, x, time_core_frozen, Time_of_Crossing)
     else:
         if radii_index > len(radii):
@@ -138,7 +138,7 @@ def Critical_Depth(
             depth = 0
             return (depth, x, time_core_frozen, Time_of_Crossing)
         else:
-            depth = ((r_planet) - radii[int(((d_val)[crossing == True]))]) / dr
+            depth = ((r_planet) - radii[int(((d_val)[crossing is True]))]) / dr
             if Time_of_Crossing == 0:
                 x = "hmm, see plot"  # lines cross at 0 time, but doesn't tell
                 # you when it formed
