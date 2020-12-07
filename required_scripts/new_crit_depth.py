@@ -98,8 +98,8 @@ def Critical_Depth_ol(CR, temperatures,dT_by_dt, radii, r_planet, core_size_fact
     for ti in range(5,temperatures.shape[1]):
         
         #Find the index where temperatures are 800K by finding the minimum of (a given temperature-800)
-        index_where_1100K_ish = np.argmin(np.absolute(temperatures[:,ti] - 1100))
-        if (np.absolute(temperatures[index_where_1100K_ish,ti] - 1100)) > 10: 
+        index_where_1100K_ish = np.argmin(np.absolute(temperatures[:,ti] - 1273))
+        if (np.absolute(temperatures[index_where_1100K_ish,ti] - 1273)) > 10: 
             continue
             
         #Find the index where dT_by_dt = meteorite cooling rate
@@ -132,8 +132,8 @@ def Critical_Depth_ol(CR, temperatures,dT_by_dt, radii, r_planet, core_size_fact
         
         t_val2.append(index_where_600K_ish)
         d_val.append((Critical_Radius)/1000 - ((r_planet/1000)*core_size_factor)) #computes the depth 
-        
-    crossing = [np.array(t_val2) - d_val == 0] #indicies where computed depth crosses temperature contour 
+     
+    crossing = [np.array(t_val2) - d_val < 0.00001] #indicies where computed depth crosses temperature contour 
     crossing_index = np.argmax(crossing) # finds the first 'maximum' which is the first TRUE, or the first crossing
     Time_of_Crossing = crossing_index*(10**11) #converts to seconds
     radii_index = int(((d_val)[crossing==True]))

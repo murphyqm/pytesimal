@@ -922,13 +922,16 @@ def conductive_cooling(
     #################################
     # Testing Olivine Cooling Rates #
     #################################
-    Miyamoto1997_low = cooling_calc.to_seconds(20000000)
-    Miyamoto1997_high = cooling_calc.to_seconds(100000000)
-    Miyamoto1997_v_low = cooling_calc.to_seconds(200000)
+    # Miyamoto1997_low = cooling_calc.to_seconds(20000000)
+    # Miyamoto1997_high = cooling_calc.to_seconds(100000000)
+    # Miyamoto1997_v_low = cooling_calc.to_seconds(200000)
+    Omolon1 = cooling_calc.to_seconds(20)
+    Omolon2 = cooling_calc.to_seconds(40)
 
+    # om1 depth - was Miyamoto1997_low
     ol_depth_low = (
         c_d.Critical_Depth_ol(
-            Miyamoto1997_low,
+            Omolon1,
             temperatures,
             dT_by_dt,
             radii,
@@ -938,9 +941,11 @@ def conductive_cooling(
             fully_frozen,
         )
     )[0]
+
+    # om1 timing - was Miyamoto1997_high
     ol_depth_high = (
         c_d.Critical_Depth_ol(
-            Miyamoto1997_high,
+            Omolon1,
             temperatures,
             dT_by_dt,
             radii,
@@ -949,10 +954,11 @@ def conductive_cooling(
             time_core_frozen,
             fully_frozen,
         )
-    )[0]
+    )[3]
+    # Om 2 depth, was Miyamoto1997_v_low
     ol_depth_v_low = (
         c_d.Critical_Depth_ol(
-            Miyamoto1997_v_low,
+            Omolon2,
             temperatures,
             dT_by_dt,
             radii,
@@ -962,9 +968,10 @@ def conductive_cooling(
             fully_frozen,
         )
     )[0]
+    # Om 2 timing, was Esquel_cooling_rate
     Esquel_Depth_test = (
         c_d.Critical_Depth_ol(
-            Esquel_cooling_rate,
+            Omolon2,
             temperatures,
             dT_by_dt,
             radii,
@@ -973,7 +980,7 @@ def conductive_cooling(
             time_core_frozen,
             fully_frozen,
         )
-    )[0]
+    )[3]
 
     print("saving depths")
     if save_array == "y" or record_timings == "y":

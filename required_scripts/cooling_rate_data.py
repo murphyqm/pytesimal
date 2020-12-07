@@ -5,7 +5,7 @@ Created on Mon Mar 25 09:45:23 2019
 
 @author: eememq
 """
-#pallasite#
+# pallasite#
 Brenham1 = 6.2
 Dora1 = 4.7
 Finmarken1 = 18.2
@@ -22,7 +22,12 @@ Chupaderos1 = 82
 Point_of_Rocks1 = 145
 Uruachic1 = 72
 
-#pallasite#
-Admire = 5.6
-Brahin = 10.2
+# pallasite#
+# Admire = 5.6
+# Brahin = 10.2
 Fukang = 5.8
+
+# actually Om1:
+Admire = 10.0
+# actually Om2:
+Brahin = 17.0
