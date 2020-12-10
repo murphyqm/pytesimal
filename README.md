@@ -3,17 +3,26 @@ Pytesimal
 
 Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.
 
-Look how easy it is to use:
+To run a case with default parameters:
 
-    import project
-    # Get your stuff done
-    project.do_stuff()
+    from modular_cond_cooling import conductive_cooling
+    
+    # Give your model set-up a unique file name:
+    run_ID = "file_name"
+    
+    # Point it to a folder to save the outputs:
+    folder = "folder_path" 
+    
+    # Let your planetesimal evolve:
+    conductive_cooling(run_ID, folder,)
+    
+See the Jupyter notebooks provided for working examples.
 
 Features
 --------
 
-- Be awesome
-- Make things faster
+- Constant or variable material properties
+- Download and plot data from NGDC
 
 Installation
 ------------
@@ -30,14 +39,14 @@ This software relies on python (version 3) and various other python packages. Ex
 Contribute
 ----------
 
-- Issue Tracker: github.com/$project/$project/issues
-- Source Code: github.com/$project/$project
+- Issue Tracker: github.com/murphyqm/pytesimal/issues
+- Source Code: github.com/murphyqm/pytesimal
 
 Support
 -------
 
 If you are having issues, please let us know.
-We have a mailing list located at: project@google-groups.com
+You can email us at eememq@leeds.ac.uk
 
 License
 -------
