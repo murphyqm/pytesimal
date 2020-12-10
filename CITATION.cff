@@ -1,0 +1,28 @@
+# YAML 1.2
+---
+authors: 
+  -
+    affiliation: "University of Leeds"
+    family-names: "Murphy Quinlan"
+    given-names: Maeve
+    orcid: "https://orcid.org/0000-0003-2958-1008"
+  -
+    affiliation: "University of Leeds"
+    family-names: Walker
+    given-names: Andrew
+  -
+    family-names: Davies
+    given-names: "Christopher J."
+cff-version: "1.1.0"
+doi: "10.1002/essoar.10504913.1"
+keywords: 
+  - planetesimal
+  - conductivity
+  - thermal
+license: MIT
+message: |
+    "If you use this software, please cite it using these metadata.
+    This currently points to our preprint and will be updated."
+repository-code: "https://github.com/murphyqm/pytesimal"
+title: Pytesimal
+...
