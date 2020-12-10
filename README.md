@@ -19,13 +19,13 @@ Installation
 ------------
 This software relies on python (version 3) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:
 
-```bash
-git clone https://github.com/murphyqm/pytesimal.git
-cd pytesimal
-conda create -n=pytesimal python=3.8
-conda activate pytesimal
-pip install -r requirements.txt
-```
+
+    git clone https://github.com/murphyqm/pytesimal.git
+    cd pytesimal
+    conda create -n=pytesimal python=3.8
+    conda activate pytesimal
+    pip install -r requirements.txt
+
 
 Contribute
 ----------
