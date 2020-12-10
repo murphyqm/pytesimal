@@ -6,16 +6,16 @@ Pytesimal models the conductive cooling of planetesimals with temperature-depend
 To run a case with default parameters:
 
     from modular_cond_cooling import conductive_cooling
-    
+
     # Give your model set-up a unique file name:
     run_ID = "file_name"
-    
+
     # Point it to a folder to save the outputs:
     folder = "folder_path" 
-    
+
     # Let your planetesimal evolve:
     conductive_cooling(run_ID, folder,)
-    
+
 See the Jupyter notebooks provided for working examples.
 
 Features
