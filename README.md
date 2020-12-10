@@ -29,6 +29,11 @@ Features
 
 - Constant or variable material properties
 - Download and plot data from NGDC
+- Choose to return compressed `.npz` NumPy arrays of temperature and cooling rates through time and radius
+- Plot temperature or cooling rate heatmaps
+- Return timing of core solidification, and depth and timing of meteorite formation
+- Return `pickle` objects with output parameter values
+- Return a parameter `.txt` file with details of input parameters and results
 
 Installation
 ------------
