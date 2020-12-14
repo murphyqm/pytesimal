@@ -27,7 +27,7 @@ To run a case with default parameters:
 
 See the Jupyter notebooks provided for working examples.
 
-**To download data from NGDC and plot it:** 
+**To download data from NGDC and plot it:**
 
 Navigate to the `downloading_and_plotting_data` directory. From the command line, run the required script to download the .dat files from the NGDC:
 
