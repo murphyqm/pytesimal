@@ -1,0 +1,18 @@
+Citation
+========
+
+If you use our model, please cite our preprint:
+
+Murphy Quinlan, M., Walker, A., Davies, C. J., Mound, J. E., Müller, T., & Harvey, J. (2020). The conductive cooling of planetesimals with temperature-dependent properties. Earth and Space Science Open Archive, Wiley. https://doi.org/10.1002/essoar.10504913.1 
+
+BibTex:
+
+@article{MurphyQuinlan2020, 
+author = {Murphy Quinlan, Maeve and Walker, Andrew and Davies, Christopher J. and Mound, Jonathan E. and Müller, Thomas and Harvey, Jason}, 
+title = {The conductive cooling of planetesimals with temperature-dependent properties}, 
+journal = {Earth and Space Science Open Archive}, 
+pages = {24}, 
+year = {2020}, 
+DOI = {10.1002/essoar.10504913.1}, 
+url = {https://doi.org/10.1002/essoar.10504913.1}, 
+}

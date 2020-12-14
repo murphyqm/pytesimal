@@ -9,6 +9,9 @@ In 1D, it must satisfy Von Neumann stability analysis - please see [Murphy Quinl
 
 The code currently recreates the cases described in [Murphy Quinlan et al. (2020 - preprint)](https://www.essoar.org/doi/abs/10.1002/essoar.10504913.1). References for the default parameters used can be found therein. We plan to extend it and make it more modular in future updates.
 
+Quick Start
+-----------
+
 To run a case with default parameters:
 
     from modular_cond_cooling import conductive_cooling
@@ -23,6 +26,20 @@ To run a case with default parameters:
     conductive_cooling(run_ID, folder,)
 
 See the Jupyter notebooks provided for working examples.
+
+**To download data from NGDC and plot it:**
+
+Navigate to the `downloading_and_plotting_data` directory. From the command line, run the required script to download the .dat files from the NGDC:
+
+`$ python downloaddata.py`
+
+Once the data is downloaded from the NGDC, it is available to plot using `coolingplot.py` with the filename you wish to plot:
+
+`$ python coolingplot.py constant_properties.dat`
+
+For more information run:
+
+`$ python coolingplot.py -h`
 
 Features
 --------

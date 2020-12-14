@@ -11,8 +11,21 @@ authors:
     family-names: Walker
     given-names: Andrew
   -
+    affiliation: "University of Leeds"
     family-names: Davies
     given-names: "Christopher J."
+  -
+    affiliation: "University of Leeds"
+    family-names: Mound
+    given-names: "Jonathan E."
+  -
+    affiliation: "Georg-August-University Göttingen"
+    family-names: Mueller
+    given-names: Thomas
+  -
+    affiliation: "University of Leeds"
+    family-names: Harvey
+    given-names: Jason
 cff-version: "1.1.0"
 doi: "10.1002/essoar.10504913.1"
 keywords: 
