@@ -1,6 +1,20 @@
 name: Python package
 
-on: [push]
+# edited from: https://github.com/actions/starter-workflows/blob/main/ci/python-app.yml
+
+#############################
+# Start the job on all push #
+#############################
+on:
+  push:
+    branches-ignore: [master]
+    # Remove the line above to run when pushing to master
+  pull_request:
+    branches: [master]
+    
+###############
+# Set the Job #
+###############
 
 jobs:
   build:
