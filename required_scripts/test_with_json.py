@@ -18,6 +18,14 @@ folder = "output_runs/auto_pytest/"  # generic run files are saved here
 # by default, if tests="y", output specific to testing is saved to the folder
 # "output_runs/testing_output/". HIghlevel testing data is saved to the
 # folder "output_runs/default_tests/".
+folder1 = "output_runs/testing_output/"
+folder2 = "default_test_results/"
+
+if not os.path.isdir(str(folder)):
+    os.makedirs(str(folder))
+
+if not os.path.isdir(str(folder1)):
+    os.makedirs(str(folder1))
 
 
 def test_core_const():

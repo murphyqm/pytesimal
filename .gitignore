@@ -4,3 +4,7 @@ __pycache__/
 *$py.class
 *.pyc
 *.pickle
+
+required_scripts/output_runs/
+output_runs/
+
