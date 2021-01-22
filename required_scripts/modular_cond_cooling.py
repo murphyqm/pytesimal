@@ -1061,6 +1061,7 @@ def conductive_cooling(
             fully_frozen,
             r_planet,
             run_ID,
+            folder=folder,
         )
 
         temp_plotting_formatted.cooling_rate_plot(
@@ -1078,6 +1079,7 @@ def conductive_cooling(
             temperatures,
             coretemp,
             run_ID,
+            folder=folder,
         )
 
     elif plotting == "temp":
@@ -1101,7 +1103,8 @@ def conductive_cooling(
             fully_frozen,
             r_planet,
             run_ID,
-            timestep,
+            folder=folder,
+            timestep=timestep,
         )
 
     elif plotting == "rate":
@@ -1123,6 +1126,7 @@ def conductive_cooling(
             temperatures,
             coretemp,
             run_ID,
+            folder=folder,
         )
 
     elif plotting == "None":
