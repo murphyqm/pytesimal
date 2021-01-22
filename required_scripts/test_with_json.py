@@ -19,13 +19,21 @@ folder = "output_runs/auto_pytest/"  # generic run files are saved here
 # "output_runs/testing_output/". HIghlevel testing data is saved to the
 # folder "output_runs/default_tests/".
 folder1 = "output_runs/testing_output/"
-folder2 = "default_test_results/"
+
+folderb = "required_scripts/auto_pytest/"
+folder1b = "required_scripts/output_runs/testing_output"
 
 if not os.path.isdir(str(folder)):
     os.makedirs(str(folder))
 
 if not os.path.isdir(str(folder1)):
     os.makedirs(str(folder1))
+
+if not os.path.isdir(str(folderb)):
+    os.makedirs(str(folderb))
+
+if not os.path.isdir(str(folder1b)):
+    os.makedirs(str(folder1b))
 
 
 def test_core_const():
