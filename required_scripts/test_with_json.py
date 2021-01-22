@@ -14,7 +14,10 @@ import inspect
 
 import json
 
-folder = "output_runs/auto_pytest"
+folder = "output_runs/auto_pytest/"  # generic run files are saved here
+# by default, if tests="y", output specific to testing is saved to the folder
+# "output_runs/testing_output/". HIghlevel testing data is saved to the
+# folder "output_runs/default_tests/".
 
 
 def test_core_const():
@@ -96,8 +99,16 @@ def test_core_var():
 
     """
     run_ID = "test_python_variable"
-    mcc.conductive_cooling(run_ID, folder, return_vars="n",
-                           save_param_file="n", tests="y")
+    mcc.conductive_cooling(
+        run_ID,
+        folder,
+        cond_constant="n",
+        density_constant="n",
+        heat_cap_constant="n",
+        return_vars="n",
+        save_param_file="n",
+        tests="y"
+    )
     vals = [1, 1000, 126228]
     folder1 = "output_runs/testing_output/"
     folder2 = "default_test_results/"
