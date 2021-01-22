@@ -1,26 +1,64 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Oct 30 13:34:35 2020
+Created on Wed Jan 20 15:02:05 2021.
 
 @author: maeve
 """
+
 import pickle
 import modular_cond_cooling as mcc
 
 import os
 import inspect
 
-folder = "output_runs/auto_pytest"
+import json
+
+folder = "output_runs/auto_pytest/"  # generic run files are saved here
+# by default, if tests="y", output specific to testing is saved to the folder
+# "output_runs/testing_output/". HIghlevel testing data is saved to the
+# folder "output_runs/default_tests/".
+folder1 = "output_runs/testing_output/"
+
+folderb = "required_scripts/auto_pytest/"
+folder1b = "required_scripts/output_runs/testing_output"
+
+if not os.path.isdir(str(folder)):
+    os.makedirs(str(folder))
+
+if not os.path.isdir(str(folder1)):
+    os.makedirs(str(folder1))
+
+if not os.path.isdir(str(folderb)):
+    os.makedirs(str(folderb))
+
+if not os.path.isdir(str(folder1b)):
+    os.makedirs(str(folder1b))
 
 
 def test_core_const():
+    """
+    Simple test that loads default json files and asserts they match output.
+
+    Returns
+    -------
+    None.
+
+    """
     run_ID = "test_python_constant"
     mcc.conductive_cooling(run_ID, folder, return_vars="n",
                            save_param_file="n", tests="y")
     vals = [1, 1000, 126228]
     folder1 = "output_runs/testing_output/"
     folder2 = "default_test_results/"
+    DATA2 = os.path.join(os.path.dirname(os.path.abspath(
+            inspect.getfile(inspect.currentframe()))), folder2,
+            "constant_core.json")
+    with open(
+            DATA2,
+            'r',
+            ) as fp:
+        default_list = json.load(fp)
     for i in vals:
         string = "core_test_i_" \
             + str(i) \
@@ -29,8 +67,6 @@ def test_core_const():
             + ".pickle"
         DATA = os.path.join(os.path.dirname(os.path.abspath(
             inspect.getfile(inspect.currentframe()))), folder1, string)
-        DATA2 = os.path.join(os.path.dirname(os.path.abspath(
-            inspect.getfile(inspect.currentframe()))), folder2, string)
         with open(
             DATA,
             "rb",
@@ -65,44 +101,19 @@ def test_core_const():
                 r_core,
                 label,
             ]
-        with open(
-            DATA2,
-            "rb",
-        ) as f:
-            [
-                dlatent,
-                di,
-                ddr,
-                dtemperature_core,
-                dtemp_core_melting,
-                dcore_lh_extracted,
-                dmax_core_lh,
-                dcmb_conductivity,
-                dtimestep,
-                dcore_density,
-                dcore_cp,
-                dr_core,
-                dlabel,
-            ] = pickle.load(f)
-        default_list = [
-                dlatent,
-                di,
-                ddr,
-                dtemperature_core,
-                dtemp_core_melting,
-                dcore_lh_extracted,
-                dmax_core_lh,
-                dcmb_conductivity,
-                dtimestep,
-                dcore_density,
-                dcore_cp,
-                dr_core,
-                dlabel,
-            ]
-        assert new_list == default_list
+
+        assert [new_list] == default_list[str(i)]
 
 
 def test_core_var():
+    """
+    Simple test that loads default json files and asserts they match output.
+
+    Returns
+    -------
+    None.
+
+    """
     run_ID = "test_python_variable"
     mcc.conductive_cooling(
         run_ID,
@@ -117,6 +128,14 @@ def test_core_var():
     vals = [1, 1000, 126228]
     folder1 = "output_runs/testing_output/"
     folder2 = "default_test_results/"
+    DATA2 = os.path.join(os.path.dirname(os.path.abspath(
+            inspect.getfile(inspect.currentframe()))), folder2,
+            "variable_core.json")
+    with open(
+            DATA2,
+            'r',
+            ) as fp:
+        default_list = json.load(fp)
     for i in vals:
         string = "core_test_i_" \
             + str(i) \
@@ -125,8 +144,6 @@ def test_core_var():
             + ".pickle"
         DATA = os.path.join(os.path.dirname(os.path.abspath(
             inspect.getfile(inspect.currentframe()))), folder1, string)
-        DATA2 = os.path.join(os.path.dirname(os.path.abspath(
-            inspect.getfile(inspect.currentframe()))), folder2, string)
         with open(
             DATA,
             "rb",
@@ -161,38 +178,5 @@ def test_core_var():
                 r_core,
                 label,
             ]
-        with open(
-            DATA2,
-            "rb",
-        ) as f:
-            [
-                dlatent,
-                di,
-                ddr,
-                dtemperature_core,
-                dtemp_core_melting,
-                dcore_lh_extracted,
-                dmax_core_lh,
-                dcmb_conductivity,
-                dtimestep,
-                dcore_density,
-                dcore_cp,
-                dr_core,
-                dlabel,
-            ] = pickle.load(f)
-        default_list = [
-                dlatent,
-                di,
-                ddr,
-                dtemperature_core,
-                dtemp_core_melting,
-                dcore_lh_extracted,
-                dmax_core_lh,
-                dcmb_conductivity,
-                dtimestep,
-                dcore_density,
-                dcore_cp,
-                dr_core,
-                dlabel,
-            ]
-        assert new_list == default_list
+
+        assert [new_list] == default_list[str(i)]

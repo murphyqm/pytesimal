@@ -38,7 +38,7 @@ def test_def_const():
         57.0,
         5849600000000000,
     )
-    run_ID = "simple_test_22oct20_c"
+    run_ID = "simple_test_constant"
     (
         begins_to_freeze,
         finished_freezing,
@@ -92,7 +92,7 @@ def test_def_var():
         61.0,
         6501800000000000,
     )
-    run_ID = "simple_test_22oct20_v"
+    run_ID = "simple_test_variable"
     (
         begins_to_freeze,
         finished_freezing,
