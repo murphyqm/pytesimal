@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Plotting of Temperatures and Cooling Rates
+Plotting of Temperatures and Cooling Rates.
 
-Two functions which return plots of 1) temperatures through time, varying with depth, and 2) cooling rate through time, varying with depth
+Two functions which return plots of 1) temperatures through time, varying with
+depth, and 2) cooling rate through time, varying with depth
 """
 
 import numpy as np
@@ -13,11 +14,10 @@ import matplotlib.colors as clr
 from matplotlib.ticker import FuncFormatter
 import matplotlib.ticker as plticker
 import matplotlib.lines as mlines
-import matplotlib
 import matplotlib.font_manager as font_manager
 
-import os.path
-from os import path
+# import os.path
+# from os import path
 
 
 """## Setting up colourmaps ##"""
@@ -35,13 +35,12 @@ custom_cmap_20 = clr.LinearSegmentedColormap.from_list(
 custom_cmapx = custom_cmap_20
 cmaplist = [custom_cmapx(i) for i in range(custom_cmapx.N)]
 # segmented cmap
-# custom_cmapy = custom_cmapx.from_list('Custom cmap', cmaplist, custom_cmapx.N)
+# custom_cmapy =custom_cmapx.from_list('Custom cmap', cmaplist, custom_cmapx.N)
 
 bw_cmap = cm.get_cmap(
     "binary", 20
 )  # greyscale colourmap to allow comparison of different parameters
 
-import matplotlib.font_manager as font_manager
 
 # Set the font dictionaries (for plot title and axis titles)
 title_font = {
@@ -59,7 +58,7 @@ myr = 3.1556926e13
 
 
 def million_years(x, pos):
-    "Converting from timesteps to myrs"
+    """Convert from timesteps to myrs."""
     value = (x * 1.0e11) / myr
     value_rounded = round(value, -2)
     value_int = int(value_rounded)
@@ -67,12 +66,16 @@ def million_years(x, pos):
 
 
 class nf(float):
+    """Format floats."""
+
     def __repr__(self):
+        """Magic method."""
         s = f"{self:.1f}"
         return f"{self:.0f}" if s[-1] == "0" else s
 
 
 def my_func(x, pos):
+    """Fix Myr format."""
     return int(x * myr * -1)
 
 
@@ -98,9 +101,11 @@ def temperature_plot(
     timestep=1e11,
     location="lower left",
 ):
-    """"
-    function docstring
-    Returns a heat map of depth vs time, with the colormap showing variation in temperature
+    """
+    Temperature heatmap.
+
+    Returns a heat map of depth vs time, with the colormap showing variation in
+    temperature
     """
     myr = 3.1556926e13
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -127,7 +132,8 @@ def temperature_plot(
     ax.xaxis.label.set_size(14)
     ax.yaxis.label.set_size(14)
 
-    # levels = [100, 200, 300, 400, 500, 593, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500] #contour lines - can look a little crowded
+    # levels = [100, 200, 300, 400, 500, 593, 700, 800, 900, 1000, 1100, 1200,
+    # 1300, 1400, 1500] #contour lines - can look a little crowded
     lines = [
         100,
         200,
@@ -143,7 +149,9 @@ def temperature_plot(
         1500,
     ]  # contour lines
 
-    # cont_temps = plt.contour(np.concatenate((temperatures[-1:0:-1,:],coretemp[-1:0:-1,:]),axis=0), levels, colors=['r','r','r','w','r','w','r','r','r','r','r','r','r','r','r'])
+    # cont_temps = plt.contour(np.concatenate((temperatures[-1:0:-1,:],
+    # coretemp[-1:0:-1,:]),axis=0), levels, colors=['r','r','r','w','r','w',
+    # 'r','r','r','r','r','r','r','r','r'])
     cont_temps = plt.contour(
         np.concatenate(
             (temperatures[-1:0:-1, :], coretemp[-1:0:-1, :]), axis=0
@@ -187,7 +195,8 @@ def temperature_plot(
             linestyle="--",
             label="Esquel",
         )
-        # plt.text((max_time/(10**11)/1.05),Esquel_Depth + 5,'Esquel', color= '#0F8B8D')
+        # plt.text((max_time/(10**11)/1.05),Esquel_Depth + 5,'Esquel',
+        # color= '#0F8B8D')
 
     if (
         Imilac_Depth == 0
@@ -204,7 +213,8 @@ def temperature_plot(
             linestyle="-",
             label="Imilac",
         )
-        # plt.text((max_time/(10**11)/1.05),Imilac_Depth-2,'Imilac', color='#0F8B8D')
+        # plt.text((max_time/(10**11)/1.05),Imilac_Depth-2,'Imilac',
+        # color='#0F8B8D')
     esq_line = mlines.Line2D(
         [],
         [],
@@ -236,39 +246,6 @@ def temperature_plot(
         framealpha=0.3,
         fontsize=14,
     )  # shadow=True)
-
-    #    if Brenham1_Depth == 0 or Brenham1_Depth == (r_core/1000) or Brenham1_Depth is None:
-    #        pass
-    #    else:
-    #        ax.plot([0,max_time/(10**11)/2],[Brenham1_Depth,Brenham1_Depth], lw=2, c='#0F8B8D', linestyle='-')
-    #        plt.text((max_time/(10**11)/2.1),Brenham1_Depth-1,'Brenham', color='#0F8B8D')
-    #    if Seymchan1_Depth == 0 or Seymchan1_Depth == (r_core/1000) or Seymchan1_Depth is None:
-    #        pass
-    #    else:
-    #        ax.plot([0,max_time/(10**11)/2],[Seymchan1_Depth,Seymchan1_Depth], lw=2, c='#0F8B8D', linestyle='-')
-    #        plt.text((max_time/(10**11)/2.1),Seymchan1_Depth-1,'Seymchan', color='#0F8B8D')
-    #    if GlorM1_Depth == 0 or GlorM1_Depth == (r_core/1000) or GlorM1_Depth is None:
-    #        pass
-    #    else:
-    #        ax.plot([0,max_time/(10**11)/2],[GlorM1_Depth,GlorM1_Depth], lw=2, c='#0F8B8D', linestyle='-')
-    #        plt.text((max_time/(10**11)/2.1),GlorM1_Depth-1,'Glorietta Mountain', color='#0F8B8D')
-    #    if Admire_Depth == 0 or Admire_Depth == (r_core/1000) or Admire_Depth is None:
-    #        pass
-    #    else:
-    #        ax.plot([0,max_time/(10**11)/2],[Admire_Depth,Admire_Depth], lw=2, c='#0F8B8D', linestyle='-')
-    #        plt.text((max_time/(10**11)/2.1),Admire_Depth-1,'Admire', color='#0F8B8D')
-    #
-    #    if Brahin_Depth == 0 or Brahin_Depth == (r_core/1000) or Brahin_Depth is None:
-    #        pass
-    #    else:
-    #        ax.plot([0,max_time/(10**11)/2],[Brahin_Depth,Brahin_Depth], lw=2, c='#0F8B8D', linestyle='-')
-    #        plt.text((max_time/(10**11)/2.1),Brahin_Depth-1,'Brahin', color='#0F8B8D')
-    #
-    #    if Fukang_Depth == 0 or Fukang_Depth == (r_core/1000) or Fukang_Depth is None:
-    #        pass
-    #    else:
-    #        ax.plot([0,max_time/(10**11)/2],[Fukang_Depth,Fukang_Depth], lw=2, c='#0F8B8D', linestyle='-')
-    #        plt.text((max_time/(10**11)/2.1),Fukang_Depth-1,'Fukang', color='#0F8B8D')
 
     # plot core lines if frozen before max time
     if time_core_frozen == 0 or fully_frozen == 0:
@@ -376,9 +353,7 @@ def cooling_rate_plot(
     timestep=1.0e11,
     location="lower left",
 ):
-    """
-    Returns a plot of depth vs time, with colour varying with cooling rate
-    """
+    """Return plot of depth vs time, with colour varying with cooling rate."""
     myr = 3.1556926e13
     fig, ax = plt.subplots(figsize=(12, 6))
 
@@ -389,7 +364,7 @@ def cooling_rate_plot(
         aspect="auto",
         vmin=-1e-12,
         cmap=custom_cmapy,
-    )  #'tab20b_r' #custom_cmapy
+    )  # 'tab20b_r' #custom_cmapy
     for label in ax.get_xticklabels() + ax.get_yticklabels():
         label.set_fontsize(14)
     formatter = FuncFormatter(million_years)
@@ -416,6 +391,7 @@ def cooling_rate_plot(
         colors="#143642",
         linestyles="-",
     )
+    print(str(cont_Im))
     # plt.clabel(cont_Im, fontsize=10, inline=1, lw=3)
 
     # Plot Esquel Cooling Rate Contour
@@ -428,6 +404,7 @@ def cooling_rate_plot(
         colors="#143642",
         linestyles="--",
     )
+    print(str(cont_Esq))
     # plt.clabel(cont_Esq, fontsize=10, inline=1, lw=3)
 
     # Plot 593K contour
@@ -475,7 +452,8 @@ def cooling_rate_plot(
             c="#0F8B8D",
             linestyle="--",
         )
-        # plt.text((max_time/(10**11)/1.1),Esquel_Depth-1,'Esquel', color= '#0F8B8D')
+        # plt.text((max_time/(10**11)/1.1),Esquel_Depth-1,'Esquel',
+        # color= '#0F8B8D')
 
     if (
         Imilac_Depth == 0
@@ -491,7 +469,8 @@ def cooling_rate_plot(
             c="#0F8B8D",
             linestyle="-",
         )
-        # plt.text((max_time/(10**11)/1.1),Imilac_Depth-1,'Imilac', color='#143642')
+        # plt.text((max_time/(10**11)/1.1),Imilac_Depth-1,'Imilac',
+        # color='#143642')
     esq_cr_cont = mlines.Line2D(
         [],
         [],
