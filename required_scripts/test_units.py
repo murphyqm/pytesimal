@@ -11,7 +11,32 @@ import numpy as np
 import pytest
 
 
-def test_discretisation():
+def test_mtt_core_cooling():
+    radii = np.arange(10000.0, 50000.0, 1000.0)
+    times = np.arange(0, 100 + 0.5 * 1.0, 1.0)
+    temperatures = np.zeros((radii.size, times.size))
+    (latent,
+     core_lh_extracted,
+     temperature_core) = mtt.core_cooling(latent=[],
+                                          i=1,
+                                          dr=100.0,
+                                          temperature_core=1000.0,
+                                          temp_core_melting=1200.0,
+                                          core_lh_extracted=7000.0,
+                                          max_core_lh=10000.0,
+                                          cmb_conductivity=3.0,
+                                          temperatures=temperatures,
+                                          timestep=1.0,
+                                          core_density=7800.0,
+                                          core_cp=850.0,
+                                          r_core=10000.0,
+                                          )
+    assert latent == [7000.0]
+    assert core_lh_extracted == 7000.0
+    assert temperature_core == 1000.0
+
+
+def test_mtt_discretisation():
     radii = np.arange(10000.0, 50000.0, 1000.0)
     times = np.arange(0, 100 + 0.5 * 1.0, 1.0)
     core = np.arange(0, 10000.0 - 1000.0 + 0.5 * 1000.0, 1000.0)
