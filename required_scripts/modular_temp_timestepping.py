@@ -65,6 +65,34 @@ def core_cooling(
     return latent, core_lh_extracted, temperature_core
 
 
+@contract(latent=list,
+          temp_init=float,
+          temp_core_melting=float,
+          temp_surface=float,
+          cmb_conductivity='float,>0',
+          p=float,
+          c=float,
+          temperatures=np.ndarray,
+          dr=float,
+          coretemp=np.ndarray,
+          timestep=float,
+          core_density=float,
+          core_cp=float,
+          r_core=float,
+          core_latent_heat=float,
+          radii=np.ndarray,
+          times=np.ndarray,
+          kappas=np.ndarray,
+          where_regolith=np.ndarray,
+          kappa_reg=float,
+          cond_constant=str,
+          density_constant=str,
+          heat_cap_constant=str,
+          non_lin_term=str,
+          is_a_test=str,
+          i_choice=int,
+          TESTING=str,
+          )
 def discretisation(
     latent,
     temp_init,
@@ -466,7 +494,32 @@ def discretisation(
 
 
 # simple discretisation for simple variable case
-
+@contract(latent=list,
+          temp_init=float,
+          temp_core_melting=float,
+          temp_surface=float,
+          cmb_conductivity='float,>0',
+          p=float,
+          c=float,
+          B=float,
+          temperatures=np.ndarray,
+          dr=float,
+          coretemp=np.ndarray,
+          timestep=float,
+          core_density=float,
+          core_cp=float,
+          r_core=float,
+          core_latent_heat=float,
+          radii=np.ndarray,
+          times=np.ndarray,
+          kappas=np.ndarray,
+          where_regolith=np.ndarray,
+          kappa_reg=float,
+          cond_constant=str,
+          density_constant=str,
+          heat_cap_constant=str,
+          non_lin_term=str,
+          )
 def simple_discretisation(
     latent,
     temp_init,

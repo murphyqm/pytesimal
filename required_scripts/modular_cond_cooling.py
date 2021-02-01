@@ -6,6 +6,7 @@ Created on Mon Feb 17 08:41:44 2020.
 @author: eememq
 
 """
+from contracts import contract
 
 ###
 #########################################################
@@ -13,6 +14,40 @@ Created on Mon Feb 17 08:41:44 2020.
 #########################################################
 
 
+@contract(run_ID=str,
+          folder=str,
+          kappa=float,
+          B=float,
+          model_type=int,
+          plotting=str,
+          save_array=str,
+          save_csv=str,
+          timestep=float,
+          r_planet='float,>0',
+          core_size_factor='float,>=0,<1',
+          reg_fraction='float,>=0,<1',
+          max_time='int,>0',
+          temp_core_melting='float,>0',
+          olivine_cp='float,>0',
+          olivine_density='float,>0',
+          return_vars=str,
+          save_param_file=str,
+          cmb_conductivity='float,>0',
+          core_cp='float,>0',
+          core_density='float,>0',
+          temp_init='float,>0',
+          temp_surface='float,>0',
+          core_latent_heat='float,>0',
+          kappa_reg='float,>0',
+          dr='float,>0',
+          reg_percent=str,
+          cond_constant=str,
+          density_constant=str,
+          heat_cap_constant=str,
+          non_lin_term=str,
+          record_timings=str,
+          tests=str,
+          )
 def conductive_cooling(
     run_ID,
     folder,
@@ -1061,6 +1096,7 @@ def conductive_cooling(
             fully_frozen,
             r_planet,
             run_ID,
+            folder=folder,
         )
 
         temp_plotting_formatted.cooling_rate_plot(
@@ -1078,6 +1114,7 @@ def conductive_cooling(
             temperatures,
             coretemp,
             run_ID,
+            folder=folder,
         )
 
     elif plotting == "temp":
@@ -1101,7 +1138,8 @@ def conductive_cooling(
             fully_frozen,
             r_planet,
             run_ID,
-            timestep,
+            folder=folder,
+            timestep=timestep,
         )
 
     elif plotting == "rate":
@@ -1123,6 +1161,7 @@ def conductive_cooling(
             temperatures,
             coretemp,
             run_ID,
+            folder=folder,
         )
 
     elif plotting == "None":
