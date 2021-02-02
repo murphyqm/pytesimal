@@ -20,8 +20,8 @@ folder = "output_runs/auto_pytest/"  # generic run files are saved here
 # folder "output_runs/default_tests/".
 folder1 = "output_runs/testing_output/"
 
-folderb = "required_scripts/auto_pytest/"
-folder1b = "required_scripts/output_runs/testing_output"
+folderb = "pytesimal/auto_pytest/"
+folder1b = "pytesimal/output_runs/testing_output"
 
 if not os.path.isdir(str(folder)):
     os.makedirs(str(folder))
