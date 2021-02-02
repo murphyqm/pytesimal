@@ -7,7 +7,15 @@ Created on Tue Oct 27 13:14:58 2020
 """
 
 # from .context import modular_cond_cooling as mcc
+# Error message from above line:
+# from .context import modular_cond_cooling as mcc ## this didn't work - why?
+# E   ImportError: attempted relative import with no known parent package
+
 from pytesimal import modular_cond_cooling as mcc
+
+# Error message from above line:
+# ImportError: cannot import name 'modular_cond_cooling' from 'pytesimal'
+# (unknown location)
 
 folder = "output_runs/auto_pytest"
 
