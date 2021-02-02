@@ -11,6 +11,7 @@ Created on Tue Feb  2 13:56:32 2021.
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                                '../pytesimal')))
+                                                '../pytesimal/')))
+# sys.path.insert(0, os.path.abspath('../pytesimal/'))
 import modular_cond_cooling
-#import modular_temp_timestepping
+import modular_temp_timestepping

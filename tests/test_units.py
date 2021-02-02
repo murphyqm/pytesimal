@@ -6,8 +6,8 @@ Created on Mon Jan 25 17:01:06 2021
 @author: maeve
 """
 
-# from .context import modular_temp_timestepping as mtt
-from pytesimal import modular_temp_timestepping as mtt
+from context import modular_temp_timestepping as mtt
+# from pytesimal import modular_temp_timestepping as mtt
 import numpy as np
 import pytest
 
