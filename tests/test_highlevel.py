@@ -6,7 +6,8 @@ Created on Tue Oct 27 13:14:58 2020
 @author: maeve
 """
 
-import modular_cond_cooling as mcc
+# from .context import modular_cond_cooling as mcc
+from pytesimal import modular_cond_cooling as mcc
 
 folder = "output_runs/auto_pytest"
 

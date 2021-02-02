@@ -7,7 +7,8 @@ Created on Wed Jan 20 15:02:05 2021.
 """
 
 import pickle
-import modular_cond_cooling as mcc
+# from .context import modular_cond_cooling as mcc ## this didn't work - why?
+from pytesimal import modular_cond_cooling as mcc
 
 import os
 import inspect

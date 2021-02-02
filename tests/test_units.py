@@ -6,7 +6,8 @@ Created on Mon Jan 25 17:01:06 2021
 @author: maeve
 """
 
-import modular_temp_timestepping as mtt
+# from .context import modular_temp_timestepping as mtt
+from pytesimal import modular_temp_timestepping as mtt
 import numpy as np
 import pytest
 
@@ -34,6 +35,7 @@ def test_mtt_core_cooling():
     assert latent == [7000.0]
     assert core_lh_extracted == 7000.0
     assert temperature_core == 1000.0
+    print("Success.")
 
 
 def test_mtt_discretisation():
@@ -95,3 +97,4 @@ def test_mtt_discretisation():
     assert temp_mean == pytest.approx(1270.2955288227372, 0.00001)
     assert coretemp_mean == pytest.approx(1300.0)
     assert delt_listshal_mean == pytest.approx(0.0)
+    print("Success.")
