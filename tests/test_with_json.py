@@ -7,7 +7,7 @@ Created on Wed Jan 20 15:02:05 2021.
 """
 
 import pickle
-from context import modular_cond_cooling as mcc  ## this didn't work - why?
+from context import modular_cond_cooling as mcc  # this didn't work - why?
 # from pytesimal import modular_cond_cooling as mcc
 
 import os
@@ -181,3 +181,74 @@ def test_core_var():
             ]
 
         assert [new_list] == default_list[str(i)]
+
+
+def missing_files():
+    """
+    Simple test that loads default json files and asserts they match output.
+
+    Returns
+    -------
+    None.
+
+    """
+    run_ID = "test_python_constant"
+    # mcc.conductive_cooling(run_ID, folder, return_vars="n",
+    #                        save_param_file="n", tests="y")
+    vals = [1, 1000, 126228]
+    # folder1 = "output_runs/testing_output/"
+    folder2 = "default_test_results/"
+    DATA2 = os.path.join(os.path.dirname(os.path.abspath(
+            inspect.getfile(inspect.currentframe()))), folder2,
+            "constant_core.json")
+    with open(
+            DATA2,
+            'r',
+            ) as fp:
+        default_list = json.load(fp)
+    for i in vals:
+        string = "core_test_i_" \
+            + str(i) \
+            + "_var_" \
+            + "y" \
+            + ".pickle"
+        # DATA = os.path.join(os.path.dirname(os.path.abspath(
+        #     inspect.getfile(inspect.currentframe()))), folder1, string)
+        # with open(
+        #     DATA,
+        #     "rb",
+        # ) as f:
+        #     [
+        #         latent,
+        #         i,
+        #         dr,
+        #         temperature_core,
+        #         temp_core_melting,
+        #         core_lh_extracted,
+        #         max_core_lh,
+        #         cmb_conductivity,
+        #         timestep,
+        #         core_density,
+        #         core_cp,
+        #         r_core,
+        #         label,
+        #     ] = pickle.load(f)
+        # new_list = [
+        #         latent,
+        #         i,
+        #         dr,
+        #         temperature_core,
+        #         temp_core_melting,
+        #         core_lh_extracted,
+        #         max_core_lh,
+        #         cmb_conductivity,
+        #         timestep,
+        #         core_density,
+        #         core_cp,
+        #         r_core,
+        #         label,
+        #     ]
+
+        # assert [new_list] == default_list[str(i)]
+        print(string)
+        print(default_list)
