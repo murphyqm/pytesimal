@@ -4,6 +4,9 @@
 Created on Fri Feb  5 13:05:24 2021
 
 @author: maeve
+
+Potentially use the property function to protect core temp variable?
+https://docs.python.org/3/library/functions.html#property
 """
 
 import numpy as np
@@ -20,7 +23,7 @@ class Core:
         self.radius = r
         self.density = rho
         self.heatcap = cp
-        self.maxlatent = maxlh
+        self.maxlatent = maxlh  # change this to accept core lh and then calc
         self.templist = []
         self.latentlist = []
 
@@ -57,6 +60,7 @@ class Core:
 
 """Testing this draft Class"""
 
+"""
 # instantiate core object
 
 temp = 2000.0
@@ -102,4 +106,4 @@ for j in range(0, times.size):
 for i in range(0, times.size, dt):
     core1.cooling(temperatures, dt, dr, i, k)
     print(core1)
-
+"""

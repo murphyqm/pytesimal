@@ -15,3 +15,5 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__),
 # sys.path.insert(0, os.path.abspath('../pytesimal/'))
 import modular_cond_cooling
 import modular_temp_timestepping
+import draft_mantle_timestepping  # implements new core
+import draft_core_functions  # new core
