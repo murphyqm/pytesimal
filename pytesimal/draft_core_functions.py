@@ -38,6 +38,7 @@ class Core:
     def cooling(self, mantletemps, timestep, dr, i):
         """Cool core or extract latent heat."""
         if (self.temperature > self.melting) or (self.latent >= self.maxlatent):
+            print(self.temperature)
             self.temperature = self.temperature - (
                 3.0
                 * self.cmbk
@@ -75,17 +76,20 @@ dt = 1
 dr = 1.0
 
 radii = np.arange(100.0, 200.0, dr)
-times = np.arange(0, 10000.0, dt)
+times = np.arange(0, 100000.0, dt)
 
-temperatures = np.zeros((radii.size, times.size))
+temperatures = np.zeros((radii.size, times.size))  # shape: (100, 10000)
+
 
 # Give the mantle a pretend cooling history (interactive in real application):
 
+
 temp_init = 1600.0
 
-for i in range(0, 100):
-    temperatures[:, i] = temp_init
-    temp_init -= 10
+for j in range(times.size-1, 0, -1):
+    for i in range(0, radii.size):
+        temperatures[i, j] = temp_init
+        temp_init -= 10
 
 
 # make the core cool:
@@ -94,4 +98,3 @@ for i in range (0, 10000, dt):
     core1.cooling(temperatures, dt, dr, i)
     # print(core1)
 
-# neither temperatures nor latent heat being updated?
