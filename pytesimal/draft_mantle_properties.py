@@ -16,19 +16,19 @@ class MantleProperties:
         self._cp = 819.0
         self._k = 3.0
 
-    def getrho(self):
+    def getrho(self, T=295, P=0.1):
         """Get density."""
         return self._rho
 
     rho = property(getrho, "density")
 
-    def getcp(self):
+    def getcp(self, T=295, P=0.1):
         """Get heat capacity."""
         return self._cp
 
     cp = property(getcp, "heat capacity")
 
-    def getk(self):
+    def getk(self, T=295, P=0.1):
         """Get condcutivity."""
         return self._k
 
@@ -46,3 +46,19 @@ mantle = MantleProperties()
 
 print(mantle.k)
 print(mantle.kappa)
+print(mantle.rho)
+
+
+class VariableDensity(MantleProperties):
+    """Make density T-dependent."""
+
+    def getrho(self, T=295, P=0.1):
+        """Get density."""
+        rho_0 = 3341.0/295.0
+        self._rho = rho_0 * T
+        return self._rho
+
+
+density = VariableDensity()
+new_density = density.getrho(T=200)
+print(new_density)
