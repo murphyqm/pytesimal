@@ -20,28 +20,29 @@ class MantleProperties:
         """Get density."""
         return self._rho
 
-    def setrho(self, value):
-        """Set density."""
-        self._rho = value
-
-    rho = property(getrho, setrho, "I am the density.")
+    rho = property(getrho, "density")
 
     def getcp(self):
         """Get heat capacity."""
         return self._cp
 
-    def setcp(self, value):
-        """Set heat capacity."""
-        self._cp = value
-
-    cp = property(getcp, setcp, "I am the heat capacity.")
+    cp = property(getcp, "heat capacity")
 
     def getk(self):
         """Get condcutivity."""
         return self._k
 
-    def setk(self, value):
-        """Set conductivity."""
-        self._k = value
+    k = property(getk, "conductivity")
 
-    k = property(getk, setk, "I am the conductivity.")
+    def getkappa(self):
+        """Get diffusivity."""
+        diffusivity = (self._k)/(self._rho * self._cp)
+        return diffusivity
+
+    kappa = property(getkappa, "diffusivity")
+
+
+mantle = MantleProperties()
+
+print(mantle.k)
+print(mantle.kappa)
