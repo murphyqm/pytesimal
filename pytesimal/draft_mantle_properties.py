@@ -18,9 +18,18 @@ class MantleProperties:
         self._cp = 819.0
         self._k = 3.0
 
+    def __str__(self):
+        """Return string."""
+        return "Mantle rho: {0}; mantle cp: {1}; mantle k: {2}".format(
+            self._rho, self._cp, self._k)
+
     def getrho(self, T=295, P=0.1):
         """Get density."""
         return self._rho
+
+    def setrho(self, value):
+        """Set density."""
+        self._rho = value
 
     #  rho = property(getrho, "density")  # maybe uneccessary?
 
@@ -28,11 +37,19 @@ class MantleProperties:
         """Get heat capacity."""
         return self._cp
 
+    def setcp(self, value):
+        """Set heat capacity."""
+        self._cp = value
+
     #  cp = property(getcp, "heat capacity")
 
     def getk(self, T=295, P=0.1):
         """Get conductivity."""
         return self._k
+
+    def setk(self, value):
+        """Set conductivity."""
+        self._k = value
 
     #  k = property(getk, "conductivity")
 
