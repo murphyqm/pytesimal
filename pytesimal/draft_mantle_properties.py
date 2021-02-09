@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Feb  8 13:37:58 2021
+Mantle properties.
+
+Created on Mon Feb  8 13:37:58 2021.
 
 @author: maeve
 """
@@ -20,40 +22,33 @@ class MantleProperties:
         """Get density."""
         return self._rho
 
-    rho = property(getrho, "density")  # maybe uneccessary?
+    #  rho = property(getrho, "density")  # maybe uneccessary?
 
     def getcp(self, T=295, P=0.1):
         """Get heat capacity."""
         return self._cp
 
-    cp = property(getcp, "heat capacity")
+    #  cp = property(getcp, "heat capacity")
 
     def getk(self, T=295, P=0.1):
         """Get conductivity."""
         return self._k
 
-    k = property(getk, "conductivity")
+    #  k = property(getk, "conductivity")
 
     def getdkdT(self, T=295, P=0.1):
         """Get gradient of condcutivity."""
         dkdT = 0
         return dkdT
 
-    k = property(getk, "conductivity")
+    #  dkdT = property(getdkdT, "conductivity")
 
     def getkappa(self):
         """Get diffusivity."""
         diffusivity = (self._k)/(self._rho * self._cp)
         return diffusivity
 
-    kappa = property(getkappa, "diffusivity")
-
-
-mantle = MantleProperties()
-
-print(mantle.k)
-print(mantle.kappa)
-print(mantle.rho)
+    #  kappa = property(getkappa, "diffusivity")
 
 
 class VariableDensity(MantleProperties):
@@ -75,13 +70,6 @@ class VariableDensity(MantleProperties):
     rho = property(getrho, "density")  # might cut
 
 
-density = VariableDensity()
-new_density = density.getrho(T=250)
-print(new_density)
-
-density.rho  # again, not sure this is useful? might cut.
-
-
 class VariableHeatCapacity(MantleProperties):
     """Make heat capacity T-dependent."""
 
@@ -95,11 +83,6 @@ class VariableHeatCapacity(MantleProperties):
             )
         self._cp = new_heatcap
         return self._cp
-
-
-heatcap = VariableHeatCapacity()
-new_heatcap = heatcap.getcp(T=250)
-print(new_heatcap)
 
 
 class VariableConductivity(MantleProperties):
