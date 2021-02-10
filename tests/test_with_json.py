@@ -15,6 +15,14 @@ import inspect
 
 import json
 
+import pathlib  # going to use this to root around a bit
+
+print(pathlib.Path.cwd())
+
+# path = pathlib.Path.cwd() / '..' / 'README.md' #  this works
+# print(path)
+# path.read_text()
+
 folder = "output_runs/auto_pytest/"  # generic run files are saved here
 # by default, if tests="y", output specific to testing is saved to the folder
 # "output_runs/testing_output/". HIghlevel testing data is saved to the

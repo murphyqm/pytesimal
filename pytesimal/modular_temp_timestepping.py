@@ -430,8 +430,12 @@ def discretisation(
                     + str(cond_constant) \
                     + ".pickle"
                 folder1 = "output_runs/testing_output/"
+                folderpath = os.path.join(os.path.dirname(os.path.abspath(
+                    inspect.getfile(inspect.currentframe()))), folder1)
                 DATA = os.path.join(os.path.dirname(os.path.abspath(
                     inspect.getfile(inspect.currentframe()))), folder1, string)
+                if not os.path.isdir(folderpath):
+                    os.makedirs(folderpath)
                 with open(
                     DATA,
                     "wb",
