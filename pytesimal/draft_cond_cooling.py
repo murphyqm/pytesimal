@@ -169,8 +169,12 @@ def conductive_cooling(
     # if not os.path.isdir("output_runs"):
     #     os.mkdir("output_runs")
 
+    # if not os.path.isdir(str(folder)):
+    #     os.mkdir(str(folder))  # this is where it's breaking (pytest)
+
+    # Replacing above with this to see if it makes a difference:
     if not os.path.isdir(str(folder)):
-        os.mkdir(str(folder))
+        os.makedirs(str(folder))
 
     meteorite_depthlist_ID = "12aug"  # Only need to change if you change list
     # of meteorites for depth calculations
