@@ -13,7 +13,6 @@ from context import draft_mantle_timestepping as mtt
 import numpy as np
 import pytest
 
-# this doesn't seem to actually be capturing the bit of code I need tested
 
 def test_mtt_discretisation():
     radii = np.arange(100000.0, 500000.0, 1000.0)

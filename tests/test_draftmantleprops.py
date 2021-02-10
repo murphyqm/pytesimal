@@ -8,7 +8,7 @@ Created on Tue Feb  9 12:15:12 2021
 @author: maeve
 """
 from context import draft_mantle_properties as mp
-import numpy as np
+# import numpy as np
 import pytest
 # import matplotlib.pyplot as plt
 

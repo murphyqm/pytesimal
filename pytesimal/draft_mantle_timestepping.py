@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb  5 16:24:52 2021
+Created on Fri Feb  5 16:24:52 2021.
 
 @author: maeve
 """
-import os
+# import os
 import numpy as np
-import pickle
-import inspect
-import sys
+# import pickle
+# import inspect
+# import sys
 import draft_core_functions
 import draft_mantle_properties
+
 
 def discretisation(
     latent,
@@ -78,7 +79,6 @@ def discretisation(
 
     else:
         dens = draft_mantle_properties.VariableDensity()
-
 
     temp_list_mid_mantle = [temp_init]
     temp_list_shal = [temp_init]

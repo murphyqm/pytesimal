@@ -185,14 +185,14 @@ def test_core_var():
 
 def missing_files():
     """
-    Simple test that loads default json files and asserts they match output.
+    Test that loads default json files and asserts they match output.
 
     Returns
     -------
     None.
 
     """
-    run_ID = "test_python_constant"
+    # run_ID = "test_python_constant"
     # mcc.conductive_cooling(run_ID, folder, return_vars="n",
     #                        save_param_file="n", tests="y")
     vals = [1, 1000, 126228]
