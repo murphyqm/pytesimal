@@ -11,6 +11,7 @@ import pickle
 import inspect
 import sys
 import draft_core_functions
+import draft_mantle_properties
 
 def discretisation(
     latent,
@@ -58,95 +59,26 @@ def discretisation(
     print("Constant heat capacity: ")
     print(heat_cap_constant)
     # checking on temperature dependent properties
+
     if cond_constant == "y":
-
-        def conductivity(x):
-            y = cmb_conductivity
-            return y
-
-        def conductivity_prime(x):
-            y_prime = 0
-            return y_prime
+        cond = draft_mantle_properties.MantleProperties()
 
     else:
-
-        def conductivity(x):
-            y = (
-                80.4205952575632
-                * (
-                    1.3193574749943 * x ** (-0.5)
-                    + 0.977581998039333
-                    - 28361.7649315602 / x ** 2.0
-                    - 6.05745211527538e-5 / x ** 3.0
-                )
-                * (1.0 / x) ** 0.5
-            )
-            return y
-
-        def conductivity_prime(x):
-            y_prime = (
-                80.4205952575632
-                * (
-                    -0.659678737497148 * x ** (-1.5)
-                    + 56723.5298631204 / x ** 3.0
-                    + 0.000181723563458261 / x ** 4.0
-                )
-                * (1.0 / x) ** 0.5
-                - 40.2102976287816
-                * (
-                    1.3193574749943 * x ** (-0.5)
-                    + 0.977581998039333
-                    - 28361.7649315602 / x ** 2.0
-                    - 6.05745211527538e-5 / x ** 3.0
-                )
-                * (1.0 / x) ** 0.5
-                / x
-            )
-            return y_prime
+        cond = draft_mantle_properties.VariableConductivity()
 
     if heat_cap_constant == "y":
 
-        def heat_cap(T):
-            cp = c
-            return cp
+        heatcap = draft_mantle_properties.MantleProperties()
 
     else:
-
-        def heat_cap(T):
-            cp = (
-                995.1
-                + (1343.0 * ((T) ** (-0.5)))
-                - (2.887 * (10 ** 7.0) * ((T) ** (-2.0)))
-                - (6.166 * (10.0 ** (-2.0)) * (T) ** (-3.0))
-            )
-            return cp
+        heatcap = draft_mantle_properties.VariableHeatCapacity()
 
     if density_constant == "y":
-
-        def rho(T):
-            rho = p
-            return rho
+        dens = draft_mantle_properties.MantleProperties()
 
     else:
+        dens = draft_mantle_properties.VariableDensity()
 
-        def alpha(T):
-            """
-            Calculate the thermal expansion coefficient.
-
-            Function from Su et al., 2018
-            """
-            alpha = 3.304e-5 + (0.742e-8 * T) - 0.538 * (T ** -2.0)
-            return alpha
-
-        def rho(T, rho_0=3341.0, T0=300.0):
-            """
-            Calculate temperature dependent density.
-
-            Function for beta from Su et al., 2018. Defaults for reference rho
-            and T chosen from Bryson et al., 2015 with T0 set to room temp
-            """
-            rho = rho_0 - alpha(T) * rho_0 * (T - T0)
-            return rho
 
     temp_list_mid_mantle = [temp_init]
     temp_list_shal = [temp_init]
@@ -157,7 +89,7 @@ def discretisation(
     max_core_lh = (
         4.0 / 3.0 * np.pi * (r_core ** 3) * core_density * core_latent_heat
     )
-    core_lh_extracted = 0.0
+    # core_lh_extracted = 0.0
     # instantiate core object
     core_values = draft_core_functions.Core(temp_init, temp_core_melting,
                                             r_core, core_density, core_cp,
@@ -194,12 +126,12 @@ def discretisation(
                         * (
                             1.0
                             / (
-                                rho(temperatures[j, i - 1])
-                                * heat_cap(temperatures[j, i - 1])
+                                dens.getrho(temperatures[j, i - 1])
+                                * heatcap.getcp(temperatures[j, i - 1])
                             )
                         )
                     ) * (
-                        conductivity_prime(temperatures[j, i - 1])
+                        cond.getdkdT(temperatures[j, i - 1])
                         * (
                             (
                                 temperatures[j + 1, i - 1]
@@ -217,12 +149,12 @@ def discretisation(
                     * (
                         1.0
                         / (
-                            rho(temperatures[j, i - 1])
-                            * heat_cap(temperatures[j, i - 1])
+                            dens.getrho(temperatures[j, i - 1])
+                            * heatcap.getcp(temperatures[j, i - 1])
                         )
                     )
                 ) * (
-                    (conductivity(temperatures[j, i - 1]) / (radii[j] * dr))
+                    (cond.getk(temperatures[j, i - 1]) / (radii[j] * dr))
                     * (temperatures[j + 1, i - 1] - temperatures[j - 1, i - 1])
                 )
 
@@ -231,12 +163,12 @@ def discretisation(
                     * (
                         1.0
                         / (
-                            rho(temperatures[j, i - 1])
-                            * heat_cap(temperatures[j, i - 1])
+                            dens.getrho(temperatures[j, i - 1])
+                            * heatcap.getcp(temperatures[j, i - 1])
                         )
                     )
                 ) * (
-                    (conductivity(temperatures[j, i - 1]) / dr ** 2.0)
+                    (cond.getk(temperatures[j, i - 1]) / dr ** 2.0)
                     * (
                         temperatures[j + 1, i - 1]
                         - 2 * temperatures[j, i - 1]
@@ -303,89 +235,17 @@ def discretisation(
         temperatures[-1, i] = temp_surface
         temperatures[0, i] = temperature_core
         coretemp[:, i] = temperatures[0, i]
-        cmb_conductivity = conductivity(
+        cmb_conductivity = cond.getk(
             temperatures[0, i]
         )
-        if is_a_test == "y" and i == i_choice:
-            # for edge case: i = 126228
-            label = "Variable: " + str(cond_constant) + ", i = " + str(i)
-            with open(
-                "output_runs/default_tests/"
-                + "core_test_i_"
-                + str(i)
-                + "_var_"
-                + str(cond_constant)
-                + ".pickle",
-                "wb",
-            ) as f:
-                pickle.dump(
-                    [
-                        latent,
-                        i,
-                        dr,
-                        temperature_core,
-                        temp_core_melting,
-                        core_lh_extracted,
-                        max_core_lh,
-                        cmb_conductivity,
-                        # temperatures,
-                        timestep,
-                        core_density,
-                        core_cp,
-                        r_core,
-                        label,
-                    ],
-                    f,
-                )
-                sys.exit()
-        else:
-            pass
-        if TESTING == "n":
-            pass
-        else:
-            if i == 1 or i == 1000 or i == 126228:
-                label = "Variable: " \
-                    + str(cond_constant) \
-                    + ", i = " + str(i)
-                string = "core_test_i_" \
-                    + str(i) \
-                    + "_var_" \
-                    + str(cond_constant) \
-                    + ".pickle"
-                folder1 = "output_runs/testing_output/"
-                DATA = os.path.join(os.path.dirname(os.path.abspath(
-                    inspect.getfile(inspect.currentframe()))), folder1, string)
-                with open(
-                    DATA,
-                    "wb",
-                ) as f:
-                    pickle.dump(
-                        [
-                            latent,
-                            i,
-                            dr,
-                            temperature_core,
-                            temp_core_melting,
-                            core_lh_extracted,
-                            max_core_lh,
-                            cmb_conductivity,
-                            # temperatures,
-                            timestep,
-                            core_density,
-                            core_cp,
-                            r_core,
-                            label,
-                        ],
-                        f,
-                    )
         core_values.cooling(temperatures, timestep, dr, i, cmb_conductivity)
         latent = core_values.latentlist
-        core_lh_extracted = core_values.latent
+        # core_lh_extracted = core_values.latent
         temperature_core = core_values.temperature
         # latent, core_lh_extracted, temperature_core = core_cooling(
-        ## latent is now core.latentlist
-        ## core_lh_extracted is now core.latent
-        ## temperature_core = core.temperature
+        # # latent is now core.latentlist
+        # # core_lh_extracted is now core.latent
+        # # temperature_core = core.temperature
         #     latent,
         #     i,
         #     dr,
