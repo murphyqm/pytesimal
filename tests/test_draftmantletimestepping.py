@@ -147,6 +147,3 @@ def test_mtt_vardiscretisation():
 
 # 1795.7292069972057 1800.0 0.0 # variable, new version...
 # Success.
-
-test_mtt_vardiscretisation()
-test_mtt_discretisation()
