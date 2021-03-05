@@ -13,40 +13,40 @@ import numpy as np
 
 """
 To do:
-    - have the core object return a boundary temperature
-    - have the core keep track of its own temps and cast these to an array
-    - move latent heat calcs out of core object
-    - don't take mantletemps or dr as arguments
+    - [x] have the core object return a boundary temperature
+    - [x] have the core keep track of its own temps and cast these to an array
+            - done, have 1D array because if obj doesn't take dr, can't make
+            2D array
+    - [ ] move latent heat calcs out of core object
+    - [ ] don't take mantletemps or dr as arguments
 
 """
 
 
-class Core:
+class IsothermalEutecticCore:
     """Core class represents and manipulates core temp and latent heat."""
 
-    def __init__(self, temp, melt, r, rho, cp, maxlh, lat=0):
+    def __init__(self, temp, melt, outer_r, inner_r, rho, cp, maxlh, lat=0):
         """Create a new core with temperature and latent heat."""
         self.temperature = temp
         self.latent = lat
         self.melting = melt
-        self.radius = r
+        self.radius = outer_r
+        self.inner_radius = inner_r
         self.density = rho
         self.heatcap = cp
         self.maxlatent = maxlh  # change this to accept core lh and then calc
         self.templist = []
         self.latentlist = []
+        self.boundary_temperature = temp
 
     def __str__(self):
         """Return string."""
         return"Core at {0} K. Latent heat extracted: {1}".format(
             self.temperature, self.latent)
 
-    def boundary_temperature(self):
-        """Test cooling method."""
-        return self.temperature
-
     def cooling(self, mantletemps, timestep, dr, i, cmbk):
-        """Cool core or extract latent heat."""
+        """Cool core or extract latent heat. Old version."""
         if (self.temperature > self.melting) or (self.latent >= self.maxlatent):
             # print(self.temperature)
             self.temperature = self.temperature - (
@@ -55,6 +55,7 @@ class Core:
                 * ((mantletemps[0, i] - mantletemps[1, i]) / dr)
                 * timestep) / (self.density * self.heatcap * self.radius)
             self.templist.append(self.temperature)
+            self.boundary_temperature = self.temperature
         else:
             self.latent = (
                 self.latent
@@ -64,6 +65,19 @@ class Core:
                 * timestep)
             self.latentlist.append(self.latent)
             print("Freezing!\n***\n***\n***")
+
+    def extract_energy(self, energy_removed, timestep):
+        """To replace cooling method above. Don't think I need tstep."""
+        volume_of_core = (4.0/3.0) * np.pi * self.radius**3
+        delta_T = - energy_removed/(self.rho * self.heatcap * volume_of_core)
+        self.temperature = self.temperature + delta_T
+        # need to figure out is delta T sign is correct
+        self.boundary_temperature = self.temperature
+
+    def temperature_array_1D(self):
+        """Return temperature history as 1D array."""
+        temp_array = np.asarray(self.templist)
+        return temp_array  # Can't cast to 3D array unless I take dr as an arg
 
 
 """Testing this draft Class"""
@@ -80,7 +94,7 @@ k = 5.0
 maxlh = 4_000_000_000_000_000.0
 
 
-core1 = Core(temp, melt, r, rho, cp, maxlh, lat=0)
+core1 = IsothermalEutecticCore(temp, melt, r, 0, rho, cp, maxlh, lat=0)
 print(core1)
 
 # set up a mantle array
@@ -115,11 +129,7 @@ print(temperatures[-1, :])
 for i in range(0, times.size, dt):
     core1.cooling(temperatures, dt, dr, i, k)
     print(core1)
-    temperatures[-1, i] = core1.boundary_temperature()  # getting this right is
+    temperatures[-1, i] = core1.boundary_temperature  # getting this right is
 # an issue for the mantle, not really the problem of the core object
 
 print(temperatures[-1, :])
-
-# Last two lines of output:
-# Core at 1185.3370324858604 K. Latent heat extracted: 4000448532476905.5
-# Core at 1185.2822021849556 K. Latent heat extracted: 4000448532476905.5
