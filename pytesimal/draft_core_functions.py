@@ -106,4 +106,6 @@ for j in range(0, times.size):
 for i in range(0, times.size, dt):
     core1.cooling(temperatures, dt, dr, i, k)
     print(core1)
+
+print("Sucess")
 """
