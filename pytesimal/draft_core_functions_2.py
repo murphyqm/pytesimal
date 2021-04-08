@@ -11,6 +11,8 @@ temperatures method just maintained while developing to test against the old sol
 """
 
 import numpy as np
+import cProfile
+import timeit
 
 """
 To do:
@@ -170,3 +172,58 @@ for i in range(0, times.size, dt):
     temperatures2[-1, i] = core2.boundary_temperature
 
 np.testing.assert_array_almost_equal_nulp(temperatures[-1, :], temperatures2[-1, :])
+
+# make these into functions to help profile them:
+
+
+def core_cool_old():
+    for i in range(0, times.size, dt):
+        core1.cooling(temperatures, dt, dr, i, k)
+        print(core1)
+        temperatures[-1, i] = core1.boundary_temperature
+    return temperatures
+
+
+def core_cool_new():
+    cmb_energy1 = EnergyExtractedAcrossCMB(r, dt, dr)
+
+    for i in range(0, times.size, dt):
+        E1 = cmb_energy1.energy_extracted(temperatures2, i, k)
+        core2.extract_energy(E1)
+        print(core2)
+        temperatures2[-1, i] = core2.boundary_temperature
+
+
+# resetting the initial conditions
+
+temperatures = np.zeros((radii.size, times.size))  # shape: (100, 10000)
+temperatures2 = np.zeros((radii.size, times.size))  # shape: (100, 10000)
+
+# Give the mantle a pretend cooling history (interactive in real application):
+
+
+temp_init = 2000.0
+dT = max_t / 50000.0
+print(dT)
+
+for j in range(0, times.size):
+    for i in range(radii.size - 1, 0, -1):
+        temperatures[i, j] = temp_init
+        temperatures2[i, j] = temp_init
+        temp_init = temp_init - dT
+        # print(temp_init)
+
+# %timeit core_cool_old()
+# cProfile.run("core_cool_old()")
+
+"""
+core_cool_old:
+
+1.56 s ± 19.9 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+1.52 s ± 28.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+core_cool_new:
+
+1.53 s ± 40.5 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+1.55 s ± 20.9 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+"""
