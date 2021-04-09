@@ -16,10 +16,14 @@ import numpy as np
 import draft_core_functions_2
 import draft_mantle_properties
 
+class MantleBCDirichlet:
+    def __init__(self):
+        pass
 
 def discretisation(
     latent,
     temp_init,
+    core_temp_init,
     temp_core_melting,
     temp_surface,
     cmb_conductivity,
@@ -27,7 +31,7 @@ def discretisation(
     c,
     temperatures,
     dr,
-    coretemp,
+    coretemp_array,
     timestep,
     core_density,
     core_cp,
@@ -86,16 +90,16 @@ def discretisation(
     temp_list_mid_mantle = [temp_init]  # TODO - make this all possibly variable
     temp_list_shal = [temp_init]
     temp_list_cmb_5 = [temp_init]
-    temperatures[:, 0] = temp_init
-    temperature_core = temp_init
-    coretemp[:, 0] = temp_init
+    temperatures[:, 0] = temp_init # this can be an array or a scalar
+    core_boundary_temperature = core_temp_init
+    coretemp_array[:, 0] = core_temp_init
     max_core_lh = (
         4.0 / 3.0 * np.pi * (r_core ** 3) * core_density * core_latent_heat
     )
     # core_lh_extracted = 0.0
     # instantiate core object and energy extracted
     cmb_energy = draft_core_functions_2.EnergyExtractedAcrossCMB(r_core, timestep, dr)
-    core_values = draft_core_functions_2.IsothermalEutecticCore(temp=temp_init, melt=temp_core_melting,
+    core_values = draft_core_functions_2.IsothermalEutecticCore(temp=core_temp_init, melt=temp_core_melting,
                                                                 outer_r=r_core, inner_r=0, rho=core_density, cp=core_cp,
                                                                 maxlh=max_core_lh)
 
@@ -232,25 +236,26 @@ def discretisation(
                 pass
 
         # set top and bottom temperatures as fixed
-        temperatures[-1, i] = temp_surface
-        temperatures[0, i] = temperature_core
-        coretemp[:, i] = temperatures[0, i]
+        temperatures[-1, i] = temp_surface  # TODO: should these be bundled in some sort of boundary condition object
+        temperatures[0, i] = core_boundary_temperature
+        coretemp_array[:, i] = temperatures[0, i]
         cmb_conductivity = cond.getk(
             temperatures[0, i]
         )
         energy = cmb_energy.energy_extracted(temperatures, i, cmb_conductivity)
-        core_values.cooling(temperatures, timestep, dr, i, cmb_conductivity)
+        # core_values.cooling(temperatures, timestep, dr, i, cmb_conductivity)
+        core_values.extract_energy(energy)
         latent = core_values.latentlist
         # core_lh_extracted = core_values.latent
-        temperature_core = core_values.temperature
-        # latent, core_lh_extracted, temperature_core = core_cooling(
+        core_boundary_temperature = core_values.temperature
+        # latent, core_lh_extracted, core_boundary_temperature = core_cooling(
         # # latent is now core.latentlist
         # # core_lh_extracted is now core.latent
-        # # temperature_core = core.temperature
+        # # core_boundary_temperature = core.temperature
         #     latent,
         #     i,
         #     dr,
-        #     temperature_core,
+        #     core_boundary_temperature,
         #     temp_core_melting,
         #     core_lh_extracted,
         #     max_core_lh,
@@ -263,7 +268,7 @@ def discretisation(
         # )
     return (
         temperatures,
-        coretemp,
+        coretemp_array,
         latent,
         temp_list_mid_mantle,
         temp_list_shal,
