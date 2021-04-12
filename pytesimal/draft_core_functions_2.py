@@ -31,7 +31,7 @@ To do:
 class IsothermalEutecticCore:
     """Core class represents and manipulates core temp and latent heat."""
 
-    def __init__(self, temp, melt, outer_r, inner_r, rho, cp, maxlh, lat=0):
+    def __init__(self, temp, melt, outer_r, inner_r, rho, cp, core_latent_heat, lat=0):
         """Create a new core with temperature and latent heat."""
         self.temperature = temp
         self.latent = lat
@@ -40,8 +40,12 @@ class IsothermalEutecticCore:
         self.inner_radius = inner_r
         self.density = rho
         self.heatcap = cp
-        self.maxlatent = maxlh  # change this to accept core lh and then calc
-        self.templist = []
+        self.maxlatent = (
+                            4.0 / 3.0 * np.pi
+                            * (self.radius ** 3)
+                            * self.density
+                            * core_latent_heat)
+        self.templist = [self.temperature]
         self.latentlist = []
         self.boundary_temperature = temp
 
@@ -69,24 +73,47 @@ class IsothermalEutecticCore:
                     * ((mantletemps[0, i] - mantletemps[1, i]) / dr)
                     * timestep)
             self.latentlist.append(self.latent)
+            self.templist.append(self.temperature)
             print("Freezing!\n***\n***\n***")
 
     def extract_energy(self, energy_removed):
-        """To replace cooling method above."""
+        """E (J) extracted"""
         volume_of_core = (4.0 / 3.0) * np.pi * self.radius ** 3
         if (self.temperature > self.melting) or (self.latent >= self.maxlatent):
             delta_T = - energy_removed / (self.density * self.heatcap * volume_of_core)
             self.temperature = self.temperature - delta_T
+            self.templist.append(self.temperature)
             self.boundary_temperature = self.temperature
         else:
             self.latent = self.latent - energy_removed
+            self.templist.append(self.temperature)
             self.latentlist.append(self.latent)
+
+    def extract_heat(self, power, timestep):
+        """Heat extracted (power) in W over one timestep"""
+        volume_of_core = (4.0 / 3.0) * np.pi * self.radius ** 3
+        if (self.temperature > self.melting) or (self.latent >= self.maxlatent):
+            delta_T = - (power * timestep) / (self.density * self.heatcap * volume_of_core)
+            self.temperature = self.temperature - delta_T
+            self.templist.append(self.temperature)
+            self.boundary_temperature = self.temperature
+        else:
+            self.latent = self.latent - (power * timestep)
+            self.latentlist.append(self.latent)
+            self.templist.append(self.temperature)
 
     def temperature_array_1D(self):
         """Return temperature history as 1D array."""
         temp_array = np.asarray(self.templist)
-        return temp_array  # Can't cast to 3D array unless I take dr as an arg
+        return temp_array  # Can't cast to 2D array unless I take dr as an arg?
 
+    def temperature_array_3D(self, coretemp_array):
+        """Return temperature history as 1D array."""
+        # temp_array = np.asarray(self.templist)
+        for i in range(1, len(self.templist)):
+        # for i in range(1, coretemp_array[0].size):
+            coretemp_array[:, i] = self.templist[i]
+        return coretemp_array
 
 class EnergyExtractedAcrossCMB:
     """Calculate the energy extracted across the cmb in one timestep given the temperature of the mantle."""
@@ -106,6 +133,14 @@ class EnergyExtractedAcrossCMB:
                 (mantle_temperatures[0, i] - mantle_temperatures[1, i])
                 / self.dr) * self.dt
         return energy
+
+    def power(self, mantle_temperatures, i, k):
+        """Calculate heat (power) extracted in one timestep"""
+        heat = -self.area * k * (
+                (mantle_temperatures[0, i] - mantle_temperatures[1, i])
+                / self.dr)
+        return heat
+
 
 
 """Testing this draft Class"""

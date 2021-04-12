@@ -10,6 +10,7 @@ from context import draft_cond_cooling_2 as mcc
 
 folder = "output_runs/auto_pytest"
 
+# TODO end of core freezing period returning 1 t-step later than old function
 
 def test_def_const():
     """
