@@ -45,7 +45,7 @@ class IsothermalEutecticCore:
                             * (self.radius ** 3)
                             * self.density
                             * core_latent_heat)
-        self.templist = [self.temperature]
+        self.templist = [self.temperature, self.temperature]  # TODO this feels like a bodge - check why this works
         self.latentlist = []
         self.boundary_temperature = temp
 
@@ -76,18 +76,18 @@ class IsothermalEutecticCore:
             self.templist.append(self.temperature)
             print("Freezing!\n***\n***\n***")
 
-    def extract_energy(self, energy_removed):
-        """E (J) extracted"""
-        volume_of_core = (4.0 / 3.0) * np.pi * self.radius ** 3
-        if (self.temperature > self.melting) or (self.latent >= self.maxlatent):
-            delta_T = - energy_removed / (self.density * self.heatcap * volume_of_core)
-            self.temperature = self.temperature - delta_T
-            self.templist.append(self.temperature)
-            self.boundary_temperature = self.temperature
-        else:
-            self.latent = self.latent - energy_removed
-            self.templist.append(self.temperature)
-            self.latentlist.append(self.latent)
+    # def extract_energy(self, energy_removed):
+    #     """E (J) extracted"""
+    #     volume_of_core = (4.0 / 3.0) * np.pi * self.radius ** 3
+    #     if (self.temperature > self.melting) or (self.latent >= self.maxlatent):
+    #         delta_T = - energy_removed / (self.density * self.heatcap * volume_of_core)
+    #         self.temperature = self.temperature - delta_T
+    #         self.templist.append(self.temperature)
+    #         self.boundary_temperature = self.temperature
+    #     else:
+    #         self.latent = self.latent - energy_removed
+    #         self.templist.append(self.temperature)
+    #         self.latentlist.append(self.latent)
 
     def extract_heat(self, power, timestep):
         """Heat extracted (power) in W over one timestep"""
@@ -102,15 +102,15 @@ class IsothermalEutecticCore:
             self.latentlist.append(self.latent)
             self.templist.append(self.temperature)
 
-    def temperature_array_1D(self):
-        """Return temperature history as 1D array."""
-        temp_array = np.asarray(self.templist)
-        return temp_array  # Can't cast to 2D array unless I take dr as an arg?
+    # def temperature_array_1D(self):
+    #     """Return temperature history as 1D array."""
+    #     temp_array = np.asarray(self.templist)
+    #     return temp_array  # Can't cast to 2D array unless I take dr as an arg?
 
     def temperature_array_3D(self, coretemp_array):
         """Return temperature history as 1D array."""
         # temp_array = np.asarray(self.templist)
-        for i in range(1, len(self.templist)):
+        for i in range(1, len(self.templist[1:])):
         # for i in range(1, coretemp_array[0].size):
             coretemp_array[:, i] = self.templist[i]
         return coretemp_array

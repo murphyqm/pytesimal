@@ -22,7 +22,8 @@ def test_new_core_function_1():
                                                       inner_r = 0,
                                                       rho=7800.0,
                                                       cp=850.0,
-                                                      maxlh=10000.0,
+                                                      #maxlh=10000.0,
+                                                      core_latent_heat=3.060671982536449e-13,
                                                       lat=7000.0)
     core.cooling(temperatures,
                  timestep=1.0,
@@ -51,7 +52,7 @@ def test_new_core_function_2():
                                                       inner_r = 0,
                                                       rho=7800.0,
                                                       cp=850.0,
-                                                      maxlh=10000.0,
+                                                      core_latent_heat=3.060671982536449e-13,
                                                       lat=7000.0)
     # core.cooling(temperatures,
     #              timestep=1.0,
