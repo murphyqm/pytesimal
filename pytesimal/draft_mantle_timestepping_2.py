@@ -24,7 +24,6 @@ class MantleBC: # TODO maybe instead include this in the setup function?
         temperatures[-1, i] = temp_surface
         temperatures[0, i] = core_boundary_temperature
 
-
 def discretisation(
     latent,
     temp_init,
@@ -65,7 +64,7 @@ def discretisation(
     # putting in some bug tests
     print("***/n***/n***/n")
     print("Testing modular conductivity!")
-    print("Consant conductivity: ")
+    print("Constant conductivity: ")
     print(cond_constant)
     print("Constant density: ")
     print(density_constant)
@@ -106,7 +105,7 @@ def discretisation(
                                                                 outer_r=r_core, inner_r=0, rho=core_density, cp=core_cp,
                                                                 core_latent_heat=core_latent_heat)
 
-    A_1list = []
+    A_1list = [] # TODO make all these customisable
     B_1list = []
     C_1list = []
     delt_list = []
@@ -243,7 +242,7 @@ def discretisation(
                                  temp_surface,
                                  core_boundary_temperature,
                                  i)
-        # temperatures[-1, i] = temp_surface  # TODO: should these be bundled in some sort of boundary condition object
+        # temperatures[-1, i] = temp_surface
         # temperatures[0, i] = core_boundary_temperature
         cmb_conductivity = cond.getk(temperatures[0, i])
         power = cmb_energy.power(temperatures, i, cmb_conductivity)
