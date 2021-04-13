@@ -15,8 +15,6 @@ of the Pytesimal package:
 """
 import numpy as np
 
-import draft_core_functions_2
-import draft_mantle_properties
 
 def set_up(
     timestep=1e11,

@@ -18,7 +18,6 @@ def test_mtt_discretisation():
     core = np.arange(0, 100000.0 - 1000.0 + 0.5 * 1000.0, 1000.0)
     temperatures = np.zeros((radii.size, times.size))
     coretemp = np.zeros((core.size, times.size))
-    kappas = np.ones_like(radii)
     where_regolith = np.zeros_like(radii)
     (temperatures,
         coretemp,
@@ -75,7 +74,6 @@ def test_mtt_vardiscretisation():
     core = np.arange(0, 100000.0 - 1000.0 + 0.5 * 1000.0, 1000.0)
     temperatures = np.zeros((radii.size, times.size))
     coretemp = np.zeros((core.size, times.size))
-    kappas = np.ones_like(radii)
     where_regolith = np.zeros_like(radii)
     (temperatures,
         coretemp,
@@ -130,7 +128,6 @@ def test_mtt_discretisation_cold_mantle():
     core = np.arange(0, 100000.0 - 1000.0 + 0.5 * 1000.0, 1000.0)
     temperatures = np.zeros((radii.size, times.size))
     coretemp = np.zeros((core.size, times.size))
-    kappas = np.ones_like(radii)
     where_regolith = np.zeros_like(radii)
     (temperatures,
         coretemp,
@@ -188,7 +185,6 @@ def test_mtt_vardiscretisation_cold_mantle():
     core = np.arange(0, 100000.0 - 1000.0 + 0.5 * 1000.0, 1000.0)
     temperatures = np.zeros((radii.size, times.size))
     coretemp = np.zeros((core.size, times.size))
-    kappas = np.ones_like(radii)
     where_regolith = np.zeros_like(radii)
     (temperatures,
         coretemp,
