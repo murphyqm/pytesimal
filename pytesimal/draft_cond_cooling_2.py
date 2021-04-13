@@ -400,9 +400,6 @@ def conductive_cooling(
             core_temp_init,
             temp_core_melting,
             temp_surface,
-            cmb_conductivity,
-            p,
-            c,
             temperatures,
             dr,
             coretemp,
@@ -413,16 +410,15 @@ def conductive_cooling(
             core_latent_heat,
             radii,
             times,
-            kappas,
             where_regolith,
             kappa_reg,
-            cond_constant,
-            density_constant,
-            heat_cap_constant,
-            non_lin_term,
-            is_a_test="n",
-            i_choice=126228,  # 126228
-            TESTING=tests,
+            cond_constant=cond_constant,
+            density_constant=density_constant,
+            heat_cap_constant=heat_cap_constant,
+            non_lin_term=non_lin_term,
+            mantle_density=p,
+            mantle_heat_capacity=c,
+            mantle_conductivity=cmb_conductivity,
         )
 
     elif model_type == 18:

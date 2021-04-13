@@ -30,9 +30,6 @@ def discretisation(
     core_temp_init,
     temp_core_melting,
     temp_surface,
-    cmb_conductivity,
-    p,
-    c,
     temperatures,
     dr,
     coretemp_array,
@@ -43,16 +40,15 @@ def discretisation(
     core_latent_heat,
     radii,
     times,
-    kappas,
     where_regolith,
     kappa_reg,
     cond_constant="y",
     density_constant="y",
     heat_cap_constant="y",
     non_lin_term="y",
-    is_a_test="n",
-    i_choice=126228,  # 126228
-    TESTING="n",
+    mantle_density=3341.0,
+    mantle_heat_capacity=819.0,
+    mantle_conductivity=3.0
 ):
     """
     Finite difference solver with variable k.
@@ -73,20 +69,20 @@ def discretisation(
     # checking on temperature dependent properties
 
     if cond_constant == "y":
-        cond = draft_mantle_properties.MantleProperties()
+        cond = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
 
     else:
         cond = draft_mantle_properties.VariableConductivity()
 
     if heat_cap_constant == "y":
 
-        heatcap = draft_mantle_properties.MantleProperties()
+        heatcap = draft_mantle_properties.MantleProperties(cp=mantle_heat_capacity)
 
     else:
         heatcap = draft_mantle_properties.VariableHeatCapacity()
 
     if density_constant == "y":
-        dens = draft_mantle_properties.MantleProperties()
+        dens = draft_mantle_properties.MantleProperties(rho=mantle_density)
 
     else:
         dens = draft_mantle_properties.VariableDensity()
