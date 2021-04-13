@@ -9,14 +9,14 @@ Created on Mon Feb  8 13:37:58 2021.
 """
 
 
-class MantleProperties:
+class MantleProperties: # TODO make constant values editable
     """Mantle properties class."""
 
-    def __init__(self):
+    def __init__(self, rho=3341.0, cp=819.0, k=3.0):
         """Initialise mantle properties."""
-        self._rho = 3341.0
-        self._cp = 819.0
-        self._k = 3.0
+        self._rho = rho
+        self._cp = cp
+        self._k = k
 
     def __str__(self):
         """Return string."""

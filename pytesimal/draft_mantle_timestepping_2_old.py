@@ -16,14 +16,9 @@ import numpy as np
 import draft_core_functions_2
 import draft_mantle_properties
 
-class MantleBC: # TODO maybe instead include this in the setup function?
+class MantleBCDirichlet:
     def __init__(self):
         pass
-
-    def dirichlet(self, temperatures, temp_surface, core_boundary_temperature, i): # TODO maybe this should just be a function
-        temperatures[-1, i] = temp_surface
-        temperatures[0, i] = core_boundary_temperature
-
 
 def discretisation(
     latent,
@@ -98,8 +93,10 @@ def discretisation(
     temperatures[:, 0] = temp_init # this can be an array or a scalar
     core_boundary_temperature = core_temp_init
     coretemp_array[:, 0] = core_temp_init
-    # instantiate boundary conditions
-    boundary_conds = MantleBC()
+    max_core_lh = (
+        4.0 / 3.0 * np.pi * (r_core ** 3) * core_density * core_latent_heat
+    )
+    # core_lh_extracted = 0.0
     # instantiate core object and energy extracted
     cmb_energy = draft_core_functions_2.EnergyExtractedAcrossCMB(r_core, timestep, dr)
     core_values = draft_core_functions_2.IsothermalEutecticCore(temp=core_temp_init, melt=temp_core_melting,
@@ -239,17 +236,38 @@ def discretisation(
                 pass
 
         # set top and bottom temperatures as fixed
-        boundary_conds.dirichlet(temperatures,
-                                 temp_surface,
-                                 core_boundary_temperature,
-                                 i)
-        # temperatures[-1, i] = temp_surface  # TODO: should these be bundled in some sort of boundary condition object
-        # temperatures[0, i] = core_boundary_temperature
-        cmb_conductivity = cond.getk(temperatures[0, i])
+        temperatures[-1, i] = temp_surface  # TODO: should these be bundled in some sort of boundary condition object
+        temperatures[0, i] = core_boundary_temperature
+        # coretemp_array[:, i] = temperatures[0, i] # can this be moved to the core object instead
+        cmb_conductivity = cond.getk(
+            temperatures[0, i]
+        )
+        # energy = cmb_energy.energy_extracted(temperatures, i, cmb_conductivity)
         power = cmb_energy.power(temperatures, i, cmb_conductivity)
+        # core_values.cooling(temperatures, timestep, dr, i, cmb_conductivity)
+        # core_values.extract_energy(energy)
         core_values.extract_heat(power, timestep)
         latent = core_values.latentlist
+        # core_lh_extracted = core_values.latent
         core_boundary_temperature = core_values.temperature
+        # latent, core_lh_extracted, core_boundary_temperature = core_cooling(
+        # # latent is now core.latentlist
+        # # core_lh_extracted is now core.latent
+        # # core_boundary_temperature = core.temperature
+        #     latent,
+        #     i,
+        #     dr,
+        #     core_boundary_temperature,
+        #     temp_core_melting,
+        #     core_lh_extracted,
+        #     max_core_lh,
+        #     cmb_conductivity,
+        #     temperatures,
+        #     timestep,
+        #     core_density,
+        #     core_cp,
+        #     r_core,
+        # )
     coretemp_array = core_values.temperature_array_3D(coretemp_array)
     return (
         temperatures,

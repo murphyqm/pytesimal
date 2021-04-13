@@ -5,8 +5,8 @@ Created on Wed Apr  7 13:05:24 2021
 
 @author: maeve
 
-New core object that allows cooling via either mantle temperatures being passed in, or by energy extracted; mantle
-temperatures method just maintained while developing to test against the old soln.
+New core object that allows cooling via either mantle temperatures or heat
+extracted across CMB.
 
 
 """
@@ -14,19 +14,6 @@ temperatures method just maintained while developing to test against the old sol
 import numpy as np
 import cProfile
 import timeit
-
-"""
-To do:
-    - [x] have the core object return a boundary temperature
-    - [x] have the core keep track of its own temps and cast these to an array
-            - done, have 1D array because if obj doesn't take dr, can't make
-            2D array
-    - [X] move latent heat calcs out of core object
-    - [X] don't take mantletemps or dr as arguments
-    - [X] build function to calculate heat extracted in the mantle
-
-"""
-
 
 class IsothermalEutecticCore:
     """Core class represents and manipulates core temp and latent heat."""
@@ -76,18 +63,18 @@ class IsothermalEutecticCore:
             self.templist.append(self.temperature)
             print("Freezing!\n***\n***\n***")
 
-    # def extract_energy(self, energy_removed):
-    #     """E (J) extracted"""
-    #     volume_of_core = (4.0 / 3.0) * np.pi * self.radius ** 3
-    #     if (self.temperature > self.melting) or (self.latent >= self.maxlatent):
-    #         delta_T = - energy_removed / (self.density * self.heatcap * volume_of_core)
-    #         self.temperature = self.temperature - delta_T
-    #         self.templist.append(self.temperature)
-    #         self.boundary_temperature = self.temperature
-    #     else:
-    #         self.latent = self.latent - energy_removed
-    #         self.templist.append(self.temperature)
-    #         self.latentlist.append(self.latent)
+    def extract_energy(self, energy_removed):
+        """E (J) extracted"""
+        volume_of_core = (4.0 / 3.0) * np.pi * self.radius ** 3
+        if (self.temperature > self.melting) or (self.latent >= self.maxlatent):
+            delta_T = - energy_removed / (self.density * self.heatcap * volume_of_core)
+            self.temperature = self.temperature - delta_T
+            self.templist.append(self.temperature)
+            self.boundary_temperature = self.temperature
+        else:
+            self.latent = self.latent - energy_removed
+            self.templist.append(self.temperature)
+            self.latentlist.append(self.latent)
 
     def extract_heat(self, power, timestep):
         """Heat extracted (power) in W over one timestep"""
@@ -102,10 +89,10 @@ class IsothermalEutecticCore:
             self.latentlist.append(self.latent)
             self.templist.append(self.temperature)
 
-    # def temperature_array_1D(self):
-    #     """Return temperature history as 1D array."""
-    #     temp_array = np.asarray(self.templist)
-    #     return temp_array  # Can't cast to 2D array unless I take dr as an arg?
+    def temperature_array_1D(self):
+        """Return temperature history as 1D array."""
+        temp_array = np.asarray(self.templist)
+        return temp_array
 
     def temperature_array_3D(self, coretemp_array):
         """Return temperature history as 1D array."""
@@ -143,7 +130,7 @@ class EnergyExtractedAcrossCMB:
 
 
 
-"""Testing this draft Class"""
+"""Testing this draft Class - just while developing, have formal tests also"""
 
 # # instantiate core object
 #
