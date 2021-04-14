@@ -18,7 +18,6 @@
     "core_latent_heat": 270000.0,
     "kappa_reg": 5e-08,
     "dr": 1000.0,
-    "reg_percent": "y",
     "cond_constant": "y",
     "density_constant": "y",
     "heat_cap_constant": "y"

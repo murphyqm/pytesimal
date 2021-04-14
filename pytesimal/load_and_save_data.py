@@ -28,7 +28,6 @@ def make_default_param_file():
                          'core_latent_heat': 270000.0,
                          'kappa_reg': 5.0e-8,
                          'dr': 1000.0,
-                         'reg_percent': "y",
                          'cond_constant': "y",
                          'density_constant': "y",
                          'heat_cap_constant': "y", }
@@ -39,44 +38,36 @@ def make_default_param_file():
 
 
 def load_params_from_file(filename='example_input_file_with_default_parameters.txt'):
-
     with open(filename) as json_file:
         data = json.load(json_file)
-    return data
+        run_ID = data['run_ID']
+        folder = data['folder']
+        timestep = data['timestep']
+        r_planet = data['r_planet']
+        core_size_factor = data['core_size_factor']
+        reg_fraction = data['reg_fraction']
+        max_time = data['max_time']
+        temp_core_melting = data['temp_core_melting']
+        olivine_cp = data['olivine_cp']
+        olivine_density = data['olivine_density']
+        cmb_conductivity = data['cmb_conductivity']
+        core_cp = data['core_cp']
+        core_density = data['core_density']
+        temp_init = data['temp_init']
+        temp_surface = data['temp_surface']
+        core_temp_init = data['core_temp_init']
+        core_latent_heat = data['core_latent_heat']
+        kappa_reg = data['kappa_reg']
+        dr = data['dr']
+        cond_constant = data['cond_constant']
+        density_constant = data['density_constant']
+        heat_cap_constant = data['heat_cap_constant']
+        return (run_ID, folder, timestep, r_planet, core_size_factor,
+                reg_fraction, max_time, temp_core_melting, olivine_cp,
+                olivine_density, cmb_conductivity, core_cp, core_density,
+                temp_init, temp_surface, core_temp_init, core_latent_heat,
+                kappa_reg, dr, cond_constant, density_constant,
+                heat_cap_constant)
+
 
 make_default_param_file()
-data = load_params_from_file('example_input_file_with_default_parameters.txt')
-
-print(data)
-
-# r_planet = data["r_planet"]
-# print(r_planet)
-
-"""
-
-latent,
-            temp_init,
-            core_temp_init,
-            temp_core_melting,
-            temp_surface,
-            temperatures,
-            dr,
-            coretemp,
-            timestep,
-            core_density,
-            core_cp,
-            r_core,
-            core_latent_heat,
-            radii,
-            times,
-            where_regolith,
-            kappa_reg,
-            cond_constant=cond_constant,
-            density_constant=density_constant,
-            heat_cap_constant=heat_cap_constant,
-            non_lin_term=non_lin_term,
-            mantle_density=p,
-            mantle_heat_capacity=c,
-            mantle_conductivity=cmb_conductivity
-
-"""
