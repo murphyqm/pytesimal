@@ -6,16 +6,16 @@ Function to calculate when the core solidifies.
 See function docstring. To be incorporated into another module.
 """
 import numpy as np
-from contracts import contract
+# from contracts import contract
 
 
-@contract(coretemp=np.ndarray,
-          max_time=float,
-          times=np.ndarray,
-          latent=list,
-          temp_core_melting='float,>0',
-          timestep='float,>0',
-          )
+# @contract(coretemp=np.ndarray,
+#           max_time=float,
+#           times=np.ndarray,
+#           latent=list,
+#           temp_core_melting='float,>0',
+#           timestep='float,>0',
+#           )
 def core_freezing(coretemp, max_time, times, latent, temp_core_melting,
                   timestep=1E11):
     """

@@ -6,6 +6,11 @@ by murphyqm
 
 """
 import json
+import os
+
+def check_folder_exists(folder):
+    if not os.path.isdir(str(folder)):
+        os.makedirs(str(folder))
 
 
 def make_default_param_file():
@@ -69,5 +74,3 @@ def load_params_from_file(filename='example_input_file_with_default_parameters.t
                 kappa_reg, dr, cond_constant, density_constant,
                 heat_cap_constant)
 
-
-make_default_param_file()
