@@ -3,8 +3,9 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - matplotlib
   - pip:
     - numpy==1.20.2
     - pycontracts==1.8.12
     - pytest==6.2.3
-prefix: /home/maeve/anaconda3/envs/pytesimal2
+
