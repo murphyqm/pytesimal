@@ -8,6 +8,7 @@ by murphyqm
 import json
 import os
 
+
 def check_folder_exists(folder):
     if not os.path.isdir(str(folder)):
         os.makedirs(str(folder))
@@ -74,3 +75,41 @@ def load_params_from_file(filename='example_input_file_with_default_parameters.t
                 kappa_reg, dr, cond_constant, density_constant,
                 heat_cap_constant)
 
+
+def save_params_and_results(result_filename, run_ID, folder, timestep, r_planet, core_size_factor,
+                            reg_fraction, max_time, temp_core_melting, olivine_cp,
+                            olivine_density, cmb_conductivity, core_cp, core_density,
+                            temp_init, temp_surface, core_temp_init, core_latent_heat,
+                            kappa_reg, dr, cond_constant, density_constant,
+                            heat_cap_constant, time_core_frozen, fully_frozen,
+                            meteorite_results="None given"):
+    myr = 3.1556926e13
+    data = {'run_ID': run_ID,
+            'folder': folder,
+            'timestep': timestep,
+            'r_planet': r_planet,
+            'core_size_factor': core_size_factor,
+            'reg_fraction': reg_fraction,
+            'max_time': max_time,
+            'temp_core_melting': temp_core_melting,
+            'olivine_cp': olivine_cp,
+            'olivine_density': olivine_density,
+            'cmb_conductivity': cmb_conductivity,
+            'core_cp': core_cp,
+            'core_density': core_density,
+            'temp_init': temp_init,
+            'temp_surface': temp_surface,
+            'core_temp_init': core_temp_init,
+            'core_latent_heat': core_latent_heat,
+            'kappa_reg': kappa_reg,
+            'dr': dr,
+            'cond_constant': cond_constant,
+            'density_constant': density_constant,
+            'heat_cap_constant': heat_cap_constant,
+            'core_begins_to_freeze': time_core_frozen/myr,
+            'core finishes freezing': fully_frozen/myr,
+            'meteorite_results': meteorite_results
+            }
+    with open(f'{result_filename}.txt',
+              'w') as file:
+        json.dump(data, file, indent=4)

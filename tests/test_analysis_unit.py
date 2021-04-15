@@ -30,4 +30,64 @@ def test_cooling_rate_to_seconds():
 	assert im_cr_s == pytest.approx(1.2517062023088055e-13)
 	assert esq_cr_s == pytest.approx(1.0172093441547507e-13)
 
-def test_depth_and_timing():
+# def test_depth_and_timing(temperature_timestepping):
+
+def test_core_freezing1(temperature_timestepping):
+	myr = 3.1556926e13
+	max_time = 400 * myr
+	data = temperature_timestepping
+	(core_frozen,
+	 times_frozen,
+	 time_core_frozen,
+	 fully_frozen) = draft_analysis.core_freezing(
+		coretemp = data["core_temperature_array"],
+		max_time = max_time,
+		times = data["times"],
+		latent = data["latent"],
+		temp_core_melting = data["temp_core_melting"],
+		timestep=1E11
+	)
+	# assert core_frozen == 10
+	# # assert times_frozen == 10
+	assert time_core_frozen == 5411100000000000.0
+	assert fully_frozen == 7637200000000000.0
+
+# def test_core_freezing2(temperature_timestepping):
+# 	myr = 3.1556926e13
+# 	max_time = 400 * myr
+# 	data = temperature_timestepping
+# 	(core_frozen,
+# 	 times_frozen,
+# 	 time_core_frozen,
+# 	 fully_frozen) = draft_analysis.core_freezing(
+# 		coretemp = data["core_temperature_array"],
+# 		max_time = max_time,
+# 		times = data["times"],
+# 		latent = data["latent"],
+# 		temp_core_melting = data["temp_core_melting"],
+# 		timestep=1E11
+# 	)
+# 	# assert core_frozen == 10
+# 	assert times_frozen == 10
+# 	# assert time_core_frozen == 0.0
+# 	# assert fully_frozen == 5
+#
+# def test_core_freezing3(temperature_timestepping):
+# 	myr = 3.1556926e13
+# 	max_time = 400 * myr
+# 	data = temperature_timestepping
+# 	(core_frozen,
+# 	 times_frozen,
+# 	 time_core_frozen,
+# 	 fully_frozen) = draft_analysis.core_freezing(
+# 		coretemp = data["core_temperature_array"],
+# 		max_time = max_time,
+# 		times = data["times"],
+# 		latent = data["latent"],
+# 		temp_core_melting = data["temp_core_melting"],
+# 		timestep=1E11
+# 	)
+# 	# assert core_frozen == 10
+# 	# assert times_frozen == 10
+# 	assert time_core_frozen == 0.0
+# 	assert fully_frozen == 0.0
