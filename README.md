@@ -12,6 +12,8 @@ The code currently recreates the cases described in [Murphy Quinlan et al. (2020
 Quick Start
 -----------
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
+
 To run a case with default parameters:
 
     from modular_cond_cooling import conductive_cooling
