@@ -8,12 +8,9 @@ Created on Wed Apr  7 13:05:24 2021
 New core object that allows cooling via either mantle temperatures or heat
 extracted across CMB.
 
-
 """
 
 import numpy as np
-# import cProfile
-# import timeit
 
 
 class IsothermalEutecticCore:
@@ -96,37 +93,11 @@ class IsothermalEutecticCore:
         return temp_array
 
     def temperature_array_3D(self, coretemp_array):
-        """Return temperature history as 1D array."""
+        """Return temperature history as 3D array."""
         # temp_array = np.asarray(self.templist)
         for i in range(1, len(self.templist[1:])):
         # for i in range(1, coretemp_array[0].size):
             coretemp_array[:, i] = self.templist[i]
         return coretemp_array
 
-
-class EnergyExtractedAcrossCMB:
-    """Calculate the energy extracted across the cmb in one timestep given the temperature of the mantle."""
-    def __init__(self, outer_r, timestep, radius_step):
-        self.radius = outer_r
-        self.dt = timestep
-        self.dr = radius_step
-        self.area = 4 * np.pi * self.radius**2
-
-    def __str__(self):
-        """Return string."""
-        return """Calculate the energy extracted across the core mantle boundary given the temperature of the mantle."""
-
-    def energy_extracted(self, mantle_temperatures, i, k):
-        """Calculate energy extracted in one timestep"""
-        energy = -self.area * k * (
-                (mantle_temperatures[0, i] - mantle_temperatures[1, i])
-                / self.dr) * self.dt
-        return energy
-
-    def power(self, mantle_temperatures, i, k):
-        """Calculate heat (power) extracted in one timestep"""
-        heat = -self.area * k * (
-                (mantle_temperatures[0, i] - mantle_temperatures[1, i])
-                / self.dr)
-        return heat
 
