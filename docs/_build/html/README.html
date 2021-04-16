@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pytesimal &#8212; Pytesimal 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytesimal package" href="pytesimal.html" />
+    <link rel="prev" title="Welcome to Pytesimal’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#pytesimal" id="id1">Pytesimal</a></p>
+<ul>
+<li><p><a class="reference internal" href="#quick-start" id="id2">Quick Start</a></p></li>
+<li><p><a class="reference internal" href="#features" id="id3">Features</a></p></li>
+<li><p><a class="reference internal" href="#installation" id="id4">Installation</a></p></li>
+<li><p><a class="reference internal" href="#contribute" id="id5">Contribute</a></p></li>
+<li><p><a class="reference internal" href="#support" id="id6">Support</a></p></li>
+<li><p><a class="reference internal" href="#license" id="id7">License</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="pytesimal">
+<h1><a class="toc-backref" href="#id1">Pytesimal</a><a class="headerlink" href="#pytesimal" title="Permalink to this headline">¶</a></h1>
+<p>Pytesimal models the conductive cooling of planetesimals with
+temperature-dependent material properties.</p>
+<p>Pytesimal is a finite difference code to perform numerical models of a
+conductively cooling planetesimal, both with constant and
+temperature-dependent properties. It returns a thermal history of the
+planetesimal, and the estimated timing and depth of pallasite meteorite
+genesis. The conduction equation is solved numerically using an explicit
+finite difference scheme, FTCS (Forward-Time Central-Space). FTCS gives
+first-order convergence in time and second-order in space, and is
+conditionally stable when applied to the heat equation. In 1D, it must
+satisfy Von Neumann stability analysis - please see <a class="reference external" href="https://www.essoar.org/doi/abs/10.1002/essoar.10504913.1">Murphy Quinlan et
+al. (2020 -
+preprint)</a>
+for more information on choice of time-step.</p>
+<p>The code currently recreates the cases described in <a class="reference external" href="https://www.essoar.org/doi/abs/10.1002/essoar.10504913.1">Murphy Quinlan et
+al. (2020 -
+preprint)</a>.
+References for the default parameters used can be found therein. We plan
+to extend it and make it more modular in future updates.</p>
+<div class="section" id="quick-start">
+<h2><a class="toc-backref" href="#id2">Quick Start</a><a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>To run a case with default parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modular_cond_cooling</span> <span class="kn">import</span> <span class="n">conductive_cooling</span>
+
+<span class="c1"># Give your model set-up a unique file name:</span>
+<span class="n">run_ID</span> <span class="o">=</span> <span class="s2">&quot;file_name&quot;</span>
+
+<span class="c1"># Point it to a folder to save the outputs:</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s2">&quot;folder_path&quot;</span>
+
+<span class="c1"># Let your planetesimal evolve:</span>
+<span class="n">conductive_cooling</span><span class="p">(</span><span class="n">run_ID</span><span class="p">,</span> <span class="n">folder</span><span class="p">,)</span>
+</pre></div>
+</div>
+<p>See the Jupyter notebooks provided for working examples.</p>
+<p><strong>To download data from NGDC and plot it:</strong></p>
+<p>Navigate to the <code class="docutils literal notranslate"><span class="pre">downloading_and_plotting_data</span></code> directory. From the
+command line, run the required script to download the .dat files from
+the NGDC:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">downloaddata.py</span></code></p>
+<p>Once the data is downloaded from the NGDC, it is available to plot using
+<code class="docutils literal notranslate"><span class="pre">coolingplot.py</span></code> with the filename you wish to plot:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">coolingplot.py</span> <span class="pre">constant_properties.dat</span></code></p>
+<p>For more information run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">coolingplot.py</span> <span class="pre">-h</span></code></p>
+</div>
+<div class="section" id="features">
+<h2><a class="toc-backref" href="#id3">Features</a><a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Constant or variable material properties</p></li>
+<li><p>Download and plot data from NGDC</p></li>
+<li><p>Choose to return compressed <code class="docutils literal notranslate"><span class="pre">.npz</span></code> NumPy arrays of temperature and
+cooling rates through time and radius</p></li>
+<li><p>Plot temperature or cooling rate heatmaps</p></li>
+<li><p>Return timing of core solidification, and depth and timing of
+meteorite formation</p></li>
+<li><p>Return <code class="docutils literal notranslate"><span class="pre">pickle</span></code> objects with output parameter values</p></li>
+<li><p>Return a parameter <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file with details of input parameters and
+results</p></li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id4">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>This software relies on python (version 3) and various other python
+packages. Examples are distributed as Jupyter notebooks, which need
+Jupyter and Matplotlib to run. Installation and management of all these
+dependencies is most easily done in a conda environment. Download of the
+software and creation of an isolated conda environment can be done by
+running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">murphyqm</span><span class="o">/</span><span class="n">pytesimal</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">pytesimal</span>
+<span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span><span class="o">=</span><span class="n">pytesimal</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">pytesimal</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="contribute">
+<h2><a class="toc-backref" href="#id5">Contribute</a><a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Issue Tracker: github.com/murphyqm/pytesimal/issues</p></li>
+<li><p>Source Code: github.com/murphyqm/pytesimal</p></li>
+</ul>
+</div>
+<div class="section" id="support">
+<h2><a class="toc-backref" href="#id6">Support</a><a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>If you are having issues, please let us know. You can email us at
+<a class="reference external" href="mailto:eememq&#37;&#52;&#48;leeds&#46;ac&#46;uk">eememq<span>&#64;</span>leeds<span>&#46;</span>ac<span>&#46;</span>uk</a></p>
+</div>
+<div class="section" id="license">
+<h2><a class="toc-backref" href="#id7">License</a><a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>The project is licensed under the MIT license.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Pytesimal</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to Pytesimal’s documentation!</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pytesimal</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contribute">Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pytesimal.html">pytesimal package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Pytesimal’s documentation!</a></li>
+      <li>Next: <a href="pytesimal.html" title="next chapter">pytesimal package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Maeve Murphy Quinlan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/README.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

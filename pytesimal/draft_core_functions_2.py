@@ -32,7 +32,7 @@ class IsothermalEutecticCore:
                             * (self.radius ** 3)
                             * self.density
                             * core_latent_heat)
-        self.templist = [self.temperature, self.temperature]  # TODO this feels like a bodge - check why this works
+        self.templist = [self.temperature, self.temperature]  # TODO explain this
         self.latentlist = []
         self.boundary_temperature = temp
 
@@ -101,6 +101,7 @@ class IsothermalEutecticCore:
         # for i in range(1, coretemp_array[0].size):
             coretemp_array[:, i] = self.templist[i]
         return coretemp_array
+
 
 class EnergyExtractedAcrossCMB:
     """Calculate the energy extracted across the cmb in one timestep given the temperature of the mantle."""
