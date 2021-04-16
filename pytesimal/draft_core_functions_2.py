@@ -12,8 +12,9 @@ extracted across CMB.
 """
 
 import numpy as np
-import cProfile
-import timeit
+# import cProfile
+# import timeit
+
 
 class IsothermalEutecticCore:
     """Core class represents and manipulates core temp and latent heat."""
@@ -129,126 +130,3 @@ class EnergyExtractedAcrossCMB:
                 / self.dr)
         return heat
 
-
-
-"""Testing this draft Class - just while developing, have formal tests also"""
-
-# # instantiate core object
-#
-# temp = 2000.0
-# melt = 1200.0
-# r = 100.0
-# rho = 7800.0
-# cp = 850.0
-# k = 5.0
-# maxlh = 4_000_000_000_000_000.0
-#
-# core1 = IsothermalEutecticCore(temp, melt, r, 0, rho, cp, maxlh, lat=0)
-# core2 = IsothermalEutecticCore(temp, melt, r, 0, rho, cp, maxlh, lat=0)
-# print(core1)
-#
-# # set up a mantle array
-# dt = 1
-# dr = 1.0
-#
-# max_t = 35000.0
-#
-# radii = np.arange(100.0, 200.0, dr)
-# times = np.arange(0, max_t, dt)
-#
-# temperatures = np.zeros((radii.size, times.size))  # shape: (100, 10000)
-# temperatures2 = np.zeros((radii.size, times.size))  # shape: (100, 10000)
-#
-# # Give the mantle a pretend cooling history (interactive in real application):
-#
-#
-# temp_init = 2000.0
-# dT = max_t / 50000.0
-# print(dT)
-#
-# for j in range(0, times.size):
-#     for i in range(radii.size - 1, 0, -1):
-#         temperatures[i, j] = temp_init
-#         temperatures2[i, j] = temp_init
-#         temp_init = temp_init - dT
-#         # print(temp_init)
-#
-# print(temperatures[-1, :])
-#
-# # make the core cool:
-#
-# for i in range(0, times.size, dt):
-#     core1.cooling(temperatures, dt, dr, i, k)
-#     print(core1)
-#     temperatures[-1, i] = core1.boundary_temperature  # getting this right is
-# # an issue for the mantle, not really the problem of the core object
-#
-# print(temperatures[-1, :])
-#
-# # making it do it with the extract heat version
-#
-# # first need to set up core energy budget
-# cmb_energy = EnergyExtractedAcrossCMB(r, dt, dr)
-#
-# for i in range(0, times.size, dt):
-#     E = cmb_energy.energy_extracted(temperatures2, i, k)
-#     core2.extract_energy(E)
-#     print(core2)
-#     temperatures2[-1, i] = core2.boundary_temperature
-#
-# np.testing.assert_array_almost_equal_nulp(temperatures[-1, :], temperatures2[-1, :])
-#
-# # make these into functions to help profile them:
-#
-#
-# def core_cool_old():
-#     for i in range(0, times.size, dt):
-#         core1.cooling(temperatures, dt, dr, i, k)
-#         print(core1)
-#         temperatures[-1, i] = core1.boundary_temperature
-#     return temperatures
-#
-#
-# def core_cool_new():
-#     cmb_energy1 = EnergyExtractedAcrossCMB(r, dt, dr)
-#
-#     for i in range(0, times.size, dt):
-#         E1 = cmb_energy1.energy_extracted(temperatures2, i, k)
-#         core2.extract_energy(E1)
-#         print(core2)
-#         temperatures2[-1, i] = core2.boundary_temperature
-#
-#
-# # resetting the initial conditions
-#
-# temperatures = np.zeros((radii.size, times.size))  # shape: (100, 10000)
-# temperatures2 = np.zeros((radii.size, times.size))  # shape: (100, 10000)
-#
-# # Give the mantle a pretend cooling history (interactive in real application):
-#
-#
-# temp_init = 2000.0
-# dT = max_t / 50000.0
-# print(dT)
-#
-# for j in range(0, times.size):
-#     for i in range(radii.size - 1, 0, -1):
-#         temperatures[i, j] = temp_init
-#         temperatures2[i, j] = temp_init
-#         temp_init = temp_init - dT
-#         # print(temp_init)
-#
-# # %timeit core_cool_old()
-# # cProfile.run("core_cool_old()")
-
-"""
-core_cool_old:
-
-1.56 s ± 19.9 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-1.52 s ± 28.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-
-core_cool_new:
-
-1.53 s ± 40.5 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-1.55 s ± 20.9 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-"""

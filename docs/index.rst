@@ -10,6 +10,7 @@
    self
    README
    pytesimal
+   modules
 
 
 

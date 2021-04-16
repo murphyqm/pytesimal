@@ -1,35 +1,174 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pytesimal package &#8212; Pytesimal 1.0.0 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>pytesimal package &mdash; Pytesimal 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Pytesimal" href="README.html" />
+    <link rel="next" title="pytesimal" href="modules.html" />
+    <link rel="prev" title="Pytesimal" href="README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> Pytesimal
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to Pytesimal’s documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Pytesimal</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pytesimal package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.core_cooling">pytesimal.core_cooling module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_analysis">pytesimal.draft_analysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_cond_cooling_2">pytesimal.draft_cond_cooling_2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_core_functions_2">pytesimal.draft_core_functions_2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mainmodule">pytesimal.draft_mainmodule module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mantle_properties">pytesimal.draft_mantle_properties module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytesimal-draft-mantle-timestepping-2-module">pytesimal.draft_mantle_timestepping_2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.load_and_save_data">pytesimal.load_and_save_data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.plotting">pytesimal.plotting module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pytesimal</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pytesimal</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>pytesimal package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/pytesimal.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="pytesimal-package">
 <h1>pytesimal package<a class="headerlink" href="#pytesimal-package" title="Permalink to this headline">¶</a></h1>
@@ -42,7 +181,7 @@
 <p>See function docstring. To be incorporated into another module.</p>
 <dl class="py function">
 <dt id="pytesimal.core_cooling.core_freezing">
-<code class="sig-prename descclassname">pytesimal.core_cooling.</code><code class="sig-name descname">core_freezing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coretemp</span></em>, <em class="sig-param"><span class="n">max_time</span></em>, <em class="sig-param"><span class="n">times</span></em>, <em class="sig-param"><span class="n">latent</span></em>, <em class="sig-param"><span class="n">temp_core_melting</span></em>, <em class="sig-param"><span class="n">timestep</span><span class="o">=</span><span class="default_value">100000000000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_cooling.core_freezing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.core_cooling.</span></code><code class="sig-name descname"><span class="pre">core_freezing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coretemp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_core_melting</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_cooling.core_freezing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate when the core starts and finishes solidifying.</p>
 <p>Takes core temperature and returns boolean array of when the core is
 below the freezing/melting temperature</p>
@@ -78,12 +217,12 @@ timestep</p></li>
 by murphyqm</p>
 <dl class="py function">
 <dt id="pytesimal.draft_analysis.cooling_rate">
-<code class="sig-prename descclassname">pytesimal.draft_analysis.</code><code class="sig-name descname">cooling_rate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">temperature_array</span></em>, <em class="sig-param"><span class="n">timestep</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.cooling_rate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_analysis.</span></code><code class="sig-name descname"><span class="pre">cooling_rate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.cooling_rate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="pytesimal.draft_analysis.cooling_rate_cloudyzone_diameter">
-<code class="sig-prename descclassname">pytesimal.draft_analysis.</code><code class="sig-name descname">cooling_rate_cloudyzone_diameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.cooling_rate_cloudyzone_diameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_analysis.</span></code><code class="sig-name descname"><span class="pre">cooling_rate_cloudyzone_diameter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.cooling_rate_cloudyzone_diameter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cooling rate calculated using cloudy zone particle diameter in nm.</p>
 <p>Arguments: d, cz particle size in nm
 Returns: cz_rate, the cooling rate in K/Myr</p>
@@ -91,7 +230,7 @@ Returns: cz_rate, the cooling rate in K/Myr</p>
 
 <dl class="py function">
 <dt id="pytesimal.draft_analysis.cooling_rate_tetra_width">
-<code class="sig-prename descclassname">pytesimal.draft_analysis.</code><code class="sig-name descname">cooling_rate_tetra_width</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.cooling_rate_tetra_width" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_analysis.</span></code><code class="sig-name descname"><span class="pre">cooling_rate_tetra_width</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.cooling_rate_tetra_width" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cooling rate calculated using tetrataenite bandwidth in nm.</p>
 <p>Arguments: tw, tetrataenite bandwidth in nm
 Returns: t_rate, the cooling rate in K/Myr</p>
@@ -99,13 +238,13 @@ Returns: t_rate, the cooling rate in K/Myr</p>
 
 <dl class="py function">
 <dt id="pytesimal.draft_analysis.cooling_rate_to_seconds">
-<code class="sig-prename descclassname">pytesimal.draft_analysis.</code><code class="sig-name descname">cooling_rate_to_seconds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cooling_rate</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.cooling_rate_to_seconds" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_analysis.</span></code><code class="sig-name descname"><span class="pre">cooling_rate_to_seconds</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cooling_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.cooling_rate_to_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert cooling rates to seconds.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="pytesimal.draft_analysis.core_freezing">
-<code class="sig-prename descclassname">pytesimal.draft_analysis.</code><code class="sig-name descname">core_freezing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coretemp</span></em>, <em class="sig-param"><span class="n">max_time</span></em>, <em class="sig-param"><span class="n">times</span></em>, <em class="sig-param"><span class="n">latent</span></em>, <em class="sig-param"><span class="n">temp_core_melting</span></em>, <em class="sig-param"><span class="n">timestep</span><span class="o">=</span><span class="default_value">100000000000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.core_freezing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_analysis.</span></code><code class="sig-name descname"><span class="pre">core_freezing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coretemp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_core_melting</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.core_freezing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate when the core starts and finishes solidifying.</p>
 <p>Takes core temperature and returns boolean array of when the core is
 below the freezing/melting temperature</p>
@@ -136,7 +275,7 @@ timestep</p></li>
 
 <dl class="py function">
 <dt id="pytesimal.draft_analysis.meteorite_depth_and_timing">
-<code class="sig-prename descclassname">pytesimal.draft_analysis.</code><code class="sig-name descname">meteorite_depth_and_timing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">CR</span></em>, <em class="sig-param"><span class="n">temperatures</span></em>, <em class="sig-param"><span class="n">dT_by_dt</span></em>, <em class="sig-param"><span class="n">radii</span></em>, <em class="sig-param"><span class="n">r_planet</span></em>, <em class="sig-param"><span class="n">core_size_factor</span></em>, <em class="sig-param"><span class="n">time_core_frozen</span></em>, <em class="sig-param"><span class="n">fully_frozen</span></em>, <em class="sig-param"><span class="n">dr</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.meteorite_depth_and_timing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_analysis.</span></code><code class="sig-name descname"><span class="pre">meteorite_depth_and_timing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">CR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dT_by_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radii</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_planet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_size_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_core_frozen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fully_frozen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_analysis.meteorite_depth_and_timing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find depth of genesis given the cooling rate.</p>
 <p>function finding the depth, given the cooling rate, and checks if the 593K
 contour crosses this depth during core solidification</p>
@@ -170,7 +309,7 @@ contour crosses this depth during core solidification</p>
 <p>&#64;author: eememq</p>
 <dl class="py function">
 <dt id="pytesimal.draft_cond_cooling_2.conductive_cooling">
-<code class="sig-prename descclassname">pytesimal.draft_cond_cooling_2.</code><code class="sig-name descname">conductive_cooling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">run_ID</span></em>, <em class="sig-param"><span class="n">folder</span></em>, <em class="sig-param"><span class="n">kappa</span><span class="o">=</span><span class="default_value">1.22100122100122e-06</span></em>, <em class="sig-param"><span class="n">B</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">model_type</span><span class="o">=</span><span class="default_value">17</span></em>, <em class="sig-param"><span class="n">plotting</span><span class="o">=</span><span class="default_value">'None'</span></em>, <em class="sig-param"><span class="n">save_array</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">save_csv</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">timestep</span><span class="o">=</span><span class="default_value">100000000000.0</span></em>, <em class="sig-param"><span class="n">r_planet</span><span class="o">=</span><span class="default_value">250000.0</span></em>, <em class="sig-param"><span class="n">core_size_factor</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">reg_fraction</span><span class="o">=</span><span class="default_value">0.032</span></em>, <em class="sig-param"><span class="n">max_time</span><span class="o">=</span><span class="default_value">400</span></em>, <em class="sig-param"><span class="n">temp_core_melting</span><span class="o">=</span><span class="default_value">1200.0</span></em>, <em class="sig-param"><span class="n">olivine_cp</span><span class="o">=</span><span class="default_value">819.0</span></em>, <em class="sig-param"><span class="n">olivine_density</span><span class="o">=</span><span class="default_value">3341.0</span></em>, <em class="sig-param"><span class="n">return_vars</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">save_param_file</span><span class="o">=</span><span class="default_value">'y'</span></em>, <em class="sig-param"><span class="n">cmb_conductivity</span><span class="o">=</span><span class="default_value">3.0</span></em>, <em class="sig-param"><span class="n">core_cp</span><span class="o">=</span><span class="default_value">850.0</span></em>, <em class="sig-param"><span class="n">core_density</span><span class="o">=</span><span class="default_value">7800.0</span></em>, <em class="sig-param"><span class="n">temp_init</span><span class="o">=</span><span class="default_value">1600.0</span></em>, <em class="sig-param"><span class="n">temp_surface</span><span class="o">=</span><span class="default_value">250.0</span></em>, <em class="sig-param"><span class="n">core_temp_init</span><span class="o">=</span><span class="default_value">1600.0</span></em>, <em class="sig-param"><span class="n">core_latent_heat</span><span class="o">=</span><span class="default_value">270000.0</span></em>, <em class="sig-param"><span class="n">kappa_reg</span><span class="o">=</span><span class="default_value">5e-08</span></em>, <em class="sig-param"><span class="n">dr</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">reg_percent</span><span class="o">=</span><span class="default_value">'y'</span></em>, <em class="sig-param"><span class="n">cond_constant</span><span class="o">=</span><span class="default_value">'y'</span></em>, <em class="sig-param"><span class="n">density_constant</span><span class="o">=</span><span class="default_value">'y'</span></em>, <em class="sig-param"><span class="n">heat_cap_constant</span><span class="o">=</span><span class="default_value">'y'</span></em>, <em class="sig-param"><span class="n">non_lin_term</span><span class="o">=</span><span class="default_value">'y'</span></em>, <em class="sig-param"><span class="n">record_timings</span><span class="o">=</span><span class="default_value">'n'</span></em>, <em class="sig-param"><span class="n">tests</span><span class="o">=</span><span class="default_value">'n'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_cond_cooling_2.conductive_cooling" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_cond_cooling_2.</span></code><code class="sig-name descname"><span class="pre">conductive_cooling</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.22100122100122e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'None'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_csv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_planet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_size_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.032</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_core_melting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1200.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">olivine_cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">olivine_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_param_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmb_conductivity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">850.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7800.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1600.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_temp_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1600.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_latent_heat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">270000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa_reg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_cap_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_lin_term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_timings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_cond_cooling_2.conductive_cooling" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conductive cooling model.</p>
 <p>Basic output is time for core to start freezing, time for core to end
 freezing, chosen B and k0 calculated from kappa in a filed called
@@ -248,18 +387,18 @@ with parameters</p>
 extracted across CMB.</p>
 <dl class="py class">
 <dt id="pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB">
-<em class="property">class </em><code class="sig-prename descclassname">pytesimal.draft_core_functions_2.</code><code class="sig-name descname">EnergyExtractedAcrossCMB</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outer_r</span></em>, <em class="sig-param"><span class="n">timestep</span></em>, <em class="sig-param"><span class="n">radius_step</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_core_functions_2.</span></code><code class="sig-name descname"><span class="pre">EnergyExtractedAcrossCMB</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outer_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Calculate the energy extracted across the cmb in one timestep given the temperature of the mantle.</p>
 <dl class="py method">
 <dt id="pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB.energy_extracted">
-<code class="sig-name descname">energy_extracted</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mantle_temperatures</span></em>, <em class="sig-param"><span class="n">i</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB.energy_extracted" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">energy_extracted</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mantle_temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB.energy_extracted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate energy extracted in one timestep</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB.power">
-<code class="sig-name descname">power</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mantle_temperatures</span></em>, <em class="sig-param"><span class="n">i</span></em>, <em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB.power" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">power</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mantle_temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.EnergyExtractedAcrossCMB.power" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate heat (power) extracted in one timestep</p>
 </dd></dl>
 
@@ -267,36 +406,36 @@ extracted across CMB.</p>
 
 <dl class="py class">
 <dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore">
-<em class="property">class </em><code class="sig-prename descclassname">pytesimal.draft_core_functions_2.</code><code class="sig-name descname">IsothermalEutecticCore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">temp</span></em>, <em class="sig-param"><span class="n">melt</span></em>, <em class="sig-param"><span class="n">outer_r</span></em>, <em class="sig-param"><span class="n">inner_r</span></em>, <em class="sig-param"><span class="n">rho</span></em>, <em class="sig-param"><span class="n">cp</span></em>, <em class="sig-param"><span class="n">core_latent_heat</span></em>, <em class="sig-param"><span class="n">lat</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_core_functions_2.</span></code><code class="sig-name descname"><span class="pre">IsothermalEutecticCore</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">melt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_latent_heat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Core class represents and manipulates core temp and latent heat.</p>
 <dl class="py method">
 <dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.cooling">
-<code class="sig-name descname">cooling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mantletemps</span></em>, <em class="sig-param"><span class="n">timestep</span></em>, <em class="sig-param"><span class="n">dr</span></em>, <em class="sig-param"><span class="n">i</span></em>, <em class="sig-param"><span class="n">cmbk</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.cooling" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">cooling</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mantletemps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmbk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.cooling" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cool core or extract latent heat. Old version.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_energy">
-<code class="sig-name descname">extract_energy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">energy_removed</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_energy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">extract_energy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_removed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_energy" title="Permalink to this definition">¶</a></dt>
 <dd><p>E (J) extracted</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_heat">
-<code class="sig-name descname">extract_heat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">power</span></em>, <em class="sig-param"><span class="n">timestep</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_heat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">extract_heat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_heat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Heat extracted (power) in W over one timestep</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_1D">
-<code class="sig-name descname">temperature_array_1D</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_1D" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">temperature_array_1D</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return temperature history as 1D array.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_3D">
-<code class="sig-name descname">temperature_array_3D</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coretemp_array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_3D" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">temperature_array_3D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coretemp_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_3D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return temperature history as 1D array.</p>
 </dd></dl>
 
@@ -315,7 +454,7 @@ of the Pytesimal package:</p>
 - function that manages overall flow</p>
 <dl class="py function">
 <dt id="pytesimal.draft_mainmodule.set_up">
-<code class="sig-prename descclassname">pytesimal.draft_mainmodule.</code><code class="sig-name descname">set_up</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timestep</span><span class="o">=</span><span class="default_value">100000000000.0</span></em>, <em class="sig-param"><span class="n">r_planet</span><span class="o">=</span><span class="default_value">250000.0</span></em>, <em class="sig-param"><span class="n">core_size_factor</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">reg_fraction</span><span class="o">=</span><span class="default_value">0.032</span></em>, <em class="sig-param"><span class="n">max_time</span><span class="o">=</span><span class="default_value">400.0</span></em>, <em class="sig-param"><span class="n">dr</span><span class="o">=</span><span class="default_value">1000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mainmodule.set_up" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mainmodule.</span></code><code class="sig-name descname"><span class="pre">set_up</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_planet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_size_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.032</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mainmodule.set_up" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -326,54 +465,54 @@ of the Pytesimal package:</p>
 <p>&#64;author: maeve</p>
 <dl class="py class">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties">
-<em class="property">class </em><code class="sig-prename descclassname">pytesimal.draft_mantle_properties.</code><code class="sig-name descname">MantleProperties</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rho</span><span class="o">=</span><span class="default_value">3341.0</span></em>, <em class="sig-param"><span class="n">cp</span><span class="o">=</span><span class="default_value">819.0</span></em>, <em class="sig-param"><span class="n">k</span><span class="o">=</span><span class="default_value">3.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_properties.</span></code><code class="sig-name descname"><span class="pre">MantleProperties</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Mantle properties class.</p>
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties.getcp">
-<code class="sig-name descname">getcp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">295</span></em>, <em class="sig-param"><span class="n">P</span><span class="o">=</span><span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getcp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getcp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getcp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get heat capacity.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties.getdkdT">
-<code class="sig-name descname">getdkdT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">295</span></em>, <em class="sig-param"><span class="n">P</span><span class="o">=</span><span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getdkdT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getdkdT</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getdkdT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get gradient of condcutivity.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties.getk">
-<code class="sig-name descname">getk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">295</span></em>, <em class="sig-param"><span class="n">P</span><span class="o">=</span><span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getk</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get conductivity.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties.getkappa">
-<code class="sig-name descname">getkappa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getkappa" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getkappa</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getkappa" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get diffusivity.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties.getrho">
-<code class="sig-name descname">getrho</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">295</span></em>, <em class="sig-param"><span class="n">P</span><span class="o">=</span><span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getrho" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getrho</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.getrho" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get density.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties.setcp">
-<code class="sig-name descname">setcp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.setcp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">setcp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.setcp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set heat capacity.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties.setk">
-<code class="sig-name descname">setk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.setk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">setk</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.setk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set conductivity.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.MantleProperties.setrho">
-<code class="sig-name descname">setrho</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.setrho" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">setrho</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.MantleProperties.setrho" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set density.</p>
 </dd></dl>
 
@@ -381,18 +520,18 @@ of the Pytesimal package:</p>
 
 <dl class="py class">
 <dt id="pytesimal.draft_mantle_properties.VariableConductivity">
-<em class="property">class </em><code class="sig-prename descclassname">pytesimal.draft_mantle_properties.</code><code class="sig-name descname">VariableConductivity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rho</span><span class="o">=</span><span class="default_value">3341.0</span></em>, <em class="sig-param"><span class="n">cp</span><span class="o">=</span><span class="default_value">819.0</span></em>, <em class="sig-param"><span class="n">k</span><span class="o">=</span><span class="default_value">3.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableConductivity" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_properties.</span></code><code class="sig-name descname"><span class="pre">VariableConductivity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableConductivity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pytesimal.draft_mantle_properties.MantleProperties" title="pytesimal.draft_mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.draft_mantle_properties.MantleProperties</span></code></a></p>
 <p>Make conductivity T-dependent.</p>
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.VariableConductivity.getdkdT">
-<code class="sig-name descname">getdkdT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">295</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableConductivity.getdkdT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getdkdT</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableConductivity.getdkdT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get conductivity prime.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.VariableConductivity.getk">
-<code class="sig-name descname">getk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">295</span></em>, <em class="sig-param"><span class="n">P</span><span class="o">=</span><span class="default_value">0.1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableConductivity.getk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getk</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableConductivity.getk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get conductivity.</p>
 </dd></dl>
 
@@ -400,18 +539,18 @@ of the Pytesimal package:</p>
 
 <dl class="py class">
 <dt id="pytesimal.draft_mantle_properties.VariableDensity">
-<em class="property">class </em><code class="sig-prename descclassname">pytesimal.draft_mantle_properties.</code><code class="sig-name descname">VariableDensity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rho</span><span class="o">=</span><span class="default_value">3341.0</span></em>, <em class="sig-param"><span class="n">cp</span><span class="o">=</span><span class="default_value">819.0</span></em>, <em class="sig-param"><span class="n">k</span><span class="o">=</span><span class="default_value">3.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableDensity" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_properties.</span></code><code class="sig-name descname"><span class="pre">VariableDensity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableDensity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pytesimal.draft_mantle_properties.MantleProperties" title="pytesimal.draft_mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.draft_mantle_properties.MantleProperties</span></code></a></p>
 <p>Make density T-dependent.</p>
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.VariableDensity.getrho">
-<code class="sig-name descname">getrho</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">295.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableDensity.getrho" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getrho</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableDensity.getrho" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get density.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.VariableDensity.rho">
-<em class="property">property </em><code class="sig-name descname">rho</code><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableDensity.rho" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">rho</span></code><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableDensity.rho" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get density.</p>
 </dd></dl>
 
@@ -419,12 +558,12 @@ of the Pytesimal package:</p>
 
 <dl class="py class">
 <dt id="pytesimal.draft_mantle_properties.VariableHeatCapacity">
-<em class="property">class </em><code class="sig-prename descclassname">pytesimal.draft_mantle_properties.</code><code class="sig-name descname">VariableHeatCapacity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rho</span><span class="o">=</span><span class="default_value">3341.0</span></em>, <em class="sig-param"><span class="n">cp</span><span class="o">=</span><span class="default_value">819.0</span></em>, <em class="sig-param"><span class="n">k</span><span class="o">=</span><span class="default_value">3.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableHeatCapacity" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_properties.</span></code><code class="sig-name descname"><span class="pre">VariableHeatCapacity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableHeatCapacity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pytesimal.draft_mantle_properties.MantleProperties" title="pytesimal.draft_mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.draft_mantle_properties.MantleProperties</span></code></a></p>
 <p>Make heat capacity T-dependent.</p>
 <dl class="py method">
 <dt id="pytesimal.draft_mantle_properties.VariableHeatCapacity.getcp">
-<code class="sig-name descname">getcp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">T</span><span class="o">=</span><span class="default_value">295</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableHeatCapacity.getcp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getcp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.VariableHeatCapacity.getcp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get heat capacity.</p>
 </dd></dl>
 
@@ -440,22 +579,22 @@ of the Pytesimal package:</p>
 by murphyqm</p>
 <dl class="py function">
 <dt id="pytesimal.load_and_save_data.check_folder_exists">
-<code class="sig-prename descclassname">pytesimal.load_and_save_data.</code><code class="sig-name descname">check_folder_exists</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.load_and_save_data.check_folder_exists" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.load_and_save_data.</span></code><code class="sig-name descname"><span class="pre">check_folder_exists</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.load_and_save_data.check_folder_exists" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="pytesimal.load_and_save_data.load_params_from_file">
-<code class="sig-prename descclassname">pytesimal.load_and_save_data.</code><code class="sig-name descname">load_params_from_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="o">=</span><span class="default_value">'example_input_file_with_default_parameters.txt'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.load_and_save_data.load_params_from_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.load_and_save_data.</span></code><code class="sig-name descname"><span class="pre">load_params_from_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'example_input_file_with_default_parameters.txt'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.load_and_save_data.load_params_from_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="pytesimal.load_and_save_data.make_default_param_file">
-<code class="sig-prename descclassname">pytesimal.load_and_save_data.</code><code class="sig-name descname">make_default_param_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.load_and_save_data.make_default_param_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.load_and_save_data.</span></code><code class="sig-name descname"><span class="pre">make_default_param_file</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.load_and_save_data.make_default_param_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="pytesimal.load_and_save_data.save_params_and_results">
-<code class="sig-prename descclassname">pytesimal.load_and_save_data.</code><code class="sig-name descname">save_params_and_results</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result_filename</span></em>, <em class="sig-param"><span class="n">run_ID</span></em>, <em class="sig-param"><span class="n">folder</span></em>, <em class="sig-param"><span class="n">timestep</span></em>, <em class="sig-param"><span class="n">r_planet</span></em>, <em class="sig-param"><span class="n">core_size_factor</span></em>, <em class="sig-param"><span class="n">reg_fraction</span></em>, <em class="sig-param"><span class="n">max_time</span></em>, <em class="sig-param"><span class="n">temp_core_melting</span></em>, <em class="sig-param"><span class="n">olivine_cp</span></em>, <em class="sig-param"><span class="n">olivine_density</span></em>, <em class="sig-param"><span class="n">cmb_conductivity</span></em>, <em class="sig-param"><span class="n">core_cp</span></em>, <em class="sig-param"><span class="n">core_density</span></em>, <em class="sig-param"><span class="n">temp_init</span></em>, <em class="sig-param"><span class="n">temp_surface</span></em>, <em class="sig-param"><span class="n">core_temp_init</span></em>, <em class="sig-param"><span class="n">core_latent_heat</span></em>, <em class="sig-param"><span class="n">kappa_reg</span></em>, <em class="sig-param"><span class="n">dr</span></em>, <em class="sig-param"><span class="n">cond_constant</span></em>, <em class="sig-param"><span class="n">density_constant</span></em>, <em class="sig-param"><span class="n">heat_cap_constant</span></em>, <em class="sig-param"><span class="n">time_core_frozen</span></em>, <em class="sig-param"><span class="n">fully_frozen</span></em>, <em class="sig-param"><span class="n">meteorite_results</span><span class="o">=</span><span class="default_value">'None given'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.load_and_save_data.save_params_and_results" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.load_and_save_data.</span></code><code class="sig-name descname"><span class="pre">save_params_and_results</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_planet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_size_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_fraction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_core_melting</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">olivine_cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">olivine_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmb_conductivity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_init</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_temp_init</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_latent_heat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond_constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_cap_constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_core_frozen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fully_frozen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meteorite_results</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'None</span> <span class="pre">given'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.load_and_save_data.save_params_and_results" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -467,7 +606,7 @@ by murphyqm</p>
 simple illustrative heatmap.</p>
 <dl class="py function">
 <dt id="pytesimal.plotting.get_million_years_formatters">
-<code class="sig-prename descclassname">pytesimal.plotting.</code><code class="sig-name descname">get_million_years_formatters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timestep</span></em>, <em class="sig-param"><span class="n">maxtime</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.get_million_years_formatters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">get_million_years_formatters</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.get_million_years_formatters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a matplotlib formatters.</p>
 <p>Creates two matplotlib formatters, one to go from timesteps to myrs and
 one to go from cooling rate per timestep to cooling rate per million years.</p>
@@ -475,7 +614,7 @@ one to go from cooling rate per timestep to cooling rate per million years.</p>
 
 <dl class="py function">
 <dt id="pytesimal.plotting.plot_coolingrate_history">
-<code class="sig-prename descclassname">pytesimal.plotting.</code><code class="sig-name descname">plot_coolingrate_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dT_by_dt</span></em>, <em class="sig-param"><span class="n">dT_by_dt_core</span></em>, <em class="sig-param"><span class="n">timestep</span></em>, <em class="sig-param"><span class="n">maxtime</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fig</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">savefile</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fig_w</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">fig_h</span><span class="o">=</span><span class="default_value">6</span></em>, <em class="sig-param"><span class="n">show</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.plot_coolingrate_history" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">plot_coolingrate_history</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dT_by_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dT_by_dt_core</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.plot_coolingrate_history" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a heat map of cooling rate vs time.</p>
 <p>Generate a heat map of cooling rate vs time, with the colormap showing
 variation in cooling rate.</p>
@@ -490,7 +629,7 @@ to be saved as an image in a file.</p>
 
 <dl class="py function">
 <dt id="pytesimal.plotting.plot_temperature_history">
-<code class="sig-prename descclassname">pytesimal.plotting.</code><code class="sig-name descname">plot_temperature_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">temperatures</span></em>, <em class="sig-param"><span class="n">coretemp</span></em>, <em class="sig-param"><span class="n">timestep</span></em>, <em class="sig-param"><span class="n">maxtime</span></em>, <em class="sig-param"><span class="n">ax</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fig</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">savefile</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fig_w</span><span class="o">=</span><span class="default_value">8</span></em>, <em class="sig-param"><span class="n">fig_h</span><span class="o">=</span><span class="default_value">6</span></em>, <em class="sig-param"><span class="n">show</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.plot_temperature_history" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">plot_temperature_history</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coretemp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.plot_temperature_history" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a heat map of depth vs time; colormap shows variation in temp.</p>
 <p>Input temperature in a n-steps by n-depths array “temperatures” for the
 mantle and n-steps by n-depths array “coretemp” for the core. “timestep”
@@ -503,7 +642,7 @@ to be saved as an image in a file.</p>
 
 <dl class="py function">
 <dt id="pytesimal.plotting.read_datafile">
-<code class="sig-prename descclassname">pytesimal.plotting.</code><code class="sig-name descname">read_datafile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.read_datafile" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">read_datafile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.read_datafile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the contents of a model run into numpy arrays.</p>
 <p>Reads the content of the numpy ‘npz’ data file representing
 a model run and returns arrays of the mntle temperature,
@@ -512,7 +651,7 @@ core temperature, and cooling rates of the mantle and core.</p>
 
 <dl class="py function">
 <dt id="pytesimal.plotting.two_in_one">
-<code class="sig-prename descclassname">pytesimal.plotting.</code><code class="sig-name descname">two_in_one</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fig_w</span></em>, <em class="sig-param"><span class="n">fig_h</span></em>, <em class="sig-param"><span class="n">temperatures</span></em>, <em class="sig-param"><span class="n">coretemp</span></em>, <em class="sig-param"><span class="n">dT_by_dt</span></em>, <em class="sig-param"><span class="n">dT_by_dt_core</span></em>, <em class="sig-param"><span class="n">savefile</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.two_in_one" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">two_in_one</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coretemp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dT_by_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dT_by_dt_core</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.two_in_one" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a heat map of depth vs time; colormap shows variation in temp.</p>
 <p>Change save=”n” to save=”y” when function is called to produce a png image
 named after the data filename</p>
@@ -525,86 +664,51 @@ named after the data filename</p>
 </div>
 
 
+           </div>
+           
           </div>
-          
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="modules.html" class="btn btn-neutral float-right" title="pytesimal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="README.html" class="btn btn-neutral float-left" title="Pytesimal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Maeve Murphy Quinlan.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Pytesimal</a></h1>
 
+    </section>
 
+  </div>
+  
 
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
 
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to Pytesimal’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">Pytesimal</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">pytesimal package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.core_cooling">pytesimal.core_cooling module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_analysis">pytesimal.draft_analysis module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_cond_cooling_2">pytesimal.draft_cond_cooling_2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_core_functions_2">pytesimal.draft_core_functions_2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mainmodule">pytesimal.draft_mainmodule module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mantle_properties">pytesimal.draft_mantle_properties module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pytesimal-draft-mantle-timestepping-2-module">pytesimal.draft_mantle_timestepping_2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.load_and_save_data">pytesimal.load_and_save_data module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.plotting">pytesimal.plotting module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal">Module contents</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="README.html" title="previous chapter">Pytesimal</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2021, Maeve Murphy Quinlan.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/pytesimal.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
+  
+  
     
+   
 
-    
-  </body>
+</body>
 </html>
