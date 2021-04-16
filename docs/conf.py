@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.abspath('../pytesimal'))
 project = 'Pytesimal'
 copyright = '2021, Maeve Murphy Quinlan'
 author = 'Maeve Murphy Quinlan'
+release = '1.0.0'
 
 
 # -- General configuration ---------------------------------------------------
