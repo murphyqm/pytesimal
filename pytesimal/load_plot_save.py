@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Load Plot and Save Module
+"""
+Load Plot and Save Module
 
 This module contains functions to load parameters and results from files, to
 plot results either following a model run or from file, and to save parameters
@@ -44,8 +45,7 @@ def check_folder_exists(folder):
         os.makedirs(str(folder))
 
 
-def make_default_param_file(
-        filepath='example_input_file_with_default_parameters.txt'):
+def make_default_param_file(filepath='example_params.txt'):
     """Save an example parameter json file with default parameters."""
     default_variables = {'run_ID': 'example_default',
                          'folder': 'example_default',
@@ -75,7 +75,7 @@ def make_default_param_file(
         json.dump(default_variables, file, indent=4)
 
 
-def load_params_from_file(filepath='example_input_file_with_default_parameters.txt'):
+def load_params_from_file(filepath='example_params.txt'):
     """Load parameters from a json file and return variable values."""
     with open(filepath) as json_file:
         data = json.load(json_file)
@@ -165,7 +165,7 @@ def save_params_and_results(result_filename, run_ID, folder, timestep, r_planet,
     core_temp_init : float
         The initial temperature of the core
     core_latent_heat : float
-        Te latent heat of crystallisation of the core.
+        The latent heat of crystallisation of the core.
     kappa_reg : float
         The regolith constant diffusivity
     dr : float
@@ -402,7 +402,7 @@ def plot_coolingrate_history(
 
     Input cooling rate in a n-steps by n-depths array `dT_by_dt` for the
     mantle and n-steps by n-depths array `dT_by_dt_core` for the core.
-    `timestep` is the length of a `timestep` and `maxtime` is the maximum time
+    `timestep` is the length of a timestep and `maxtime` is the maximum time
     (both in seconds).
 
     Optional arguments fig and ax can be set to plot on existing matplotlib
@@ -469,7 +469,7 @@ def two_in_one(
     """
     Return a heat map of depth vs time; colormap shows variation in temp.
 
-    Change `save`="n" to `save`="y" when function is called to produce a png
+    Change save="n" to save="y" when function is called to produce a png
     image named after the data filename
 
     """

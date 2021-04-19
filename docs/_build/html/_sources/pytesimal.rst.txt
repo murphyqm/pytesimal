@@ -60,10 +60,10 @@ pytesimal.draft\_mantle\_timestepping\_2 module
    :undoc-members:
    :show-inheritance:
 
-pytesimal.load\_and\_save\_data module
---------------------------------------
+pytesimal.load\_plot\_save module
+---------------------------------
 
-.. automodule:: pytesimal.load_and_save_data
+.. automodule:: pytesimal.load_plot_save
    :members:
    :undoc-members:
    :show-inheritance:
@@ -72,6 +72,14 @@ pytesimal.plotting module
 -------------------------
 
 .. automodule:: pytesimal.plotting
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pytesimal.quick\_edit\_draft\_mantle\_timestepping\_moving\_core module
+-----------------------------------------------------------------------
+
+.. automodule:: pytesimal.quick_edit_draft_mantle_timestepping_moving_core
    :members:
    :undoc-members:
    :show-inheritance:
