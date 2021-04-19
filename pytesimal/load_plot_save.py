@@ -1,11 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on 13/04/2021
-by murphyqm
+"""Load Plot and Save Module
 
-Script to load example data stored as a compressed NumPy array and produce a
-simple illustrative heatmap.
+This module contains functions to load parameters and results from files, to
+plot results either following a model run or from file, and to save parameters
+and results to file following a model run.
+
+Example
+-------
+
+A directory and parameter file can be quickly generated::
+
+    folder = 'path/to/folder'
+    filename = 'example_param_file.txt'
+    filepath=f'{folder}/{filename}'
+
+    check_folder_exists(folder)
+    make_default_param_file(filepath=filepath)
+
+This parameters file in json format can then be opened, edited, renamed or
+moved, and loaded in to set parameter values for a model run.
+
+Notes
+-----
+
+Depending on usage, some functions take a `folder` and `filename` argument and
+create an absolute path with these to save or load a file, while some take
+a full filepath. Please check which argument is required.
+
 """
 
 import json
@@ -22,7 +44,8 @@ def check_folder_exists(folder):
         os.makedirs(str(folder))
 
 
-def make_default_param_file(filepath='example_input_file_with_default_parameters.txt'):
+def make_default_param_file(
+        filepath='example_input_file_with_default_parameters.txt'):
     """Save an example parameter json file with default parameters."""
     default_variables = {'run_ID': 'example_default',
                          'folder': 'example_default',
