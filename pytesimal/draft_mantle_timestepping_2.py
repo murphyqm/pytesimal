@@ -135,9 +135,9 @@ def discretisation(
     else:
         dens = draft_mantle_properties.VariableDensity()
 
-    temp_list_mid_mantle = [temp_init]
-    temp_list_shal = [temp_init]
-    temp_list_cmb_5 = [temp_init]
+    # temp_list_mid_mantle = [temp_init]
+    # temp_list_shal = [temp_init]
+    # temp_list_cmb_5 = [temp_init]
     temperatures[:, 0] = temp_init  # this can be an array or a scalar
     core_boundary_temperature = core_temp_init
     coretemp_array[:, 0] = core_temp_init

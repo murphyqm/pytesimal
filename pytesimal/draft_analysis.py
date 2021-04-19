@@ -30,7 +30,7 @@ def core_freezing(
         List of total latent heat extracted since core began freezing, at each
         timestep
     temp_core_melting : FLOAT
-        DMelting point of core material (in K)
+        Melting point of core material (in K)
     timestep : FLOAT, optional
         Discretisation timestep in seconds. The default is 1E11.
 

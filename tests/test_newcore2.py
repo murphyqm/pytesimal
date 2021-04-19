@@ -9,7 +9,7 @@ Created on Mon Jan 25 17:01:06 2021
 from context import draft_mantle_timestepping_2 as mtt
 from context import draft_core_functions_2 as new_core_function_2
 import numpy as np
-import pytest
+# import pytest
 
 
 # def test_new_core_function_1():

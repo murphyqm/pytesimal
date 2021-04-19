@@ -6,7 +6,6 @@ by murphyqm
 
 """
 import pytest
-
 from context import draft_mainmodule as mainmod
 from context import draft_mantle_timestepping_2 as mantle_timestepping
 from context import draft_core_functions_2 as core_function
@@ -26,14 +25,14 @@ from context import draft_core_functions_2 as core_function
 @pytest.fixture(scope="session")  # TODO add (scope="session")
 def temperature_timestepping():
     timestep = 100000000000.0
-    r_planet = 250000.0
-    core_size_factor = 0.5
-    reg_fraction = 0.032
-    max_time = 400
+    # r_planet = 250000.0
+    # core_size_factor = 0.5
+    # reg_fraction = 0.032
+    # max_time = 400
     temp_core_melting = 1200.0
-    olivine_cp = 819.0
-    olivine_density = 3341.0
-    cmb_conductivity = 3.0
+    # olivine_cp = 819.0
+    # olivine_density = 3341.0
+    # cmb_conductivity = 3.0
     core_cp = 850.0
     core_density = 7800.0
     temp_init = 1600.0
