@@ -78,27 +78,27 @@ def set_up_mantle_properties(
         mantle_conductivity=3.0,):
 
     if cond_constant == "y":
-        cond = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
+        conductivity = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
 
     else:
-        cond = draft_mantle_properties.VariableConductivity()
+        conductivity = draft_mantle_properties.VariableConductivity()
 
     if heat_cap_constant == "y":
 
-        heatcap = draft_mantle_properties.MantleProperties(
+        heat_capacity = draft_mantle_properties.MantleProperties(
             cp=mantle_heat_capacity
         )
 
     else:
-        heatcap = draft_mantle_properties.VariableHeatCapacity()
+        heat_capacity = draft_mantle_properties.VariableHeatCapacity()
 
     if density_constant == "y":
-        dens = draft_mantle_properties.MantleProperties(rho=mantle_density)
+        density = draft_mantle_properties.MantleProperties(rho=mantle_density)
 
     else:
-        dens = draft_mantle_properties.VariableDensity()
+        density = draft_mantle_properties.VariableDensity()
 
-    return(cond, heatcap, dens)
+    return(conductivity, heat_capacity, density)
 
 
 def discretisation(
