@@ -56,6 +56,7 @@ class EnergyExtractedAcrossCMB:
         return heat
 
 def discretisation(
+    core_values,
     latent,
     temp_init,
     core_temp_init,
@@ -128,9 +129,6 @@ def discretisation(
     boundary_conds = MantleBC()
     # instantiate core object and energy extracted
     cmb_energy = EnergyExtractedAcrossCMB(r_core, timestep, dr)
-    core_values = draft_core_functions_2.IsothermalEutecticCore(temp=core_temp_init, melt=temp_core_melting,
-                                                                outer_r=r_core, inner_r=0, rho=core_density, cp=core_cp,
-                                                                core_latent_heat=core_latent_heat) # TODO move this out of the core
 
     # A_1list = []
     # B_1list = []

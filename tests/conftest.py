@@ -22,7 +22,7 @@ from context import draft_mantle_timestepping_2 as mantle_timestepping
 #     assert k == 1.25
 
 
-@pytest.fixture
+@pytest.fixture # TODO add (scope="session")
 def temperature_timestepping():
     timestep = 100000000000.0
     r_planet = 250000.0
