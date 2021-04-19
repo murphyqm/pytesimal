@@ -23,7 +23,7 @@ from context import draft_core_functions_2 as core_function
 #     assert k == 1.25
 
 
-@pytest.fixture(scope="session") # TODO add (scope="session")
+@pytest.fixture(scope="session")  # TODO add (scope="session")
 def temperature_timestepping():
     timestep = 100000000000.0
     r_planet = 250000.0
@@ -43,38 +43,47 @@ def temperature_timestepping():
     kappa_reg = 5e-08
     dr = 1000.0
 
-    (r_core,
-     radii,
-     core_radii,
-     reg_thickness,
-     where_regolith,
-     times,
-     mantle_temperature_array,
-     core_temperature_array) = mainmod.set_up()
+    (
+        r_core,
+        radii,
+        core_radii,
+        reg_thickness,
+        where_regolith,
+        times,
+        mantle_temperature_array,
+        core_temperature_array,
+    ) = mainmod.set_up()
     latent = []
-    core_values = core_function.IsothermalEutecticCore(temp=core_temp_init, melt=temp_core_melting,
-                                                        outer_r=r_core, inner_r=0, rho=core_density, cp=core_cp,
-                                                        core_latent_heat=core_latent_heat)
+    core_values = core_function.IsothermalEutecticCore(
+        temp=core_temp_init,
+        melt=temp_core_melting,
+        outer_r=r_core,
+        inner_r=0,
+        rho=core_density,
+        cp=core_cp,
+        core_latent_heat=core_latent_heat,
+    )
 
-    (mantle_temperature_array,
-    core_temperature_array,
-    latent,
-    # temp_list_mid_mantle,
-    # temp_list_shal,
-    # temp_list_cmb_5,
-    # A_1list,
-    # B_1list,
-    # C_1list,
-    # delt_list,
-    # A_1listcmb,
-    # B_1listcmb,
-    # C_1listcmb,
-    # delt_listcmb,
-    # A_1listshal,
-    # B_1listshal,
-    # C_1listshal,
-    # delt_listshal,
-    )= mantle_timestepping.discretisation(
+    (
+        mantle_temperature_array,
+        core_temperature_array,
+        latent,
+        # temp_list_mid_mantle,
+        # temp_list_shal,
+        # temp_list_cmb_5,
+        # A_1list,
+        # B_1list,
+        # C_1list,
+        # delt_list,
+        # A_1listcmb,
+        # B_1listcmb,
+        # C_1listcmb,
+        # delt_listcmb,
+        # A_1listshal,
+        # B_1listshal,
+        # C_1listshal,
+        # delt_listshal,
+    ) = mantle_timestepping.discretisation(
         core_values,
         latent,
         temp_init,
@@ -92,7 +101,8 @@ def temperature_timestepping():
         radii,
         times,
         where_regolith,
-        kappa_reg,)
+        kappa_reg,
+    )
     results = {
         "mantle_temperature_array": mantle_temperature_array,
         "core_temperature_array": core_temperature_array,
@@ -101,6 +111,3 @@ def temperature_timestepping():
         "times": times,
     }
     return results
-
-
-

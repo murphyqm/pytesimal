@@ -12,6 +12,7 @@ folder = "output_runs/auto_pytest"
 
 # TODO end of core freezing period returning 1 t-step later than old function
 
+
 def test_def_const():
     """
     Simple test to check default results of constant model.
@@ -47,8 +48,9 @@ def test_def_const():
         Esq_timing,
         Imilac_Depth,
         Im_timing,
-    ) = mcc.conductive_cooling(run_ID, folder, return_vars="y",
-                               save_param_file="n")
+    ) = mcc.conductive_cooling(
+        run_ID, folder, return_vars="y", save_param_file="n"
+    )
     assert (
         vbegins_to_freeze,
         vfinished_freezing,
