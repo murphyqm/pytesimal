@@ -23,18 +23,21 @@ class MantleBC:
     def __init__(self):
         pass
 
-    def dirichlet(self, temperatures, temp_surface, core_boundary_temperature, i): # TODO maybe this should just be a function
+    def dirichlet(
+        self, temperatures, temp_surface, core_boundary_temperature, i
+    ):  # TODO maybe this should just be a function
         temperatures[-1, i] = temp_surface
         temperatures[0, i] = core_boundary_temperature
 
 
 class EnergyExtractedAcrossCMB:
     """Calculate the energy extracted across the cmb in one timestep given the temperature of the mantle."""
+
     def __init__(self, outer_r, timestep, radius_step):
         self.radius = outer_r
         self.dt = timestep
         self.dr = radius_step
-        self.area = 4 * np.pi * self.radius**2
+        self.area = 4 * np.pi * self.radius ** 2
 
     def __str__(self):
         """Return string."""
@@ -42,17 +45,29 @@ class EnergyExtractedAcrossCMB:
 
     def energy_extracted(self, mantle_temperatures, i, k):
         """Calculate energy extracted in one timestep"""
-        energy = -self.area * k * (
+        energy = (
+            -self.area
+            * k
+            * (
                 (mantle_temperatures[0, i] - mantle_temperatures[1, i])
-                / self.dr) * self.dt
+                / self.dr
+            )
+            * self.dt
+        )
         return energy
 
     def power(self, mantle_temperatures, i, k):
         """Calculate heat (power) extracted in one timestep"""
-        heat = -self.area * k * (
+        heat = (
+            -self.area
+            * k
+            * (
                 (mantle_temperatures[0, i] - mantle_temperatures[1, i])
-                / self.dr)
+                / self.dr
+            )
+        )
         return heat
+
 
 def discretisation(
     core_values,
@@ -79,7 +94,7 @@ def discretisation(
     non_lin_term="y",
     mantle_density=3341.0,
     mantle_heat_capacity=819.0,
-    mantle_conductivity=3.0
+    mantle_conductivity=3.0,
 ):
     """
     Finite difference solver with variable k.
@@ -107,7 +122,9 @@ def discretisation(
 
     if heat_cap_constant == "y":
 
-        heatcap = draft_mantle_properties.MantleProperties(cp=mantle_heat_capacity)
+        heatcap = draft_mantle_properties.MantleProperties(
+            cp=mantle_heat_capacity
+        )
 
     else:
         heatcap = draft_mantle_properties.VariableHeatCapacity()
@@ -121,7 +138,7 @@ def discretisation(
     temp_list_mid_mantle = [temp_init]
     temp_list_shal = [temp_init]
     temp_list_cmb_5 = [temp_init]
-    temperatures[:, 0] = temp_init # this can be an array or a scalar
+    temperatures[:, 0] = temp_init  # this can be an array or a scalar
     core_boundary_temperature = core_temp_init
     coretemp_array[:, 0] = core_temp_init
     # instantiate boundary conditions
@@ -262,10 +279,9 @@ def discretisation(
             #     pass
 
         # set top and bottom temperatures as fixed
-        boundary_conds.dirichlet(temperatures,
-                                 temp_surface,
-                                 core_boundary_temperature,
-                                 i)
+        boundary_conds.dirichlet(
+            temperatures, temp_surface, core_boundary_temperature, i
+        )
         # temperatures[-1, i] = temp_surface
         # temperatures[0, i] = core_boundary_temperature
         cmb_conductivity = cond.getk(temperatures[0, i])

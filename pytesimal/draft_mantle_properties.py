@@ -9,7 +9,7 @@ Created on Mon Feb  8 13:37:58 2021.
 """
 
 
-class MantleProperties: # TODO make constant values editable
+class MantleProperties:  # TODO make constant values editable
     """Mantle properties class."""
 
     def __init__(self, rho=3341.0, cp=819.0, k=3.0):
@@ -21,7 +21,8 @@ class MantleProperties: # TODO make constant values editable
     def __str__(self):
         """Return string."""
         return "Mantle rho: {0}; mantle cp: {1}; mantle k: {2}".format(
-            self._rho, self._cp, self._k)
+            self._rho, self._cp, self._k
+        )
 
     def getrho(self, T=295, P=0.1):
         """Get density."""
@@ -62,7 +63,7 @@ class MantleProperties: # TODO make constant values editable
 
     def getkappa(self):
         """Get diffusivity."""
-        diffusivity = (self._k)/(self._rho * self._cp)
+        diffusivity = (self._k) / (self._rho * self._cp)
         return diffusivity
 
     #  kappa = property(getkappa, "diffusivity")
@@ -93,11 +94,11 @@ class VariableHeatCapacity(MantleProperties):
     def getcp(self, T=295):
         """Get heat capacity."""
         new_heatcap = (
-                995.1
-                + (1343.0 * ((T) ** (-0.5)))
-                - (2.887 * (10 ** 7.0) * ((T) ** (-2.0)))
-                - (6.166 * (10.0 ** (-2.0)) * (T) ** (-3.0))
-            )
+            995.1
+            + (1343.0 * ((T) ** (-0.5)))
+            - (2.887 * (10 ** 7.0) * ((T) ** (-2.0)))
+            - (6.166 * (10.0 ** (-2.0)) * (T) ** (-3.0))
+        )
         self._cp = new_heatcap
         return self._cp
 
@@ -108,36 +109,36 @@ class VariableConductivity(MantleProperties):
     def getk(self, T=295, P=0.1):
         """Get conductivity."""
         new_cond = (
-                80.4205952575632
-                * (
-                    1.3193574749943 * T ** (-0.5)
-                    + 0.977581998039333
-                    - 28361.7649315602 / T ** 2.0
-                    - 6.05745211527538e-5 / T ** 3.0
-                )
-                * (1.0 / T) ** 0.5
+            80.4205952575632
+            * (
+                1.3193574749943 * T ** (-0.5)
+                + 0.977581998039333
+                - 28361.7649315602 / T ** 2.0
+                - 6.05745211527538e-5 / T ** 3.0
             )
+            * (1.0 / T) ** 0.5
+        )
         self._k = new_cond
         return self._k
 
     def getdkdT(self, T=295):
         """Get conductivity prime."""
         k_prime = (
-                80.4205952575632
-                * (
-                    -0.659678737497148 * T ** (-1.5)
-                    + 56723.5298631204 / T ** 3.0
-                    + 0.000181723563458261 / T ** 4.0
-                )
-                * (1.0 / T) ** 0.5
-                - 40.2102976287816
-                * (
-                    1.3193574749943 * T ** (-0.5)
-                    + 0.977581998039333
-                    - 28361.7649315602 / T ** 2.0
-                    - 6.05745211527538e-5 / T ** 3.0
-                )
-                * (1.0 / T) ** 0.5
-                / T
+            80.4205952575632
+            * (
+                -0.659678737497148 * T ** (-1.5)
+                + 56723.5298631204 / T ** 3.0
+                + 0.000181723563458261 / T ** 4.0
             )
+            * (1.0 / T) ** 0.5
+            - 40.2102976287816
+            * (
+                1.3193574749943 * T ** (-0.5)
+                + 0.977581998039333
+                - 28361.7649315602 / T ** 2.0
+                - 6.05745211527538e-5 / T ** 3.0
+            )
+            * (1.0 / T) ** 0.5
+            / T
+        )
         return k_prime

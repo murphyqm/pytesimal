@@ -90,32 +90,24 @@
 <li class="toctree-l1"><a class="reference internal" href="README.html">Pytesimal</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pytesimal package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.core_cooling">pytesimal.core_cooling module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_analysis">pytesimal.draft_analysis module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_cond_cooling_2">pytesimal.draft_cond_cooling_2 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_core_functions_2">pytesimal.draft_core_functions_2 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mainmodule">pytesimal.draft_mainmodule module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mantle_properties">pytesimal.draft_mantle_properties module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pytesimal-draft-mantle-timestepping-2-module">pytesimal.draft_mantle_timestepping_2 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.load_plot_save">pytesimal.load_plot_save module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.plotting">pytesimal.plotting module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pytesimal-quick-edit-draft-mantle-timestepping-moving-core-module">pytesimal.quick_edit_draft_mantle_timestepping_moving_core module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pytesimal</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">pytesimal package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.core_cooling">pytesimal.core_cooling module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_analysis">pytesimal.draft_analysis module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_cond_cooling_2">pytesimal.draft_cond_cooling_2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_core_functions_2">pytesimal.draft_core_functions_2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_mainmodule">pytesimal.draft_mainmodule module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_mantle_properties">pytesimal.draft_mantle_properties module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pytesimal-draft-mantle-timestepping-2-module">pytesimal.draft_mantle_timestepping_2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.load_plot_save">pytesimal.load_plot_save module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.plotting">pytesimal.plotting module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pytesimal-quick-edit-draft-mantle-timestepping-moving-core-module">pytesimal.quick_edit_draft_mantle_timestepping_moving_core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal">Module contents</a></li>
 </ul>
 </li>
@@ -192,42 +184,6 @@
 <h1>pytesimal package<a class="headerlink" href="#pytesimal-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pytesimal.core_cooling">
-<span id="pytesimal-core-cooling-module"></span><h2>pytesimal.core_cooling module<a class="headerlink" href="#module-pytesimal.core_cooling" title="Permalink to this headline">¶</a></h2>
-<p>Function to calculate when the core solidifies.</p>
-<p>See function docstring. To be incorporated into another module.</p>
-<dl class="py function">
-<dt id="pytesimal.core_cooling.core_freezing">
-<code class="sig-prename descclassname"><span class="pre">pytesimal.core_cooling.</span></code><code class="sig-name descname"><span class="pre">core_freezing</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coretemp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_core_melting</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_cooling.core_freezing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate when the core starts and finishes solidifying.</p>
-<p>Takes core temperature and returns boolean array of when the core is
-below the freezing/melting temperature</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>coretemp</strong> (<em>ARRAY</em>) – Array of temperatures in the core.</p></li>
-<li><p><strong>max_time</strong> (<em>FLOAT</em>) – Length of time the model runs for.</p></li>
-<li><p><strong>times</strong> (<em>ARRAY</em>) – Array from 0 to the max time +0.5* the timestep, with a spacing equal
-to the timestep</p></li>
-<li><p><strong>latent</strong> (<em>LIST</em>) – List of total latent heat extracted since core began freezing, at each
-timestep</p></li>
-<li><p><strong>temp_core_melting</strong> (<em>FLOAT</em>) – DMelting point of core material (in K)</p></li>
-<li><p><strong>timestep</strong> (<em>FLOAT</em><em>, </em><em>optional</em>) – Discretisation timestep in seconds. The default is 1E11.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>core_frozen</strong> (<em>boolean array where temperature &lt;= 1200</em>)</p></li>
-<li><p><strong>times_frozen</strong> (<em>array of indices of times where the temp &lt;= 1200</em>)</p></li>
-<li><p><strong>time_core_frozen</strong> (<em>when the core starts to freeze, in seconds</em>)</p></li>
-<li><p><strong>fully_frozen</strong> (<em>when the core finished freezing, in seconds</em>)</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
 <div class="section" id="module-pytesimal.draft_analysis">
 <span id="pytesimal-draft-analysis-module"></span><h2>pytesimal.draft_analysis module<a class="headerlink" href="#module-pytesimal.draft_analysis" title="Permalink to this headline">¶</a></h2>
@@ -318,82 +274,6 @@ contour crosses this depth during core solidification</p>
 <dd class="field-odd"><p>TYPE</p>
 </dd>
 </dl>
-</dd></dl>
-
-</div>
-<div class="section" id="module-pytesimal.draft_cond_cooling_2">
-<span id="pytesimal-draft-cond-cooling-2-module"></span><h2>pytesimal.draft_cond_cooling_2 module<a class="headerlink" href="#module-pytesimal.draft_cond_cooling_2" title="Permalink to this headline">¶</a></h2>
-<p>Created on Mon Feb 17 08:41:44 2020.</p>
-<p>&#64;author: eememq</p>
-<dl class="py function">
-<dt id="pytesimal.draft_cond_cooling_2.conductive_cooling">
-<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_cond_cooling_2.</span></code><code class="sig-name descname"><span class="pre">conductive_cooling</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.22100122100122e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'None'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_csv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_planet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_size_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.032</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_core_melting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1200.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">olivine_cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">olivine_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_param_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmb_conductivity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">850.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7800.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1600.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_temp_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1600.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_latent_heat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">270000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa_reg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_cap_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_lin_term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_timings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'n'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_cond_cooling_2.conductive_cooling" title="Permalink to this definition">¶</a></dt>
-<dd><p>Conductive cooling model.</p>
-<p>Basic output is time for core to start freezing, time for core to end
-freezing, chosen B and k0 calculated from kappa in a filed called
-basic_output.pickle in the order:</p>
-<blockquote>
-<div><p>max_time,time_core_frozen,fully_frozen,B,k0_mantle,kappa</p>
-</div></blockquote>
-<p>mandatory arguments:</p>
-<blockquote>
-<div><p>run_ID - a unique ID to save output files under
-folder - a directory name to save output files in. If it does not
-match a current directory, a directory will be created.</p>
-</div></blockquote>
-<p>optional arguments:</p>
-<blockquote>
-<div><p>Physical Parameters
-kappa: default is 5E-7</p>
-<blockquote>
-<div><p>diffusivity that sets the conductivity or in the case of temp
-dependent conductivity, sets the k0_mantle for the equation</p>
-</div></blockquote>
-<dl class="simple">
-<dt>B: default is 0.000</dt><dd><p>set to a range of values between positive infinity and -0.0003 to
-change dependence on temperature</p>
-</dd>
-<dt>model_type: default is 4.</dt><dd><p>1: for constant conductivity
-2: for simple variable with linear function
-3: for more realistic conductivity case
-4: simple variable conductivity with separated components
-5: more realistic case with separated components
-7: constant conductivity approximated to analytical soln of sphere
-8: simple var conductivity with separated components but non-lin=0
-note - 6 currently does not work, was previous iteration of 7</p>
-</dd>
-<dt>plotting: default is “None”</dt><dd><p>“None”: no plots produced
-“both”: both temperature and cooling rate plots produced
-“temp”: temperature plot
-“rate”: cooling rate plot</p>
-</dd>
-<dt>save_array: default is “n”</dt><dd><p>“y”: save array of points to plot later
-“n”: do not save numpy array</p>
-</dd>
-<dt>save_csv: default is “n”</dt><dd><p>“y”: save csv files of temperatures at variousdepths for plotting
-“n”: do not save csv files. Data can be pulled from array above if
-that is set to “y”.</p>
-</dd>
-<dt>timestep: default is 1E11</dt><dd><p>if Runtime overflow warnings are raised, reduce timestep to
-satisfy courant criterion</p>
-</dd>
-<dt>r_planet: default is 200000 m</dt><dd><p>given in m</p>
-</dd>
-<dt>core size fraction: default is 0.5</dt><dd><p>fraction of the total radius that is core</p>
-</dd>
-<dt>reg_fraction: default is 0.0</dt><dd><p>fraction of the total radius that is regolith. To match Bryson,
-set to 0.04</p>
-</dd>
-<dt>max_time: default is 400 Myr</dt><dd><p>This is the total time the model will run for. Suggested values
-for different radii are given below in a comment.</p>
-</dd>
-<dt>save_param_file: default is “y”</dt><dd><p>Select y if you want a text file output at the end of each run
-with parameters</p>
-</dd>
-<dt>reg_percent: default is “y”</dt><dd><p>Select “n” to define regolith as percentage of 200 km instead</p>
-</dd>
-</dl>
-</div></blockquote>
 </dd></dl>
 
 </div>
@@ -747,69 +627,6 @@ the directory can be checked with the <cite>check_folder_exists()</cite> functio
 image named after the data filename</p>
 </dd></dl>
 
-</div>
-<div class="section" id="module-pytesimal.plotting">
-<span id="pytesimal-plotting-module"></span><h2>pytesimal.plotting module<a class="headerlink" href="#module-pytesimal.plotting" title="Permalink to this headline">¶</a></h2>
-<p>Created on Sun Oct 11 20:21:50 2020.</p>
-<p>&#64;author: Maeve Murphy Quinlan</p>
-<p>Script to load example data stored as a compressed NumPy array and produce a
-simple illustrative heatmap.</p>
-<dl class="py function">
-<dt id="pytesimal.plotting.get_million_years_formatters">
-<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">get_million_years_formatters</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.get_million_years_formatters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a matplotlib formatters.</p>
-<p>Creates two matplotlib formatters, one to go from timesteps to myrs and
-one to go from cooling rate per timestep to cooling rate per million years.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pytesimal.plotting.plot_coolingrate_history">
-<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">plot_coolingrate_history</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dT_by_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dT_by_dt_core</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.plot_coolingrate_history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate a heat map of cooling rate vs time.</p>
-<p>Generate a heat map of cooling rate vs time, with the colormap showing
-variation in cooling rate.</p>
-<p>Input cooling rate in a n-steps by n-depths array “dT_by_dt” for the
-mantle and n-steps by n-depths array “dT_by_dt_core” for the core.
-“timestep” is the length of a timestep and “maxtime” is the maximum time
-(both in seconds).</p>
-<p>Optional arguments fig and ax can be set to plot on existing matplotlib
-figure and axis objects. Passing a string via outfile causes the figure
-to be saved as an image in a file.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pytesimal.plotting.plot_temperature_history">
-<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">plot_temperature_history</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coretemp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.plot_temperature_history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generate a heat map of depth vs time; colormap shows variation in temp.</p>
-<p>Input temperature in a n-steps by n-depths array “temperatures” for the
-mantle and n-steps by n-depths array “coretemp” for the core. “timestep”
-is the length of a timestep and “maxtime” is the maximum time (both in
-seconds).</p>
-<p>Optional arguments fig and ax can be set to plot on existing matplotlib
-figure and axis objects. Passing a string via outfile causes the figure
-to be saved as an image in a file.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pytesimal.plotting.read_datafile">
-<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">read_datafile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.read_datafile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read the contents of a model run into numpy arrays.</p>
-<p>Reads the content of the numpy ‘npz’ data file representing
-a model run and returns arrays of the mntle temperature,
-core temperature, and cooling rates of the mantle and core.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pytesimal.plotting.two_in_one">
-<code class="sig-prename descclassname"><span class="pre">pytesimal.plotting.</span></code><code class="sig-name descname"><span class="pre">two_in_one</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coretemp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dT_by_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dT_by_dt_core</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.plotting.two_in_one" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a heat map of depth vs time; colormap shows variation in temp.</p>
-<p>Change save=”n” to save=”y” when function is called to produce a png image
-named after the data filename</p>
-</dd></dl>
-
-</div>
-<div class="section" id="pytesimal-quick-edit-draft-mantle-timestepping-moving-core-module">
-<h2>pytesimal.quick_edit_draft_mantle_timestepping_moving_core module<a class="headerlink" href="#pytesimal-quick-edit-draft-mantle-timestepping-moving-core-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-pytesimal">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pytesimal" title="Permalink to this headline">¶</a></h2>

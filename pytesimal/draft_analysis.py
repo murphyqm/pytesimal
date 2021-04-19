@@ -7,8 +7,10 @@ by murphyqm
 """
 import numpy as np
 
-def core_freezing(coretemp, max_time, times, latent, temp_core_melting,
-                  timestep=1E11):
+
+def core_freezing(
+    coretemp, max_time, times, latent, temp_core_melting, timestep=1e11
+):
     """
     Calculate when the core starts and finishes solidifying.
 
@@ -48,26 +50,36 @@ def core_freezing(coretemp, max_time, times, latent, temp_core_melting,
 
     time_core_frozen = 0.0
     if time_core_frozen >= max_time or len(times_frozen) == 0.0:
-        print('Core freezes after max time')
+        print("Core freezes after max time")
         time_core_frozen = 0.0
         fully_frozen = 0.0
     else:
         time_core_frozen = times_frozen[0]
         # first time the temperature is less than 1200K
-        time_core_frozen = (time_core_frozen)*(timestep)  # convert to seconds
+        time_core_frozen = (time_core_frozen) * (
+            timestep
+        )  # convert to seconds
 
     # find time core finishes freezing, time when latent heat is all
     # gone + time core started to freeze
     fully_frozen = times[len(latent)] + time_core_frozen
-    print("core_frozen: " + str(core_frozen) + "; times_frozen: "
-          + str(times_frozen) + "; time_core_frozen: " + str(time_core_frozen)
-          + "; fully_frozen: " + str(fully_frozen))
-    return(core_frozen, times_frozen, time_core_frozen, fully_frozen)
+    print(
+        "core_frozen: "
+        + str(core_frozen)
+        + "; times_frozen: "
+        + str(times_frozen)
+        + "; time_core_frozen: "
+        + str(time_core_frozen)
+        + "; fully_frozen: "
+        + str(fully_frozen)
+    )
+    return (core_frozen, times_frozen, time_core_frozen, fully_frozen)
 
 
 def cooling_rate(temperature_array, timestep):
     dTdt = np.gradient(temperature_array, timestep, axis=1)
     return dTdt
+
 
 """
 Cooling rate calculation.
@@ -83,7 +95,7 @@ tetrataenite bandwidth to modelled Ni diffusion in kamacite and taenite.
 """
 
 
-def cooling_rate_cloudyzone_diameter(d): # TODO add reference
+def cooling_rate_cloudyzone_diameter(d):  # TODO add reference
     """
     Cooling rate calculated using cloudy zone particle diameter in nm.
 
@@ -112,6 +124,7 @@ def cooling_rate_to_seconds(cooling_rate):
     myr = 3.1556926e13
     new_cooling_rate = cooling_rate / myr  # /1000000/365/24/60/60 # fix to myr
     return new_cooling_rate
+
 
 def meteorite_depth_and_timing(
     CR,

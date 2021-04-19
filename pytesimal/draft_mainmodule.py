@@ -25,7 +25,7 @@ def set_up(
     dr=1000.0,
 ):
     # Set up list of timesteps
-    myr = 3.1556926e13 # seconds in a million years
+    myr = 3.1556926e13  # seconds in a million years
     max_time = max_time * myr  # max time in seconds
     times = np.arange(0, max_time + 0.5 * timestep, timestep)
 
@@ -48,7 +48,7 @@ def set_up(
     mantle_temperature_array = np.zeros((radii.size, times.size))
     core_temperature_array = np.zeros((core_radii.size, times.size))
 
-    return(
+    return (
         r_core,
         radii,
         core_radii,
@@ -56,4 +56,5 @@ def set_up(
         where_regolith,
         times,
         mantle_temperature_array,
-        core_temperature_array)
+        core_temperature_array,
+    )
