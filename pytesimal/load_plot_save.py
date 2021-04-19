@@ -23,6 +23,7 @@ def check_folder_exists(folder):
 
 
 def make_default_param_file(filepath='example_input_file_with_default_parameters.txt'):
+    """Save an example parameter json file with default parameters."""
     default_variables = {'run_ID': 'example_default',
                          'folder': 'example_default',
                          'timestep': 1e11,
@@ -52,6 +53,7 @@ def make_default_param_file(filepath='example_input_file_with_default_parameters
 
 
 def load_params_from_file(filepath='example_input_file_with_default_parameters.txt'):
+    """Load parameters from a json file and return variable values."""
     with open(filepath) as json_file:
         data = json.load(json_file)
         run_ID = data['run_ID']
@@ -91,6 +93,80 @@ def save_params_and_results(result_filename, run_ID, folder, timestep, r_planet,
                             kappa_reg, dr, cond_constant, density_constant,
                             heat_cap_constant, time_core_frozen, fully_frozen,
                             meteorite_results="None given"):
+    """
+    Save parameters and results from model run to a json file.
+
+    Save the parameters used, core crystallisation timing, and meteorite
+    results to a json file. The resulting file can also be read in as a
+    parameter file to reproduce the same modelling run.
+
+    Meteorite results can be excluded, or can be passed in as a string, value,
+    or dictionary of results.
+
+    Parameters
+    ----------
+    result_filename : str
+        Filename without file suffix; .txt will be appended when the file is
+        saved.
+    run_ID : str
+        Identifier for the specific model run.
+    folder : str
+        Absolute path to directory where file is to be saved. Existence of
+        the directory can be checked with the `check_folder_exists()` function.
+    timestep : float
+        The timestep used in numerical method.
+    r_planet : float
+        The radius of the planet in m
+    core_size_factor : float
+        The core size as a fraction of the total planet radius.
+    reg_fraction : float
+        The regolith thickness as a fraction of the total planet radius.
+    max_time : float
+        The total run-time of the model, in millions of years (Myr).
+    temp_core_melting : float
+        The melting temperature of the core.
+    olivine_cp: float
+        The heat capacity of olivine.
+    olivine_density : float
+         The density of olivine.
+    cmb_conductivity : float
+        The conductivity of the mantle.
+    core_cp : float
+        The heat capacity of the core.
+    core_density : float
+        The density of the core.
+    temp_init : float, list, numpy array
+        The initial temperature of the body.
+    temp_surface : float
+        The surface temperature of the planet.
+    core_temp_init : float
+        The initial temperature of the core
+    core_latent_heat : float
+        Te latent heat of crystallisation of the core.
+    kappa_reg : float
+        The regolith constant diffusivity
+    dr : float
+        The radial step used in the numerical model.
+    cond_constant : str
+        Flag of `y` or `n` to specify if mantle conductivity is constant.
+    density_constant : str
+        Flag of `y` or `n` to specify if mantle density is constant.
+    heat_cap_constant : str
+        Flag of `y` or `n` to specify if mantle heat capacity is constant.
+    time_core_frozen : float
+        Time when the core begins to freeze in Myr.
+    fully_frozen : float
+        Time when the core finishes freezing, in Myr.
+    meteorite_results : dict, str, float, list
+        Depth and timing results of meteorites, can be passed as a dictionary
+        of results for different samples, as a list of results, or as a single
+        result in the form of a float or string.
+
+    Returns
+    -------
+    File is saved to `folder`/`result_filename`.txt in the json format.
+
+    """
     myr = 3.1556926e13
     data = {'run_ID': run_ID,
             'folder': folder,
@@ -129,6 +205,35 @@ def save_result_arrays(result_filename,
                        core_temperature_array,
                        mantle_cooling_rates,
                        core_cooling_rates):
+    """
+    Save results as a compressed Numpy array (npz).
+
+    Result arrays of temperatures and cooling rates for both the mantle and the
+    core (numpy arrays) are saved to a specified file.
+
+    Parameters
+    ----------
+    result_filename : str
+        Filename without file suffix; .npz will be appended when the file is
+        saved.
+    folder : str
+        Absolute path to directory where file is to be saved. Existence of
+        the directory can be checked with the `check_folder_exists()` function.
+    mantle_temperature_array : numpy.ndarray
+        Temperatures in the mantle for all radii through time.
+    core_temperature_array : numpy.ndarray
+        Temperatures in the core through time.
+    mantle_cooling_rates : numpy.ndarray
+        Cooling rates in the mantle for all radii through time.
+    core_cooling_rates : numpy.ndarray
+        Cooling rates in the core trhough time.
+
+    Returns
+    -------
+    File is saved to `folder`/`result_filename`.npz in the compressed Numpy
+    array format.
+
+    """
     np.savez_compressed(
         f'{folder}/{result_filename}.npz',
         temperatures=mantle_temperature_array,
@@ -158,7 +263,7 @@ def read_datafile(filepath):
 
 def get_million_years_formatters(timestep, maxtime):
     """
-    Return a matplotlib formatters.
+    Return a matplotlib formatter.
 
     Creates two matplotlib formatters, one to go from timesteps to myrs and
     one to go from cooling rate per timestep to cooling rate per million years.
@@ -201,12 +306,12 @@ def plot_temperature_history(
     """
     Generate a heat map of depth vs time; colormap shows variation in temp.
 
-    Input temperature in a n-steps by n-depths array "temperatures" for the
-    mantle and n-steps by n-depths array "coretemp" for the core. "timestep"
-    is the length of a timestep and "maxtime" is the maximum time (both in
+    Input temperature in a n-steps by n-depths array `temperatures` for the
+    mantle and n-steps by n-depths array `coretemp` for the core. `timestep`
+    is the length of a timestep and `maxtime` is the maximum time (both in
     seconds).
 
-    Optional arguments fig and ax can be set to plot on existing matplotlib
+    Optional arguments `fig` and `ax` can be set to plot on existing matplotlib
     figure and axis objects. Passing a string via outfile causes the figure
     to be saved as an image in a file.
 
@@ -272,9 +377,9 @@ def plot_coolingrate_history(
     Generate a heat map of cooling rate vs time, with the colormap showing
     variation in cooling rate.
 
-    Input cooling rate in a n-steps by n-depths array "dT_by_dt" for the
-    mantle and n-steps by n-depths array "dT_by_dt_core" for the core.
-    "timestep" is the length of a timestep and "maxtime" is the maximum time
+    Input cooling rate in a n-steps by n-depths array `dT_by_dt` for the
+    mantle and n-steps by n-depths array `dT_by_dt_core` for the core.
+    `timestep` is the length of a `timestep` and `maxtime` is the maximum time
     (both in seconds).
 
     Optional arguments fig and ax can be set to plot on existing matplotlib
@@ -341,8 +446,8 @@ def two_in_one(
     """
     Return a heat map of depth vs time; colormap shows variation in temp.
 
-    Change save="n" to save="y" when function is called to produce a png image
-    named after the data filename
+    Change `save`="n" to `save`="y" when function is called to produce a png
+    image named after the data filename
 
     """
     fig, axs = plt.subplots(2, 1, figsize=(fig_w, fig_h), sharey=True)
