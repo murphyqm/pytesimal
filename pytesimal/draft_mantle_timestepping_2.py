@@ -17,7 +17,6 @@ import numpy as np
 # instantiated inside the mantle_timestepping function...
 
 import draft_mantle_properties
-import draft_core_functions_2
 
 
 class MantleBC:

@@ -6,7 +6,7 @@ Created on Mon Jan 25 17:01:06 2021
 @author: maeve
 """
 
-
+from context import draft_mantle_timestepping_2 as mtt
 from context import draft_core_functions_2 as new_core_function_2
 import numpy as np
 import pytest
@@ -42,7 +42,7 @@ def test_new_core_unit():
     radii = np.arange(10000.0, 50000.0, 1000.0)
     times = np.arange(0, 100 + 0.5 * 1.0, 1.0)
     temperatures = np.zeros((radii.size, times.size))
-    cmb_energy = new_core_function_2.EnergyExtractedAcrossCMB(outer_r=10000.0,
+    cmb_energy = mtt.EnergyExtractedAcrossCMB(outer_r=10000.0,
                                                           timestep=1.0,
                                                           radius_step=1000.0)
 

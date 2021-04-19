@@ -45,77 +45,117 @@ def check_folder_exists(folder):
         os.makedirs(str(folder))
 
 
-def make_default_param_file(filepath='example_params.txt'):
+def make_default_param_file(filepath="example_params.txt"):
     """Save an example parameter json file with default parameters."""
-    default_variables = {'run_ID': 'example_default',
-                         'folder': 'example_default',
-                         'timestep': 1e11,
-                         'r_planet': 250000.0,
-                         'core_size_factor': 0.5,
-                         'reg_fraction': 0.032,
-                         'max_time': 400,
-                         'temp_core_melting': 1200.0,
-                         'olivine_cp': 819.0,
-                         'olivine_density': 3341.0,
-                         'cmb_conductivity': 3.0,
-                         'core_cp': 850.0,
-                         'core_density': 7800.0,
-                         'temp_init': 1600.0,
-                         'temp_surface': 250.0,
-                         'core_temp_init': 1600.0,
-                         'core_latent_heat': 270000.0,
-                         'kappa_reg': 5.0e-8,
-                         'dr': 1000.0,
-                         'cond_constant': "y",
-                         'density_constant': "y",
-                         'heat_cap_constant': "y", }
+    default_variables = {
+        "run_ID": "example_default",
+        "folder": "example_default",
+        "timestep": 1e11,
+        "r_planet": 250000.0,
+        "core_size_factor": 0.5,
+        "reg_fraction": 0.032,
+        "max_time": 400,
+        "temp_core_melting": 1200.0,
+        "olivine_cp": 819.0,
+        "olivine_density": 3341.0,
+        "cmb_conductivity": 3.0,
+        "core_cp": 850.0,
+        "core_density": 7800.0,
+        "temp_init": 1600.0,
+        "temp_surface": 250.0,
+        "core_temp_init": 1600.0,
+        "core_latent_heat": 270000.0,
+        "kappa_reg": 5.0e-8,
+        "dr": 1000.0,
+        "cond_constant": "y",
+        "density_constant": "y",
+        "heat_cap_constant": "y",
+    }
 
-    with open(filepath,
-              'w') as file:
+    with open(filepath, "w") as file:
         json.dump(default_variables, file, indent=4)
 
 
-def load_params_from_file(filepath='example_params.txt'):
+def load_params_from_file(filepath="example_params.txt"):
     """Load parameters from a json file and return variable values."""
     with open(filepath) as json_file:
         data = json.load(json_file)
-        run_ID = data['run_ID']
-        folder = data['folder']
-        timestep = data['timestep']
-        r_planet = data['r_planet']
-        core_size_factor = data['core_size_factor']
-        reg_fraction = data['reg_fraction']
-        max_time = data['max_time']
-        temp_core_melting = data['temp_core_melting']
-        olivine_cp = data['olivine_cp']
-        olivine_density = data['olivine_density']
-        cmb_conductivity = data['cmb_conductivity']
-        core_cp = data['core_cp']
-        core_density = data['core_density']
-        temp_init = data['temp_init']
-        temp_surface = data['temp_surface']
-        core_temp_init = data['core_temp_init']
-        core_latent_heat = data['core_latent_heat']
-        kappa_reg = data['kappa_reg']
-        dr = data['dr']
-        cond_constant = data['cond_constant']
-        density_constant = data['density_constant']
-        heat_cap_constant = data['heat_cap_constant']
-        return (run_ID, folder, timestep, r_planet, core_size_factor,
-                reg_fraction, max_time, temp_core_melting, olivine_cp,
-                olivine_density, cmb_conductivity, core_cp, core_density,
-                temp_init, temp_surface, core_temp_init, core_latent_heat,
-                kappa_reg, dr, cond_constant, density_constant,
-                heat_cap_constant)
+        run_ID = data["run_ID"]
+        folder = data["folder"]
+        timestep = data["timestep"]
+        r_planet = data["r_planet"]
+        core_size_factor = data["core_size_factor"]
+        reg_fraction = data["reg_fraction"]
+        max_time = data["max_time"]
+        temp_core_melting = data["temp_core_melting"]
+        olivine_cp = data["olivine_cp"]
+        olivine_density = data["olivine_density"]
+        cmb_conductivity = data["cmb_conductivity"]
+        core_cp = data["core_cp"]
+        core_density = data["core_density"]
+        temp_init = data["temp_init"]
+        temp_surface = data["temp_surface"]
+        core_temp_init = data["core_temp_init"]
+        core_latent_heat = data["core_latent_heat"]
+        kappa_reg = data["kappa_reg"]
+        dr = data["dr"]
+        cond_constant = data["cond_constant"]
+        density_constant = data["density_constant"]
+        heat_cap_constant = data["heat_cap_constant"]
+        return (
+            run_ID,
+            folder,
+            timestep,
+            r_planet,
+            core_size_factor,
+            reg_fraction,
+            max_time,
+            temp_core_melting,
+            olivine_cp,
+            olivine_density,
+            cmb_conductivity,
+            core_cp,
+            core_density,
+            temp_init,
+            temp_surface,
+            core_temp_init,
+            core_latent_heat,
+            kappa_reg,
+            dr,
+            cond_constant,
+            density_constant,
+            heat_cap_constant,
+        )
 
 
-def save_params_and_results(result_filename, run_ID, folder, timestep, r_planet, core_size_factor,
-                            reg_fraction, max_time, temp_core_melting, olivine_cp,
-                            olivine_density, cmb_conductivity, core_cp, core_density,
-                            temp_init, temp_surface, core_temp_init, core_latent_heat,
-                            kappa_reg, dr, cond_constant, density_constant,
-                            heat_cap_constant, time_core_frozen, fully_frozen,
-                            meteorite_results="None given"):
+def save_params_and_results(
+    result_filename,
+    run_ID,
+    folder,
+    timestep,
+    r_planet,
+    core_size_factor,
+    reg_fraction,
+    max_time,
+    temp_core_melting,
+    olivine_cp,
+    olivine_density,
+    cmb_conductivity,
+    core_cp,
+    core_density,
+    temp_init,
+    temp_surface,
+    core_temp_init,
+    core_latent_heat,
+    kappa_reg,
+    dr,
+    cond_constant,
+    density_constant,
+    heat_cap_constant,
+    time_core_frozen,
+    fully_frozen,
+    meteorite_results="None given",
+):
     """
     Save parameters and results from model run to a json file.
 
@@ -191,43 +231,45 @@ def save_params_and_results(result_filename, run_ID, folder, timestep, r_planet,
 
     """
     myr = 3.1556926e13
-    data = {'run_ID': run_ID,
-            'folder': folder,
-            'timestep': timestep,
-            'r_planet': r_planet,
-            'core_size_factor': core_size_factor,
-            'reg_fraction': reg_fraction,
-            'max_time': max_time,
-            'temp_core_melting': temp_core_melting,
-            'olivine_cp': olivine_cp,
-            'olivine_density': olivine_density,
-            'cmb_conductivity': cmb_conductivity,
-            'core_cp': core_cp,
-            'core_density': core_density,
-            'temp_init': temp_init,
-            'temp_surface': temp_surface,
-            'core_temp_init': core_temp_init,
-            'core_latent_heat': core_latent_heat,
-            'kappa_reg': kappa_reg,
-            'dr': dr,
-            'cond_constant': cond_constant,
-            'density_constant': density_constant,
-            'heat_cap_constant': heat_cap_constant,
-            'core_begins_to_freeze': time_core_frozen/myr,
-            'core finishes freezing': fully_frozen/myr,
-            'meteorite_results': meteorite_results
-            }
-    with open(f'{folder}/{result_filename}.txt',
-              'w') as file:
+    data = {
+        "run_ID": run_ID,
+        "folder": folder,
+        "timestep": timestep,
+        "r_planet": r_planet,
+        "core_size_factor": core_size_factor,
+        "reg_fraction": reg_fraction,
+        "max_time": max_time,
+        "temp_core_melting": temp_core_melting,
+        "olivine_cp": olivine_cp,
+        "olivine_density": olivine_density,
+        "cmb_conductivity": cmb_conductivity,
+        "core_cp": core_cp,
+        "core_density": core_density,
+        "temp_init": temp_init,
+        "temp_surface": temp_surface,
+        "core_temp_init": core_temp_init,
+        "core_latent_heat": core_latent_heat,
+        "kappa_reg": kappa_reg,
+        "dr": dr,
+        "cond_constant": cond_constant,
+        "density_constant": density_constant,
+        "heat_cap_constant": heat_cap_constant,
+        "core_begins_to_freeze": time_core_frozen / myr,
+        "core finishes freezing": fully_frozen / myr,
+        "meteorite_results": meteorite_results,
+    }
+    with open(f"{folder}/{result_filename}.txt", "w") as file:
         json.dump(data, file, indent=4)
 
 
-def save_result_arrays(result_filename,
-                       folder,
-                       mantle_temperature_array,
-                       core_temperature_array,
-                       mantle_cooling_rates,
-                       core_cooling_rates):
+def save_result_arrays(
+    result_filename,
+    folder,
+    mantle_temperature_array,
+    core_temperature_array,
+    mantle_cooling_rates,
+    core_cooling_rates,
+):
     """
     Save results as a compressed Numpy array (npz).
 
@@ -258,13 +300,12 @@ def save_result_arrays(result_filename,
 
     """
     np.savez_compressed(
-        f'{folder}/{result_filename}.npz',
+        f"{folder}/{result_filename}.npz",
         temperatures=mantle_temperature_array,
         coretemp=core_temperature_array,
         dT_by_dt=mantle_cooling_rates,
         dT_by_dt_core=core_cooling_rates,
     )
-
 
 
 def read_datafile(filepath):
