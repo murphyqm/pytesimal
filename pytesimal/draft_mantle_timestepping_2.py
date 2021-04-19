@@ -69,6 +69,38 @@ class EnergyExtractedAcrossCMB:
         return heat
 
 
+def set_up_mantle_properties(
+        cond_constant="y",
+        density_constant="y",
+        heat_cap_constant="y",
+        mantle_density=3341.0,
+        mantle_heat_capacity=819.0,
+        mantle_conductivity=3.0,):
+
+    if cond_constant == "y":
+        cond = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
+
+    else:
+        cond = draft_mantle_properties.VariableConductivity()
+
+    if heat_cap_constant == "y":
+
+        heatcap = draft_mantle_properties.MantleProperties(
+            cp=mantle_heat_capacity
+        )
+
+    else:
+        heatcap = draft_mantle_properties.VariableHeatCapacity()
+
+    if density_constant == "y":
+        dens = draft_mantle_properties.MantleProperties(rho=mantle_density)
+
+    else:
+        dens = draft_mantle_properties.VariableDensity()
+
+    return(cond, heatcap, dens)
+
+
 def discretisation(
     core_values,
     latent,
