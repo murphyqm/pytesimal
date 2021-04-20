@@ -55,7 +55,7 @@ def cmb_dirichlet_bc(temperatures, core_boundary_temperature, i):
     return temperatures
 
 
-def cmb_neumann_bc(temperatures, temp_surface, core_boundary_temperature, i):
+def cmb_neumann_bc(temperatures, core_boundary_temperature, i):
     temperatures[0, i] = (4.0 * (temperatures[1, i]) - temperatures[2, i]) / 3.0
     # eq. 6.31 http://folk.ntnu.no/leifh/teaching/tkt4140/._main056.html
 
@@ -135,27 +135,22 @@ def discretisation(
         latent,
         temp_init,
         core_temp_init,
-        temp_core_melting,
+        top_mantle_bc,
+        bottom_mantle_bc,
+        # temp_core_melting,
         temp_surface,
         temperatures,
         dr,
         coretemp_array,
         timestep,
-        core_density,
-        core_cp,
+        # core_density,
+        # core_cp,
         r_core,
-        core_latent_heat,
+        # core_latent_heat,
         radii,
         times,
         where_regolith,
         kappa_reg,
-        # cond_constant="y",
-        # density_constant="y",
-        # heat_cap_constant="y",
-        # non_lin_term="y",
-        # mantle_density=3341.0,
-        # mantle_heat_capacity=819.0,
-        # mantle_conductivity=3.0,
         cond,
         heatcap,
         dens,
@@ -206,7 +201,7 @@ def discretisation(
     core_boundary_temperature = core_temp_init
     coretemp_array[:, 0] = core_temp_init
     # instantiate boundary conditions
-    boundary_conds = MantleBC()
+    # boundary_conds = MantleBC()
     # instantiate core object and energy extracted
     cmb_energy = EnergyExtractedAcrossCMB(r_core, timestep, dr)
 
@@ -342,10 +337,16 @@ def discretisation(
             # else:
             #     pass
 
-        # set top and bottom temperatures as fixed
-        boundary_conds.dirichlet(
-            temperatures, temp_surface, core_boundary_temperature, i
-        )
+        # top boundary condition
+        temperatures = top_mantle_bc(temperatures, temp_surface, i)
+
+        # bottom boundary condition
+        temperatures = bottom_mantle_bc(
+            temperatures, core_boundary_temperature, i)
+
+        # boundary_conds.dirichlet(
+        #     temperatures, temp_surface, core_boundary_temperature, i
+        # )
         # temperatures[-1, i] = temp_surface
         # temperatures[0, i] = core_boundary_temperature
         cmb_conductivity = cond.getk(temperatures[0, i])

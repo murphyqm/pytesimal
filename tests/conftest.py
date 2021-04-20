@@ -9,6 +9,7 @@ import pytest
 from context import draft_mainmodule as mainmod
 from context import draft_mantle_timestepping_2 as mantle_timestepping
 from context import draft_core_functions_2 as core_function
+from context import draft_mantle_properties as mantle_properties
 
 # @pytest.fixture
 # def do_something():
@@ -41,6 +42,8 @@ def temperature_timestepping():
     core_latent_heat = 270000.0
     kappa_reg = 5e-08
     dr = 1000.0
+    top_mantle_bc = mantle_timestepping.surface_dirichlet_bc
+    bottom_mantle_bc = mantle_timestepping.cmb_dirichlet_bc
 
     (
         r_core,
@@ -64,41 +67,24 @@ def temperature_timestepping():
     )
     (mantle_conductivity,
      mantle_heatcap,
-     mantle_density) = mantle_timestepping.set_up_mantle_properties()
+     mantle_density) = mantle_properties.set_up_mantle_properties()
     (
         mantle_temperature_array,
         core_temperature_array,
         latent,
-        # temp_list_mid_mantle,
-        # temp_list_shal,
-        # temp_list_cmb_5,
-        # A_1list,
-        # B_1list,
-        # C_1list,
-        # delt_list,
-        # A_1listcmb,
-        # B_1listcmb,
-        # C_1listcmb,
-        # delt_listcmb,
-        # A_1listshal,
-        # B_1listshal,
-        # C_1listshal,
-        # delt_listshal,
     ) = mantle_timestepping.discretisation(
         core_values,
         latent,
         temp_init,
         core_temp_init,
-        temp_core_melting,
+        top_mantle_bc,
+        bottom_mantle_bc,
         temp_surface,
         mantle_temperature_array,
         dr,
         core_temperature_array,
         timestep,
-        core_density,
-        core_cp,
         r_core,
-        core_latent_heat,
         radii,
         times,
         where_regolith,

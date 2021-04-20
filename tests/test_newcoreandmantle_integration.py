@@ -11,6 +11,7 @@ import numpy as np
 import pytest
 from context import draft_mantle_timestepping_2 as mtt
 from context import draft_core_functions_2 as core_functions
+from context import draft_mantle_properties as mantle_properties
 
 
 def test_mtt_discretisation():
@@ -20,6 +21,8 @@ def test_mtt_discretisation():
     temperatures = np.zeros((radii.size, times.size))
     coretemp = np.zeros((core.size, times.size))
     where_regolith = np.zeros_like(radii)
+    top_mantle_bc = mtt.surface_dirichlet_bc
+    bottom_mantle_bc = mtt.cmb_dirichlet_bc
     core_values = core_functions.IsothermalEutecticCore(
         temp=1800.0,
         melt=1200.0,
@@ -31,7 +34,7 @@ def test_mtt_discretisation():
     )
     (mantle_conductivity,
      mantle_heatcap,
-     mantle_density) = mtt.set_up_mantle_properties()
+     mantle_density) = mantle_properties.set_up_mantle_properties()
     (
         temperatures,
         coretemp,
@@ -56,16 +59,14 @@ def test_mtt_discretisation():
         latent=[],
         temp_init=1800.0,
         core_temp_init=1800,
-        temp_core_melting=1200.0,
+        top_mantle_bc=top_mantle_bc,
+        bottom_mantle_bc=bottom_mantle_bc,
         temp_surface=100.0,
         temperatures=temperatures,
         dr=1000.0,
         coretemp_array=coretemp,
         timestep=10000.0,
-        core_density=7800.0,
-        core_cp=850.0,
         r_core=10000.0,
-        core_latent_heat=270000.0,
         radii=radii,
         times=times,
         where_regolith=where_regolith,
@@ -73,9 +74,6 @@ def test_mtt_discretisation():
         cond=mantle_conductivity,
         heatcap=mantle_heatcap,
         dens=mantle_density,
-        # cond_constant="y",
-        # density_constant="y",
-        # heat_cap_constant="y",
         non_lin_term="y",
     )
     temp_mean = np.mean(temperatures)
@@ -95,6 +93,8 @@ def test_mtt_vardiscretisation():
     temperatures = np.zeros((radii.size, times.size))
     coretemp = np.zeros((core.size, times.size))
     where_regolith = np.zeros_like(radii)
+    top_mantle_bc = mtt.surface_dirichlet_bc
+    bottom_mantle_bc = mtt.cmb_dirichlet_bc
     core_values = core_functions.IsothermalEutecticCore(
         temp=1800.0,
         melt=1200.0,
@@ -106,9 +106,10 @@ def test_mtt_vardiscretisation():
     )
     (mantle_conductivity,
      mantle_heatcap,
-     mantle_density) = mtt.set_up_mantle_properties(cond_constant="n",
-                                                    density_constant="n",
-                                                    heat_cap_constant="n", )
+     mantle_density) = mantle_properties.set_up_mantle_properties(
+                                                cond_constant="n",
+                                                density_constant="n",
+                                                heat_cap_constant="n",)
     (
         temperatures,
         coretemp,
@@ -133,16 +134,14 @@ def test_mtt_vardiscretisation():
         core_values=core_values,
         temp_init=1800.0,
         core_temp_init=1800,
-        temp_core_melting=1200.0,
+        top_mantle_bc=top_mantle_bc,
+        bottom_mantle_bc=bottom_mantle_bc,
         temp_surface=100.0,
         temperatures=temperatures,
         dr=1000.0,
         coretemp_array=coretemp,
         timestep=10000.0,
-        core_density=7800.0,
-        core_cp=850.0,
         r_core=10000.0,
-        core_latent_heat=270000.0,
         radii=radii,
         times=times,
         where_regolith=where_regolith,
@@ -168,6 +167,8 @@ def test_mtt_discretisation_cold_mantle():
     temperatures = np.zeros((radii.size, times.size))
     coretemp = np.zeros((core.size, times.size))
     where_regolith = np.zeros_like(radii)
+    top_mantle_bc = mtt.surface_dirichlet_bc
+    bottom_mantle_bc = mtt.cmb_dirichlet_bc
     core_values = core_functions.IsothermalEutecticCore(
         temp=1800.0,
         melt=1200.0,
@@ -179,7 +180,7 @@ def test_mtt_discretisation_cold_mantle():
     )
     (mantle_conductivity,
      mantle_heatcap,
-     mantle_density) = mtt.set_up_mantle_properties()
+     mantle_density) = mantle_properties.set_up_mantle_properties()
     (
         temperatures,
         coretemp,
@@ -204,16 +205,14 @@ def test_mtt_discretisation_cold_mantle():
         core_values=core_values,
         temp_init=1400.0,
         core_temp_init=1800,
-        temp_core_melting=1200.0,
+        top_mantle_bc=top_mantle_bc,
+        bottom_mantle_bc=bottom_mantle_bc,
         temp_surface=100.0,
         temperatures=temperatures,
         dr=1000.0,
         coretemp_array=coretemp,
         timestep=10000.0,
-        core_density=7800.0,
-        core_cp=850.0,
         r_core=10000.0,
-        core_latent_heat=270000.0,
         radii=radii,
         times=times,
         where_regolith=where_regolith,
@@ -241,6 +240,8 @@ def test_mtt_vardiscretisation_cold_mantle():
     temperatures = np.zeros((radii.size, times.size))
     coretemp = np.zeros((core.size, times.size))
     where_regolith = np.zeros_like(radii)
+    top_mantle_bc = mtt.surface_dirichlet_bc
+    bottom_mantle_bc = mtt.cmb_dirichlet_bc
     core_values = core_functions.IsothermalEutecticCore(
         temp=1800.0,
         melt=1200.0,
@@ -252,9 +253,10 @@ def test_mtt_vardiscretisation_cold_mantle():
     )
     (mantle_conductivity,
      mantle_heatcap,
-     mantle_density) = mtt.set_up_mantle_properties(cond_constant="n",
-                                                    density_constant="n",
-                                                    heat_cap_constant="n", )
+     mantle_density) = mantle_properties.set_up_mantle_properties(
+                                                cond_constant="n",
+                                                density_constant="n",
+                                                heat_cap_constant="n",)
     (
         temperatures,
         coretemp,
@@ -279,16 +281,14 @@ def test_mtt_vardiscretisation_cold_mantle():
         latent=[],
         temp_init=1200.0,
         core_temp_init=1800,
-        temp_core_melting=1200.0,
+        top_mantle_bc=top_mantle_bc,
+        bottom_mantle_bc=bottom_mantle_bc,
         temp_surface=100.0,
         temperatures=temperatures,
         dr=1000.0,
         coretemp_array=coretemp,
         timestep=10000.0,
-        core_density=7800.0,
-        core_cp=850.0,
         r_core=10000.0,
-        core_latent_heat=270000.0,
         radii=radii,
         times=times,
         where_regolith=where_regolith,

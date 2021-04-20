@@ -142,3 +142,34 @@ class VariableConductivity(MantleProperties):
             / T
         )
         return k_prime
+
+
+def set_up_mantle_properties(
+        cond_constant="y",
+        density_constant="y",
+        heat_cap_constant="y",
+        mantle_density=3341.0,
+        mantle_heat_capacity=819.0,
+        mantle_conductivity=3.0, ):
+    if cond_constant == "y":
+        conductivity = MantleProperties(k=mantle_conductivity)
+
+    else:
+        conductivity = VariableConductivity()
+
+    if heat_cap_constant == "y":
+
+        heat_capacity = MantleProperties(
+            cp=mantle_heat_capacity
+        )
+
+    else:
+        heat_capacity = VariableHeatCapacity()
+
+    if density_constant == "y":
+        density = MantleProperties(rho=mantle_density)
+
+    else:
+        density = VariableDensity()
+
+    return conductivity, heat_capacity, density
