@@ -1,8 +1,5 @@
-pytesimal package
-=================
-
-Submodules
-----------
+API Reference
+=============
 
 pytesimal.draft\_analysis module
 --------------------------------
@@ -52,10 +49,3 @@ pytesimal.load\_plot\_save module
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: pytesimal
-   :members:
-   :undoc-members:
-   :show-inheritance:
