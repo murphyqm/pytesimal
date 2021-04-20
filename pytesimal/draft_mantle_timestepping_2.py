@@ -16,7 +16,7 @@ import numpy as np
 # accepts these as arguments as opposed to the objects being
 # instantiated inside the mantle_timestepping function...
 
-import draft_mantle_properties
+# import draft_mantle_properties
 
 
 class MantleBC:
@@ -99,35 +99,35 @@ class EnergyExtractedAcrossCMB:
         return heat
 
 
-def set_up_mantle_properties(
-        cond_constant="y",
-        density_constant="y",
-        heat_cap_constant="y",
-        mantle_density=3341.0,
-        mantle_heat_capacity=819.0,
-        mantle_conductivity=3.0, ):
-    if cond_constant == "y":
-        conductivity = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
-
-    else:
-        conductivity = draft_mantle_properties.VariableConductivity()
-
-    if heat_cap_constant == "y":
-
-        heat_capacity = draft_mantle_properties.MantleProperties(
-            cp=mantle_heat_capacity
-        )
-
-    else:
-        heat_capacity = draft_mantle_properties.VariableHeatCapacity()
-
-    if density_constant == "y":
-        density = draft_mantle_properties.MantleProperties(rho=mantle_density)
-
-    else:
-        density = draft_mantle_properties.VariableDensity()
-
-    return (conductivity, heat_capacity, density)
+# def set_up_mantle_properties(
+#         cond_constant="y",
+#         density_constant="y",
+#         heat_cap_constant="y",
+#         mantle_density=3341.0,
+#         mantle_heat_capacity=819.0,
+#         mantle_conductivity=3.0, ):
+#     if cond_constant == "y":
+#         conductivity = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
+#
+#     else:
+#         conductivity = draft_mantle_properties.VariableConductivity()
+#
+#     if heat_cap_constant == "y":
+#
+#         heat_capacity = draft_mantle_properties.MantleProperties(
+#             cp=mantle_heat_capacity
+#         )
+#
+#     else:
+#         heat_capacity = draft_mantle_properties.VariableHeatCapacity()
+#
+#     if density_constant == "y":
+#         density = draft_mantle_properties.MantleProperties(rho=mantle_density)
+#
+#     else:
+#         density = draft_mantle_properties.VariableDensity()
+#
+#     return (conductivity, heat_capacity, density)
 
 
 def discretisation(

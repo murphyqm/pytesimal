@@ -10,3 +10,9 @@ required_scripts/output_runs/
 output_runs/
 .idea/
 .ipynb_checkpoints/
+
+# for now, while setting up package:
+MANIFEST
+dist/
+# setup.py
+

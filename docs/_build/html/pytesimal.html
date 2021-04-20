@@ -94,7 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_core_functions_2">pytesimal.draft_core_functions_2 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mainmodule">pytesimal.draft_mainmodule module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mantle_properties">pytesimal.draft_mantle_properties module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pytesimal-draft-mantle-timestepping-2-module">pytesimal.draft_mantle_timestepping_2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mantle_timestepping_2">pytesimal.draft_mantle_timestepping_2 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.load_plot_save">pytesimal.load_plot_save module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal">Module contents</a></li>
 </ul>
@@ -106,7 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_core_functions_2">pytesimal.draft_core_functions_2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_mainmodule">pytesimal.draft_mainmodule module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_mantle_properties">pytesimal.draft_mantle_properties module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pytesimal-draft-mantle-timestepping-2-module">pytesimal.draft_mantle_timestepping_2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.draft_mantle_timestepping_2">pytesimal.draft_mantle_timestepping_2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal.load_plot_save">pytesimal.load_plot_save module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pytesimal">Module contents</a></li>
 </ul>
@@ -231,7 +231,7 @@ below the freezing/melting temperature</p>
 to the timestep</p></li>
 <li><p><strong>latent</strong> (<em>LIST</em>) – List of total latent heat extracted since core began freezing, at each
 timestep</p></li>
-<li><p><strong>temp_core_melting</strong> (<em>FLOAT</em>) – DMelting point of core material (in K)</p></li>
+<li><p><strong>temp_core_melting</strong> (<em>FLOAT</em>) – Melting point of core material (in K)</p></li>
 <li><p><strong>timestep</strong> (<em>FLOAT</em><em>, </em><em>optional</em>) – Discretisation timestep in seconds. The default is 1E11.</p></li>
 </ul>
 </dd>
@@ -448,9 +448,81 @@ of the Pytesimal package:</p>
 
 </dd></dl>
 
+<dl class="py function">
+<dt id="pytesimal.draft_mantle_properties.set_up_mantle_properties">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_properties.</span></code><code class="sig-name descname"><span class="pre">set_up_mantle_properties</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cond_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_cap_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mantle_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mantle_heat_capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mantle_conductivity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_properties.set_up_mantle_properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
-<div class="section" id="pytesimal-draft-mantle-timestepping-2-module">
-<h2>pytesimal.draft_mantle_timestepping_2 module<a class="headerlink" href="#pytesimal-draft-mantle-timestepping-2-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pytesimal.draft_mantle_timestepping_2">
+<span id="pytesimal-draft-mantle-timestepping-2-module"></span><h2>pytesimal.draft_mantle_timestepping_2 module<a class="headerlink" href="#module-pytesimal.draft_mantle_timestepping_2" title="Permalink to this headline">¶</a></h2>
+<p>Modifying mantle timestepping function to take new core object and calculate energy extracted
+Created on Thu Apr 8 16:24:52 2021.</p>
+<p>&#64;author: maeve</p>
+<p>to do: need to move temp array set up outside of the discretisation function.</p>
+<dl class="py class">
+<dt id="pytesimal.draft_mantle_timestepping_2.EnergyExtractedAcrossCMB">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_timestepping_2.</span></code><code class="sig-name descname"><span class="pre">EnergyExtractedAcrossCMB</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outer_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.EnergyExtractedAcrossCMB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Calculate the energy extracted across the cmb in one timestep given the temperature of the mantle.</p>
+<dl class="py method">
+<dt id="pytesimal.draft_mantle_timestepping_2.EnergyExtractedAcrossCMB.energy_extracted">
+<code class="sig-name descname"><span class="pre">energy_extracted</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mantle_temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.EnergyExtractedAcrossCMB.energy_extracted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate energy extracted in one timestep</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pytesimal.draft_mantle_timestepping_2.EnergyExtractedAcrossCMB.power">
+<code class="sig-name descname"><span class="pre">power</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mantle_temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.EnergyExtractedAcrossCMB.power" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate heat (power) extracted in one timestep</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pytesimal.draft_mantle_timestepping_2.MantleBC">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_timestepping_2.</span></code><code class="sig-name descname"><span class="pre">MantleBC</span></code><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.MantleBC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="pytesimal.draft_mantle_timestepping_2.MantleBC.dirichlet">
+<code class="sig-name descname"><span class="pre">dirichlet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_boundary_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.MantleBC.dirichlet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="pytesimal.draft_mantle_timestepping_2.cmb_dirichlet_bc">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_timestepping_2.</span></code><code class="sig-name descname"><span class="pre">cmb_dirichlet_bc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_boundary_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.cmb_dirichlet_bc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pytesimal.draft_mantle_timestepping_2.cmb_neumann_bc">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_timestepping_2.</span></code><code class="sig-name descname"><span class="pre">cmb_neumann_bc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_boundary_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.cmb_neumann_bc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pytesimal.draft_mantle_timestepping_2.dirichlet_bc">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_timestepping_2.</span></code><code class="sig-name descname"><span class="pre">dirichlet_bc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_boundary_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.dirichlet_bc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pytesimal.draft_mantle_timestepping_2.discretisation">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_timestepping_2.</span></code><code class="sig-name descname"><span class="pre">discretisation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_init</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_temp_init</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_mantle_bc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_mantle_bc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coretemp_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_core</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radii</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where_regolith</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatcap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_lin_term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.discretisation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finite difference solver with variable k.</p>
+<p>Uses variable heat capacity, conductivity, density as required.</p>
+<p>Uses diffusivity for regolith layer.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pytesimal.draft_mantle_timestepping_2.neumann_bc">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_timestepping_2.</span></code><code class="sig-name descname"><span class="pre">neumann_bc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_boundary_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.neumann_bc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pytesimal.draft_mantle_timestepping_2.surface_dirichlet_bc">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.draft_mantle_timestepping_2.</span></code><code class="sig-name descname"><span class="pre">surface_dirichlet_bc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_mantle_timestepping_2.surface_dirichlet_bc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-pytesimal.load_plot_save">
 <span id="pytesimal-load-plot-save-module"></span><h2>pytesimal.load_plot_save module<a class="headerlink" href="#module-pytesimal.load_plot_save" title="Permalink to this headline">¶</a></h2>
