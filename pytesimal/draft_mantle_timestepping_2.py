@@ -11,39 +11,6 @@ to do: need to move temp array set up outside of the discretisation function.
 
 import numpy as np
 
-# these relative imports are tripping sphinx up
-# want to change these anyway (so that mantle_timestepping function just
-# accepts these as arguments as opposed to the objects being
-# instantiated inside the mantle_timestepping function...
-
-# import draft_mantle_properties
-
-
-class MantleBC:
-    def __init__(self):
-        pass
-
-    def dirichlet(
-            self, temperatures, temp_surface, core_boundary_temperature, i
-    ):  # TODO maybe this should just be a function
-        temperatures[-1, i] = temp_surface
-        temperatures[0, i] = core_boundary_temperature
-
-
-def dirichlet_bc(temperatures, temp_surface, core_boundary_temperature, i):
-    temperatures[-1, i] = temp_surface
-    temperatures[0, i] = core_boundary_temperature
-    return temperatures
-
-# boundary_cond = dirichlet_bc
-
-
-def neumann_bc(temperatures, temp_surface, core_boundary_temperature, i):
-    temperatures[-1, i] = temp_surface
-    # temperatures[0,i] = temperatures[0,i-1]
-    temperatures[0, i] = (4.0 * (temperatures[1, i]) - temperatures[2, i]) / 3.0
-    # for above see eq 6.31 http://folk.ntnu.no/leifh/teaching/tkt4140/._main056.html
-
 
 def surface_dirichlet_bc(temperatures, temp_surface, i):
     temperatures[-1, i] = temp_surface
@@ -99,37 +66,6 @@ class EnergyExtractedAcrossCMB:
         return heat
 
 
-# def set_up_mantle_properties(
-#         cond_constant="y",
-#         density_constant="y",
-#         heat_cap_constant="y",
-#         mantle_density=3341.0,
-#         mantle_heat_capacity=819.0,
-#         mantle_conductivity=3.0, ):
-#     if cond_constant == "y":
-#         conductivity = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
-#
-#     else:
-#         conductivity = draft_mantle_properties.VariableConductivity()
-#
-#     if heat_cap_constant == "y":
-#
-#         heat_capacity = draft_mantle_properties.MantleProperties(
-#             cp=mantle_heat_capacity
-#         )
-#
-#     else:
-#         heat_capacity = draft_mantle_properties.VariableHeatCapacity()
-#
-#     if density_constant == "y":
-#         density = draft_mantle_properties.MantleProperties(rho=mantle_density)
-#
-#     else:
-#         density = draft_mantle_properties.VariableDensity()
-#
-#     return (conductivity, heat_capacity, density)
-
-
 def discretisation(
         core_values,
         latent,
@@ -163,62 +99,11 @@ def discretisation(
 
     Uses diffusivity for regolith layer.
     """
-    # # putting in some bug tests
-    # print("***/n***/n***/n")
-    # print("Testing modular conductivity!")
-    # print("Constant conductivity: ")
-    # print(cond_constant)
-    # print("Constant density: ")
-    # print(density_constant)
-    # print("Constant heat capacity: ")
-    # print(heat_cap_constant)
 
-    # if cond_constant == "y":
-    #     cond = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
-    #
-    # else:
-    #     cond = draft_mantle_properties.VariableConductivity()
-    #
-    # if heat_cap_constant == "y":
-    #
-    #     heatcap = draft_mantle_properties.MantleProperties(
-    #         cp=mantle_heat_capacity
-    #     )
-    #
-    # else:
-    #     heatcap = draft_mantle_properties.VariableHeatCapacity()
-    #
-    # if density_constant == "y":
-    #     dens = draft_mantle_properties.MantleProperties(rho=mantle_density)
-    #
-    # else:
-    #     dens = draft_mantle_properties.VariableDensity()
-
-    # temp_list_mid_mantle = [temp_init]
-    # temp_list_shal = [temp_init]
-    # temp_list_cmb_5 = [temp_init]
     temperatures[:, 0] = temp_init  # this can be an array or a scalar
     core_boundary_temperature = core_temp_init
     coretemp_array[:, 0] = core_temp_init
-    # instantiate boundary conditions
-    # boundary_conds = MantleBC()
-    # instantiate core object and energy extracted
     cmb_energy = EnergyExtractedAcrossCMB(r_core, timestep, dr)
-
-    # A_1list = []
-    # B_1list = []
-    # C_1list = []
-    # delt_list = []
-    #
-    # A_1listcmb = []
-    # B_1listcmb = []
-    # C_1listcmb = []
-    # delt_listcmb = []
-    #
-    # A_1listshal = []
-    # B_1listshal = []
-    # C_1listshal = []
-    # delt_listshal = []
 
     for i in range(1, len(times[1:]) + 1):
 
@@ -305,38 +190,6 @@ def discretisation(
 
                 temperatures[j, i] = temperatures[j, i - 1] + A_1 + B_1 + C_1
 
-            # checkpoint_mm = radii[int(len(radii) / 2.0)]
-            # checkpoint_cmb = radii[int(2.0 * len(radii) / 3.0)]
-            # checkpoint_shal = radii[int(len(radii) / 3.0)]
-            # if radii[j] == checkpoint_mm:
-            #     temp_list_mid_mantle.append(temperatures[j, i])
-            #     A_1list.append(A_1)
-            #     B_1list.append(B_1)
-            #     C_1list.append(C_1)
-            #     delt_list.append(
-            #         ((temperatures[j, i - 1]) - (temperatures[j, i]))
-            #     )
-            #
-            # elif radii[j] == checkpoint_cmb:
-            #     temp_list_cmb_5.append(temperatures[j, i])
-            #     A_1listcmb.append(A_1)
-            #     B_1listcmb.append(B_1)
-            #     C_1listcmb.append(C_1)
-            #     delt_listcmb.append(
-            #         ((temperatures[j, i - 1]) - (temperatures[j, i]))
-            #     )
-            #
-            # elif radii[j] == checkpoint_shal:
-            #     temp_list_shal.append(temperatures[j, i])
-            #     A_1listshal.append(A_1)
-            #     B_1listshal.append(B_1)
-            #     C_1listshal.append(C_1)
-            #     delt_listshal.append(
-            #         ((temperatures[j, i - 1]) - (temperatures[j, i]))
-            #     )
-            # else:
-            #     pass
-
         # top boundary condition
         temperatures = top_mantle_bc(temperatures, temp_surface, i)
 
@@ -344,11 +197,7 @@ def discretisation(
         temperatures = bottom_mantle_bc(
             temperatures, core_boundary_temperature, i)
 
-        # boundary_conds.dirichlet(
-        #     temperatures, temp_surface, core_boundary_temperature, i
-        # )
-        # temperatures[-1, i] = temp_surface
-        # temperatures[0, i] = core_boundary_temperature
+        # Allow core to cool
         cmb_conductivity = cond.getk(temperatures[0, i])
         power = cmb_energy.power(temperatures, i, cmb_conductivity)
         core_values.extract_heat(power, timestep)
@@ -359,19 +208,4 @@ def discretisation(
         temperatures,
         coretemp_array,
         latent,
-        # temp_list_mid_mantle,
-        # temp_list_shal,
-        # temp_list_cmb_5,
-        # A_1list,
-        # B_1list,
-        # C_1list,
-        # delt_list,
-        # A_1listcmb,
-        # B_1listcmb,
-        # C_1listcmb,
-        # delt_listcmb,
-        # A_1listshal,
-        # B_1listshal,
-        # C_1listshal,
-        # delt_listshal,
     )

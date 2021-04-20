@@ -58,3 +58,8 @@ def set_up(
         mantle_temperature_array,
         core_temperature_array,
     )
+
+
+def workflow():
+    import analysis
+    
