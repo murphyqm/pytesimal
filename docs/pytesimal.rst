@@ -1,10 +1,13 @@
-API Reference
-=============
+pytesimal package
+=================
 
-pytesimal.draft\_analysis module
---------------------------------
+Submodules
+----------
 
-.. automodule:: pytesimal.draft_analysis
+pytesimal.analysis module
+-------------------------
+
+.. automodule:: pytesimal.analysis
    :members:
    :undoc-members:
    :show-inheritance:
@@ -25,22 +28,6 @@ pytesimal.draft\_mainmodule module
    :undoc-members:
    :show-inheritance:
 
-pytesimal.draft\_mantle\_properties module
-------------------------------------------
-
-.. automodule:: pytesimal.draft_mantle_properties
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pytesimal.draft\_mantle\_timestepping\_2 module
------------------------------------------------
-
-.. automodule:: pytesimal.draft_mantle_timestepping_2
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pytesimal.load\_plot\_save module
 ---------------------------------
 
@@ -49,3 +36,26 @@ pytesimal.load\_plot\_save module
    :undoc-members:
    :show-inheritance:
 
+pytesimal.mantle\_properties module
+-----------------------------------
+
+.. automodule:: pytesimal.mantle_properties
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pytesimal.numerical\_methods module
+-----------------------------------
+
+.. automodule:: pytesimal.numerical_methods
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pytesimal
+   :members:
+   :undoc-members:
+   :show-inheritance:

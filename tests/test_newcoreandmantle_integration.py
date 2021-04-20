@@ -9,9 +9,9 @@ Test to check that new core function and mantle are working together correctly
 
 import numpy as np
 import pytest
-from context import draft_mantle_timestepping_2 as mtt
+from context import numerical_methods as mtt
 from context import draft_core_functions_2 as core_functions
-from context import draft_mantle_properties as mantle_properties
+from context import mantle_properties
 
 
 def test_mtt_discretisation():

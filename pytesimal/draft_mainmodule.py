@@ -62,4 +62,6 @@ def set_up(
 
 def workflow():
     import analysis
-    
+    width = 300
+    cr = analysis.cooling_rate_tetra_width(width)
+    return(width)

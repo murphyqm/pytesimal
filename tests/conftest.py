@@ -7,9 +7,9 @@ by murphyqm
 """
 import pytest
 from context import draft_mainmodule as mainmod
-from context import draft_mantle_timestepping_2 as mantle_timestepping
+from context import numerical_methods as mantle_timestepping
 from context import draft_core_functions_2 as core_function
-from context import draft_mantle_properties as mantle_properties
+from context import mantle_properties
 
 # @pytest.fixture
 # def do_something():

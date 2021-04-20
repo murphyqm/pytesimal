@@ -17,8 +17,8 @@ sys.path.insert(
 )
 # sys.path.insert(0, os.path.abspath('../pytesimal/'))
 
-import draft_mantle_timestepping_2  # implements new corev2
+import numerical_methods  # implements new corev2
 import draft_core_functions_2  # new new core
-import draft_mantle_properties  # mantle props as methods within a class
+import mantle_properties  # mantle props as methods within a class
 import draft_mainmodule  # setup functions
 import analysis
