@@ -5,6 +5,8 @@ __pycache__/
 *.pyc
 *.pickle
 
+
 required_scripts/output_runs/
 output_runs/
 .idea/
+.ipynb_checkpoints/

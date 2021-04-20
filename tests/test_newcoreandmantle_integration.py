@@ -29,6 +29,9 @@ def test_mtt_discretisation():
         cp=850.0,
         core_latent_heat=270000.0,
     )
+    (mantle_conductivity,
+     mantle_heatcap,
+     mantle_density) = mtt.set_up_mantle_properties()
     (
         temperatures,
         coretemp,
@@ -67,9 +70,12 @@ def test_mtt_discretisation():
         times=times,
         where_regolith=where_regolith,
         kappa_reg=1.0,
-        cond_constant="y",
-        density_constant="y",
-        heat_cap_constant="y",
+        cond=mantle_conductivity,
+        heatcap=mantle_heatcap,
+        dens=mantle_density,
+        # cond_constant="y",
+        # density_constant="y",
+        # heat_cap_constant="y",
         non_lin_term="y",
     )
     temp_mean = np.mean(temperatures)
@@ -98,6 +104,11 @@ def test_mtt_vardiscretisation():
         cp=850.0,
         core_latent_heat=270000.0,
     )
+    (mantle_conductivity,
+     mantle_heatcap,
+     mantle_density) = mtt.set_up_mantle_properties(cond_constant="n",
+                                                    density_constant="n",
+                                                    heat_cap_constant="n", )
     (
         temperatures,
         coretemp,
@@ -136,9 +147,9 @@ def test_mtt_vardiscretisation():
         times=times,
         where_regolith=where_regolith,
         kappa_reg=1.0,
-        cond_constant="n",
-        density_constant="n",
-        heat_cap_constant="n",
+        cond=mantle_conductivity,
+        heatcap=mantle_heatcap,
+        dens=mantle_density,
         non_lin_term="y",
     )
     temp_mean = np.mean(temperatures)
@@ -166,6 +177,9 @@ def test_mtt_discretisation_cold_mantle():
         cp=850.0,
         core_latent_heat=270000.0,
     )
+    (mantle_conductivity,
+     mantle_heatcap,
+     mantle_density) = mtt.set_up_mantle_properties()
     (
         temperatures,
         coretemp,
@@ -204,9 +218,9 @@ def test_mtt_discretisation_cold_mantle():
         times=times,
         where_regolith=where_regolith,
         kappa_reg=1.0,
-        cond_constant="y",
-        density_constant="y",
-        heat_cap_constant="y",
+        cond=mantle_conductivity,
+        heatcap=mantle_heatcap,
+        dens=mantle_density,
         non_lin_term="y",
     )
     temp_mean = np.mean(temperatures)
@@ -236,6 +250,11 @@ def test_mtt_vardiscretisation_cold_mantle():
         cp=850.0,
         core_latent_heat=270000.0,
     )
+    (mantle_conductivity,
+     mantle_heatcap,
+     mantle_density) = mtt.set_up_mantle_properties(cond_constant="n",
+                                                    density_constant="n",
+                                                    heat_cap_constant="n", )
     (
         temperatures,
         coretemp,
@@ -256,8 +275,8 @@ def test_mtt_vardiscretisation_cold_mantle():
         # C_1listshal,
         # delt_listshal,
     ) = mtt.discretisation(
-        latent=[],
         core_values=core_values,
+        latent=[],
         temp_init=1200.0,
         core_temp_init=1800,
         temp_core_melting=1200.0,
@@ -274,9 +293,9 @@ def test_mtt_vardiscretisation_cold_mantle():
         times=times,
         where_regolith=where_regolith,
         kappa_reg=1.0,
-        cond_constant="n",
-        density_constant="n",
-        heat_cap_constant="n",
+        cond=mantle_conductivity,
+        heatcap=mantle_heatcap,
+        dens=mantle_density,
         non_lin_term="y",
     )
     temp_mean = np.mean(temperatures)
@@ -284,7 +303,8 @@ def test_mtt_vardiscretisation_cold_mantle():
     # delt_listshal_mean = np.mean(delt_listshal)
     # print(temp_mean, coretemp_mean, delt_listshal_mean)
 
-    assert temp_mean == pytest.approx(1161.0663997556733, 0.0000000001)
     assert coretemp_mean == pytest.approx(1799.9985585325398)
+    assert temp_mean == pytest.approx(1161.0663997556733, 0.0000000001)
+    assert temp_mean == pytest.approx(1161.0663997556733, 0.0000000001)
     # assert delt_listshal_mean == pytest.approx(-7.581142508447556e-06)
     print("Success.")

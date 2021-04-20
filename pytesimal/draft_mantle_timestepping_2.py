@@ -24,10 +24,40 @@ class MantleBC:
         pass
 
     def dirichlet(
-        self, temperatures, temp_surface, core_boundary_temperature, i
+            self, temperatures, temp_surface, core_boundary_temperature, i
     ):  # TODO maybe this should just be a function
         temperatures[-1, i] = temp_surface
         temperatures[0, i] = core_boundary_temperature
+
+
+def dirichlet_bc(temperatures, temp_surface, core_boundary_temperature, i):
+    temperatures[-1, i] = temp_surface
+    temperatures[0, i] = core_boundary_temperature
+    return temperatures
+
+# boundary_cond = dirichlet_bc
+
+
+def neumann_bc(temperatures, temp_surface, core_boundary_temperature, i):
+    temperatures[-1, i] = temp_surface
+    # temperatures[0,i] = temperatures[0,i-1]
+    temperatures[0, i] = (4.0 * (temperatures[1, i]) - temperatures[2, i]) / 3.0
+    # for above see eq 6.31 http://folk.ntnu.no/leifh/teaching/tkt4140/._main056.html
+
+
+def surface_dirichlet_bc(temperatures, temp_surface, i):
+    temperatures[-1, i] = temp_surface
+    return temperatures
+
+
+def cmb_dirichlet_bc(temperatures, core_boundary_temperature, i):
+    temperatures[0, i] = core_boundary_temperature
+    return temperatures
+
+
+def cmb_neumann_bc(temperatures, temp_surface, core_boundary_temperature, i):
+    temperatures[0, i] = (4.0 * (temperatures[1, i]) - temperatures[2, i]) / 3.0
+    # eq. 6.31 http://folk.ntnu.no/leifh/teaching/tkt4140/._main056.html
 
 
 class EnergyExtractedAcrossCMB:
@@ -46,25 +76,25 @@ class EnergyExtractedAcrossCMB:
     def energy_extracted(self, mantle_temperatures, i, k):
         """Calculate energy extracted in one timestep"""
         energy = (
-            -self.area
-            * k
-            * (
-                (mantle_temperatures[0, i] - mantle_temperatures[1, i])
-                / self.dr
-            )
-            * self.dt
+                -self.area
+                * k
+                * (
+                        (mantle_temperatures[0, i] - mantle_temperatures[1, i])
+                        / self.dr
+                )
+                * self.dt
         )
         return energy
 
     def power(self, mantle_temperatures, i, k):
         """Calculate heat (power) extracted in one timestep"""
         heat = (
-            -self.area
-            * k
-            * (
-                (mantle_temperatures[0, i] - mantle_temperatures[1, i])
-                / self.dr
-            )
+                -self.area
+                * k
+                * (
+                        (mantle_temperatures[0, i] - mantle_temperatures[1, i])
+                        / self.dr
+                )
         )
         return heat
 
@@ -75,8 +105,7 @@ def set_up_mantle_properties(
         heat_cap_constant="y",
         mantle_density=3341.0,
         mantle_heat_capacity=819.0,
-        mantle_conductivity=3.0,):
-
+        mantle_conductivity=3.0, ):
     if cond_constant == "y":
         conductivity = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
 
@@ -98,35 +127,39 @@ def set_up_mantle_properties(
     else:
         density = draft_mantle_properties.VariableDensity()
 
-    return(conductivity, heat_capacity, density)
+    return (conductivity, heat_capacity, density)
 
 
 def discretisation(
-    core_values,
-    latent,
-    temp_init,
-    core_temp_init,
-    temp_core_melting,
-    temp_surface,
-    temperatures,
-    dr,
-    coretemp_array,
-    timestep,
-    core_density,
-    core_cp,
-    r_core,
-    core_latent_heat,
-    radii,
-    times,
-    where_regolith,
-    kappa_reg,
-    cond_constant="y",
-    density_constant="y",
-    heat_cap_constant="y",
-    non_lin_term="y",
-    mantle_density=3341.0,
-    mantle_heat_capacity=819.0,
-    mantle_conductivity=3.0,
+        core_values,
+        latent,
+        temp_init,
+        core_temp_init,
+        temp_core_melting,
+        temp_surface,
+        temperatures,
+        dr,
+        coretemp_array,
+        timestep,
+        core_density,
+        core_cp,
+        r_core,
+        core_latent_heat,
+        radii,
+        times,
+        where_regolith,
+        kappa_reg,
+        # cond_constant="y",
+        # density_constant="y",
+        # heat_cap_constant="y",
+        # non_lin_term="y",
+        # mantle_density=3341.0,
+        # mantle_heat_capacity=819.0,
+        # mantle_conductivity=3.0,
+        cond,
+        heatcap,
+        dens,
+        non_lin_term="y",
 ):
     """
     Finite difference solver with variable k.
@@ -135,37 +168,36 @@ def discretisation(
 
     Uses diffusivity for regolith layer.
     """
-    # putting in some bug tests
-    print("***/n***/n***/n")
-    print("Testing modular conductivity!")
-    print("Constant conductivity: ")
-    print(cond_constant)
-    print("Constant density: ")
-    print(density_constant)
-    print("Constant heat capacity: ")
-    print(heat_cap_constant)
-    # checking on temperature dependent properties
+    # # putting in some bug tests
+    # print("***/n***/n***/n")
+    # print("Testing modular conductivity!")
+    # print("Constant conductivity: ")
+    # print(cond_constant)
+    # print("Constant density: ")
+    # print(density_constant)
+    # print("Constant heat capacity: ")
+    # print(heat_cap_constant)
 
-    if cond_constant == "y":
-        cond = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
-
-    else:
-        cond = draft_mantle_properties.VariableConductivity()
-
-    if heat_cap_constant == "y":
-
-        heatcap = draft_mantle_properties.MantleProperties(
-            cp=mantle_heat_capacity
-        )
-
-    else:
-        heatcap = draft_mantle_properties.VariableHeatCapacity()
-
-    if density_constant == "y":
-        dens = draft_mantle_properties.MantleProperties(rho=mantle_density)
-
-    else:
-        dens = draft_mantle_properties.VariableDensity()
+    # if cond_constant == "y":
+    #     cond = draft_mantle_properties.MantleProperties(k=mantle_conductivity)
+    #
+    # else:
+    #     cond = draft_mantle_properties.VariableConductivity()
+    #
+    # if heat_cap_constant == "y":
+    #
+    #     heatcap = draft_mantle_properties.MantleProperties(
+    #         cp=mantle_heat_capacity
+    #     )
+    #
+    # else:
+    #     heatcap = draft_mantle_properties.VariableHeatCapacity()
+    #
+    # if density_constant == "y":
+    #     dens = draft_mantle_properties.MantleProperties(rho=mantle_density)
+    #
+    # else:
+    #     dens = draft_mantle_properties.VariableDensity()
 
     # temp_list_mid_mantle = [temp_init]
     # temp_list_shal = [temp_init]
@@ -205,75 +237,75 @@ def discretisation(
                 # check for non-linear term
                 if non_lin_term == "y":
                     A_1 = (
-                        timestep
-                        * (
-                            1.0
-                            / (
-                                dens.getrho(temperatures[j, i - 1])
-                                * heatcap.getcp(temperatures[j, i - 1])
-                            )
-                        )
-                    ) * (
-                        cond.getdkdT(temperatures[j, i - 1])
-                        * (
-                            (
-                                temperatures[j + 1, i - 1]
-                                - temperatures[j - 1, i - 1]
-                            )
-                            ** 2
-                        )
-                        / (4.0 * dr ** 2.0)
-                    )
+                                  timestep
+                                  * (
+                                          1.0
+                                          / (
+                                                  dens.getrho(temperatures[j, i - 1])
+                                                  * heatcap.getcp(temperatures[j, i - 1])
+                                          )
+                                  )
+                          ) * (
+                                  cond.getdkdT(temperatures[j, i - 1])
+                                  * (
+                                          (
+                                                  temperatures[j + 1, i - 1]
+                                                  - temperatures[j - 1, i - 1]
+                                          )
+                                          ** 2
+                                  )
+                                  / (4.0 * dr ** 2.0)
+                          )
                 else:
                     A_1 = 0
 
                 B_1 = (
-                    timestep
-                    * (
-                        1.0
-                        / (
-                            dens.getrho(temperatures[j, i - 1])
-                            * heatcap.getcp(temperatures[j, i - 1])
-                        )
-                    )
-                ) * (
-                    (cond.getk(temperatures[j, i - 1]) / (radii[j] * dr))
-                    * (temperatures[j + 1, i - 1] - temperatures[j - 1, i - 1])
-                )
+                              timestep
+                              * (
+                                      1.0
+                                      / (
+                                              dens.getrho(temperatures[j, i - 1])
+                                              * heatcap.getcp(temperatures[j, i - 1])
+                                      )
+                              )
+                      ) * (
+                              (cond.getk(temperatures[j, i - 1]) / (radii[j] * dr))
+                              * (temperatures[j + 1, i - 1] - temperatures[j - 1, i - 1])
+                      )
 
                 C_1 = (
-                    timestep
-                    * (
-                        1.0
-                        / (
-                            dens.getrho(temperatures[j, i - 1])
-                            * heatcap.getcp(temperatures[j, i - 1])
-                        )
-                    )
-                ) * (
-                    (cond.getk(temperatures[j, i - 1]) / dr ** 2.0)
-                    * (
-                        temperatures[j + 1, i - 1]
-                        - 2 * temperatures[j, i - 1]
-                        + temperatures[j - 1, i - 1]
-                    )
-                )
+                              timestep
+                              * (
+                                      1.0
+                                      / (
+                                              dens.getrho(temperatures[j, i - 1])
+                                              * heatcap.getcp(temperatures[j, i - 1])
+                                      )
+                              )
+                      ) * (
+                              (cond.getk(temperatures[j, i - 1]) / dr ** 2.0)
+                              * (
+                                      temperatures[j + 1, i - 1]
+                                      - 2 * temperatures[j, i - 1]
+                                      + temperatures[j - 1, i - 1]
+                              )
+                      )
                 temperatures[j, i] = temperatures[j, i - 1] + A_1 + B_1 + C_1
 
             elif where_regolith[j] == 0:
 
                 A_1 = 0  # non-linear term
                 B_1 = (timestep) * (
-                    (kappa_reg / (radii[j] * dr))
-                    * (temperatures[j + 1, i - 1] - temperatures[j - 1, i - 1])
+                        (kappa_reg / (radii[j] * dr))
+                        * (temperatures[j + 1, i - 1] - temperatures[j - 1, i - 1])
                 )
                 C_1 = (timestep) * (
-                    (kappa_reg / dr ** 2.0)
-                    * (
-                        temperatures[j + 1, i - 1]
-                        - 2 * temperatures[j, i - 1]
-                        + temperatures[j - 1, i - 1]
-                    )
+                        (kappa_reg / dr ** 2.0)
+                        * (
+                                temperatures[j + 1, i - 1]
+                                - 2 * temperatures[j, i - 1]
+                                + temperatures[j - 1, i - 1]
+                        )
                 )
 
                 temperatures[j, i] = temperatures[j, i - 1] + A_1 + B_1 + C_1
