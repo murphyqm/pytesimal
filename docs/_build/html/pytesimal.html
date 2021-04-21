@@ -90,7 +90,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pytesimal package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.analysis">pytesimal.analysis module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_core_functions_2">pytesimal.draft_core_functions_2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.core_function">pytesimal.core_function module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.draft_mainmodule">pytesimal.draft_mainmodule module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.load_plot_save">pytesimal.load_plot_save module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.mantle_properties">pytesimal.mantle_properties module</a></li>
@@ -262,44 +262,44 @@ contour crosses this depth during core solidification</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-pytesimal.draft_core_functions_2">
-<span id="pytesimal-draft-core-functions-2-module"></span><h2>pytesimal.draft_core_functions_2 module<a class="headerlink" href="#module-pytesimal.draft_core_functions_2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pytesimal.core_function">
+<span id="pytesimal-core-function-module"></span><h2>pytesimal.core_function module<a class="headerlink" href="#module-pytesimal.core_function" title="Permalink to this headline">¶</a></h2>
 <p>Created on Wed Apr  7 13:05:24 2021</p>
 <p>&#64;author: maeve</p>
 <p>New core object that allows cooling via either mantle temperatures or heat
 extracted across CMB.</p>
 <dl class="py class">
-<dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.draft_core_functions_2.</span></code><code class="sig-name descname"><span class="pre">IsothermalEutecticCore</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">melt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_latent_heat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore" title="Permalink to this definition">¶</a></dt>
+<dt id="pytesimal.core_function.IsothermalEutecticCore">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.core_function.</span></code><code class="sig-name descname"><span class="pre">IsothermalEutecticCore</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">melt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_latent_heat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_function.IsothermalEutecticCore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Core class represents and manipulates core temp and latent heat.</p>
 <dl class="py method">
-<dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.cooling">
-<code class="sig-name descname"><span class="pre">cooling</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mantletemps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmbk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.cooling" title="Permalink to this definition">¶</a></dt>
+<dt id="pytesimal.core_function.IsothermalEutecticCore.cooling">
+<code class="sig-name descname"><span class="pre">cooling</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mantletemps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmbk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_function.IsothermalEutecticCore.cooling" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cool core or extract latent heat. Old version.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_energy">
-<code class="sig-name descname"><span class="pre">extract_energy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_removed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_energy" title="Permalink to this definition">¶</a></dt>
+<dt id="pytesimal.core_function.IsothermalEutecticCore.extract_energy">
+<code class="sig-name descname"><span class="pre">extract_energy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy_removed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_function.IsothermalEutecticCore.extract_energy" title="Permalink to this definition">¶</a></dt>
 <dd><p>E (J) extracted</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_heat">
-<code class="sig-name descname"><span class="pre">extract_heat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.extract_heat" title="Permalink to this definition">¶</a></dt>
+<dt id="pytesimal.core_function.IsothermalEutecticCore.extract_heat">
+<code class="sig-name descname"><span class="pre">extract_heat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_function.IsothermalEutecticCore.extract_heat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Heat extracted (power) in W over one timestep</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_1D">
-<code class="sig-name descname"><span class="pre">temperature_array_1D</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_1D" title="Permalink to this definition">¶</a></dt>
+<dt id="pytesimal.core_function.IsothermalEutecticCore.temperature_array_1D">
+<code class="sig-name descname"><span class="pre">temperature_array_1D</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_function.IsothermalEutecticCore.temperature_array_1D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return temperature history as 1D array.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_3D">
-<code class="sig-name descname"><span class="pre">temperature_array_3D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coretemp_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.draft_core_functions_2.IsothermalEutecticCore.temperature_array_3D" title="Permalink to this definition">¶</a></dt>
+<dt id="pytesimal.core_function.IsothermalEutecticCore.temperature_array_3D">
+<code class="sig-name descname"><span class="pre">temperature_array_3D</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coretemp_array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_function.IsothermalEutecticCore.temperature_array_3D" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return temperature history as 3D array.</p>
 </dd></dl>
 

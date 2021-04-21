@@ -18,7 +18,7 @@ sys.path.insert(
 # sys.path.insert(0, os.path.abspath('../pytesimal/'))
 
 import numerical_methods  # implements new corev2
-import draft_core_functions_2  # new new core
+import core_function  # new new core
 import mantle_properties  # mantle props as methods within a class
-import draft_mainmodule  # setup functions
+import setup_functions # setup functions
 import analysis

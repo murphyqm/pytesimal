@@ -12,10 +12,10 @@ pytesimal.analysis module
    :undoc-members:
    :show-inheritance:
 
-pytesimal.draft\_core\_functions\_2 module
-------------------------------------------
+pytesimal.core\_function module
+-------------------------------
 
-.. automodule:: pytesimal.draft_core_functions_2
+.. automodule:: pytesimal.core_function
    :members:
    :undoc-members:
    :show-inheritance:

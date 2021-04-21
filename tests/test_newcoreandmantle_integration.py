@@ -10,7 +10,7 @@ Test to check that new core function and mantle are working together correctly
 import numpy as np
 import pytest
 from context import numerical_methods as mtt
-from context import draft_core_functions_2 as core_functions
+from context import core_function
 from context import mantle_properties
 
 
@@ -23,7 +23,7 @@ def test_mtt_discretisation():
     where_regolith = np.zeros_like(radii)
     top_mantle_bc = mtt.surface_dirichlet_bc
     bottom_mantle_bc = mtt.cmb_dirichlet_bc
-    core_values = core_functions.IsothermalEutecticCore(
+    core_values = core_function.IsothermalEutecticCore(
         temp=1800.0,
         melt=1200.0,
         outer_r=10000.0,
@@ -95,7 +95,7 @@ def test_mtt_vardiscretisation():
     where_regolith = np.zeros_like(radii)
     top_mantle_bc = mtt.surface_dirichlet_bc
     bottom_mantle_bc = mtt.cmb_dirichlet_bc
-    core_values = core_functions.IsothermalEutecticCore(
+    core_values = core_function.IsothermalEutecticCore(
         temp=1800.0,
         melt=1200.0,
         outer_r=10000.0,
@@ -169,7 +169,7 @@ def test_mtt_discretisation_cold_mantle():
     where_regolith = np.zeros_like(radii)
     top_mantle_bc = mtt.surface_dirichlet_bc
     bottom_mantle_bc = mtt.cmb_dirichlet_bc
-    core_values = core_functions.IsothermalEutecticCore(
+    core_values = core_function.IsothermalEutecticCore(
         temp=1800.0,
         melt=1200.0,
         outer_r=10000.0,
@@ -242,7 +242,7 @@ def test_mtt_vardiscretisation_cold_mantle():
     where_regolith = np.zeros_like(radii)
     top_mantle_bc = mtt.surface_dirichlet_bc
     bottom_mantle_bc = mtt.cmb_dirichlet_bc
-    core_values = core_functions.IsothermalEutecticCore(
+    core_values = core_function.IsothermalEutecticCore(
         temp=1800.0,
         melt=1200.0,
         outer_r=10000.0,

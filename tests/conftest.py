@@ -6,9 +6,9 @@ by murphyqm
 
 """
 import pytest
-from context import draft_mainmodule as mainmod
+from context import setup_functions as mainmod
 from context import numerical_methods as mantle_timestepping
-from context import draft_core_functions_2 as core_function
+from context import core_function
 from context import mantle_properties
 
 # @pytest.fixture
