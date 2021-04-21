@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Apr  7 13:05:24 2021
-
-@author: maeve
-
-New core object that allows cooling via either mantle temperatures or heat
-extracted across CMB.
+Create and track the temperature in the planetesimal core.
 
 """
 
@@ -38,7 +33,7 @@ class IsothermalEutecticCore:
         self.templist = [
             self.temperature,
             self.temperature,
-        ]  # TODO explain this
+        ]  # core temp not evaluated at first time-step so initial temp used
         self.latentlist = []
         self.boundary_temperature = temp
 
