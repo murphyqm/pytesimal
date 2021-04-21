@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on 14/04/2021
-by murphyqm
+Cooling rate calculation.
 
+Functions from Yang et al, 2010 to quickly compute the cooling rate of iron or
+stony iron meteorites, using "cloudy zone" particle diameter or tetrataenite
+bandwidth in nm.
+
+Returns cooling rate in K/Myr.
+
+Constants from Yang et al., 2010; obtained by comparing cz particles and
+tetrataenite bandwidth to modelled Ni diffusion in kamacite and taenite.
 """
 import numpy as np
 
@@ -19,20 +26,20 @@ def core_freezing(
 
     Parameters
     ----------
-    coretemp : ARRAY
-        Array of temperatures in the core.
-    max_time : FLOAT
-        Length of time the model runs for.
-    times : ARRAY
+    coretemp : numpy.ndarray
+        Array of temperatures in the core
+    max_time : float
+        Length of time the model runs for, in seconds
+    times : numpy.ndarray
         Array from 0 to the max time +0.5* the timestep, with a spacing equal
         to the timestep
-    latent : LIST
+    latent : list
         List of total latent heat extracted since core began freezing, at each
         timestep
-    temp_core_melting : FLOAT
+    temp_core_melting : float
         Melting point of core material (in K)
-    timestep : FLOAT, optional
-        Discretisation timestep in seconds. The default is 1E11.
+    timestep : float, default 1e11
+        Discretisation timestep in seconds.
 
     Returns
     -------
@@ -77,22 +84,9 @@ def core_freezing(
 
 
 def cooling_rate(temperature_array, timestep):
+    """Calculate an array of cooling rates based on temperature array."""
     dTdt = np.gradient(temperature_array, timestep, axis=1)
     return dTdt
-
-
-"""
-Cooling rate calculation.
-
-Functions from Yang et al, 2010 to quickly compute the cooling rate of iron or
-stony iron meteorites, using "cloudy zone" particle diameter or tetrataenite
-bandwidth in nm.
-
-Returns cooling rate in K/Myr.
-
-Constants from Yang et al., 2010; obtained by comparing cz particles and
-tetrataenite bandwidth to modelled Ni diffusion in kamacite and taenite.
-"""
 
 
 def cooling_rate_cloudyzone_diameter(d):  # TODO add reference
@@ -135,45 +129,55 @@ def meteorite_depth_and_timing(
     core_size_factor,
     time_core_frozen,
     fully_frozen,
-    dr=1000,
+    dr=1000.0,
 ):
     """
     Find depth of genesis given the cooling rate.
 
-    function finding the depth, given the cooling rate, and checks if the 593K
-    contour crosses this depth during core solidification
+    Function finds the depth, given the cooling rate, and checks if the 593K
+    contour crosses this depth during core solidification, implying whether or
+    not the meteorite is expected to record core dynamo action.
 
     Parameters
     ----------
-    CR : TYPE
-        DESCRIPTION.
-    temperatures : TYPE
-        DESCRIPTION.
-    dT_by_dt : TYPE
-        DESCRIPTION.
-    radii : TYPE
-        DESCRIPTION.
-    r_planet : TYPE
-        DESCRIPTION.
-    core_size_factor : TYPE
-        DESCRIPTION.
-    time_core_frozen : TYPE
-        DESCRIPTION.
-    fully_frozen : TYPE
-        DESCRIPTION.
-    dr : TYPE, optional
-        DESCRIPTION. The default is 1000.
+    CR : float
+        cooling rate of meteorite
+    temperatures : numpy.ndarray
+        Array of mantle temperatures
+    dT_by_dt : numpy.ndarray
+        Array of mantle cooling rates
+    radii : numpy.ndarray
+        Mantle radii spaced by `dr`
+    r_planet : float
+        Planetesimal radius, in m
+    core_size_factor : float, <1
+        Radius of the core, expressed as a fraction of `r_planet`
+    time_core_frozen : float
+        The time the core begins to freeze
+    fully_frozen : float
+        The time the core is fully frozen
+    dr : float, default 1000.0
+        Radial step for numerical discretisation
 
     Returns
     -------
-    TYPE
-        DESCRIPTION.
+    depth : float
+        Depth of genesis of meteorite
+    string : string
+        Relative timing of tetrataenite formation and core crystallisation, in
+        a string format
+    time_core_frozen : float
+        The time the core begins to freeze
+    Time_of_Crossing : float
+        When the meteorite cools through tetrataenite formation temperature
+    Critical_Radius : float
+        Depth of meteorite genesis given as radius value
 
     """
     # Define two empty lists
     t_val = []  # for the 800K temperature contour
     dt_val = []  # cooling rate contour
-    for ti in range(5, temperatures.shape[1]):  # changing this 5 did not work
+    for ti in range(5, temperatures.shape[1]):
 
         # Find the index where temperatures are 800K by finding the minimum of
         # (a given temperature-800)
@@ -190,21 +194,21 @@ def meteorite_depth_and_timing(
 
         t_val.append(
             index_where_800K_ish
-        )  # dividing both these by 2 didn't work
-        dt_val.append(index_where_dtbydT)  # this one too
+        )
+        dt_val.append(index_where_dtbydT)
 
     # Find the points where they cross, this will lead to a depth of formation
     assert len(t_val) == len(
         dt_val
-    ), "Contour length error!"  # flags an errror if t_val and dt_val are not
+    ), "Contour length error!"  # flags an error if t_val and dt_val are not
     # the same length
     crosses = (
         np.array(t_val) - np.array(dt_val) == 0
-    )  # boolean for if the indecies of the two arrays are the same
+    )  # boolean for if the indices of the two arrays are the same
     if not any(crosses):
         # The two lines do not cross
-        x = "No cooling rate matched cooling history"
-        return None, x, None, None, None
+        string = "No cooling rate matched cooling history"
+        return None, string, None, None, None
 
     # finding the depth of formation
     crossing_index2 = np.argmax(
@@ -230,12 +234,9 @@ def meteorite_depth_and_timing(
         d_val.append(
             ((Critical_Radius) / dr - ((r_planet / dr) * core_size_factor))
         )  # computes the depth, converts from radius to depth
-        # print(d_val)
-        # added int to line above to try and solve - removing this now and
-        # instead changing below line
     crossing = [
         np.array(t_val2) - d_val < 0.00001
-    ]  # indicies where computed depth crosses temperature contour (593 K)
+    ]  # indices where computed depth crosses temperature contour (593 K)
 
     crossing_index = np.argmax(
         crossing
@@ -247,32 +248,28 @@ def meteorite_depth_and_timing(
     # check to see if the depth crosses the 593K contour during solidification
     # or before/after
     if time_core_frozen == 0:
-        x = "Core Freezes after Max Time"
+        string = "Core Freezes after Max Time"
         depth = ((r_planet) - radii[int(((d_val)[crossing is True]))]) / dr
-        return (depth, x, time_core_frozen, Time_of_Crossing)
+        return (depth, string, time_core_frozen, Time_of_Crossing)
     else:
         if radii_index > len(radii):
-            x = "Core has finished solidifying"
+            string = "Core has finished solidifying"
             depth = 0
-            return (depth, x, time_core_frozen, Time_of_Crossing)
+            return (depth, string, time_core_frozen, Time_of_Crossing)
         else:
             depth = ((r_planet) - radii[int(((d_val)[crossing is True]))]) / dr
             if Time_of_Crossing == 0:
-                x = "hmm, see plot"  # lines cross at 0 time, but doesn't tell
+                string = "hmm, see plot"  # lines cross at 0 time, doesn't tell
                 # you when it formed
             if Time_of_Crossing < time_core_frozen and Time_of_Crossing != 0:
-                x = "Core has not started solidifying yet"
+                string = "Core has not started solidifying yet"
             if time_core_frozen < Time_of_Crossing < fully_frozen:
-                x = "Core has started solidifying"
+                string = "Core has started solidifying"
             if Time_of_Crossing > fully_frozen:
-                x = "Core has finished solidifying"
-            # depth = depth of formation; x = statement on result;
-            # time_core_frozen = self explanatory; Time_of_crossing = when the
-            # meteorite cools through curie T
-            # Critical Radius = radius version of depth
+                string = "Core has finished solidifying"
             return (
                 depth,
-                x,
+                string,
                 time_core_frozen,
                 Time_of_Crossing,
                 Critical_Radius,

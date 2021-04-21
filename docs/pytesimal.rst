@@ -20,14 +20,6 @@ pytesimal.core\_function module
    :undoc-members:
    :show-inheritance:
 
-pytesimal.draft\_mainmodule module
-----------------------------------
-
-.. automodule:: pytesimal.draft_mainmodule
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pytesimal.load\_plot\_save module
 ---------------------------------
 
@@ -48,6 +40,14 @@ pytesimal.numerical\_methods module
 -----------------------------------
 
 .. automodule:: pytesimal.numerical_methods
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pytesimal.setup\_functions module
+---------------------------------
+
+.. automodule:: pytesimal.setup_functions
    :members:
    :undoc-members:
    :show-inheritance:

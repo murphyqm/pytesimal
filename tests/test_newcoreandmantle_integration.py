@@ -24,8 +24,8 @@ def test_mtt_discretisation():
     top_mantle_bc = mtt.surface_dirichlet_bc
     bottom_mantle_bc = mtt.cmb_dirichlet_bc
     core_values = core_function.IsothermalEutecticCore(
-        temp=1800.0,
-        melt=1200.0,
+        initial_temperature=1800.0,
+        melting_temperature=1200.0,
         outer_r=10000.0,
         inner_r=0,
         rho=7800.0,
@@ -96,8 +96,8 @@ def test_mtt_vardiscretisation():
     top_mantle_bc = mtt.surface_dirichlet_bc
     bottom_mantle_bc = mtt.cmb_dirichlet_bc
     core_values = core_function.IsothermalEutecticCore(
-        temp=1800.0,
-        melt=1200.0,
+        initial_temperature=1800.0,
+        melting_temperature=1200.0,
         outer_r=10000.0,
         inner_r=0,
         rho=7800.0,
@@ -170,8 +170,8 @@ def test_mtt_discretisation_cold_mantle():
     top_mantle_bc = mtt.surface_dirichlet_bc
     bottom_mantle_bc = mtt.cmb_dirichlet_bc
     core_values = core_function.IsothermalEutecticCore(
-        temp=1800.0,
-        melt=1200.0,
+        initial_temperature=1800.0,
+        melting_temperature=1200.0,
         outer_r=10000.0,
         inner_r=0,
         rho=7800.0,
@@ -243,8 +243,8 @@ def test_mtt_vardiscretisation_cold_mantle():
     top_mantle_bc = mtt.surface_dirichlet_bc
     bottom_mantle_bc = mtt.cmb_dirichlet_bc
     core_values = core_function.IsothermalEutecticCore(
-        temp=1800.0,
-        melt=1200.0,
+        initial_temperature=1800.0,
+        melting_temperature=1200.0,
         outer_r=10000.0,
         inner_r=0,
         rho=7800.0,

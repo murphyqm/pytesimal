@@ -1,34 +1,101 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Modifying mantle timestepping function to take new core object and calculate energy extracted
-Created on Thu Apr 8 16:24:52 2021.
+Forward-Time Central-Space (FTCS) discretisation for the mantle.
 
-@author: maeve
-
-to do: need to move temp array set up outside of the discretisation function.
+Set up boundary conditions, calculate the heat extracted across the core-mantle
+boundary in a timestep, and numerically discretise the conductive cooling of
+the mantle of a planetesimal.
 """
 
 import numpy as np
 
 
 def surface_dirichlet_bc(temperatures, temp_surface, i):
+    """
+    Set a fixed temperature boundary condition at the planetesimal's surface.
+
+    Parameters
+    ----------
+    temperatures : numpy.ndarray
+        Numpy array of mantle temperatures to apply condition to
+    temp_surface : float
+        The temperature at the surface boundary
+    i : int
+        Index along time axis where condition is to be set
+
+    Returns
+    -------
+    temperatures : numpy.ndarray
+        Temperature array with condition applied
+
+    """
     temperatures[-1, i] = temp_surface
     return temperatures
 
 
 def cmb_dirichlet_bc(temperatures, core_boundary_temperature, i):
+    """
+    Set a fixed temperature boundary condition at the base of the mantle.
+
+    Parameters
+    ----------
+    temperatures : numpy.ndarray
+        Numpy array of mantle temperatures to apply condition to
+    core_boundary_temperature : float
+        The temperature at the core mantle boundary
+    i : int
+        Index along time axis where condition is to be set
+
+    Returns
+    -------
+    temperatures : numpy.ndarray
+        Temperature array with condition applied
+    """
     temperatures[0, i] = core_boundary_temperature
     return temperatures
 
 
 def cmb_neumann_bc(temperatures, core_boundary_temperature, i):
+    """
+    Set a fixed flux boundary condition at the base of the mantle
+
+    Note that core radius must be set to zero for this to approximate the
+    analytical solution of a conductively cooling sphere or to model an
+    undifferentiated meteorite parent body.
+
+    Parameters
+    ----------
+    temperatures : numpy.ndarray
+        Numpy array of mantle temperatures to apply condition to
+    core_boundary_temperature : float
+        The temperature at the core mantle boundary; this is not used by this
+        boundary condition but inclusion allows functions to be easily swapped
+    i : int
+        Index along time axis where condition is to be set
+
+    Returns
+    -------
+    temperatures : numpy.ndarray
+        Temperature array with condition applied
+    """
     temperatures[0, i] = (4.0 * (temperatures[1, i]) - temperatures[2, i]) / 3.0
     # eq. 6.31 http://folk.ntnu.no/leifh/teaching/tkt4140/._main056.html
 
 
 class EnergyExtractedAcrossCMB:
-    """Calculate the energy extracted across the cmb in one timestep given the temperature of the mantle."""
+    """
+    Class to calculate the energy extracted across the cmb in one timestep.
+
+    Attributes
+    ----------
+    outer_r : float
+        Core radius
+    timestep : float
+        Time over which heat is extracted
+    radius_step : float
+        Radial step for numerical discretisation
+    """
 
     def __init__(self, outer_r, timestep, radius_step):
         self.radius = outer_r
@@ -98,6 +165,62 @@ def discretisation(
     Uses variable heat capacity, conductivity, density as required.
 
     Uses diffusivity for regolith layer.
+
+    Parameters
+    ----------
+    core_values : object
+        Core object
+    latent : list
+        Empty list (unless coupling two models) of latent heat extracted from
+        the core
+    temp_init : float, numpy.ndarray
+        The initial temperature of the mantle with float implying initial
+        homogeneous temperature distribution
+    core_temp_init : float, numpy.ndarray
+        Initial temperature of the core; current core object is isothermal so
+        only accepts float but more complex core models could track the
+        temperature distribution in the core
+    top_mantle_bc : function
+        Calleable function that defines the boundary condition at the
+        planetesimal surface
+    bottom_mantle_bc : function
+        Calleable function that defines the boundary condition at the base of
+        the planetesimal mantle
+    temp_surface : float
+        Temperature at the surface of the planetesimal
+    temperatures : numpy.ndarray
+        Numpy array to fill with mantle temperatures
+    dr : float
+        Radial step for numerical discretisation
+    coretemp_array : numpy.ndarray
+        Numpy array to fill with core temperatures
+    timestep : float
+        Timestep for numerical discretisation
+    r_core : float
+        Radius of the core in m
+    radii : numpy.ndarray
+        Numpy array of radii values in the mantle, with spacing defined by `dr`
+    times : numpy.ndarray
+        Numpy array of time values in s, up to the maximum time, with spacing
+        controlled by `timestep`
+    where_regolith : numpy.ndarray
+        Boolean array recording presence of regolith
+    kappa_reg : float
+        Constant diffusivity of the regolith
+    cond : function, method
+        Function or method that defines the mantle conductivity
+    heatcap : function, method
+        Function or method that defines the mantle heat capacity
+    dens : function, method
+        Function or method that defines the mantle density
+    non_lin_term : str, default `'y'`
+        Flag to switch off the non-linear term when temperature-dependent
+        conductivity is being used
+
+
+    Returns
+    -------
+
     """
 
     temperatures[:, 0] = temp_init  # this can be an array or a scalar
@@ -203,7 +326,7 @@ def discretisation(
         core_values.extract_heat(power, timestep)
         latent = core_values.latentlist
         core_boundary_temperature = core_values.temperature
-    coretemp_array = core_values.temperature_array_3D(coretemp_array)
+    coretemp_array = core_values.temperature_array_2D(coretemp_array)
     return (
         temperatures,
         coretemp_array,

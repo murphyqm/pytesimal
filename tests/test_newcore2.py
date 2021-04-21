@@ -19,8 +19,8 @@ def test_new_core_unit():
     )
 
     core = new_core_function_2.IsothermalEutecticCore(
-        temp=1000.0,
-        melt=1200.0,
+        initial_temperature=1000.0,
+        melting_temperature=1200.0,
         outer_r=10000.0,
         inner_r=0,
         rho=7800.0,

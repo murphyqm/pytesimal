@@ -57,8 +57,8 @@ def temperature_timestepping():
     ) = mainmod.set_up()
     latent = []
     core_values = core_function.IsothermalEutecticCore(
-        temp=core_temp_init,
-        melt=temp_core_melting,
+        initial_temperature=core_temp_init,
+        melting_temperature=temp_core_melting,
         outer_r=r_core,
         inner_r=0,
         rho=core_density,
