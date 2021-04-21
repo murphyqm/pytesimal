@@ -8,8 +8,8 @@ by murphyqm
 import numpy as np
 import pytest
 
-# from context import setup_functions as mainmod
-import pytesimal.setup_functions as mainmod
+from context import setup_functions as mainmod
+# import pytesimal.setup_functions as mainmod
 
 
 def test_default_set_up():
