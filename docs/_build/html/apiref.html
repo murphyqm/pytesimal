@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>pytesimal package &mdash; Pytesimal 1.0.0 documentation</title>
+  <title>API Reference &mdash; Pytesimal 1.0.0 documentation</title>
   
 
   
@@ -37,7 +37,8 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Pytesimal" href="README.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,10 +84,19 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to Pytesimal’s documentation!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Pytesimal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apiref.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.analysis">pytesimal.analysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.core_function">pytesimal.core_function module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.load_plot_save">pytesimal.load_plot_save module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.mantle_properties">pytesimal.mantle_properties module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.numerical_methods">pytesimal.numerical_methods module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.setup_functions">pytesimal.setup_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pytesimal">Module contents</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -135,13 +145,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>pytesimal package</li>
+      <li>API Reference</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/pytesimal.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/apiref.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -154,11 +164,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pytesimal-package">
-<h1>pytesimal package<a class="headerlink" href="#pytesimal-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-pytesimal.analysis">
 <span id="pytesimal-analysis-module"></span><h2>pytesimal.analysis module<a class="headerlink" href="#module-pytesimal.analysis" title="Permalink to this headline">¶</a></h2>
 <p>Analyse the results of the conductive cooling model for a planetesimal.</p>
@@ -748,7 +755,7 @@ into pre-existing code with minimal changes.</p>
 <dl class="py class">
 <dt id="pytesimal.mantle_properties.VariableConductivity">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.mantle_properties.</span></code><code class="sig-name descname"><span class="pre">VariableConductivity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.mantle_properties.VariableConductivity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pytesimal.mantle_properties.MantleProperties" title="pytesimal.mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.mantle_properties.MantleProperties</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pytesimal.html#pytesimal.mantle_properties.MantleProperties" title="pytesimal.mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.mantle_properties.MantleProperties</span></code></a></p>
 <p>Make conductivity T-dependent.</p>
 <dl class="py method">
 <dt id="pytesimal.mantle_properties.VariableConductivity.getdkdT">
@@ -767,7 +774,7 @@ into pre-existing code with minimal changes.</p>
 <dl class="py class">
 <dt id="pytesimal.mantle_properties.VariableDensity">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.mantle_properties.</span></code><code class="sig-name descname"><span class="pre">VariableDensity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.mantle_properties.VariableDensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pytesimal.mantle_properties.MantleProperties" title="pytesimal.mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.mantle_properties.MantleProperties</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pytesimal.html#pytesimal.mantle_properties.MantleProperties" title="pytesimal.mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.mantle_properties.MantleProperties</span></code></a></p>
 <p>Make density T-dependent.</p>
 <dl class="py method">
 <dt id="pytesimal.mantle_properties.VariableDensity.getrho">
@@ -780,7 +787,7 @@ into pre-existing code with minimal changes.</p>
 <dl class="py class">
 <dt id="pytesimal.mantle_properties.VariableHeatCapacity">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.mantle_properties.</span></code><code class="sig-name descname"><span class="pre">VariableHeatCapacity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.mantle_properties.VariableHeatCapacity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pytesimal.mantle_properties.MantleProperties" title="pytesimal.mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.mantle_properties.MantleProperties</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pytesimal.html#pytesimal.mantle_properties.MantleProperties" title="pytesimal.mantle_properties.MantleProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytesimal.mantle_properties.MantleProperties</span></code></a></p>
 <p>Make heat capacity T-dependent.</p>
 <dl class="py method">
 <dt id="pytesimal.mantle_properties.VariableHeatCapacity.getcp">
@@ -1073,6 +1080,9 @@ file will be saved alongside the parameters file.</p></li>
            
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="README.html" class="btn btn-neutral float-left" title="Pytesimal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

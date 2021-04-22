@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Cooling rate calculation.
+Analyse the results of the conductive cooling model for a planetesimal.
 
-Functions from Yang et al, 2010 to quickly compute the cooling rate of iron or
-stony iron meteorites, using "cloudy zone" particle diameter or tetrataenite
-bandwidth in nm.
+This module contains functions to calculate the cooling rates of meteorites
+based on the empirical relations suggested by Yang et al. (2010); see full
+references in
+`Murphy Quinlan et al. (2021) <https://doi.org/10.1029/2020JE006726>`_. It
+also contains functions to analyse the temperature arrays produced by the
+`pytesimal.numerical_methods` module, allowing estimation of the depth of
+genesis of pallasite meteorites, the relative timing of paleomagnetic
+recording in meteorites and core dynamo action, and calculation of cooling
+rates in the mantle of the planetesimal through time.
 
-Returns cooling rate in K/Myr.
-
-Constants from Yang et al., 2010; obtained by comparing cz particles and
-tetrataenite bandwidth to modelled Ni diffusion in kamacite and taenite.
 """
 import numpy as np
 
@@ -22,7 +24,7 @@ def core_freezing(
     Calculate when the core starts and finishes solidifying.
 
     Takes core temperature and returns boolean array of when the core is
-    below the freezing/melting temperature
+    below the freezing/melting temperature.
 
     Parameters
     ----------
@@ -84,7 +86,7 @@ def core_freezing(
 
 
 def cooling_rate(temperature_array, timestep):
-    """Calculate an array of cooling rates based on temperature array."""
+    """Calculate an array of cooling rates from temperature array."""
     dTdt = np.gradient(temperature_array, timestep, axis=1)
     return dTdt
 
@@ -93,8 +95,19 @@ def cooling_rate_cloudyzone_diameter(d):  # TODO add reference
     """
     Cooling rate calculated using cloudy zone particle diameter in nm.
 
-    Arguments: d, cz particle size in nm
-    Returns: cz_rate, the cooling rate in K/Myr
+    Constants from Yang et al., 2010; obtained by comparing cz particles and
+    tetrataenite bandwidth to modelled Ni diffusion in kamacite and taenite.
+
+    Parameters
+    ----------
+    d : float
+        Cloudy zone particle size in nm
+
+    Returns
+    -------
+    cz_rate : float
+        The cooling rate in K/Myr
+
     """
     m = 7620000  # constant
     cz_rate = m / (d ** 2.9)  # in K/Myr
@@ -105,8 +118,19 @@ def cooling_rate_tetra_width(tw):
     """
     Cooling rate calculated using tetrataenite bandwidth in nm.
 
-    Arguments: tw, tetrataenite bandwidth in nm
-    Returns: t_rate, the cooling rate in K/Myr
+    Constants from Yang et al., 2010; obtained by comparing cz particles and
+    tetrataenite bandwidth to modelled Ni diffusion in kamacite and taenite.
+
+    Parameters
+    ----------
+    tw : float
+        Tetrataenite bandwidth in nm
+
+    Returns
+    -------
+    t_rate : float
+        The cooling rate in K/Myr
+
     """
     k = 14540000  # constant
     t_rate = k / (tw ** 2.3)  # in K/Myr

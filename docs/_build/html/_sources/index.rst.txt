@@ -9,7 +9,7 @@
 
    self
    README
-   pytesimal
+   apiref
 
 
 
