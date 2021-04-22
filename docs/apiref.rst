@@ -48,11 +48,3 @@ pytesimal.setup\_functions module
    :members:
    :undoc-members:
    :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: pytesimal
-   :members:
-   :undoc-members:
-   :show-inheritance:

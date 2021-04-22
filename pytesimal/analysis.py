@@ -59,7 +59,7 @@ def core_freezing(
 
     time_core_frozen = 0.0
     if time_core_frozen >= max_time or len(times_frozen) == 0.0:
-        print("Core freezes after max time")
+        # print("Core freezes after max time")
         time_core_frozen = 0.0
         fully_frozen = 0.0
     else:
@@ -72,16 +72,16 @@ def core_freezing(
     # find time core finishes freezing, time when latent heat is all
     # gone + time core started to freeze
     fully_frozen = times[len(latent)] + time_core_frozen
-    print(
-        "core_frozen: "
-        + str(core_frozen)
-        + "; times_frozen: "
-        + str(times_frozen)
-        + "; time_core_frozen: "
-        + str(time_core_frozen)
-        + "; fully_frozen: "
-        + str(fully_frozen)
-    )
+    # print(
+    #     "core_frozen: "
+    #     + str(core_frozen)
+    #     + "; times_frozen: "
+    #     + str(times_frozen)
+    #     + "; time_core_frozen: "
+    #     + str(time_core_frozen)
+    #     + "; fully_frozen: "
+    #     + str(fully_frozen)
+    # )
     return (core_frozen, times_frozen, time_core_frozen, fully_frozen)
 
 

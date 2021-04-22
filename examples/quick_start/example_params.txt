@@ -1,6 +1,6 @@
 {
-    "run_ID": "example_default",
-    "folder": "example_default",
+    "run_ID": "example_params",
+    "folder": "examples/quick_start",
     "timestep": 100000000000.0,
     "r_planet": 250000.0,
     "core_size_factor": 0.5,
