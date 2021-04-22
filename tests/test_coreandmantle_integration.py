@@ -39,21 +39,6 @@ def test_mtt_discretisation():
         temperatures,
         coretemp,
         latent,
-        # temp_list_mid_mantle,
-        # temp_list_shal,
-        # temp_list_cmb_5,
-        # A_1list,
-        # B_1list,
-        # C_1list,
-        # delt_list,
-        # A_1listcmb,
-        # B_1listcmb,
-        # C_1listcmb,
-        # delt_listcmb,
-        # A_1listshal,
-        # B_1listshal,
-        # C_1listshal,
-        # delt_listshal,
     ) = mtt.discretisation(
         core_values=core_values,
         latent=[],
@@ -78,11 +63,9 @@ def test_mtt_discretisation():
     )
     temp_mean = np.mean(temperatures)
     coretemp_mean = np.mean(coretemp)
-    # delt_listshal_mean = np.mean(delt_listshal)
 
     assert temp_mean == pytest.approx(1338.428508059057, 0.0000000001)
     assert coretemp_mean == pytest.approx(1800.0)
-    # assert delt_listshal_mean == pytest.approx(0.0034806426277591207)
     print("Success.")
 
 
@@ -114,21 +97,6 @@ def test_mtt_vardiscretisation():
         temperatures,
         coretemp,
         latent,
-        # temp_list_mid_mantle,
-        # temp_list_shal,
-        # temp_list_cmb_5,
-        # A_1list,
-        # B_1list,
-        # C_1list,
-        # delt_list,
-        # A_1listcmb,
-        # B_1listcmb,
-        # C_1listcmb,
-        # delt_listcmb,
-        # A_1listshal,
-        # B_1listshal,
-        # C_1listshal,
-        # delt_listshal,
     ) = mtt.discretisation(
         latent=[],
         core_values=core_values,
@@ -153,10 +121,8 @@ def test_mtt_vardiscretisation():
     )
     temp_mean = np.mean(temperatures)
     coretemp_mean = np.mean(coretemp)
-    # delt_listshal_mean = np.mean(delt_listshal)
     assert temp_mean == pytest.approx(1692.134212968852, 0.0000000001)
     assert coretemp_mean == pytest.approx(1800.0)
-    # assert delt_listshal_mean == pytest.approx(1.012893130791781e-10)
     print("Success.")
 
 
@@ -185,21 +151,6 @@ def test_mtt_discretisation_cold_mantle():
         temperatures,
         coretemp,
         latent,
-        # temp_list_mid_mantle,
-        # temp_list_shal,
-        # temp_list_cmb_5,
-        # A_1list,
-        # B_1list,
-        # C_1list,
-        # delt_list,
-        # A_1listcmb,
-        # B_1listcmb,
-        # C_1listcmb,
-        # delt_listcmb,
-        # A_1listshal,
-        # B_1listshal,
-        # C_1listshal,
-        # delt_listshal,
     ) = mtt.discretisation(
         latent=[],
         core_values=core_values,
@@ -224,12 +175,9 @@ def test_mtt_discretisation_cold_mantle():
     )
     temp_mean = np.mean(temperatures)
     coretemp_mean = np.mean(coretemp)
-    # delt_listshal_mean = np.mean(delt_listshal)
-    # print(temp_mean, coretemp_mean, delt_listshal_mean)
 
     assert temp_mean == pytest.approx(1129.0036119517447, 0.0000000001)
     assert coretemp_mean == pytest.approx(1799.9984226292759)
-    # assert delt_listshal_mean == pytest.approx(0.0012771823292144018)
     print("Success.")
 
 
@@ -261,21 +209,6 @@ def test_mtt_vardiscretisation_cold_mantle():
         temperatures,
         coretemp,
         latent,
-        # temp_list_mid_mantle,
-        # temp_list_shal,
-        # temp_list_cmb_5,
-        # A_1list,
-        # B_1list,
-        # C_1list,
-        # delt_list,
-        # A_1listcmb,
-        # B_1listcmb,
-        # C_1listcmb,
-        # delt_listcmb,
-        # A_1listshal,
-        # B_1listshal,
-        # C_1listshal,
-        # delt_listshal,
     ) = mtt.discretisation(
         core_values=core_values,
         latent=[],
@@ -300,11 +233,8 @@ def test_mtt_vardiscretisation_cold_mantle():
     )
     temp_mean = np.mean(temperatures)
     coretemp_mean = np.mean(coretemp)
-    # delt_listshal_mean = np.mean(delt_listshal)
-    # print(temp_mean, coretemp_mean, delt_listshal_mean)
 
     assert coretemp_mean == pytest.approx(1799.9985585325398)
     assert temp_mean == pytest.approx(1161.0663997556733, 0.0000000001)
     assert temp_mean == pytest.approx(1161.0663997556733, 0.0000000001)
-    # assert delt_listshal_mean == pytest.approx(-7.581142508447556e-06)
     print("Success.")

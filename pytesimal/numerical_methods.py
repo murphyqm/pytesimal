@@ -5,10 +5,73 @@ Forward-Time Central-Space (FTCS) discretisation for the mantle.
 
 Set up boundary conditions, calculate the heat extracted across the core-mantle
 boundary in a timestep, and numerically discretise the conductive cooling of
-the mantle of a planetesimal.
+the mantle of a planetesimal. This module also contains functions to calculate
+the thermal diffusivity of a material form the thermal conductivity, heat
+capacity and the density, and to check whether the diffusivity, timestep and
+radial discretisation meet Von Neumann stability criteria.
 """
 
 import numpy as np
+
+
+def calculate_diffusivity(conductivity, heat_capacity, density):
+    """
+    Calculate diffusivity from conductivity, heat capacity and density.
+
+    Returns a value for diffusivity at a certain temperature, given float
+    values for conductivity, heat capacity and density.
+
+    Parameters
+    ----------
+    conductivity : float
+        Thermal conductivity of the material
+    heat_capacity : float
+        Heat capacity of the material
+    density : float
+        Density of the material
+
+    Returns
+    -------
+    diffusivity : float
+
+    """
+    diffusivity = conductivity / (density * heat_capacity)
+    return diffusivity
+
+
+def check_stability(max_diffusivity, timestep, dr):
+    """
+    Check adherence to Von Neumann stability criteria.
+
+    Use the maximum diffusivity of the system to return the most restrictive
+    criteria. Diffusivity can be calculated using the `calculate_diffusivity`
+    function, with max diffusivity where conductivity is maximised and
+    density and heat capacity are minimised.
+
+    Parameters
+    ----------
+    max_diffusivity : float
+        The highest diffusivity of the system to impose the most restrictive
+        conditions
+    timestep : float
+        The timestep used for the numerical scheme
+    dr : float
+        The radial step used for the numerical scheme
+
+    Returns
+    -------
+    result : bool
+        Boolean, True if parameters pass stability criteria and false if they
+        fail.
+
+    """
+    criterion = (max_diffusivity * timestep)/(dr**2)
+    if criterion <= 0.5:
+        print("Von Neumann stability criteria met")
+        return True
+    if criterion > 0.5:
+        print("Reduce timestep to meet Von Neumann stability criteria")
+        return False
 
 
 def surface_dirichlet_bc(temperatures, temp_surface, i):

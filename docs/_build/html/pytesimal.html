@@ -830,7 +830,10 @@ produces variable heat capacity.</p></li>
 <p>Forward-Time Central-Space (FTCS) discretisation for the mantle.</p>
 <p>Set up boundary conditions, calculate the heat extracted across the core-mantle
 boundary in a timestep, and numerically discretise the conductive cooling of
-the mantle of a planetesimal.</p>
+the mantle of a planetesimal. This module also contains functions to calculate
+the thermal diffusivity of a material form the thermal conductivity, heat
+capacity and the density, and to check whether the diffusivity, timestep and
+radial discretisation meet Von Neumann stability criteria.</p>
 <dl class="py class">
 <dt id="pytesimal.numerical_methods.EnergyExtractedAcrossCMB">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pytesimal.numerical_methods.</span></code><code class="sig-name descname"><span class="pre">EnergyExtractedAcrossCMB</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outer_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.numerical_methods.EnergyExtractedAcrossCMB" title="Permalink to this definition">¶</a></dt>
@@ -881,6 +884,56 @@ the mantle of a planetesimal.</p>
 <dd><p>Calculate heat (power) extracted in one timestep</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt id="pytesimal.numerical_methods.calculate_diffusivity">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.numerical_methods.</span></code><code class="sig-name descname"><span class="pre">calculate_diffusivity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conductivity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heat_capacity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.numerical_methods.calculate_diffusivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate diffusivity from conductivity, heat capacity and density.</p>
+<p>Returns a value for diffusivity at a certain temperature, given float
+values for conductivity, heat capacity and density.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conductivity</strong> (<em>float</em>) – Thermal conductivity of the material</p></li>
+<li><p><strong>heat_capacity</strong> (<em>float</em>) – Heat capacity of the material</p></li>
+<li><p><strong>density</strong> (<em>float</em>) – Density of the material</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>diffusivity</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pytesimal.numerical_methods.check_stability">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.numerical_methods.</span></code><code class="sig-name descname"><span class="pre">check_stability</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_diffusivity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.numerical_methods.check_stability" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check adherence to Von Neumann stability criteria.</p>
+<p>Use the maximum diffusivity of the system to return the most restrictive
+criteria. Diffusivity can be calculated using the <cite>calculate_diffusivity</cite>
+function, with max diffusivity where conductivity is maximised and
+density and heat capacity are minimised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_diffusivity</strong> (<em>float</em>) – The highest diffusivity of the system to impose the most restrictive
+conditions</p></li>
+<li><p><strong>timestep</strong> (<em>float</em>) – The timestep used for the numerical scheme</p></li>
+<li><p><strong>dr</strong> (<em>float</em>) – The radial step used for the numerical scheme</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>result</strong> – Boolean, True if parameters pass stability criteria and false if they
+fail.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
