@@ -72,16 +72,6 @@ def core_freezing(
     # find time core finishes freezing, time when latent heat is all
     # gone + time core started to freeze
     fully_frozen = times[len(latent)] + time_core_frozen
-    # print(
-    #     "core_frozen: "
-    #     + str(core_frozen)
-    #     + "; times_frozen: "
-    #     + str(times_frozen)
-    #     + "; time_core_frozen: "
-    #     + str(time_core_frozen)
-    #     + "; fully_frozen: "
-    #     + str(fully_frozen)
-    # )
     return (core_frozen, times_frozen, time_core_frozen, fully_frozen)
 
 
@@ -91,7 +81,7 @@ def cooling_rate(temperature_array, timestep):
     return dTdt
 
 
-def cooling_rate_cloudyzone_diameter(d):  # TODO add reference
+def cooling_rate_cloudyzone_diameter(d):
     """
     Cooling rate calculated using cloudy zone particle diameter in nm.
 

@@ -67,7 +67,18 @@ def test_neumann_cmb():
 	result = np.array([[3.,3., 2.6666666666666665],[2.,2.,2.],[1.,1.,0.]])
 	np.testing.assert_array_almost_equal_nulp(temperatures,result)
 
-# def test_energy_extracted():
-# 	mantle_temperatures = np.array([[3.,3.,3.],[2.,2.,2.],[1.,1.,0.]])
-# 	energy_object = numerical_methods.EnergyExtractedAcrossCMB(10.0, 1.0, 1.0)
-# 	print(energy_object.power(mantle_temperatures, i, k))
+def test_energy_extracted():
+	mantle_temperatures = np.array([[3.,3.,3.],[2.,2.,2.],[1.,1.,0.]])
+	energy_object = numerical_methods.EnergyExtractedAcrossCMB(10.0, 1.0, 1.0)
+	i = 2
+	k = 3.5
+	power_extracted = energy_object.power(mantle_temperatures, i, k)
+	assert power_extracted == -4398.229715025711
+
+def test_energy_extracted2():
+	mantle_temperatures = np.array([[3.,3.,3.],[2.,2.,2.],[1.,1.,0.]])
+	energy_object = numerical_methods.EnergyExtractedAcrossCMB(10.0, 1.0, 1.0)
+	i = 1
+	k = 10.0
+	power_extracted = energy_object.power(mantle_temperatures, i, k)
+	assert power_extracted == -12566.370614359173

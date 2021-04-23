@@ -12,26 +12,6 @@ from context import mantle_properties as mp
 # import numpy as np
 import pytest
 
-# import matplotlib.pyplot as plt
-
-# # informal test first: plotting the mantle properties:
-# # The functions reproduce the figure from the old functions
-
-# T = np.arange(200, 1801)
-
-# cp = mantle.VariableHeatCapacity()
-# rho = mantle.VariableDensity()
-# k = mantle.VariableConductivity()
-
-# cp_range = cp.getcp(T)
-# rho_range = rho.getrho(T)
-# k_range = k.getk(T)
-# vol_heat_cap = (cp_range * rho_range)/3341.0
-
-# # plt.plot(T, vol_heat_cap)
-# plt.plot(T, k_range)
-# plt.show()
-
 
 def test_mantleprop_defaults():
     mantle = mp.MantleProperties()
