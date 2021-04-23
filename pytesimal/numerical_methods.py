@@ -144,6 +144,7 @@ def cmb_neumann_bc(temperatures, core_boundary_temperature, i):
     """
     temperatures[0, i] = (4.0 * (temperatures[1, i]) - temperatures[2, i]) / 3.0
     # eq. 6.31 http://folk.ntnu.no/leifh/teaching/tkt4140/._main056.html
+    return temperatures
 
 
 class EnergyExtractedAcrossCMB:

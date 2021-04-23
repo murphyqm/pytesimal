@@ -56,14 +56,18 @@ def test_diric_cmb():
 	result = np.array([[0.,0.,1.],[0.,0.,0.],[0.,0.,0.]])
 	np.testing.assert_array_almost_equal_nulp(temperatures,result)
 
-# def test_neumann_cmb():
-# 	temperatures = np.zeros((3,3))
-# 	temp_surface = 1
-# 	i = 2
-# 	temperatures = numerical_methods.cmb_dirichlet_bc(
-# 		temperatures,
-# 		temp_surface,
-# 		i)
-# 	print(temperatures)
-# 	result = np.array([[0.,0.,1.],[0.,0.,0.],[0.,0.,0.]])
-# 	np.testing.assert_array_almost_equal_nulp(temperatures,result)
+def test_neumann_cmb():
+	temperatures = np.array([[3.,3.,3.],[2.,2.,2.],[1.,1.,0.]])
+	temp_surface = 1
+	i = 2
+	temperatures = numerical_methods.cmb_neumann_bc(
+		temperatures,
+		temp_surface,
+		i)
+	result = np.array([[3.,3., 2.6666666666666665],[2.,2.,2.],[1.,1.,0.]])
+	np.testing.assert_array_almost_equal_nulp(temperatures,result)
+
+# def test_energy_extracted():
+# 	mantle_temperatures = np.array([[3.,3.,3.],[2.,2.,2.],[1.,1.,0.]])
+# 	energy_object = numerical_methods.EnergyExtractedAcrossCMB(10.0, 1.0, 1.0)
+# 	print(energy_object.power(mantle_temperatures, i, k))
