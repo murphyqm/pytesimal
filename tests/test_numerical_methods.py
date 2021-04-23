@@ -10,7 +10,6 @@ import pytest
 from context import numerical_methods
 
 
-
 def test_diffusivity():
 	k = 3.5
 	heat_cap = 600
@@ -26,6 +25,7 @@ def test_stability():
 	result = numerical_methods.check_stability(diffusivity, timestep, dr)
 	assert result
 
+
 def test_stability2():
 	diffusivity = 8e-6
 	timestep = 1e11
@@ -33,6 +33,7 @@ def test_stability2():
 	result = numerical_methods.check_stability(diffusivity, timestep, dr)
 	opposite = not(result)
 	assert opposite
+
 
 def test_diric_surface():
 	temperatures = np.zeros((3,3))
@@ -45,6 +46,7 @@ def test_diric_surface():
 	result = np.array([[0.,0.,0.],[0.,0.,0.],[0.,0.,1.]])
 	np.testing.assert_array_almost_equal_nulp(temperatures,result)
 
+
 def test_diric_cmb():
 	temperatures = np.zeros((3,3))
 	temp_surface = 1
@@ -55,6 +57,7 @@ def test_diric_cmb():
 		i)
 	result = np.array([[0.,0.,1.],[0.,0.,0.],[0.,0.,0.]])
 	np.testing.assert_array_almost_equal_nulp(temperatures,result)
+
 
 def test_neumann_cmb():
 	temperatures = np.array([[3.,3.,3.],[2.,2.,2.],[1.,1.,0.]])
@@ -67,6 +70,7 @@ def test_neumann_cmb():
 	result = np.array([[3.,3., 2.6666666666666665],[2.,2.,2.],[1.,1.,0.]])
 	np.testing.assert_array_almost_equal_nulp(temperatures,result)
 
+
 def test_energy_extracted():
 	mantle_temperatures = np.array([[3.,3.,3.],[2.,2.,2.],[1.,1.,0.]])
 	energy_object = numerical_methods.EnergyExtractedAcrossCMB(10.0, 1.0, 1.0)
@@ -74,6 +78,7 @@ def test_energy_extracted():
 	k = 3.5
 	power_extracted = energy_object.power(mantle_temperatures, i, k)
 	assert power_extracted == -4398.229715025711
+
 
 def test_energy_extracted2():
 	mantle_temperatures = np.array([[3.,3.,3.],[2.,2.,2.],[1.,1.,0.]])

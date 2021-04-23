@@ -6,19 +6,19 @@ Created on Mon Jan 25 17:01:06 2021
 @author: maeve
 """
 
-from context import numerical_methods as mtt
-from context import core_function as new_core_function_2
+from context import numerical_methods as nm
+from context import core_function
 import numpy as np
 
 def test_new_core_unit():
     radii = np.arange(10000.0, 50000.0, 1000.0)
     times = np.arange(0, 100 + 0.5 * 1.0, 1.0)
     temperatures = np.zeros((radii.size, times.size))
-    cmb_energy = mtt.EnergyExtractedAcrossCMB(
+    cmb_energy = nm.EnergyExtractedAcrossCMB(
         outer_r=10000.0, timestep=1.0, radius_step=1000.0
     )
 
-    core = new_core_function_2.IsothermalEutecticCore(
+    core = core_function.IsothermalEutecticCore(
         initial_temperature=1000.0,
         melting_temperature=1200.0,
         outer_r=10000.0,
@@ -30,7 +30,6 @@ def test_new_core_unit():
     )
     heat = cmb_energy.power(temperatures, i=1, k=3.0)
     core.extract_heat(heat, timestep=1.0)
-    # core.extract_energy(energy)
     latent = core.latentlist
     core_lh_extracted = core.latent
     temperature_core = core.temperature

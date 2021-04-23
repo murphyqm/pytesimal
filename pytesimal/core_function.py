@@ -97,49 +97,6 @@ class IsothermalEutecticCore:
             self.temperature, self.latent
         )
 
-    # def cooling(self, mantletemps, timestep, dr, i, cmbk):
-    #     """Cool core or extract latent heat. Old version."""
-    #     if (self.temperature > self.melting) or (
-    #         self.latent >= self.maxlatent
-    #     ):
-    #         # print(self.temperature)
-    #         self.temperature = self.temperature - (
-    #             3.0
-    #             * cmbk
-    #             * ((mantletemps[0, i] - mantletemps[1, i]) / dr)
-    #             * timestep
-    #         ) / (self.density * self.heatcap * self.radius)
-    #         self.templist.append(self.temperature)
-    #         self.boundary_temperature = self.temperature
-    #     else:
-    #         self.latent = (
-    #             self.latent
-    #             + (4.0 * np.pi * self.radius ** 2)
-    #             * cmbk
-    #             * ((mantletemps[0, i] - mantletemps[1, i]) / dr)
-    #             * timestep
-    #         )
-    #         self.latentlist.append(self.latent)
-    #         self.templist.append(self.temperature)
-    #         print("Freezing!\n***\n***\n***")
-
-    # def extract_energy(self, energy_removed):
-    #     """E (J) extracted"""
-    #     volume_of_core = (4.0 / 3.0) * np.pi * self.radius ** 3
-    #     if (self.temperature > self.melting) or (
-    #         self.latent >= self.maxlatent
-    #     ):
-    #         delta_T = -energy_removed / (
-    #             self.density * self.heatcap * volume_of_core
-    #         )
-    #         self.temperature = self.temperature - delta_T
-    #         self.templist.append(self.temperature)
-    #         self.boundary_temperature = self.temperature
-    #     else:
-    #         self.latent = self.latent - energy_removed
-    #         self.templist.append(self.temperature)
-    #         self.latentlist.append(self.latent)
-
     def extract_heat(self, power, timestep):
         """
         Extract heat (in W) across the core-mantle boundary
@@ -203,8 +160,6 @@ class IsothermalEutecticCore:
             Array of core temperature history
 
         """
-        # temp_array = np.asarray(self.templist)
         for i in range(1, len(self.templist[1:])):
-            # for i in range(1, coretemp_array[0].size):
             coretemp_array[:, i] = self.templist[i]
         return coretemp_array

@@ -238,3 +238,23 @@ def test_mtt_vardiscretisation_cold_mantle():
     assert temp_mean == pytest.approx(1161.0663997556733, 0.0000000001)
     assert temp_mean == pytest.approx(1161.0663997556733, 0.0000000001)
     print("Success.")
+
+
+def test_disc_var(temperature_timestepping_var):
+    results = temperature_timestepping_var
+    assert results["mantle_temperature_array"].mean() ==\
+           pytest.approx(779.7916808017013)
+    assert results["core_temperature_array"].mean() == \
+           pytest.approx(1290.4015724475953)
+    assert results["latent"][-1] == pytest.approx(1.7230110262815063e+25)
+    assert results["times"].mean() == pytest.approx(6311400000000000.0)
+
+
+def test_disc_const(temperature_timestepping):
+    results = temperature_timestepping
+    assert results["mantle_temperature_array"].mean() == \
+           pytest.approx(755.0162816538588)
+    assert results["core_temperature_array"].mean() == \
+           pytest.approx(1214.3018909107805)
+    assert results["latent"][-1] == pytest.approx(1.7229774100445118e+25)
+    assert results["times"].mean() == pytest.approx(6311400000000000.0)
