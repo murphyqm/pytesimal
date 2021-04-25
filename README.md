@@ -75,7 +75,7 @@ This software relies on python (version 3) and various other python packages. Ex
 
     git clone https://github.com/murphyqm/pytesimal.git
     cd pytesimal
-    conda create -n=pytesimal python=3.8
+    conda create -n=pytesimal python=3.8 jupyter
     conda activate pytesimal
     pip install -r requirements.txt
 
