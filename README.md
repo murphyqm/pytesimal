@@ -79,6 +79,9 @@ This software relies on python (version 3) and various other python packages. Ex
     conda activate pytesimal
     pip install -r requirements.txt
 
+Pytesimal can then be installed as a package within the environment by running:
+
+    pip install .
 
 Contribute
 ----------
