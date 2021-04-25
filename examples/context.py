@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Context file to allow import of main module.
+Created on 25/04/2021
+by murphyqm
 
-Created on Tue Feb  2 13:56:32 2021.
-
-@author: maeve
+Importing modules so package doesn't have to be installed to run examples.
 """
-
 import os
 import sys
 
@@ -21,3 +19,4 @@ import core_function
 import mantle_properties
 import setup_functions
 import analysis
+import load_plot_save

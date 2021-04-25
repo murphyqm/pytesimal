@@ -1,7 +1,8 @@
 Pytesimal
 ========
 
-[Read the docs](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
 
 Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.
 
@@ -13,48 +14,59 @@ The code currently recreates the cases described in [Murphy Quinlan et al. (2021
 
 Quick Start
 -----------
+[Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
+To run a case with parameters loaded from file:
 
-To run a case with default parameters:
+    import pytesimal.load_plot_save
+    import pytesimal.quick_workflow
 
-    from modular_cond_cooling import conductive_cooling
+Define a filepath and filename for the parameter file:
 
-    # Give your model set-up a unique file name:
-    run_ID = "file_name"
+    folderpath = 'path/to/the/example/'
+    filename = 'example_parameters'
+    filepath = f'{folderpath}{filename}.txt'
 
-    # Point it to a folder to save the outputs:
-    folder = "folder_path" 
+Save a default parameters file to the filepath:
 
-    # Let your planetesimal evolve:
-    conductive_cooling(run_ID, folder,)
+    pytesimal.load_plot_save.make_default_param_file(filepath)
 
-See the Jupyter notebooks provided for working examples.
+You can open this `json` file in a text editor and change the default values. Once you've edited and saved it, use it as an input file for a model run:
 
-**To download data from NGDC and plot it:**
+    pytesimal.quick_workflow.workflow(filename, folderpath)
 
-Navigate to the `downloading_and_plotting_data` directory. From the command line, run the required script to download the .dat files from the NGDC:
+Let your planetesimal evolve! This will take a minute or so to run. Once it has done do, you can load the results (from the folder you specified in the parameters file):
 
-`$ python downloaddata.py`
+    filepath = 'results_folder/example_parameters_results.npz'
+    (temperatures,
+     coretemp,
+     dT_by_dt,
+     dT_by_dt_core) = pytesimal.load_plot_save.read_datafile(filepath)
 
-Once the data is downloaded from the NGDC, it is available to plot using `coolingplot.py` with the filename you wish to plot:
+Then you can plot heatmaps of the temperatures and cooling rates within the planetesimal:
 
-`$ python coolingplot.py constant_properties.dat`
+    # Specify a figure width and height:
+    fig_w = 6
+    fig_h = 9
+    
+    pytesimal.load_plot_save.two_in_one(
+    fig_w,
+    fig_h,
+    temperatures,
+    coretemp,
+    dT_by_dt,
+    dT_by_dt_core)
 
-For more information run:
-
-`$ python coolingplot.py -h`
+See the Jupyter notebooks hosted on Binder for live working examples, or download the example scripts provided.
 
 Features
 --------
 
 - Constant or variable material properties
-- Download and plot data from NGDC
 - Choose to return compressed `.npz` NumPy arrays of temperature and cooling rates through time and radius
 - Plot temperature or cooling rate heatmaps
 - Return timing of core solidification, and depth and timing of meteorite formation
-- Return `pickle` objects with output parameter values
-- Return a parameter `.txt` file with details of input parameters and results
+- Return a parameter `.json` file with details of input parameters and results
 
 Installation
 ------------

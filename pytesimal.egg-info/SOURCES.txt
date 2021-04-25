@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+pytesimal/__init__.py
+pytesimal/analysis.py
+pytesimal/core_function.py
+pytesimal/load_plot_save.py
+pytesimal/mantle_properties.py
+pytesimal/numerical_methods.py
+pytesimal/quick_workflow.py
+pytesimal/setup_functions.py
+pytesimal.egg-info/PKG-INFO
+pytesimal.egg-info/SOURCES.txt
+pytesimal.egg-info/dependency_links.txt
+pytesimal.egg-info/requires.txt
+pytesimal.egg-info/top_level.txt
