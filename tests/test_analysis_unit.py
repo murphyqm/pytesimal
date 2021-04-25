@@ -56,11 +56,13 @@ def test_depth_and_timing(temperature_timestepping):
     core_size_factor = 0.5
     time_core_frozen = 5411100000000000.0
     fully_frozen = 7637200000000000.0
-    (depth,
-     string,
-     time_core_frozen,
-     Time_of_Crossing,
-     Critical_Radius,) = analysis.meteorite_depth_and_timing(
+    (
+        depth,
+        string,
+        time_core_frozen,
+        Time_of_Crossing,
+        Critical_Radius,
+    ) = analysis.meteorite_depth_and_timing(
         CR,
         temperatures,
         dT_by_dt,
@@ -72,7 +74,7 @@ def test_depth_and_timing(temperature_timestepping):
         dr=1000.0,
     )
     assert depth == 57.0
-    assert string == 'Core has started solidifying'
+    assert string == "Core has started solidifying"
     assert Critical_Radius == 193000.0
     assert time_core_frozen == 5411100000000000.0
     assert Time_of_Crossing == 5849600000000000

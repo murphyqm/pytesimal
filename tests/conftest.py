@@ -47,9 +47,11 @@ def temperature_timestepping():
         cp=core_cp,
         core_latent_heat=core_latent_heat,
     )
-    (mantle_conductivity,
-     mantle_heatcap,
-     mantle_density) = mantle_properties.set_up_mantle_properties()
+    (
+        mantle_conductivity,
+        mantle_heatcap,
+        mantle_density,
+    ) = mantle_properties.set_up_mantle_properties()
     (
         mantle_temperature_array,
         core_temperature_array,
@@ -120,12 +122,13 @@ def temperature_timestepping_var():
         cp=core_cp,
         core_latent_heat=core_latent_heat,
     )
-    (mantle_conductivity,
-     mantle_heatcap,
-     mantle_density) = mantle_properties.set_up_mantle_properties(
-        cond_constant="n",
-        density_constant="n",
-        heat_cap_constant="n", )
+    (
+        mantle_conductivity,
+        mantle_heatcap,
+        mantle_density,
+    ) = mantle_properties.set_up_mantle_properties(
+        cond_constant="n", density_constant="n", heat_cap_constant="n",
+    )
     (
         mantle_temperature_array,
         core_temperature_array,

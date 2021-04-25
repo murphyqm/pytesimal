@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Features &mdash; Pytesimal 1.0.0 documentation</title>
+  <title>Pytesimal &mdash; Pytesimal 1.0.0 documentation</title>
   
 
   
@@ -37,9 +37,7 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Reference" href="apiref.html" />
-    <link rel="prev" title="Pytesimal" href="index.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,14 +83,14 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Pytesimal</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#quick-start">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#contribute">Contribute</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#support">Support</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#contribute">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#support">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apiref.html">API Reference</a></li>
 </ul>
 
@@ -142,13 +140,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Features</li>
+      <li>Pytesimal</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/README.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/README_for_docs.md.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -161,27 +159,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="features">
+  <div class="section" id="pytesimal">
+<h1>Pytesimal<a class="headerlink" href="#pytesimal" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://pytesimal.readthedocs.io/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/pytesimal/badge/?version=latest" /></a>
+<a class="reference external" href="https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.</p>
+<p>Pytesimal is a finite difference code to perform numerical models of a conductively cooling planetesimal, both with constant and temperature-dependent properties. It returns a thermal history of the planetesimal, and the estimated timing and depth of pallasite meteorite genesis.
+The conduction equation is solved numerically using an explicit finite difference scheme, FTCS (Forward-Time Central-Space). FTCS gives first-order convergence in time and second-order in space, and is conditionally stable when applied to the heat equation.
+In 1D, it must satisfy Von Neumann stability analysis - please see <a class="reference external" href="https://doi.org/10.1029/2020JE006726">Murphy Quinlan et al. (2021)</a> for more information on choice of time-step.</p>
+<p>The code currently recreates the cases described in <a class="reference external" href="https://doi.org/10.1029/2020JE006726">Murphy Quinlan et al. (2021)</a>. References for the default parameters used can be found therein. We plan to extend it and make it more modular in future updates.</p>
+</div>
+<div class="section" id="features">
 <h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Constant or variable material properties</p></li>
-<li><p>Choose to return compressed <code class="docutils literal notranslate"><span class="pre">.npz</span></code> NumPy arrays of temperature and
-cooling rates through time and radius</p></li>
+<li><p>Choose to return compressed <code class="docutils literal notranslate"><span class="pre">.npz</span></code> NumPy arrays of temperature and cooling rates through time and radius</p></li>
 <li><p>Plot temperature or cooling rate heatmaps</p></li>
-<li><p>Return timing of core solidification, and depth and timing of
-meteorite formation</p></li>
-<li><p>Return a parameter <code class="docutils literal notranslate"><span class="pre">.json</span></code> file with details of input parameters
-and results</p></li>
+<li><p>Return timing of core solidification, and depth and timing of meteorite formation</p></li>
+<li><p>Return a parameter <code class="docutils literal notranslate"><span class="pre">.json</span></code> file with details of input parameters and results</p></li>
 </ul>
 </div>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>This software relies on python (version 3) and various other python
-packages. Examples are distributed as Jupyter notebooks, which need
-Jupyter and Matplotlib to run. Installation and management of all these
-dependencies is most easily done in a conda environment. Download of the
-software and creation of an isolated conda environment can be done by
-running:</p>
+<p>This software relies on python (version 3) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">murphyqm</span><span class="o">/</span><span class="n">pytesimal</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">pytesimal</span>
 <span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span><span class="o">=</span><span class="n">pytesimal</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> <span class="n">jupyter</span>
@@ -189,18 +189,14 @@ running:</p>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>Pytesimal can then be installed as a package within the environment by
-running:</p>
+<p>Pytesimal can then be installed as a package within the environment by running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="quick-start">
 <h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://pytesimal.readthedocs.io/en/latest/pytesimal.html">Read the full documentation
-here,</a> <a class="reference external" href="https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders">or
-launch a Jupyter Notebook example on Binder
-here.</a></p>
+<p><a class="reference external" href="https://pytesimal.readthedocs.io/en/latest/pytesimal.html">Read the full documentation here,</a> <a class="reference external" href="https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders">or launch a Jupyter Notebook example on Binder here.</a></p>
 <p>To run a case with parameters loaded from file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytesimal.load_plot_save</span>
 <span class="kn">import</span> <span class="nn">pytesimal.quick_workflow</span>
@@ -216,15 +212,11 @@ here.</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytesimal</span><span class="o">.</span><span class="n">load_plot_save</span><span class="o">.</span><span class="n">make_default_param_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can open this <code class="docutils literal notranslate"><span class="pre">json</span></code> file in a text editor and change the default
-values. Once you’ve edited and saved it, use it as an input file for a
-model run:</p>
+<p>You can open this <code class="docutils literal notranslate"><span class="pre">json</span></code> file in a text editor and change the default values. Once you’ve edited and saved it, use it as an input file for a model run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytesimal</span><span class="o">.</span><span class="n">quick_workflow</span><span class="o">.</span><span class="n">workflow</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">folderpath</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Let your planetesimal evolve! This will take a minute or so to run. Once
-it has done do, you can load the results (from the folder you specified
-in the parameters file):</p>
+<p>Let your planetesimal evolve! This will take a minute or so to run. Once it has done do, you can load the results (from the folder you specified in the parameters file):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;results_folder/example_parameters_results.npz&#39;</span>
 <span class="p">(</span><span class="n">temperatures</span><span class="p">,</span>
  <span class="n">coretemp</span><span class="p">,</span>
@@ -232,8 +224,7 @@ in the parameters file):</p>
  <span class="n">dT_by_dt_core</span><span class="p">)</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">load_plot_save</span><span class="o">.</span><span class="n">read_datafile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then you can plot heatmaps of the temperatures and cooling rates within
-the planetesimal:</p>
+<p>Then you can plot heatmaps of the temperatures and cooling rates within the planetesimal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify a figure width and height:</span>
 <span class="n">fig_w</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">fig_h</span> <span class="o">=</span> <span class="mi">9</span>
@@ -247,8 +238,7 @@ the planetesimal:</p>
 <span class="n">dT_by_dt_core</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>See the Jupyter notebooks hosted on Binder for live working examples, or
-download the example scripts provided.</p>
+<p>See the Jupyter notebooks hosted on Binder for live working examples, or download the example scripts provided.</p>
 </div>
 <div class="section" id="contribute">
 <h1>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h1>
@@ -259,8 +249,8 @@ download the example scripts provided.</p>
 </div>
 <div class="section" id="support">
 <h1>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h1>
-<p>If you are having issues, please let us know. You can email us at
-<a class="reference external" href="mailto:eememq&#37;&#52;&#48;leeds&#46;ac&#46;uk">eememq<span>&#64;</span>leeds<span>&#46;</span>ac<span>&#46;</span>uk</a></p>
+<p>If you are having issues, please let us know.
+You can email us at eememq&#64;leeds.ac.uk</p>
 </div>
 <div class="section" id="license">
 <h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
@@ -272,10 +262,6 @@ download the example scripts provided.</p>
            
           </div>
           <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="apiref.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="Pytesimal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
 
   <hr/>
 

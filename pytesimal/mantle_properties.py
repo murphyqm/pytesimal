@@ -80,7 +80,7 @@ class MantleProperties:
 
     def getdkdT(self, T=295, P=0.1):
         """Get gradient of conductivity."""
-        dkdT = 0 # zero when conductivity is a constant in temperature
+        dkdT = 0  # zero when conductivity is a constant in temperature
         return dkdT
 
     def getkappa(self):
@@ -114,10 +114,10 @@ class VariableHeatCapacity(MantleProperties):
     def getcp(self, T=295):
         """Get heat capacity."""
         new_heatcap = (
-                995.1
-                + (1343.0 * ((T) ** (-0.5)))
-                - (2.887 * (10 ** 7.0) * ((T) ** (-2.0)))
-                - (6.166 * (10.0 ** (-2.0)) * (T) ** (-3.0))
+            995.1
+            + (1343.0 * ((T) ** (-0.5)))
+            - (2.887 * (10 ** 7.0) * ((T) ** (-2.0)))
+            - (6.166 * (10.0 ** (-2.0)) * (T) ** (-3.0))
         )
         self._cp = new_heatcap
         return self._cp
@@ -129,14 +129,14 @@ class VariableConductivity(MantleProperties):
     def getk(self, T=295, P=0.1):
         """Get conductivity."""
         new_cond = (
-                80.4205952575632
-                * (
-                        1.3193574749943 * T ** (-0.5)
-                        + 0.977581998039333
-                        - 28361.7649315602 / T ** 2.0
-                        - 6.05745211527538e-5 / T ** 3.0
-                )
-                * (1.0 / T) ** 0.5
+            80.4205952575632
+            * (
+                1.3193574749943 * T ** (-0.5)
+                + 0.977581998039333
+                - 28361.7649315602 / T ** 2.0
+                - 6.05745211527538e-5 / T ** 3.0
+            )
+            * (1.0 / T) ** 0.5
         )
         self._k = new_cond
         return self._k
@@ -144,33 +144,34 @@ class VariableConductivity(MantleProperties):
     def getdkdT(self, T=295):
         """Get derivative of conductivity with respect to temperature."""
         k_prime = (
-                80.4205952575632
-                * (
-                        -0.659678737497148 * T ** (-1.5)
-                        + 56723.5298631204 / T ** 3.0
-                        + 0.000181723563458261 / T ** 4.0
-                )
-                * (1.0 / T) ** 0.5
-                - 40.2102976287816
-                * (
-                        1.3193574749943 * T ** (-0.5)
-                        + 0.977581998039333
-                        - 28361.7649315602 / T ** 2.0
-                        - 6.05745211527538e-5 / T ** 3.0
-                )
-                * (1.0 / T) ** 0.5
-                / T
+            80.4205952575632
+            * (
+                -0.659678737497148 * T ** (-1.5)
+                + 56723.5298631204 / T ** 3.0
+                + 0.000181723563458261 / T ** 4.0
+            )
+            * (1.0 / T) ** 0.5
+            - 40.2102976287816
+            * (
+                1.3193574749943 * T ** (-0.5)
+                + 0.977581998039333
+                - 28361.7649315602 / T ** 2.0
+                - 6.05745211527538e-5 / T ** 3.0
+            )
+            * (1.0 / T) ** 0.5
+            / T
         )
         return k_prime
 
 
 def set_up_mantle_properties(
-        cond_constant='y',
-        density_constant='y',
-        heat_cap_constant='y',
-        mantle_density=3341.0,
-        mantle_heat_capacity=819.0,
-        mantle_conductivity=3.0, ):
+    cond_constant="y",
+    density_constant="y",
+    heat_cap_constant="y",
+    mantle_density=3341.0,
+    mantle_heat_capacity=819.0,
+    mantle_conductivity=3.0,
+):
     """
     Define mantle properties quickly
 
@@ -216,9 +217,7 @@ def set_up_mantle_properties(
 
     if heat_cap_constant == "y":
 
-        heat_capacity = MantleProperties(
-            cp=mantle_heat_capacity
-        )
+        heat_capacity = MantleProperties(cp=mantle_heat_capacity)
 
     else:
         heat_capacity = VariableHeatCapacity()

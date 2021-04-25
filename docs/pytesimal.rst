@@ -44,6 +44,14 @@ pytesimal.numerical\_methods module
    :undoc-members:
    :show-inheritance:
 
+pytesimal.quick\_workflow module
+--------------------------------
+
+.. automodule:: pytesimal.quick_workflow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pytesimal.setup\_functions module
 ---------------------------------
 

@@ -206,9 +206,7 @@ def meteorite_depth_and_timing(
         if (np.absolute(dT_by_dt[index_where_dtbydT, ti] + CR)) > 1e-15:
             continue
 
-        t_val.append(
-            index_where_800K_ish
-        )
+        t_val.append(index_where_800K_ish)
         dt_val.append(index_where_dtbydT)
 
     # Find the points where they cross, this will lead to a depth of formation

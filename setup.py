@@ -16,12 +16,13 @@ setup(
     project_urls={
         "Documentation": "https://pytesimal.readthedocs.io/en/latest/",
         "Bug Tracker": "https://github.com/pypa/sampleproject/issues",
-        "Scientific Background:": "https://doi.org/10.1029/2020JE006726"},
-    packages=["pytesimal"], # trying this, now that cfg file is removed
+        "Scientific Background:": "https://doi.org/10.1029/2020JE006726",
+    },
+    packages=["pytesimal"],  # trying this, now that cfg file is removed
     # py_modules=["pytesimal"],
-    python_requires='>=3.7',
-    install_requires=['numpy','matplotlib',],
-    setup_requires=['numpy','matplotlib'],
+    python_requires=">=3.7",
+    install_requires=["numpy", "matplotlib",],
+    setup_requires=["numpy", "matplotlib"],
     classifiers=[
         "Programming Language :: Python",
         "License :: OSI Approved :: MIT License",

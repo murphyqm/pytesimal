@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Welcome to Pytesimal’s documentation! &mdash; Pytesimal 1.0.0 documentation</title>
+  <title>Pytesimal &mdash; Pytesimal 1.0.0 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pytesimal" href="README.html" /> 
+    <link rel="next" title="Features" href="README.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,8 +85,13 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Welcome to Pytesimal’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">Pytesimal</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pytesimal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#contribute">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#support">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apiref.html">API Reference</a></li>
 </ul>
 
@@ -136,7 +141,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Welcome to Pytesimal’s documentation!</li>
+      <li>Pytesimal</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -157,9 +162,25 @@
             
   <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="welcome-to-pytesimal-s-documentation">
-<h1>Welcome to Pytesimal’s documentation!<a class="headerlink" href="#welcome-to-pytesimal-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>A python module for modelling planetesimals and meteorite parent bodies.</p>
+<div class="section" id="pytesimal">
+<h1>Pytesimal<a class="headerlink" href="#pytesimal" title="Permalink to this headline">¶</a></h1>
+<p>Pytesimal models the conductive cooling of planetesimals with
+temperature-dependent material properties.</p>
+<p>Pytesimal is a finite difference code to perform numerical models of a
+conductively cooling planetesimal, both with constant and
+temperature-dependent properties. It returns a thermal history of the
+planetesimal, and the estimated timing and depth of pallasite meteorite
+genesis. The conduction equation is solved numerically using an explicit
+finite difference scheme, FTCS (Forward-Time Central-Space). FTCS gives
+first-order convergence in time and second-order in space, and is
+conditionally stable when applied to the heat equation. In 1D, it must
+satisfy Von Neumann stability analysis - please see <a class="reference external" href="https://doi.org/10.1029/2020JE006726">Murphy Quinlan et
+al. (2021)</a> for more
+information on choice of time-step.</p>
+<p>The code currently recreates the cases described in <a class="reference external" href="https://doi.org/10.1029/2020JE006726">Murphy Quinlan et
+al. (2021)</a>. References for the
+default parameters used can be found therein. We plan to extend it and
+make it more modular in future updates.</p>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -176,7 +197,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="README.html" class="btn btn-neutral float-right" title="Pytesimal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="README.html" class="btn btn-neutral float-right" title="Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

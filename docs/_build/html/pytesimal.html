@@ -84,8 +84,13 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to Pytesimal’s documentation!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html">Pytesimal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Pytesimal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#contribute">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#support">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apiref.html">API Reference</a></li>
 </ul>
 
@@ -1046,15 +1051,52 @@ conductivity is being used</p></li>
 </dd></dl>
 
 </div>
-<div class="section" id="module-pytesimal.setup_functions">
-<span id="pytesimal-setup-functions-module"></span><h2>pytesimal.setup_functions module<a class="headerlink" href="#module-pytesimal.setup_functions" title="Permalink to this headline">¶</a></h2>
-<p>Define the geometry of planetesimal and set up required empty arrays.</p>
-<p>This module allows the user to set up a basic geometry based on parameters
-instead of manually defining ‘numpy.ndarrays’. It also provides a
+<div class="section" id="module-pytesimal.quick_workflow">
+<span id="pytesimal-quick-workflow-module"></span><h2>pytesimal.quick_workflow module<a class="headerlink" href="#module-pytesimal.quick_workflow" title="Permalink to this headline">¶</a></h2>
+<p>Set up complete runs with a single function call and a parameter file.</p>
+<p>This module provides a simple
 <cite>workflow</cite> function which follows a basic default workflow, with parameters
 set by an input parameter file, and results saved as a json file and as
 compressed numpy arrays. These results files can then be loaded and analysed,
 with meteorite results calculated and the results plotted.</p>
+<p>The function takes two arguments, <cite>filename</cite> which is the name of a parameters
+file to be loaded, without the extension (the extension of the file must be
+.txt). The location of this input file is given by <cite>folder_path</cite> which should
+be the relative or absolute path to the location of the parameters file.
+Within this parameters file, the “folder” field defines the path of the
+directory where results</p>
+<dl class="py function">
+<dt id="pytesimal.quick_workflow.workflow">
+<code class="sig-prename descclassname"><span class="pre">pytesimal.quick_workflow.</span></code><code class="sig-name descname"><span class="pre">workflow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.quick_workflow.workflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run model in full with parameters set by an input file.</p>
+<p>Saves a results file (json format, .txt) and a results array file (.npz)
+to the folder specified in the parameter file. If you want the results to
+save to the same folder that the parameter file is in, ensure that the
+field “folder” in the json parameter file is the same as <cite>folder_path</cite>.</p>
+<p>Results files will be saved under the <cite>filename</cite> with <cite>_results</cite> and the
+appropriate file extension appended.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – The filename of the parameters file to read in, without file extension.
+File must be in json format with a .txt extension. It’s recommended to
+generate an example parameters file using the
+<cite>pytesimal.load_plot_save.make_default_param_file(filepath)</cite> function
+and edit the default settings in this file</p></li>
+<li><p><strong>folder_path</strong> (<em>str</em>) – The absolute path to the directory that holds the parameters file. If
+the “folder” field of the parameters file == <cite>folder_path</cite>, the results
+file will be saved alongside the parameters file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pytesimal.setup_functions">
+<span id="pytesimal-setup-functions-module"></span><h2>pytesimal.setup_functions module<a class="headerlink" href="#module-pytesimal.setup_functions" title="Permalink to this headline">¶</a></h2>
+<p>Define the geometry of planetesimal and set up required empty arrays.</p>
+<p>This module allows the user to set up a basic geometry based on parameters
+instead of manually defining ‘numpy.ndarrays’.</p>
 <dl class="py function">
 <dt id="pytesimal.setup_functions.set_up">
 <code class="sig-prename descclassname"><span class="pre">pytesimal.setup_functions.</span></code><code class="sig-name descname"><span class="pre">set_up</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_planet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_size_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.032</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.setup_functions.set_up" title="Permalink to this definition">¶</a></dt>
@@ -1085,32 +1127,6 @@ controlling the spacing</p></li>
 <li><p><strong>core_temperature_array</strong> (<em>numpy.ndarray</em>) – Numpy array of zeros to be filled with core temperatures</p></li>
 </ul>
 </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pytesimal.setup_functions.workflow">
-<code class="sig-prename descclassname"><span class="pre">pytesimal.setup_functions.</span></code><code class="sig-name descname"><span class="pre">workflow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.setup_functions.workflow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Still under development</p>
-<p>Saves a results file (json format, .txt) and a results array file (.npz)
-to the folder specified in the parameter file. If you want the results to
-save to the same folder that the parameter file is in, ensure that the
-field “folder” in the json parameter file is the same as <cite>folder_path</cite>.</p>
-<p>Results files will be saved under the <cite>filename</cite> with <cite>_results</cite> and the
-appropriate file extension appended.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em>) – The filename of the parameters file to read in, without file extension.
-File must be in json format with a .txt extension. It’s recommended to
-generate an example parameters file using the
-<cite>pytesimal.load_plot_save.make_default_param_file(filepath)</cite> function
-and edit the default settings in this file</p></li>
-<li><p><strong>folder_path</strong> (<em>str</em>) – The absolute path to the directory that holds the parameters file. If
-the “folder” field of the parameters file == <cite>folder_path</cite>, the results
-file will be saved alongside the parameters file.</p></li>
-</ul>
 </dd>
 </dl>
 </dd></dl>

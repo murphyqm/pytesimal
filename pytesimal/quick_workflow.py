@@ -26,7 +26,9 @@ from . import numerical_methods
 from . import analysis
 
 
-def workflow(filename, folder_path):  # set folder = folder path if you want results saved in same loc as params file
+def workflow(
+    filename, folder_path
+):  # set folder = folder path if you want results saved in same loc as params file
     """
     Run model in full with parameters set by an input file.
 
@@ -53,27 +55,43 @@ def workflow(filename, folder_path):  # set folder = folder path if you want res
 
     """
     filepath = f"{folder_path}/{filename}.txt"
-    (run_ID, folder, timestep, r_planet, core_size_factor,
-     reg_fraction, max_time, temp_core_melting, olivine_cp,
-     olivine_density, cmb_conductivity, core_cp, core_density,
-     temp_init, temp_surface, core_temp_init, core_latent_heat,
-     kappa_reg, dr, cond_constant, density_constant,
-     heat_cap_constant
-     ) = load_plot_save.load_params_from_file(filepath)
+    (
+        run_ID,
+        folder,
+        timestep,
+        r_planet,
+        core_size_factor,
+        reg_fraction,
+        max_time,
+        temp_core_melting,
+        olivine_cp,
+        olivine_density,
+        cmb_conductivity,
+        core_cp,
+        core_density,
+        temp_init,
+        temp_surface,
+        core_temp_init,
+        core_latent_heat,
+        kappa_reg,
+        dr,
+        cond_constant,
+        density_constant,
+        heat_cap_constant,
+    ) = load_plot_save.load_params_from_file(filepath)
     load_plot_save.check_folder_exists(folder)
-    (r_core,
-     radii,
-     core_radii,
-     reg_thickness,
-     where_regolith,
-     times,
-     mantle_temperature_array,
-     core_temperature_array) = setup_functions.set_up(timestep,
-                                                      r_planet,
-                                                      core_size_factor,
-                                                      reg_fraction,
-                                                      max_time,
-                                                      dr)
+    (
+        r_core,
+        radii,
+        core_radii,
+        reg_thickness,
+        where_regolith,
+        times,
+        mantle_temperature_array,
+        core_temperature_array,
+    ) = setup_functions.set_up(
+        timestep, r_planet, core_size_factor, reg_fraction, max_time, dr
+    )
     latent = []
 
     core_values = core_function.IsothermalEutecticCore(
@@ -83,24 +101,29 @@ def workflow(filename, folder_path):  # set folder = folder path if you want res
         inner_r=0,
         rho=core_density,
         cp=core_cp,
-        core_latent_heat=core_latent_heat)
-    (mantle_conductivity,
-     mantle_heatcap,
-     mantle_density) = mantle_properties.set_up_mantle_properties(
+        core_latent_heat=core_latent_heat,
+    )
+    (
+        mantle_conductivity,
+        mantle_heatcap,
+        mantle_density,
+    ) = mantle_properties.set_up_mantle_properties(
         cond_constant,
         density_constant,
         heat_cap_constant,
         olivine_density,
         olivine_cp,
-        cmb_conductivity, )
+        cmb_conductivity,
+    )
 
     top_mantle_bc = numerical_methods.surface_dirichlet_bc
     bottom_mantle_bc = numerical_methods.cmb_dirichlet_bc
 
-    (mantle_temperature_array,
-     core_temperature_array,
-     latent,
-     ) = numerical_methods.discretisation(
+    (
+        mantle_temperature_array,
+        core_temperature_array,
+        latent,
+    ) = numerical_methods.discretisation(
         core_values,
         latent,
         temp_init,
@@ -119,23 +142,28 @@ def workflow(filename, folder_path):  # set folder = folder path if you want res
         kappa_reg,
         mantle_conductivity,
         mantle_heatcap,
-        mantle_density)
+        mantle_density,
+    )
 
-    (core_frozen,
-     times_frozen,
-     time_core_frozen,
-     fully_frozen) = analysis.core_freezing(core_temperature_array,
-                                            max_time,
-                                            times,
-                                            latent,
-                                            temp_core_melting,
-                                            timestep)
-    mantle_cooling_rates = analysis.cooling_rate(
-        mantle_temperature_array,
-        timestep)
-    core_cooling_rates = analysis.cooling_rate(
+    (
+        core_frozen,
+        times_frozen,
+        time_core_frozen,
+        fully_frozen,
+    ) = analysis.core_freezing(
         core_temperature_array,
-        timestep)
+        max_time,
+        times,
+        latent,
+        temp_core_melting,
+        timestep,
+    )
+    mantle_cooling_rates = analysis.cooling_rate(
+        mantle_temperature_array, timestep
+    )
+    core_cooling_rates = analysis.cooling_rate(
+        core_temperature_array, timestep
+    )
     result_filename = f"{filename}_results"
     load_plot_save.save_params_and_results(
         result_filename,
@@ -162,7 +190,8 @@ def workflow(filename, folder_path):  # set folder = folder path if you want res
         density_constant,
         heat_cap_constant,
         time_core_frozen,
-        fully_frozen, )
+        fully_frozen,
+    )
 
     load_plot_save.save_result_arrays(
         result_filename,
@@ -170,4 +199,5 @@ def workflow(filename, folder_path):  # set folder = folder path if you want res
         mantle_temperature_array,
         core_temperature_array,
         mantle_cooling_rates,
-        core_cooling_rates)
+        core_cooling_rates,
+    )

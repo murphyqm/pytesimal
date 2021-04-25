@@ -10,6 +10,7 @@ from context import numerical_methods as nm
 from context import core_function
 import numpy as np
 
+
 def test_new_core_unit():
     radii = np.arange(10000.0, 50000.0, 1000.0)
     times = np.arange(0, 100 + 0.5 * 1.0, 1.0)

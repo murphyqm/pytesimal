@@ -58,15 +58,15 @@ class IsothermalEutecticCore:
     """
 
     def __init__(
-            self,
-            initial_temperature,
-            melting_temperature,
-            outer_r,
-            inner_r,
-            rho,
-            cp,
-            core_latent_heat,
-            lat=0
+        self,
+        initial_temperature,
+        melting_temperature,
+        outer_r,
+        inner_r,
+        rho,
+        cp,
+        core_latent_heat,
+        lat=0,
     ):
         """Create a new core with temperature and latent heat."""
         self.temperature = initial_temperature

@@ -1,6 +1,7 @@
 API Reference
 =============
 
+
 pytesimal.analysis module
 -------------------------
 
@@ -37,6 +38,14 @@ pytesimal.numerical\_methods module
 -----------------------------------
 
 .. automodule:: pytesimal.numerical_methods
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pytesimal.quick\_workflow module
+--------------------------------
+
+.. automodule:: pytesimal.quick_workflow
    :members:
    :undoc-members:
    :show-inheritance:

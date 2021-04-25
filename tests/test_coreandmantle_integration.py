@@ -32,14 +32,12 @@ def test_mtt_discretisation():
         cp=850.0,
         core_latent_heat=270000.0,
     )
-    (mantle_conductivity,
-     mantle_heatcap,
-     mantle_density) = mantle_properties.set_up_mantle_properties()
     (
-        temperatures,
-        coretemp,
-        latent,
-    ) = mtt.discretisation(
+        mantle_conductivity,
+        mantle_heatcap,
+        mantle_density,
+    ) = mantle_properties.set_up_mantle_properties()
+    (temperatures, coretemp, latent,) = mtt.discretisation(
         core_values=core_values,
         latent=[],
         temp_init=1800.0,
@@ -87,17 +85,14 @@ def test_mtt_vardiscretisation():
         cp=850.0,
         core_latent_heat=270000.0,
     )
-    (mantle_conductivity,
-     mantle_heatcap,
-     mantle_density) = mantle_properties.set_up_mantle_properties(
-                                                cond_constant="n",
-                                                density_constant="n",
-                                                heat_cap_constant="n",)
     (
-        temperatures,
-        coretemp,
-        latent,
-    ) = mtt.discretisation(
+        mantle_conductivity,
+        mantle_heatcap,
+        mantle_density,
+    ) = mantle_properties.set_up_mantle_properties(
+        cond_constant="n", density_constant="n", heat_cap_constant="n",
+    )
+    (temperatures, coretemp, latent,) = mtt.discretisation(
         latent=[],
         core_values=core_values,
         temp_init=1800.0,
@@ -144,14 +139,12 @@ def test_mtt_discretisation_cold_mantle():
         cp=850.0,
         core_latent_heat=270000.0,
     )
-    (mantle_conductivity,
-     mantle_heatcap,
-     mantle_density) = mantle_properties.set_up_mantle_properties()
     (
-        temperatures,
-        coretemp,
-        latent,
-    ) = mtt.discretisation(
+        mantle_conductivity,
+        mantle_heatcap,
+        mantle_density,
+    ) = mantle_properties.set_up_mantle_properties()
+    (temperatures, coretemp, latent,) = mtt.discretisation(
         latent=[],
         core_values=core_values,
         temp_init=1400.0,
@@ -199,17 +192,14 @@ def test_mtt_vardiscretisation_cold_mantle():
         cp=850.0,
         core_latent_heat=270000.0,
     )
-    (mantle_conductivity,
-     mantle_heatcap,
-     mantle_density) = mantle_properties.set_up_mantle_properties(
-                                                cond_constant="n",
-                                                density_constant="n",
-                                                heat_cap_constant="n",)
     (
-        temperatures,
-        coretemp,
-        latent,
-    ) = mtt.discretisation(
+        mantle_conductivity,
+        mantle_heatcap,
+        mantle_density,
+    ) = mantle_properties.set_up_mantle_properties(
+        cond_constant="n", density_constant="n", heat_cap_constant="n",
+    )
+    (temperatures, coretemp, latent,) = mtt.discretisation(
         core_values=core_values,
         latent=[],
         temp_init=1200.0,
@@ -242,19 +232,23 @@ def test_mtt_vardiscretisation_cold_mantle():
 
 def test_disc_var(temperature_timestepping_var):
     results = temperature_timestepping_var
-    assert results["mantle_temperature_array"].mean() ==\
-           pytest.approx(779.7916808017013)
-    assert results["core_temperature_array"].mean() == \
-           pytest.approx(1290.4015724475953)
-    assert results["latent"][-1] == pytest.approx(1.7230110262815063e+25)
+    assert results["mantle_temperature_array"].mean() == pytest.approx(
+        779.7916808017013
+    )
+    assert results["core_temperature_array"].mean() == pytest.approx(
+        1290.4015724475953
+    )
+    assert results["latent"][-1] == pytest.approx(1.7230110262815063e25)
     assert results["times"].mean() == pytest.approx(6311400000000000.0)
 
 
 def test_disc_const(temperature_timestepping):
     results = temperature_timestepping
-    assert results["mantle_temperature_array"].mean() == \
-           pytest.approx(755.0162816538588)
-    assert results["core_temperature_array"].mean() == \
-           pytest.approx(1214.3018909107805)
-    assert results["latent"][-1] == pytest.approx(1.7229774100445118e+25)
+    assert results["mantle_temperature_array"].mean() == pytest.approx(
+        755.0162816538588
+    )
+    assert results["core_temperature_array"].mean() == pytest.approx(
+        1214.3018909107805
+    )
+    assert results["latent"][-1] == pytest.approx(1.7229774100445118e25)
     assert results["times"].mean() == pytest.approx(6311400000000000.0)
