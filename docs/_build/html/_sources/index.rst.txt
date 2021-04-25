@@ -14,9 +14,6 @@
 Pytesimal
 =========
 
-.. figure:: https://github.com/murphyqm/pytesimal/blob/rearranging-folders/docs/pytesimal_background.png
-   :alt: Header image showing the word PYTESIMAL in an isometric view.
-
 Pytesimal models the conductive cooling of planetesimals with
 temperature-dependent material properties.
 
