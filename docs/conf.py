@@ -13,6 +13,7 @@
 import os
 import sys
 import sphinx_rtd_theme
+from sphinx_gallery.sorting import FileNameSortKey
 
 # sys.path.insert(0, os.path.abspath('../..'))
 # sys.path.insert(0, os.path.abspath('../../pytesimal'))
@@ -33,6 +34,7 @@ release = '1.0.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx_gallery.gen_gallery',
     'sphinx.ext.autodoc',
     'sphinx.ext.coverage',
     'sphinx.ext.napoleon',
@@ -61,3 +63,36 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+sphinx_gallery_conf = {
+    # path to your examples scripts
+    "examples_dirs": [
+        "../examples/",
+    ],
+    # path where to save gallery generated examples
+    "gallery_dirs": ["examples"],
+    # Pattern to search for example files
+    "filename_pattern": r"\.py",
+    # Adding ignore for context python file
+    'ignore_pattern': r'context\.py',
+    # Remove the "Download all examples" button from the top level gallery
+    "download_all_examples": False,
+    # Sort gallery example by file name instead of number of lines (default)
+    "within_subsection_order": FileNameSortKey,
+    # directory where function granular galleries are stored
+    "backreferences_dir": None,
+    # Modules for which function level galleries are created.  In
+    "doc_module": "pytesimal",
+    "image_scrapers": ('matplotlib'),
+    'first_notebook_cell': ("%matplotlib inline\n"),
+}
+
+
+def skip(app, what, name, obj, would_skip, options):
+    if name == "__init__" or name == "__call__":
+        return False
+    return would_skip
+
+
+def setup(app):
+    app.connect("autodoc-skip-member", skip)

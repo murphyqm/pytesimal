@@ -9,6 +9,7 @@
 
    self
    README
+   ../examples/index
    apiref
 
 Pytesimal

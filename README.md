@@ -2,7 +2,7 @@ Pytesimal
 ========
 
 [![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD?urlpath=https%3A%2F%2Fgithub.com%2Fmurphyqm%2Fpytesimal%2Ftree%2Fmaster%2Fexamples)
 
 Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.
 
@@ -14,7 +14,7 @@ The code currently recreates the cases described in [Murphy Quinlan et al. (2021
 
 Quick Start
 -----------
-[Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
+[Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD?urlpath=https%3A%2F%2Fgithub.com%2Fmurphyqm%2Fpytesimal%2Ftree%2Fmaster%2Fexamples)
 
 To run a case with parameters loaded from file:
 
@@ -70,28 +70,23 @@ Features
 
 Installation
 ------------
-This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:
+This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. 
 
+> Package not yet available for install on PyPi, instructions for pip
+> install will be added once this is available.
 
-    git clone https://github.com/murphyqm/pytesimal.git
-    cd pytesimal
-    conda create -n=pytesimal python=3.8 jupyter
-    conda activate pytesimal
-    pip install -r requirements.txt
+### Installation for development
 
-Pytesimal can then be installed as a package within the environment by running:
-
-    pip install .
-
-**Installation for development**
-
-Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:
+The package can be downloaded and installed directly from Github for the most recent version. The software and its dependencies are best installed in a virtual environment of your choice. Download of the software and creation of an isolated conda environment can be done by running:
 
     git clone https://github.com/murphyqm/pytesimal.git
     cd pytesimal
     conda create -n=pytesimal python=3.8 jupyter
     conda activate pytesimal
-    pip install .
+    pip install -e .
+
+The `-e` flag installs the package in editable mode so that any changes
+to modules can be carried through.
 
 Contribute
 ----------
