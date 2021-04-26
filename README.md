@@ -83,6 +83,16 @@ Pytesimal can then be installed as a package within the environment by running:
 
     pip install .
 
+**Installation for development**
+
+Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:
+
+    git clone https://github.com/murphyqm/pytesimal.git
+    cd pytesimal
+    conda create -n=pytesimal python=3.8 jupyter
+    conda activate pytesimal
+    pip install .
+
 Contribute
 ----------
 
