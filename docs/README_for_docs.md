@@ -12,8 +12,33 @@ In 1D, it must satisfy Von Neumann stability analysis - please see [Murphy Quinl
 
 The code currently recreates the cases described in [Murphy Quinlan et al. (2021)](https://doi.org/10.1029/2020JE006726). References for the default parameters used can be found therein. We plan to extend it and make it more modular in future updates.
 
+Features
+========
+
+- Constant or variable material properties
+- Choose to return compressed `.npz` NumPy arrays of temperature and cooling rates through time and radius
+- Plot temperature or cooling rate heatmaps
+- Return timing of core solidification, and depth and timing of meteorite formation
+- Return a parameter `.json` file with details of input parameters and results
+
+
+Installation
+============
+This software relies on python (version 3) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:
+
+
+    git clone https://github.com/murphyqm/pytesimal.git
+    cd pytesimal
+    conda create -n=pytesimal python=3.8 jupyter
+    conda activate pytesimal
+    pip install -r requirements.txt
+
+Pytesimal can then be installed as a package within the environment by running:
+
+    pip install .
+
 Quick Start
------------
+===========
 [Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
 
 To run a case with parameters loaded from file:
@@ -59,43 +84,20 @@ Then you can plot heatmaps of the temperatures and cooling rates within the plan
 
 See the Jupyter notebooks hosted on Binder for live working examples, or download the example scripts provided.
 
-Features
---------
-
-- Constant or variable material properties
-- Choose to return compressed `.npz` NumPy arrays of temperature and cooling rates through time and radius
-- Plot temperature or cooling rate heatmaps
-- Return timing of core solidification, and depth and timing of meteorite formation
-- Return a parameter `.json` file with details of input parameters and results
-
-Installation
-------------
-This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:
-
-
-    git clone https://github.com/murphyqm/pytesimal.git
-    cd pytesimal
-    conda create -n=pytesimal python=3.8 jupyter
-    conda activate pytesimal
-    pip install -r requirements.txt
-
-Pytesimal can then be installed as a package within the environment by running:
-
-    pip install .
 
 Contribute
-----------
+==========
 
 - Issue Tracker: github.com/murphyqm/pytesimal/issues
 - Source Code: github.com/murphyqm/pytesimal
 
 Support
--------
+=======
 
 If you are having issues, please let us know.
 You can email us at eememq@leeds.ac.uk
 
 License
--------
+=======
 
 The project is licensed under the MIT license.
