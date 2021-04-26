@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: pytesimal
-Version: 0.0.1
+Version: 2.0.0
 Summary: Model the conductive cooling of planetesimals with temperature-dependent material properties.
 Home-page: https://github.com/murphyqm/pytesimal
-Author: Maeve Murphy Quinlan
+Author: M. Murphy Quinlan, A.M. Walker, C.J. Davies, P. Selves, L.S.E. Teggin
 Author-email: eememq@leeds.ac.uk
 License: UNKNOWN
 Project-URL: Documentation, https://pytesimal.readthedocs.io/en/latest/
@@ -12,7 +12,8 @@ Project-URL: Scientific Background:, https://doi.org/10.1029/2020JE006726
 Description: Pytesimal
         ========
         
-        [Read the docs](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
+        [![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
+        [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/7257f6f7fb8a4312abc27897d1d97ccea1d44f5e)
         
         Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.
         
@@ -24,60 +25,79 @@ Description: Pytesimal
         
         Quick Start
         -----------
+        [Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/7257f6f7fb8a4312abc27897d1d97ccea1d44f5e)
         
-        [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
+        To run a case with parameters loaded from file:
         
-        To run a case with default parameters:
+            import pytesimal.load_plot_save
+            import pytesimal.quick_workflow
         
-            from modular_cond_cooling import conductive_cooling
+        Define a filepath and filename for the parameter file:
         
-            # Give your model set-up a unique file name:
-            run_ID = "file_name"
+            folderpath = 'path/to/the/example/'
+            filename = 'example_parameters'
+            filepath = f'{folderpath}{filename}.txt'
         
-            # Point it to a folder to save the outputs:
-            folder = "folder_path" 
+        Save a default parameters file to the filepath:
         
-            # Let your planetesimal evolve:
-            conductive_cooling(run_ID, folder,)
+            pytesimal.load_plot_save.make_default_param_file(filepath)
         
-        See the Jupyter notebooks provided for working examples.
+        You can open this `json` file in a text editor and change the default values. Once you've edited and saved it, use it as an input file for a model run:
         
-        **To download data from NGDC and plot it:**
+            pytesimal.quick_workflow.workflow(filename, folderpath)
         
-        Navigate to the `downloading_and_plotting_data` directory. From the command line, run the required script to download the .dat files from the NGDC:
+        Let your planetesimal evolve! This will take a minute or so to run. Once it has done do, you can load the results (from the folder you specified in the parameters file):
         
-        `$ python downloaddata.py`
+            filepath = 'results_folder/example_parameters_results.npz'
+            (temperatures,
+             coretemp,
+             dT_by_dt,
+             dT_by_dt_core) = pytesimal.load_plot_save.read_datafile(filepath)
         
-        Once the data is downloaded from the NGDC, it is available to plot using `coolingplot.py` with the filename you wish to plot:
+        Then you can plot heatmaps of the temperatures and cooling rates within the planetesimal:
         
-        `$ python coolingplot.py constant_properties.dat`
+            # Specify a figure width and height:
+            fig_w = 6
+            fig_h = 9
+            
+            pytesimal.load_plot_save.two_in_one(
+            fig_w,
+            fig_h,
+            temperatures,
+            coretemp,
+            dT_by_dt,
+            dT_by_dt_core)
         
-        For more information run:
-        
-        `$ python coolingplot.py -h`
+        See the Jupyter notebooks hosted on Binder for live working examples, or download the example scripts provided.
         
         Features
         --------
         
         - Constant or variable material properties
-        - Download and plot data from NGDC
         - Choose to return compressed `.npz` NumPy arrays of temperature and cooling rates through time and radius
         - Plot temperature or cooling rate heatmaps
         - Return timing of core solidification, and depth and timing of meteorite formation
-        - Return `pickle` objects with output parameter values
-        - Return a parameter `.txt` file with details of input parameters and results
+        - Return a parameter `.json` file with details of input parameters and results
         
         Installation
         ------------
-        This software relies on python (version 3) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:
+        This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. 
         
+        > Package not yet available for install on PyPi, instructions for pip
+        > install will be added once this is available.
+        
+        ### Installation for development
+        
+        The package can be downloaded and installed directly from Github for the most recent version. The software and its dependencies are best installed in a virtual environment of your choice. Download of the software and creation of an isolated conda environment can be done by running:
         
             git clone https://github.com/murphyqm/pytesimal.git
             cd pytesimal
-            conda create -n=pytesimal python=3.8
+            conda create -n=pytesimal python=3.8 jupyter
             conda activate pytesimal
-            pip install -r requirements.txt
+            pip install -e .
         
+        The `-e` flag installs the package in editable mode so that any changes
+        to modules can be carried through.
         
         Contribute
         ----------
@@ -101,7 +121,6 @@ Classifier: Programming Language :: Python
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Classifier: Topic :: Scientific/Engineering
-Classifier: Topic :: Scientific/Engineering :: Visualization
 Classifier: Intended Audience :: Science/Research
 Classifier: Natural Language :: English
 Requires-Python: >=3.7
