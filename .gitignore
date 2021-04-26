@@ -6,6 +6,8 @@ __pycache__/
 *.pickle
 *.npz
 
+# Ignore joss paper except on paper branch
+JOSS_paper/
 required_scripts/output_runs/
 output_runs/
 .idea/
