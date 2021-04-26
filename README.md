@@ -2,7 +2,7 @@ Pytesimal
 ========
 
 [![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD?urlpath=https%3A%2F%2Fgithub.com%2Fmurphyqm%2Fpytesimal%2Ftree%2Fmaster%2Fexamples)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/7257f6f7fb8a4312abc27897d1d97ccea1d44f5e)
 
 Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.
 
@@ -14,7 +14,7 @@ The code currently recreates the cases described in [Murphy Quinlan et al. (2021
 
 Quick Start
 -----------
-[Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD?urlpath=https%3A%2F%2Fgithub.com%2Fmurphyqm%2Fpytesimal%2Ftree%2Fmaster%2Fexamples)
+[Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/7257f6f7fb8a4312abc27897d1d97ccea1d44f5e)
 
 To run a case with parameters loaded from file:
 
