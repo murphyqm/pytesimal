@@ -21,7 +21,7 @@ setup(
     packages=["pytesimal"],  # trying this, now that cfg file is removed
     # py_modules=["pytesimal"],
     python_requires=">=3.7",
-    install_requires=["numpy", "matplotlib",],
+    install_requires=["numpy", "matplotlib", ],
     setup_requires=["numpy", "matplotlib"],
     classifiers=[
         "Programming Language :: Python",
