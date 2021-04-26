@@ -13,7 +13,6 @@
 import os
 import sys
 import sphinx_rtd_theme
-from sphinx_gallery.sorting import FileNameSortKey
 
 # sys.path.insert(0, os.path.abspath('../..'))
 # sys.path.insert(0, os.path.abspath('../../pytesimal'))
@@ -63,6 +62,8 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+from sphinx_gallery.sorting import FileNameSortKey
 
 sphinx_gallery_conf = {
     # path to your examples scripts
