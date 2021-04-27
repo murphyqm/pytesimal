@@ -7,7 +7,13 @@
 Examples gallery
 ================
 
-Here are some example scripts.
+Here are some example scripts. Each example is downloadable as a
+Jupyter Notebook or as a Python file. To try out some of the examples
+without installing the package, have a look at the Jupyter Notebooks
+hosted on Binder.
+
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD
 
 
 .. raw:: html
@@ -30,6 +36,27 @@ Here are some example scripts.
    :hidden:
 
    /examples/constant_properties
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows step by step how to set up and run a model of a cooling planetesimal without...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_no_core_thumb.png
+     :alt: Planetesimal Without a Core
+
+     :ref:`sphx_glr_examples_no_core.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/no_core
 
 .. raw:: html
 
