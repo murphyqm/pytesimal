@@ -11,7 +11,7 @@ Features
    and results
 
 Installation
-------------
+============
 
 This software relies on python (version 3.6 and up) and various other
 python packages. Examples are distributed as Jupyter notebooks, which

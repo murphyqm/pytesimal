@@ -85,25 +85,12 @@ thermal properties case in Murphy Quinlan et al. (2021):
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 45-60
-
-For this example, we won't save any outputs. If you're working
-on your local machine, you can specify the folder you want to
-save your outputs to, and check that this folder exists on your
-machine (if it doesn't, a folder will be created):
-
-    folder = 'workflow'
-    load_plot_save.check_folder_exists(folder)
-
-This folder can also be specified in the parameters file.
-Any variable loaded from the parameters file can be
-overwritten before the model runs, which is useful if looping over
-a parameter space.
+.. GENERATED FROM PYTHON SOURCE LINES 45-47
 
 The `setup_functions.set_up()` function creates empty arrays to
 be filled with resulting temperatures:
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-79
+.. GENERATED FROM PYTHON SOURCE LINES 47-66
 
 .. code-block:: default
 
@@ -133,7 +120,7 @@ be filled with resulting temperatures:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 80-86
+.. GENERATED FROM PYTHON SOURCE LINES 67-73
 
 Next, we instantiate the core object. This will keep track of the
 temperature of the core as the model runs, cooling as heat
@@ -142,7 +129,7 @@ eutectic core model doesn't track inner core growth, but
 this is still a required argument to allow for future
 incorporation of more complex core objects:
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-96
+.. GENERATED FROM PYTHON SOURCE LINES 73-83
 
 .. code-block:: default
 
@@ -163,12 +150,12 @@ incorporation of more complex core objects:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 97-99
+.. GENERATED FROM PYTHON SOURCE LINES 84-86
 
 Then we define the mantle properties. We want to use temperature-dependent
 properties, so we need to specify this:
 
-.. GENERATED FROM PYTHON SOURCE LINES 99-108
+.. GENERATED FROM PYTHON SOURCE LINES 86-95
 
 .. code-block:: default
 
@@ -188,12 +175,12 @@ properties, so we need to specify this:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 109-111
+.. GENERATED FROM PYTHON SOURCE LINES 96-98
 
 You can check (or change) the value of these properties after they've been
 set up using one of the `MantleProperties` methods:
 
-.. GENERATED FROM PYTHON SOURCE LINES 111-114
+.. GENERATED FROM PYTHON SOURCE LINES 98-101
 
 .. code-block:: default
 
@@ -215,7 +202,7 @@ set up using one of the `MantleProperties` methods:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 115-123
+.. GENERATED FROM PYTHON SOURCE LINES 102-110
 
 When temperature dependent properties are used, temperature can be passed in
 as an argument to return the value at that temperature. The default
@@ -226,7 +213,7 @@ We need to set up the boundary conditions for the mantle. For this example,
 we're using fixed temperature boundary conditions at both the
 surface and the core-mantle boundary.
 
-.. GENERATED FROM PYTHON SOURCE LINES 123-158
+.. GENERATED FROM PYTHON SOURCE LINES 110-145
 
 .. code-block:: default
 
@@ -272,7 +259,7 @@ surface and the core-mantle boundary.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 159-168
+.. GENERATED FROM PYTHON SOURCE LINES 146-155
 
 This function fills the empty arrays produced by
 `setup_functions.set_up()` with calculated temperatures for the mantle and
@@ -284,7 +271,7 @@ so we can compare this to the cooling history of meteorites
 and see whether they can be expected to record magnetic remnants
 of a core dynamo:
 
-.. GENERATED FROM PYTHON SOURCE LINES 168-179
+.. GENERATED FROM PYTHON SOURCE LINES 155-166
 
 .. code-block:: default
 
@@ -306,11 +293,11 @@ of a core dynamo:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 180-181
+.. GENERATED FROM PYTHON SOURCE LINES 167-168
 
 Then, we can calculate arrays of cooling rates from the temperature arrays:
 
-.. GENERATED FROM PYTHON SOURCE LINES 181-187
+.. GENERATED FROM PYTHON SOURCE LINES 168-174
 
 .. code-block:: default
 
@@ -327,7 +314,7 @@ Then, we can calculate arrays of cooling rates from the temperature arrays:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 188-194
+.. GENERATED FROM PYTHON SOURCE LINES 175-181
 
 Meteorite data (the diameter of 'cloudy-zone particles') can be used to
 estimate the rate at which the meteorites cooled through a specific
@@ -336,7 +323,7 @@ temperature (C. W. Yang et al., 1997). The
 rate in K/Myr, while the `analysis.cooling_rate_to_seconds` function
 converts this to K/s which allows comparison to our result arrays.
 
-.. GENERATED FROM PYTHON SOURCE LINES 194-203
+.. GENERATED FROM PYTHON SOURCE LINES 181-190
 
 .. code-block:: default
 
@@ -356,7 +343,7 @@ converts this to K/s which allows comparison to our result arrays.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 204-214
+.. GENERATED FROM PYTHON SOURCE LINES 191-201
 
 We can use this cooling rate information to find out how deep within their
 parent bodies these meteorites originally formed, and when they passed
@@ -369,7 +356,7 @@ meteorite cools through the tetrataenite formation temperature in
 comparison to the core crystallisation period, and a string defining
 this relation between paleomagnetism recording and dynamo activity:
 
-.. GENERATED FROM PYTHON SOURCE LINES 214-250
+.. GENERATED FROM PYTHON SOURCE LINES 201-237
 
 .. code-block:: default
 
@@ -425,14 +412,14 @@ this relation between paleomagnetism recording and dynamo activity:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 251-255
+.. GENERATED FROM PYTHON SOURCE LINES 238-242
 
 If you need to save the meteorite results, they can be saved to a dictionary
 which can then be passed to the `load_plot_save.save_params_and_results`.
 This allows for any number of meteorites to be analysed and only the
 relevant data stored:
 
-.. GENERATED FROM PYTHON SOURCE LINES 255-264
+.. GENERATED FROM PYTHON SOURCE LINES 242-251
 
 .. code-block:: default
 
@@ -452,7 +439,7 @@ relevant data stored:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 265-272
+.. GENERATED FROM PYTHON SOURCE LINES 252-259
 
 To get an overview of the cooling history of the body, it's very useful
 to plot the temperatures and cooling rates as a heatmap through time.
@@ -462,7 +449,7 @@ then call `load_plot_save.plot_temperature_history()`,
 These functions convert the cooling rate from K/timestep to K/Myr to make
 the results more human-readable.
 
-.. GENERATED FROM PYTHON SOURCE LINES 272-284
+.. GENERATED FROM PYTHON SOURCE LINES 259-271
 
 .. code-block:: default
 
@@ -489,7 +476,7 @@ the results more human-readable.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 285-293
+.. GENERATED FROM PYTHON SOURCE LINES 272-280
 
 There are a few formats or ways to save the results. The temperature and
 cooling rate arrays can be saved as compressed `.npz` arrays, to be loaded
@@ -500,7 +487,7 @@ For either of these, a results folder and results filename is needed. The
 folder can be defined relative to the working directory, or with an absolute
 path. An absolute path usually results in less confusion!
 
-.. GENERATED FROM PYTHON SOURCE LINES 293-300
+.. GENERATED FROM PYTHON SOURCE LINES 280-287
 
 .. code-block:: default
 
@@ -518,11 +505,11 @@ path. An absolute path usually results in less confusion!
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 301-302
+.. GENERATED FROM PYTHON SOURCE LINES 288-289
 
 The result arrays can now be saved:
 
-.. GENERATED FROM PYTHON SOURCE LINES 302-310
+.. GENERATED FROM PYTHON SOURCE LINES 289-297
 
 .. code-block:: default
 
@@ -541,13 +528,13 @@ The result arrays can now be saved:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 311-314
+.. GENERATED FROM PYTHON SOURCE LINES 298-301
 
 In order to save the result parameter file, we also need to define a
 `run_ID`, a descriptive string to identify the model run, and clarify
 whether we used constant or variable thermal properties:
 
-.. GENERATED FROM PYTHON SOURCE LINES 314-329
+.. GENERATED FROM PYTHON SOURCE LINES 301-316
 
 .. code-block:: default
 
@@ -573,7 +560,7 @@ whether we used constant or variable thermal properties:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 330-332
+.. GENERATED FROM PYTHON SOURCE LINES 317-319
 
 This results file can then be loaded as a parameter file if you want to
 repeat the same set up.
@@ -581,7 +568,7 @@ repeat the same set up.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 3 minutes  31.379 seconds)
+   **Total running time of the script:** ( 3 minutes  37.785 seconds)
 
 
 .. _sphx_glr_download_examples_variable_properties.py:

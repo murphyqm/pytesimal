@@ -42,19 +42,6 @@ kappa_reg = 5e-8  # m^2/s
 dr = 1000.0  # m
 
 # %%
-# For this example, we won't save any outputs. If you're working
-# on your local machine, you can specify the folder you want to
-# save your outputs to, and check that this folder exists on your
-# machine (if it doesn't, a folder will be created):
-#
-#     folder = 'workflow'
-#     load_plot_save.check_folder_exists(folder)
-#
-# This folder can also be specified in the parameters file.
-# Any variable loaded from the parameters file can be
-# overwritten before the model runs, which is useful if looping over
-# a parameter space.
-#
 # The `setup_functions.set_up()` function creates empty arrays to
 # be filled with resulting temperatures:
 
