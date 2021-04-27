@@ -35,6 +35,9 @@ al. (2021) <https://doi.org/10.1029/2020JE006726>`__. References for the
 default parameters used can be found therein. We plan to extend it and
 make it more modular in future updates.
 
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD
+
 
 Indices and tables
 ==================

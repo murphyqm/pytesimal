@@ -46,6 +46,9 @@ from the gallery
 Quick Start
 ===========
 
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD
+
 `Read the full documentation
 here <https://pytesimal.readthedocs.io/en/latest/pytesimal.html>`__ for
 more in-depth instructions and to view the `API
