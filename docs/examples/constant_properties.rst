@@ -503,7 +503,7 @@ path. An absolute path usually results in less confusion!
     folder = 'workflow'
     pytesimal.load_plot_save.check_folder_exists(folder)
     # define a results filename prefix:
-    result_filename = 'workflow_results'
+    result_filename = 'constant_workflow_results'
 
 
 
@@ -575,7 +575,7 @@ repeat the same set up.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  58.657 seconds)
+   **Total running time of the script:** ( 1 minutes  59.091 seconds)
 
 
 .. _sphx_glr_download_examples_constant_properties.py:

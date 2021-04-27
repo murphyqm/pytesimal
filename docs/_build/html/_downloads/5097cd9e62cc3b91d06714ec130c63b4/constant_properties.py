@@ -289,7 +289,7 @@ pytesimal.load_plot_save.two_in_one(
 folder = 'workflow'
 pytesimal.load_plot_save.check_folder_exists(folder)
 # define a results filename prefix:
-result_filename = 'workflow_results'
+result_filename = 'constant_workflow_results'
 
 # %%
 # The result arrays can now be saved:
