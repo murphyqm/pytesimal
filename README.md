@@ -14,7 +14,7 @@ The code currently recreates the cases described in [Murphy Quinlan et al. (2021
 
 Quick Start
 -----------
-[Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/7257f6f7fb8a4312abc27897d1d97ccea1d44f5e)
+[Read the full documentation here](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) for more in-depth instructions and to view the [API reference](https://pytesimal.readthedocs.io/en/latest/apiref.html).
 
 To run a case with parameters loaded from file:
 
@@ -86,7 +86,7 @@ The package can be downloaded and installed directly from Github for the most re
     pip install -e .
 
 The `-e` flag installs the package in editable mode so that any changes
-to modules can be carried through.
+to modules can be carried through. Examples can be downloaded from the gallery [here](https://pytesimal.readthedocs.io/en/latest/examples/index.htmlhttps://pytesimal.readthedocs.io/en/latest/examples/index.html).
 
 Contribute
 ----------

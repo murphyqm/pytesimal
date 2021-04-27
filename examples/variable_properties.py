@@ -1,10 +1,10 @@
 """
-Constant Properties
+Variable Properties
 ===================
 
 This example shows step by step how to set up and run a model of a cooling
-planetesimal without using a parameters file. This example uses constant
-material properties in the mantle and reproduces the results of
+planetesimal without using a parameters file. This example uses temperature
+dependent material properties in the mantle and reproduces the results of
 `Murphy Quinlan et
 al. (2021) <https://doi.org/10.1029/2020JE006726>`__.
 """
@@ -94,22 +94,28 @@ core_values = pytesimal.core_function.IsothermalEutecticCore(
     core_latent_heat=core_latent_heat)
 
 # %%
-# Then we define the mantle properties. The default is to have constant
-# values, so we don't require any arguments for this example:
+# Then we define the mantle properties. We want to use temperature-dependent
+# properties, so we need to specify this:
 
 (mantle_conductivity,
  mantle_heatcap,
- mantle_density) = pytesimal.mantle_properties.set_up_mantle_properties()
+ mantle_density) = pytesimal.mantle_properties.set_up_mantle_properties(
+    cond_constant='n',
+    density_constant='n',
+    heat_cap_constant='n'
+)
 
 # %%
 # You can check (or change) the value of these properties after they've been
 # set up using one of the `MantleProperties` methods:
 
-print(mantle_conductivity.getk())
+print(f' Mantle conductivity {mantle_conductivity.getk()} W/(m K)')
 
 # %%
-# If temperature dependent properties are used, temperature can be passed in
-# as an argument to return the value at that temperature.
+# When temperature dependent properties are used, temperature can be passed in
+# as an argument to return the value at that temperature. The default
+# temperature is 295 K, so if no temperature argument is passed, the
+# function is evaluated at `T=295`.
 #
 # We need to set up the boundary conditions for the mantle. For this example,
 # we're using fixed temperature boundary conditions at both the
@@ -122,6 +128,8 @@ bottom_mantle_bc = pytesimal.numerical_methods.cmb_dirichlet_bc
 # slowest part of the code, because it has to iterate over all radii and
 # time.
 # This will take a minute or two!
+# The mantle property objects are passed in in the same way as in the
+# example with constant thermal properties.
 
 (mantle_temperature_array,
  core_temperature_array,
@@ -239,20 +247,19 @@ esquel_cooling_rate = pytesimal.analysis.cooling_rate_to_seconds(
 print(f"Imilac depth: {im_depth}; Imilac timing: {im_string_result}")
 print(f"Esquel depth: {esq_depth}; Esquel timing: {esq_string_result}")
 
-
 # %%
 # If you need to save the meteorite results, they can be saved to a dictionary
 # which can then be passed to the `load_plot_save.save_params_and_results`.
 # This allows for any number of meteorites to be analysed and only the
 # relevant data stored:
 
-meteorite_results_dict = { 'Esq results':
-                               {'depth': esq_depth,
-                                'text result': esq_string_result},
-                           'Im results':
-                               {'depth' : im_depth,
-                                'text result': im_string_result,
-                                'critical radius': im_Critical_Radius}}
+meteorite_results_dict = {'Esq results':
+                              {'depth': esq_depth,
+                               'text result': esq_string_result},
+                          'Im results':
+                              {'depth': im_depth,
+                               'text result': im_string_result,
+                               'critical radius': im_Critical_Radius}}
 
 # %%
 # To get an overview of the cooling history of the body, it's very useful
@@ -272,7 +279,7 @@ pytesimal.load_plot_save.two_in_one(
     mantle_temperature_array,
     core_temperature_array,
     mantle_cooling_rates,
-    core_cooling_rates,)
+    core_cooling_rates, )
 
 # %%
 # There are a few formats or ways to save the results. The temperature and
@@ -284,12 +291,11 @@ pytesimal.load_plot_save.two_in_one(
 # folder can be defined relative to the working directory, or with an absolute
 # path. An absolute path usually results in less confusion!
 
-
 # define folder and check it exists:
 folder = 'workflow'
 pytesimal.load_plot_save.check_folder_exists(folder)
 # define a results filename prefix:
-result_filename = 'constant_workflow_results'
+result_filename = 'variable_workflow_results'
 
 # %%
 # The result arrays can now be saved:
@@ -306,10 +312,10 @@ pytesimal.load_plot_save.save_result_arrays(result_filename,
 # `run_ID`, a descriptive string to identify the model run, and clarify
 # whether we used constant or variable thermal properties:
 
-run_ID = 'Example run with default properties'
-cond_constant = 'y'
-density_constant = 'y'
-heat_cap_constant = 'y'
+run_ID = 'Example run with default variable properties'
+cond_constant = 'n'
+density_constant = 'n'
+heat_cap_constant = 'n'
 
 pytesimal.load_plot_save.save_params_and_results(
     result_filename, run_ID, folder, timestep, r_planet, core_size_factor,

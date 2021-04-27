@@ -1,5 +1,5 @@
 """
-Constant Properties
+Variable Properties
 ===================
 
 This example shows step by step how to set up and run a model of a cooling
@@ -239,20 +239,19 @@ esquel_cooling_rate = pytesimal.analysis.cooling_rate_to_seconds(
 print(f"Imilac depth: {im_depth}; Imilac timing: {im_string_result}")
 print(f"Esquel depth: {esq_depth}; Esquel timing: {esq_string_result}")
 
-
 # %%
 # If you need to save the meteorite results, they can be saved to a dictionary
 # which can then be passed to the `load_plot_save.save_params_and_results`.
 # This allows for any number of meteorites to be analysed and only the
 # relevant data stored:
 
-meteorite_results_dict = { 'Esq results':
-                               {'depth': esq_depth,
-                                'text result': esq_string_result},
-                           'Im results':
-                               {'depth' : im_depth,
-                                'text result': im_string_result,
-                                'critical radius': im_Critical_Radius}}
+meteorite_results_dict = {'Esq results':
+                              {'depth': esq_depth,
+                               'text result': esq_string_result},
+                          'Im results':
+                              {'depth': im_depth,
+                               'text result': im_string_result,
+                               'critical radius': im_Critical_Radius}}
 
 # %%
 # To get an overview of the cooling history of the body, it's very useful
@@ -272,7 +271,7 @@ pytesimal.load_plot_save.two_in_one(
     mantle_temperature_array,
     core_temperature_array,
     mantle_cooling_rates,
-    core_cooling_rates,)
+    core_cooling_rates, )
 
 # %%
 # There are a few formats or ways to save the results. The temperature and
@@ -284,12 +283,11 @@ pytesimal.load_plot_save.two_in_one(
 # folder can be defined relative to the working directory, or with an absolute
 # path. An absolute path usually results in less confusion!
 
-
 # define folder and check it exists:
 folder = 'workflow'
 pytesimal.load_plot_save.check_folder_exists(folder)
 # define a results filename prefix:
-result_filename = 'constant_workflow_results'
+result_filename = 'workflow_results'
 
 # %%
 # The result arrays can now be saved:

@@ -12,6 +12,27 @@ Here are some example scripts.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows step by step how to set up and run a model of a cooling planetesimal without...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_constant_properties_thumb.png
+     :alt: Constant Properties
+
+     :ref:`sphx_glr_examples_constant_properties.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/constant_properties
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="This script produces a default parameter file then uses this to set up a model run. The default...">
 
 .. only:: html
@@ -30,6 +51,27 @@ Here are some example scripts.
    :hidden:
 
    /examples/quick_start
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows step by step how to set up and run a model of a cooling planetesimal without...">
+
+.. only:: html
+
+ .. figure:: /examples/images/thumb/sphx_glr_variable_properties_thumb.png
+     :alt: Variable Properties
+
+     :ref:`sphx_glr_examples_variable_properties.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/variable_properties
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
