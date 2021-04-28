@@ -41,18 +41,13 @@ running:
 The ``-e`` flag installs the package in editable mode so that any
 changes to modules can be carried through. Examples can be downloaded
 from the gallery
-`here <https://pytesimal.readthedocs.io/en/latest/examples/index.htmlhttps://pytesimal.readthedocs.io/en/latest/examples/index.html>`__.
+`here <https://pytesimal.readthedocs.io/en/latest/examples/index.html>`__.
 
 Quick Start
 ===========
 
 .. image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD
-
-`Read the full documentation
-here <https://pytesimal.readthedocs.io/en/latest/pytesimal.html>`__ for
-more in-depth instructions and to view the `API
-reference <https://pytesimal.readthedocs.io/en/latest/apiref.html>`__.
+ :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=examples
 
 To run a case with parameters loaded from file:
 
@@ -135,4 +130,4 @@ The project is licensed under the MIT license.
 .. |Documentation Status| image:: https://readthedocs.org/projects/pytesimal/badge/?version=latest
    :target: https://pytesimal.readthedocs.io/en/latest/?badge=latest
 .. |Binder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders
+   :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=examples
