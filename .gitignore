@@ -7,7 +7,7 @@ __pycache__/
 *.npz
 
 # Ignore joss paper except on paper branch
-JOSS_paper/
+# JOSS_paper/
 required_scripts/output_runs/
 output_runs/
 .idea/
