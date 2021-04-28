@@ -36,7 +36,7 @@ bibliography: paper.bib
 
 # Summary
 
-Planetesimals, the building blocks of planets in our Solar System, are sampled by the meteorite record. Thermal processing recorded in meteorites can be linked to the thermal evolution of their parent bodies, and so can inform us of the size and geometries of these parent bodies, and how deep within them the meteorite material resided before catastrophic disruption. The `pytesimal` package focuses on the conductive cooling stage of planetesimal evolution, and provides a toolkit for modelling the temperature and cooling rate distribution inside meteorite parent bodies in 1D, with and without temperature-dependent material properties.
+Planetesimals, the building blocks of planets in our Solar System, are sampled by the meteorite record. Thermal processing recorded in meteorites can be linked to the thermal evolution of their parent bodies, and so can inform us of the size and geometries of these parent bodies, and how deep within them the meteorite material resided before being broken apart and distributed across the asteroid belt. The `pytesimal` package focuses on the conductive cooling stage of planetesimal evolution, and provides a toolkit for modelling the temperature and cooling rate distribution inside meteorite parent bodies in 1D, with and without temperature-dependent material properties.
 
 # Statement of need
 
