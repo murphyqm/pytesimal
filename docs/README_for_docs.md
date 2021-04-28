@@ -2,7 +2,7 @@ Pytesimal
 ========
 
 [![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD)
 
 Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.
 
@@ -23,23 +23,30 @@ Features
 
 
 Installation
-============
-This software relies on python (version 3) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:
+------------
+This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. 
 
+> Package not yet available for install on PyPi, instructions for pip
+> install will be added once this is available.
+
+### Installation for development
+
+The package can be downloaded and installed directly from Github for the most recent version. The software and its dependencies are best installed in a virtual environment of your choice. Download of the software and creation of an isolated conda environment can be done by running:
 
     git clone https://github.com/murphyqm/pytesimal.git
     cd pytesimal
     conda create -n=pytesimal python=3.8 jupyter
     conda activate pytesimal
-    pip install -r requirements.txt
+    pip install -e .
 
-Pytesimal can then be installed as a package within the environment by running:
+The `-e` flag installs the package in editable mode so that any changes
+to modules can be carried through. Examples can be downloaded from the gallery [here](https://pytesimal.readthedocs.io/en/latest/examples/index.htmlhttps://pytesimal.readthedocs.io/en/latest/examples/index.html).
 
-    pip install .
 
 Quick Start
 ===========
-[Read the full documentation here,](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) [or launch a Jupyter Notebook example on Binder here.](https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders)
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=examples)
 
 To run a case with parameters loaded from file:
 

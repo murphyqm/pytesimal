@@ -13,10 +13,20 @@ Features
 Installation
 ============
 
-This software relies on python (version 3) and various other python
-packages. Examples are distributed as Jupyter notebooks, which need
-Jupyter and Matplotlib to run. Installation and management of all these
-dependencies is most easily done in a conda environment. Download of the
+This software relies on python (version 3.6 and up) and various other
+python packages. Examples are distributed as Jupyter notebooks, which
+need Jupyter and Matplotlib to run. Installation and management of all
+these dependencies is most easily done in a conda environment.
+
+   Package not yet available for install on PyPi, instructions for pip
+   install will be added once this is available.
+
+Installation for development
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The package can be downloaded and installed directly from Github for the
+most recent version. The software and its dependencies are best
+installed in a virtual environment of your choice. Download of the
 software and creation of an isolated conda environment can be done by
 running:
 
@@ -26,22 +36,18 @@ running:
    cd pytesimal
    conda create -n=pytesimal python=3.8 jupyter
    conda activate pytesimal
-   pip install -r requirements.txt
+   pip install -e .
 
-Pytesimal can then be installed as a package within the environment by
-running:
-
-::
-
-   pip install .
+The ``-e`` flag installs the package in editable mode so that any
+changes to modules can be carried through. Examples can be downloaded
+from the gallery
+`here <https://pytesimal.readthedocs.io/en/latest/examples/index.html>`__.
 
 Quick Start
 ===========
 
-`Read the full documentation
-here, <https://pytesimal.readthedocs.io/en/latest/pytesimal.html>`__ `or
-launch a Jupyter Notebook example on Binder
-here. <https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders>`__
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=examples
 
 To run a case with parameters loaded from file:
 
@@ -124,4 +130,4 @@ The project is licensed under the MIT license.
 .. |Documentation Status| image:: https://readthedocs.org/projects/pytesimal/badge/?version=latest
    :target: https://pytesimal.readthedocs.io/en/latest/?badge=latest
 .. |Binder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders
+   :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=examples

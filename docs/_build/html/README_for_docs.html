@@ -13,6 +13,10 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-rendered-html.css" type="text/css" />
 
   
   
@@ -86,11 +90,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Pytesimal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html#quick-start">Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html#contribute">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html#support">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples gallery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apiref.html">API Reference</a></li>
 </ul>
 
@@ -162,7 +166,7 @@
   <div class="section" id="pytesimal">
 <h1>Pytesimal<a class="headerlink" href="#pytesimal" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://pytesimal.readthedocs.io/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/pytesimal/badge/?version=latest" /></a>
-<a class="reference external" href="https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<a class="reference external" href="https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.</p>
 <p>Pytesimal is a finite difference code to perform numerical models of a conductively cooling planetesimal, both with constant and temperature-dependent properties. It returns a thermal history of the planetesimal, and the estimated timing and depth of pallasite meteorite genesis.
 The conduction equation is solved numerically using an explicit finite difference scheme, FTCS (Forward-Time Central-Space). FTCS gives first-order convergence in time and second-order in space, and is conditionally stable when applied to the heat equation.
@@ -178,25 +182,32 @@ In 1D, it must satisfy Von Neumann stability analysis - please see <a class="ref
 <li><p>Return timing of core solidification, and depth and timing of meteorite formation</p></li>
 <li><p>Return a parameter <code class="docutils literal notranslate"><span class="pre">.json</span></code> file with details of input parameters and results</p></li>
 </ul>
-</div>
 <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>This software relies on python (version 3) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. Download of the software and creation of an isolated conda environment can be done by running:</p>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment.</p>
+<blockquote>
+<div><p>Package not yet available for install on PyPi, instructions for pip
+install will be added once this is available.</p>
+</div></blockquote>
+<div class="section" id="installation-for-development">
+<h3>Installation for development<a class="headerlink" href="#installation-for-development" title="Permalink to this headline">¶</a></h3>
+<p>The package can be downloaded and installed directly from Github for the most recent version. The software and its dependencies are best installed in a virtual environment of your choice. Download of the software and creation of an isolated conda environment can be done by running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">murphyqm</span><span class="o">/</span><span class="n">pytesimal</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">pytesimal</span>
 <span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span><span class="o">=</span><span class="n">pytesimal</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> <span class="n">jupyter</span>
 <span class="n">conda</span> <span class="n">activate</span> <span class="n">pytesimal</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
-<p>Pytesimal can then be installed as a package within the environment by running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
-</pre></div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-e</span></code> flag installs the package in editable mode so that any changes
+to modules can be carried through. Examples can be downloaded from the gallery <a class="reference external" href="https://pytesimal.readthedocs.io/en/latest/examples/index.htmlhttps://pytesimal.readthedocs.io/en/latest/examples/index.html">here</a>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="quick-start">
 <h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://pytesimal.readthedocs.io/en/latest/pytesimal.html">Read the full documentation here,</a> <a class="reference external" href="https://mybinder.org/v2/gh/murphyqm/pytesimal/rearranging-folders">or launch a Jupyter Notebook example on Binder here.</a></p>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p><a class="reference external" href="https://pytesimal.readthedocs.io/en/latest/pytesimal.html">Read the full documentation here</a> for more in-depth instructions and to view the <a class="reference external" href="https://pytesimal.readthedocs.io/en/latest/apiref.html">API reference</a>.</p>
 <p>To run a case with parameters loaded from file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytesimal.load_plot_save</span>
 <span class="kn">import</span> <span class="nn">pytesimal.quick_workflow</span>

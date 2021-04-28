@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Variable Properties &mdash; Pytesimal 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="../apiref.html" />
+    <link rel="prev" title="Quick Start" href="quick_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Pytesimal
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Pytesimal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#contribute">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#support">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#license">License</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="constant_properties.html">Constant Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="no_core.html">Planetesimal Without a Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Variable Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apiref.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pytesimal</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Examples gallery</a> &raquo;</li>
+        
+      <li>Variable Properties</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/examples/variable_properties.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-variable-properties-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="variable-properties">
+<span id="sphx-glr-examples-variable-properties-py"></span><h1>Variable Properties<a class="headerlink" href="#variable-properties" title="Permalink to this headline">¶</a></h1>
+<p>This example shows step by step how to set up and run a model of a cooling
+planetesimal without using a parameters file. This example uses temperature
+dependent material properties in the mantle and reproduces the results of
+<a class="reference external" href="https://doi.org/10.1029/2020JE006726">Murphy Quinlan et
+al. (2021)</a>.</p>
+<p>As we’re setting this up step-by-step instead of using the
+<cite>pytesimal.quick_workflow</cite> module, we need to import a
+selection of modules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytesimal.setup_functions</span>
+<span class="kn">import</span> <span class="nn">pytesimal.load_plot_save</span>
+<span class="kn">import</span> <span class="nn">pytesimal.numerical_methods</span>
+<span class="kn">import</span> <span class="nn">pytesimal.analysis</span>
+<span class="kn">import</span> <span class="nn">pytesimal.core_function</span>
+<span class="kn">import</span> <span class="nn">pytesimal.mantle_properties</span>
+</pre></div>
+</div>
+<p>Instead of creating and loading a parameter file, we’re going to
+define variables here. The values match those of the constant
+thermal properties case in Murphy Quinlan et al. (2021):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">timestep</span> <span class="o">=</span> <span class="mf">1E11</span>  <span class="c1"># s</span>
+<span class="n">r_planet</span> <span class="o">=</span> <span class="mf">250_000.0</span>  <span class="c1"># m</span>
+<span class="n">core_size_factor</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># fraction of r_planet</span>
+<span class="n">reg_fraction</span> <span class="o">=</span> <span class="mf">0.032</span>  <span class="c1"># fraction of r_planet</span>
+<span class="n">max_time</span> <span class="o">=</span> <span class="mi">400</span>  <span class="c1"># Myr</span>
+<span class="n">temp_core_melting</span> <span class="o">=</span> <span class="mf">1200.0</span>  <span class="c1"># K</span>
+<span class="n">core_cp</span> <span class="o">=</span> <span class="mf">850.0</span>  <span class="c1"># J/(kg K)</span>
+<span class="n">core_density</span> <span class="o">=</span> <span class="mf">7800.0</span>  <span class="c1"># kg/m^3</span>
+<span class="n">temp_init</span> <span class="o">=</span> <span class="mf">1600.0</span>  <span class="c1"># K</span>
+<span class="n">temp_surface</span> <span class="o">=</span> <span class="mf">250.0</span>  <span class="c1"># K</span>
+<span class="n">core_temp_init</span> <span class="o">=</span> <span class="mf">1600.0</span>  <span class="c1"># K</span>
+<span class="n">core_latent_heat</span> <span class="o">=</span> <span class="mf">270_000.0</span>  <span class="c1"># J/kg</span>
+<span class="n">kappa_reg</span> <span class="o">=</span> <span class="mf">5e-8</span>  <span class="c1"># m^2/s</span>
+<span class="n">dr</span> <span class="o">=</span> <span class="mf">1000.0</span>  <span class="c1"># m</span>
+</pre></div>
+</div>
+<p>The <cite>setup_functions.set_up()</cite> function creates empty arrays to
+be filled with resulting temperatures:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">r_core</span><span class="p">,</span>
+ <span class="n">radii</span><span class="p">,</span>
+ <span class="n">core_radii</span><span class="p">,</span>
+ <span class="n">reg_thickness</span><span class="p">,</span>
+ <span class="n">where_regolith</span><span class="p">,</span>
+ <span class="n">times</span><span class="p">,</span>
+ <span class="n">mantle_temperature_array</span><span class="p">,</span>
+ <span class="n">core_temperature_array</span><span class="p">)</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">setup_functions</span><span class="o">.</span><span class="n">set_up</span><span class="p">(</span><span class="n">timestep</span><span class="p">,</span>
+                                                            <span class="n">r_planet</span><span class="p">,</span>
+                                                            <span class="n">core_size_factor</span><span class="p">,</span>
+                                                            <span class="n">reg_fraction</span><span class="p">,</span>
+                                                            <span class="n">max_time</span><span class="p">,</span>
+                                                            <span class="n">dr</span><span class="p">)</span>
+
+<span class="c1"># We define an empty list of latent heat that will</span>
+<span class="c1"># be filled as the core freezes</span>
+<span class="n">latent</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>Next, we instantiate the core object. This will keep track of the
+temperature of the core as the model runs, cooling as heat
+is extracted across the core-mantle boundary. This simple
+eutectic core model doesn’t track inner core growth, but
+this is still a required argument to allow for future
+incorporation of more complex core objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">core_values</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">core_function</span><span class="o">.</span><span class="n">IsothermalEutecticCore</span><span class="p">(</span>
+    <span class="n">initial_temperature</span><span class="o">=</span><span class="n">core_temp_init</span><span class="p">,</span>
+    <span class="n">melting_temperature</span><span class="o">=</span><span class="n">temp_core_melting</span><span class="p">,</span>
+    <span class="n">outer_r</span><span class="o">=</span><span class="n">r_core</span><span class="p">,</span>
+    <span class="n">inner_r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">rho</span><span class="o">=</span><span class="n">core_density</span><span class="p">,</span>
+    <span class="n">cp</span><span class="o">=</span><span class="n">core_cp</span><span class="p">,</span>
+    <span class="n">core_latent_heat</span><span class="o">=</span><span class="n">core_latent_heat</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we define the mantle properties. We want to use temperature-dependent
+properties, so we need to specify this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">mantle_conductivity</span><span class="p">,</span>
+ <span class="n">mantle_heatcap</span><span class="p">,</span>
+ <span class="n">mantle_density</span><span class="p">)</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">mantle_properties</span><span class="o">.</span><span class="n">set_up_mantle_properties</span><span class="p">(</span>
+    <span class="n">cond_constant</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span>
+    <span class="n">density_constant</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span>
+    <span class="n">heat_cap_constant</span><span class="o">=</span><span class="s1">&#39;n&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can check (or change) the value of these properties after they’ve been
+set up using one of the <cite>MantleProperties</cite> methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; Mantle conductivity </span><span class="si">{</span><span class="n">mantle_conductivity</span><span class="o">.</span><span class="n">getk</span><span class="p">()</span><span class="si">}</span><span class="s1"> W/(m K)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Mantle conductivity 3.411005666195278 W/(m K)
+</pre></div>
+</div>
+<p>When temperature dependent properties are used, temperature can be passed in
+as an argument to return the value at that temperature. The default
+temperature is 295 K, so if no temperature argument is passed, the
+function is evaluated at <cite>T=295</cite>.</p>
+<p>We need to set up the boundary conditions for the mantle. For this example,
+we’re using fixed temperature boundary conditions at both the
+surface and the core-mantle boundary.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">top_mantle_bc</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">numerical_methods</span><span class="o">.</span><span class="n">surface_dirichlet_bc</span>
+<span class="n">bottom_mantle_bc</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">numerical_methods</span><span class="o">.</span><span class="n">cmb_dirichlet_bc</span>
+
+<span class="c1"># Now we let the temperature inside the planestesimal evolve. This is the</span>
+<span class="c1"># slowest part of the code, because it has to iterate over all radii and</span>
+<span class="c1"># time.</span>
+<span class="c1"># This will take a minute or two!</span>
+<span class="c1"># The mantle property objects are passed in in the same way as in the</span>
+<span class="c1"># example with constant thermal properties.</span>
+
+<span class="p">(</span><span class="n">mantle_temperature_array</span><span class="p">,</span>
+ <span class="n">core_temperature_array</span><span class="p">,</span>
+ <span class="n">latent</span><span class="p">,</span>
+ <span class="p">)</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">numerical_methods</span><span class="o">.</span><span class="n">discretisation</span><span class="p">(</span>
+    <span class="n">core_values</span><span class="p">,</span>
+    <span class="n">latent</span><span class="p">,</span>
+    <span class="n">temp_init</span><span class="p">,</span>
+    <span class="n">core_temp_init</span><span class="p">,</span>
+    <span class="n">top_mantle_bc</span><span class="p">,</span>
+    <span class="n">bottom_mantle_bc</span><span class="p">,</span>
+    <span class="n">temp_surface</span><span class="p">,</span>
+    <span class="n">mantle_temperature_array</span><span class="p">,</span>
+    <span class="n">dr</span><span class="p">,</span>
+    <span class="n">core_temperature_array</span><span class="p">,</span>
+    <span class="n">timestep</span><span class="p">,</span>
+    <span class="n">r_core</span><span class="p">,</span>
+    <span class="n">radii</span><span class="p">,</span>
+    <span class="n">times</span><span class="p">,</span>
+    <span class="n">where_regolith</span><span class="p">,</span>
+    <span class="n">kappa_reg</span><span class="p">,</span>
+    <span class="n">mantle_conductivity</span><span class="p">,</span>
+    <span class="n">mantle_heatcap</span><span class="p">,</span>
+    <span class="n">mantle_density</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function fills the empty arrays produced by
+<cite>setup_functions.set_up()</cite> with calculated temperatures for the mantle and
+core.</p>
+<p>Now we can use the <cite>pytesimal.analysis</cite> module to find out more
+about the model run. We can check when the core was freezing,
+so we can compare this to the cooling history of meteorites
+and see whether they can be expected to record magnetic remnants
+of a core dynamo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">core_frozen</span><span class="p">,</span>
+ <span class="n">times_frozen</span><span class="p">,</span>
+ <span class="n">time_core_frozen</span><span class="p">,</span>
+ <span class="n">fully_frozen</span><span class="p">)</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">core_freezing</span><span class="p">(</span><span class="n">core_temperature_array</span><span class="p">,</span>
+                                                  <span class="n">max_time</span><span class="p">,</span>
+                                                  <span class="n">times</span><span class="p">,</span>
+                                                  <span class="n">latent</span><span class="p">,</span>
+                                                  <span class="n">temp_core_melting</span><span class="p">,</span>
+                                                  <span class="n">timestep</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we can calculate arrays of cooling rates from the temperature arrays:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mantle_cooling_rates</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">cooling_rate</span><span class="p">(</span><span class="n">mantle_temperature_array</span><span class="p">,</span>
+                                                       <span class="n">timestep</span><span class="p">)</span>
+<span class="n">core_cooling_rates</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">cooling_rate</span><span class="p">(</span><span class="n">core_temperature_array</span><span class="p">,</span>
+                                                     <span class="n">timestep</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Meteorite data (the diameter of ‘cloudy-zone particles’) can be used to
+estimate the rate at which the meteorites cooled through a specific
+temperature (C. W. Yang et al., 1997). The
+<cite>analysis.cooling_rate_cloudyzone_diameter</cite> function calculates the cooling
+rate in K/Myr, while the <cite>analysis.cooling_rate_to_seconds</cite> function
+converts this to K/s which allows comparison to our result arrays.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d_im</span> <span class="o">=</span> <span class="mi">147</span>  <span class="c1"># cz diameter in nm</span>
+<span class="n">d_esq</span> <span class="o">=</span> <span class="mi">158</span>  <span class="c1"># cz diameter in nm</span>
+
+<span class="n">imilac_cooling_rate</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">cooling_rate_to_seconds</span><span class="p">(</span>
+    <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">cooling_rate_cloudyzone_diameter</span><span class="p">(</span><span class="n">d_im</span><span class="p">))</span>
+<span class="n">esquel_cooling_rate</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">cooling_rate_to_seconds</span><span class="p">(</span>
+    <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">cooling_rate_cloudyzone_diameter</span><span class="p">(</span><span class="n">d_esq</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We can use this cooling rate information to find out how deep within their
+parent bodies these meteorites originally formed, and when they passed
+through the temperature of tetrataenite formation (when magnetism
+can be recorded). The <cite>analysis.meteorite_depth_and_timing()</cite> function
+returns the source depth of the meteorite material in the parent body
+based on the metal cooling rates at 800 K (as a depth from surface in km and
+as a radial value from the center of the planet in m), the time that the
+meteorite cools through the tetrataenite formation temperature in
+comparison to the core crystallisation period, and a string defining
+this relation between paleomagnetism recording and dynamo activity:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">im_depth</span><span class="p">,</span>
+ <span class="n">im_string_result</span><span class="p">,</span>
+ <span class="n">im_time_core_frozen</span><span class="p">,</span>
+ <span class="n">im_Time_of_Crossing</span><span class="p">,</span>
+ <span class="n">im_Critical_Radius</span><span class="p">)</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">meteorite_depth_and_timing</span><span class="p">(</span>
+    <span class="n">imilac_cooling_rate</span><span class="p">,</span>
+    <span class="n">mantle_temperature_array</span><span class="p">,</span>
+    <span class="n">mantle_cooling_rates</span><span class="p">,</span>
+    <span class="n">radii</span><span class="p">,</span>
+    <span class="n">r_planet</span><span class="p">,</span>
+    <span class="n">core_size_factor</span><span class="p">,</span>
+    <span class="n">time_core_frozen</span><span class="p">,</span>
+    <span class="n">fully_frozen</span><span class="p">,</span>
+    <span class="n">dr</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="p">(</span><span class="n">esq_depth</span><span class="p">,</span>
+ <span class="n">esq_string_result</span><span class="p">,</span>
+ <span class="n">esq_time_core_frozen</span><span class="p">,</span>
+ <span class="n">esq_Time_of_Crossing</span><span class="p">,</span>
+ <span class="n">esq_Critical_Radius</span><span class="p">)</span> <span class="o">=</span> <span class="n">pytesimal</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">meteorite_depth_and_timing</span><span class="p">(</span>
+    <span class="n">esquel_cooling_rate</span><span class="p">,</span>
+    <span class="n">mantle_temperature_array</span><span class="p">,</span>
+    <span class="n">mantle_cooling_rates</span><span class="p">,</span>
+    <span class="n">radii</span><span class="p">,</span>
+    <span class="n">r_planet</span><span class="p">,</span>
+    <span class="n">core_size_factor</span><span class="p">,</span>
+    <span class="n">time_core_frozen</span><span class="p">,</span>
+    <span class="n">fully_frozen</span><span class="p">,</span>
+    <span class="n">dr</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Imilac depth: </span><span class="si">{</span><span class="n">im_depth</span><span class="si">}</span><span class="s2">; Imilac timing: </span><span class="si">{</span><span class="n">im_string_result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Esquel depth: </span><span class="si">{</span><span class="n">esq_depth</span><span class="si">}</span><span class="s2">; Esquel timing: </span><span class="si">{</span><span class="n">esq_string_result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Imilac depth: 61.0; Imilac timing: Core has not started solidifying yet
+Esquel depth: 68.0; Esquel timing: Core has started solidifying
+</pre></div>
+</div>
+<p>If you need to save the meteorite results, they can be saved to a dictionary
+which can then be passed to the <cite>load_plot_save.save_params_and_results</cite>.
+This allows for any number of meteorites to be analysed and only the
+relevant data stored:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">meteorite_results_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Esq results&#39;</span><span class="p">:</span>
+                              <span class="p">{</span><span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="n">esq_depth</span><span class="p">,</span>
+                               <span class="s1">&#39;text result&#39;</span><span class="p">:</span> <span class="n">esq_string_result</span><span class="p">},</span>
+                          <span class="s1">&#39;Im results&#39;</span><span class="p">:</span>
+                              <span class="p">{</span><span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="n">im_depth</span><span class="p">,</span>
+                               <span class="s1">&#39;text result&#39;</span><span class="p">:</span> <span class="n">im_string_result</span><span class="p">,</span>
+                               <span class="s1">&#39;critical radius&#39;</span><span class="p">:</span> <span class="n">im_Critical_Radius</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>To get an overview of the cooling history of the body, it’s very useful
+to plot the temperatures and cooling rates as a heatmap through time.
+In order to plot the results, we need to define a figure height and width,
+then call <cite>load_plot_save.plot_temperature_history()</cite>,
+<cite>load_plot_save.plot_coolingrate_history()</cite> or <cite>load_plot_save.two_in_one()</cite>.
+These functions convert the cooling rate from K/timestep to K/Myr to make
+the results more human-readable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig_w</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">fig_h</span> <span class="o">=</span> <span class="mi">9</span>
+
+<span class="n">pytesimal</span><span class="o">.</span><span class="n">load_plot_save</span><span class="o">.</span><span class="n">two_in_one</span><span class="p">(</span>
+    <span class="n">fig_w</span><span class="p">,</span>
+    <span class="n">fig_h</span><span class="p">,</span>
+    <span class="n">mantle_temperature_array</span><span class="p">,</span>
+    <span class="n">core_temperature_array</span><span class="p">,</span>
+    <span class="n">mantle_cooling_rates</span><span class="p">,</span>
+    <span class="n">core_cooling_rates</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+<img alt="(a) Planetesimal temperatures through time, (b) Planetesimal cooling rates through time" class="sphx-glr-single-img" src="../_images/sphx_glr_variable_properties_001.png" />
+<p>There are a few formats or ways to save the results. The temperature and
+cooling rate arrays can be saved as compressed <cite>.npz</cite> arrays, to be loaded
+at a later time and replotted/new meteorite formation depths calculated etc.
+The input parameters can be saved as a <cite>.json</cite> file, which allows the run to
+be documented and provides all the metadata needed to reproduce the results.
+For either of these, a results folder and results filename is needed. The
+folder can be defined relative to the working directory, or with an absolute
+path. An absolute path usually results in less confusion!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># define folder and check it exists:</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;workflow&#39;</span>
+<span class="n">pytesimal</span><span class="o">.</span><span class="n">load_plot_save</span><span class="o">.</span><span class="n">check_folder_exists</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+<span class="c1"># define a results filename prefix:</span>
+<span class="n">result_filename</span> <span class="o">=</span> <span class="s1">&#39;variable_workflow_results&#39;</span>
+</pre></div>
+</div>
+<p>The result arrays can now be saved:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytesimal</span><span class="o">.</span><span class="n">load_plot_save</span><span class="o">.</span><span class="n">save_result_arrays</span><span class="p">(</span><span class="n">result_filename</span><span class="p">,</span>
+                                            <span class="n">folder</span><span class="p">,</span>
+                                            <span class="n">mantle_temperature_array</span><span class="p">,</span>
+                                            <span class="n">core_temperature_array</span><span class="p">,</span>
+                                            <span class="n">mantle_cooling_rates</span><span class="p">,</span>
+                                            <span class="n">core_cooling_rates</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In order to save the result parameter file, we also need to define a
+<cite>run_ID</cite>, a descriptive string to identify the model run, and clarify
+whether we used constant or variable thermal properties:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">run_ID</span> <span class="o">=</span> <span class="s1">&#39;Example run with default variable properties&#39;</span>
+<span class="n">cond_constant</span> <span class="o">=</span> <span class="s1">&#39;n&#39;</span>
+<span class="n">density_constant</span> <span class="o">=</span> <span class="s1">&#39;n&#39;</span>
+<span class="n">heat_cap_constant</span> <span class="o">=</span> <span class="s1">&#39;n&#39;</span>
+
+<span class="n">pytesimal</span><span class="o">.</span><span class="n">load_plot_save</span><span class="o">.</span><span class="n">save_params_and_results</span><span class="p">(</span>
+    <span class="n">result_filename</span><span class="p">,</span> <span class="n">run_ID</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">r_planet</span><span class="p">,</span> <span class="n">core_size_factor</span><span class="p">,</span>
+    <span class="n">reg_fraction</span><span class="p">,</span> <span class="n">max_time</span><span class="p">,</span> <span class="n">temp_core_melting</span><span class="p">,</span> <span class="n">mantle_heatcap</span><span class="o">.</span><span class="n">getcp</span><span class="p">(),</span>
+    <span class="n">mantle_density</span><span class="o">.</span><span class="n">getrho</span><span class="p">(),</span> <span class="n">mantle_conductivity</span><span class="o">.</span><span class="n">getk</span><span class="p">(),</span> <span class="n">core_cp</span><span class="p">,</span> <span class="n">core_density</span><span class="p">,</span>
+    <span class="n">temp_init</span><span class="p">,</span> <span class="n">temp_surface</span><span class="p">,</span> <span class="n">core_temp_init</span><span class="p">,</span> <span class="n">core_latent_heat</span><span class="p">,</span>
+    <span class="n">kappa_reg</span><span class="p">,</span> <span class="n">dr</span><span class="p">,</span> <span class="n">cond_constant</span><span class="p">,</span> <span class="n">density_constant</span><span class="p">,</span>
+    <span class="n">heat_cap_constant</span><span class="p">,</span> <span class="n">time_core_frozen</span><span class="p">,</span> <span class="n">fully_frozen</span><span class="p">,</span>
+    <span class="n">meteorite_results</span><span class="o">=</span><span class="n">meteorite_results_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This results file can then be loaded as a parameter file if you want to
+repeat the same set up.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 3 minutes  37.785 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-variable-properties-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/c524616cc2cc2a0440dd36b2b4933812/variable_properties.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">variable_properties.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/bfcb647298e86be1848cbebc38226e59/variable_properties.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">variable_properties.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../apiref.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quick_start.html" class="btn btn-neutral float-left" title="Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Maeve Murphy Quinlan.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -13,6 +13,10 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-rendered-html.css" type="text/css" />
 
   
   
@@ -38,7 +42,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Features" href="README.html" /> 
+    <link rel="prev" title="Quick Start" href="examples/quick_start.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="README.html#contribute">Contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html#support">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples gallery</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.analysis">pytesimal.analysis module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-pytesimal.core_function">pytesimal.core_function module</a></li>
@@ -417,6 +422,12 @@ model where core has already cooled by some degree</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pytesimal.core_function.IsothermalEutecticCore.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">melting_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core_latent_heat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_function.IsothermalEutecticCore.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new core with temperature and latent heat.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pytesimal.core_function.IsothermalEutecticCore.extract_heat">
 <code class="sig-name descname"><span class="pre">extract_heat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.core_function.IsothermalEutecticCore.extract_heat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract heat (in W) across the core-mantle boundary</p>
@@ -708,6 +719,12 @@ into pre-existing code with minimal changes.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pytesimal.mantle_properties.MantleProperties.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3341.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">819.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.mantle_properties.MantleProperties.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise mantle properties.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pytesimal.mantle_properties.MantleProperties.getcp">
 <code class="sig-name descname"><span class="pre">getcp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">295</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.mantle_properties.MantleProperties.getcp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get heat capacity.</p>
@@ -882,6 +899,12 @@ radial discretisation meet Von Neumann stability criteria.</p>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pytesimal.numerical_methods.EnergyExtractedAcrossCMB.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outer_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytesimal.numerical_methods.EnergyExtractedAcrossCMB.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1062,7 +1085,7 @@ conductivity is being used</p></li>
 <span id="pytesimal-quick-workflow-module"></span><h2>pytesimal.quick_workflow module<a class="headerlink" href="#module-pytesimal.quick_workflow" title="Permalink to this headline">¶</a></h2>
 <p>Set up complete runs with a single function call and a parameter file.</p>
 <p>This module provides a simple
-<cite>workflow</cite> function that follows a basic default workflow, with parameters
+<cite>workflow</cite> function which follows a basic default workflow, with parameters
 set by an input parameter file, and results saved as a json file and as
 compressed numpy arrays. These results files can then be loaded and analysed,
 with meteorite results calculated and the results plotted.</p>
@@ -1147,7 +1170,7 @@ controlling the spacing</p></li>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="README.html" class="btn btn-neutral float-left" title="Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples/quick_start.html" class="btn btn-neutral float-left" title="Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
