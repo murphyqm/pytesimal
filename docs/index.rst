@@ -36,7 +36,7 @@ default parameters used can be found therein. We plan to extend it and
 make it more modular in future updates.
 
 .. image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/HEAD
+ :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=example-notebooks
 
 
 Indices and tables

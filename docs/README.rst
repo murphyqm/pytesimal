@@ -47,7 +47,7 @@ Quick Start
 ===========
 
 .. image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=examples
+ :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=example-notebooks
 
 To run a case with parameters loaded from file:
 
@@ -130,4 +130,4 @@ The project is licensed under the MIT license.
 .. |Documentation Status| image:: https://readthedocs.org/projects/pytesimal/badge/?version=latest
    :target: https://pytesimal.readthedocs.io/en/latest/?badge=latest
 .. |Binder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=examples
+   :target: https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=example-notebooks
