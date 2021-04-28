@@ -103,13 +103,13 @@ For a quick reference, the following citation commands can be used:
 EXAMPLE PAPER FROM JOSS.ORG.
 Figures can be included like this:
 
-![Caption for example figure.\label{fig:example}](figure.png)
+![Caption for example figure.\label{fig:example}](aterial_properties.pdf)
 
 and referenced from text using \autoref{fig:example}.
 
 Figure sizes can be customized by adding an optional second parameter:
 
-![Caption for example figure.](figure.png){ width=20% }
+![Caption for example figure.](aterial_properties.pdf){ width=20% }
 
 # Acknowledgements
 
