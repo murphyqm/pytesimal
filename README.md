@@ -44,7 +44,7 @@ to modules can be carried through. Examples can be downloaded from the gallery [
 
 Quick Start
 -----------
-[Read the full documentation here](https://pytesimal.readthedocs.io/en/latest/pytesimal.html) for more in-depth instructions and to view the [API reference](https://pytesimal.readthedocs.io/en/latest/apiref.html). [Launch Jupyter Notebook examples](https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=example-notebooks).
+[Read the full documentation here](https://pytesimal.readthedocs.io/en/latest/) for more in-depth instructions and to view the [API reference](https://pytesimal.readthedocs.io/en/latest/apiref.html). [Launch Jupyter Notebook examples](https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=example-notebooks).
 
 To run a case with parameters loaded from file:
 
@@ -92,8 +92,8 @@ See the Jupyter notebooks hosted on Binder for live working examples, or downloa
 Contribute
 ----------
 
-- Issue Tracker: github.com/murphyqm/pytesimal/issues
-- Source Code: github.com/murphyqm/pytesimal
+- Issue Tracker: [github.com/murphyqm/pytesimal/issue](https://github.com/murphyqm/pytesimal/issues)
+- Source Code: [github.com/murphyqm/pytesimal](https://github.com/murphyqm/pytesimal)
 
 Support
 -------
