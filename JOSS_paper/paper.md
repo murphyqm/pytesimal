@@ -46,16 +46,6 @@ The `Pytesimal` package focuses on the conductive cooling stage of planetesimal 
 
 `Pytesimal` will enable groups to continue to develop models of planetesimals and investigate the thermal history of meteorite parent bodies without having to rebuild the same basic architecture each time. `Pytesimal` provides a framework for modelling the conductive cooling of planetesimals, and is designed to be modular to allow future contributions and developments to be included. `Pytesimal` also includes plotting functionality to visualise the results of model runs, and a number of specialised tools designed to investigate pallasite meteorites specifically.
 
-[//]: # (This may be the most platform independent comment)
-
-[//]: # (Background)
-
-[//]: # (Meteorites provide insights into some of the earliest planetary bodies in the Solar System: planetesimals, the building blocks of the planets and the asteroid belt. Unlike geological samples collected from field locations, meteorite samples often lack geological context. Modelling the evolution of small bodies in the Solar System allows us to make estimates about the conditions under which the meteorite material formed and was processed, placing the samples in context and allowing us to better understand planet building processes in the early Solar System.)
-
-[//]: # (Potentially cut all this, include in a comment that there are also a suite of functions to address pallasite meteorite formation.)
-
-[//]: # (Differentiated meteorites formed within bodies that melted and segregated to a certain extent, before slowly cooling. Some meteorite samples capture a cooling history attributed to this later conductive cooling stage of the parent body. One such group of meteorites, the pallasites, may have formed through a collision which caused molten metal to be injected into the olivine-rich mantle of a differentiated planetesimal [@Walte2020]. The cooling rate of this metal below 975 K following injection into the mantle is captured in Ni diffusion profiles in regions of Widmanstätten pattern [@Yang2010]. In conjunction with modelling, this cooling rate recorded at $\sim$800 K can be used to calculate the depth at which the pallasite material resided within its parent body. Paleomagnetic records in some samples indicate that a core dynamo was active when the regions of pallasite material cooled through the tetrataenite formation temperature [@Bryson2015; @Nichols2016]. )
-
 # Method
 
 The `Pytesimal` package focuses on the conductive cooling of differentiated planetesimals, with the ability to alter the model set-up to also investigate primitive bodies that have not segregated a core. The basic 1D set-up includes a conductively cooling discretised region which can include a low-diffusivity megaregolith layer, and an isothermal convecting core. The core can be removed to closer approximate primitive meteorite parent bodies, with a zero flux boundary condition applied across the centre to ensure symmetry (\autoref{fig:model}).
