@@ -86,9 +86,20 @@ where $A_\mathrm{c}$ is the core surface area, $r_\mathrm{c}$ is the core radius
 
 where $\rho_{\mathrm{c}}$ and $C_{\mathrm{c}}$ are the density and heat capacity of the core, and $V_{\mathrm{c}}$ is the volume of the core. The core cools until it reaches its freezing temperature, at which point the temperature is held constant and latent heat is extracted until the total latent heat associated with core crystallisation has been removed. This core cooling method differs subtly from the method implemented in @MurphyQuinlan2021 which used an earlier version of the code that instead calculated energy extracted from the core in Joules. This simple eutectic core model ignores inner core formation and treats the liquid and solid fraction as identical, but is implemented in a way that would allow the `IsothermalEutecticCore` object to be easily replaced with a more complex core mode where applicable.
 
+![Temperatures and cooling rates in a 250 km radius planetesimal, using temperature-dependent material properties. Annotations and lines to show the mantle, core and core crystallisation period are added later, outside of the `pytesimal.load_plot_save` functions. \label{fig:heatmap}](heatmap.pdf)
+
+`Pytesimal` also contains the functionality to quickly plot results, which allows for both on-the-go data visualisation and for saved results to be loaded and plotted at a later time.
+
 # Previous implementation
 
 Maybe don't need this section as have already mentioned this?
+
+# Benefits of this package
+
+1. `Pytesimal` only requires the commonly available Python packages `numpy` and `matplotlib`, with `Jupyter` useful for running provided examples, but not esssential.
+2. Simple models can be set up and run in a single function call with an input parameter file, while more bespoke set ups only require a few extra lines of code.
+3. `Pytesimal` is designed to be modular and extensible so that it can applied to a wide range of modelling requirements, to speed up development.
+4. Quick and simple visualisation of the results can be achieved with a single function call, and can be modified easily to produce publication-quality figures.
 
 # Mathematics
 
