@@ -17,6 +17,7 @@ authors:
     orcid: 0000-0002-1074-3815
     affiliation: 1
   - name: Peter Selves
+    orcid: 0000-0002-2763-1684
     affiliation: 3
   - name: Liam S. E. Teggin
     orcid: 0000-0003-0814-8766
@@ -27,9 +28,9 @@ affiliations:
    index: 1
  - name: Dept. of Earth Sciences, University of Oxford, Oxford, UK
    index: 2
- - name: University of Leicester
+ - name: School of Physics and Astronomy, University of Leicester
    index: 3
-date: 21 April 2021
+date: 29 April 2021
 bibliography: paper.bib
    
 ---
@@ -74,7 +75,7 @@ The 1D conductive cooling of the discretised region is controlled by the heat eq
 
 where $T$ is the temperature, $r$ is the radial value, $t$ is time, and $k$, $\rho$ and $C$ are the conductivity, density and heat capacity respectively. `Pytesimal` provides the capability to use temperature-dependent conductivity, heat capacity and density, with functions suitable for an olivine mantle included. These $T$-dependent material properties of olivine (\autoref{fig:matprops}) are based on experimental results and mineral physics theory from Fei2013, Robie1982, Su2018, Suzuki1975, Xu2004, with more information in @MurphyQuinlan2021.
 
-![Conductivity ($k$) and volumetric heat capacity ($\rho C$) in olivine [@MurphyQuinlan2021].\label{fig:matprops}](material_properties.pdf)
+![Conductivity ($k$) and volumetric heat capacity ($\rho C$) in olivine.\label{fig:matprops}](material_properties.pdf)
 
 The `numerical_methods` module uses the explicit Forward-Time Central-Space (FTCS) scheme which is conditionally stable and must satisfy Von Neumann stability criteria in 1D:
 $\frac{\kappa \delta t}{\delta r ^{2}} \leq \frac{1}{2}$, where $\kappa$ is the thermal diffusivity of the material, $\delta t$ is the timestep of the numerical scheme, and $\delta r$ is the radial step [@Crank1947]. `Pytesimal.numerical_methods` includes functions to calculate the diffusivity from $k$, $\rho$ and $C$, and to check whether the chosen timestep will result in instabilities.

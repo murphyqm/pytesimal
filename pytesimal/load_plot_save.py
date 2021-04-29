@@ -519,7 +519,7 @@ def two_in_one(
 
     # These probably belong in the data files...
     timestep = 1e11
-    maxtime = 400 * 3.1556926e13
+    maxtime = 400 * 3.1556926e13 # TODO - move this to argument
 
     fig, ax = plot_temperature_history(
         temperatures,
