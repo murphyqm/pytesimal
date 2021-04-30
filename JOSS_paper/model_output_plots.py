@@ -206,5 +206,5 @@ ax.text(200_00.0, 75.0, 'Mantle', bbox=dict(facecolor='white', alpha=0.5))
 ax.text(200_00.0, 175.0, 'Core', bbox=dict(facecolor='white', alpha=0.5))
 ax.text(core_starts_freezing + 2600.0, 175.0, 'Freezing', bbox=dict(facecolor='white', alpha=0.5))
 
-plt.savefig('heatmap.pdf', dpi=300, bbox_inches="tight")
+# plt.savefig('heatmap.pdf', dpi=300, bbox_inches="tight")
 plt.show()

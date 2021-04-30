@@ -65,14 +65,13 @@ The 1D conductive cooling of the discretised region is controlled by the heat eq
 
 where $T$ is the temperature, $r$ is the radial value, $t$ is time, and $k$, $\rho$ and $C$ are the conductivity, density and heat capacity respectively. `Pytesimal` provides the capability to use temperature-dependent conductivity, heat capacity and density, with functions suitable for an olivine mantle included. These $T$-dependent material properties of olivine (\autoref{fig:matprops}) are based on experimental results and mineral physics theory from Fei2013, Robie1982, Su2018, Suzuki1975, Xu2004, with more information in @MurphyQuinlan2021.
 
-![Conductivity ($k$) and volumetric heat capacity ($\rho C$) in olivine.\label{fig:matprops}](material_properties.pdf)
-
+![Conductivity ($k$) and volumetric heat capacity ($\rho C$) in olivine.\label{fig:matprops}](material_properties.pdf){ width=80% }
 The `numerical_methods` module uses the explicit Forward-Time Central-Space (FTCS) scheme which is conditionally stable and must satisfy Von Neumann stability criteria in 1D:
 $\frac{\kappa \delta t}{\delta r ^{2}} \leq \frac{1}{2}$, where $\kappa$ is the thermal diffusivity of the material, $\delta t$ is the timestep of the numerical scheme, and $\delta r$ is the radial step [@Crank1947]. `Pytesimal.numerical_methods` includes functions to calculate the diffusivity from $k$, $\rho$ and $C$, and to check whether the chosen timestep will result in instabilities.
 
-Boundary conditions for the top and bottom of the discretised region are passed into `numerical_methods.discretisation` as callable objects to allow for user-defined functions to be easily incorporated to extend the provided basic options. Two different boundary conditions are currently provided, illustrated in \autoref{fig:matprops}: a fixed temperature condition which can be applied to either the top or bottom boundary of the discretised region, and a zero flux boundary condition that can be applied at the bottom boundary when the core is removed.
+Boundary conditions for the top and bottom of the discretised region are passed into `numerical_methods.discretisation` as callable objects to allow for user-defined functions to be easily incorporated. Two different boundary conditions are currently provided, illustrated in \autoref{fig:matprops}: a fixed temperature condition which can be applied to either the top or bottom boundary of the discretised region, and a zero flux boundary condition that can be applied at the bottom boundary when the core is removed.
 
-The core interacts with the mantle through heat extracted over one timestep in the form of power (P, in Watts). The heat extracted in one timestep ($P_{\mathrm{CMB}}$) is calculated:
+The core interacts with the mantle through heat extracted across the core-mantle boundary over one timestep in the form of power (P, in Watts). The heat extracted in one timestep ($P_{\mathrm{CMB}}$) is calculated:
 
 \begin{equation}
 P_{\mathrm{CMB}} = - {A}_{\mathrm{c}} k_{\mathrm{m}} \frac{\partial T}{\partial r}\bigg\vert _{r = r_\mathrm{c}}
@@ -86,71 +85,20 @@ where $A_\mathrm{c}$ is the core surface area, $r_\mathrm{c}$ is the core radius
 
 where $\rho_{\mathrm{c}}$ and $C_{\mathrm{c}}$ are the density and heat capacity of the core, and $V_{\mathrm{c}}$ is the volume of the core. The core cools until it reaches its freezing temperature, at which point the temperature is held constant and latent heat is extracted until the total latent heat associated with core crystallisation has been removed. This core cooling method differs subtly from the method implemented in @MurphyQuinlan2021 which used an earlier version of the code that instead calculated energy extracted from the core in Joules. This simple eutectic core model ignores inner core formation and treats the liquid and solid fraction as identical, but is implemented in a way that would allow the `IsothermalEutecticCore` object to be easily replaced with a more complex core mode where applicable.
 
-![Temperatures and cooling rates in a 250 km radius planetesimal, using temperature-dependent material properties. Annotations and lines to show the mantle, core and core crystallisation period are added later, outside of the `pytesimal.load_plot_save` functions. \label{fig:heatmap}](heatmap.pdf)
+![Temperatures and cooling rates in a 250 km radius planetesimal, using temperature dependent material properties. Annotations and lines to show the mantle, core and core crystallisation period are added later, outside of the `pytesimal.load_plot_save` functions. \label{fig:heatmap}](heatmap.pdf){ width=80% }
 
 `Pytesimal` also contains the functionality to quickly plot results, which allows for both on-the-go data visualisation and for saved results to be loaded and plotted at a later time.
 
-# Previous implementation
-
-Maybe don't need this section as have already mentioned this?
 
 # Benefits of this package
 
-1. `Pytesimal` only requires the commonly available Python packages `numpy` and `matplotlib`, with `Jupyter` useful for running provided examples, but not esssential.
+1. `Pytesimal` only requires the commonly available Python packages `numpy` and `matplotlib`, with `Jupyter` useful for running the provided examples, but not essential.
 2. Simple models can be set up and run in a single function call with an input parameter file, while more bespoke set ups only require a few extra lines of code.
-3. `Pytesimal` is designed to be modular and extensible so that it can applied to a wide range of modelling requirements, to speed up development.
+3. `Pytesimal` is designed to be modular and extensible so that it can applied to a wide range of modelling requirements, to speed up development of meteorite parent body models.
 4. Quick and simple visualisation of the results can be achieved with a single function call, and can be modified easily to produce publication-quality figures.
-
-# Mathematics
-
-EXAMPLE PAPER FROM JOSS.ORG.
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
-
-Double dollars make self-standing equations:
-
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
-
-You can also use plain \LaTeX for equations
-\begin{equation}\label{eq:fourier}
-\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
-\end{equation}
-and refer to \autoref{eq:fourier} from text.
-
-# Citations
-
-EXAMPLE PAPER FROM JOSS.ORG.
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
-
-# Figures
-
-EXAMPLE PAPER FROM JOSS.ORG.
-Figures can be included like this:
-
-![Caption for example figure.\label{fig:example}](material_properties.pdf)
-
-and referenced from text using \autoref{fig:example}.
-
-Figure sizes can be customized by adding an optional second parameter:
-
-![Caption for example figure.](material_properties.pdf){ width=20% }
 
 # Acknowledgements
 
-EXAMPLE PAPER FROM JOSS.ORG.
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+We acknowledge funding support to MMQ from the Leeds-York Natural Environment Research Council Doctoral Training Partnership (NE/L002574/1) and to CJD by the Natural Environment Research Council Independent Research Fellowship (NE/L011328/1).
 
 # References
