@@ -50,7 +50,7 @@ The `Pytesimal` package focuses on the conductive cooling stage of planetesimal 
 
 The `Pytesimal` package focuses on the conductive cooling of differentiated planetesimals, with the ability to alter the model set-up to also investigate primitive bodies that have not segregated a core. The basic 1D set-up includes a conductively cooling discretised region which can include a low-diffusivity megaregolith layer, and an isothermal convecting core. The core can be removed to closer approximate primitive meteorite parent bodies, with a zero flux boundary condition applied across the centre to ensure symmetry (\autoref{fig:model}).
 
-![TEMP PLACEHOLDER - TO BE PROPERLY DRAWN UP. Cartoon sketch of model set-up.\label{fig:model}](model_setup.png)
+![TEMP PLACEHOLDER - TO BE PROPERLY DRAWN UP. Cartoon sketch of model set-up.\label{fig:model}](model_setups.pdf)
 
 The 1D conductive cooling of the discretised region is controlled by the heat equation:
 
