@@ -96,7 +96,7 @@ An earlier version of `Pytesimal` has been used in a scientific publication to d
 
 1. `Pytesimal` only requires the commonly available Python packages `numpy` and `matplotlib`, with `Jupyter` useful for running the provided examples, but not essential.
 2. Simple models can be set up and run in a single function call with an input parameter file, while more bespoke set ups only require a few extra lines of code.
-3. `Pytesimal` is designed to be modular and extensible so that it can applied to a wide range of modelling requirements, to speed up development of meteorite parent body models.
+3. `Pytesimal` is designed to be modular and extensible so that it can apply to a wide range of modelling requirements, to speed up development of meteorite parent body models.
 4. Quick and simple visualisation of the results can be achieved with a single function call, and can be modified easily to produce publication-quality figures.
 
 # Acknowledgements
