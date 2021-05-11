@@ -13,9 +13,6 @@ authors:
   - name: Andrew M. Walker
     orcid: 0000-0003-3121-3255
     affiliation: "1, 2"
-  - name: Christopher J. Davies
-    orcid: 0000-0002-1074-3815
-    affiliation: 1
   - name: Peter Selves
     orcid: 0000-0002-2763-1684
     affiliation: 3
@@ -99,6 +96,6 @@ where $\rho_{\mathrm{c}}$ and $C_{\mathrm{c}}$ are the density and heat capacity
 
 # Acknowledgements
 
-We acknowledge funding support to MMQ from the Leeds-York Natural Environment Research Council Doctoral Training Partnership (NE/L002574/1) and to CJD by the Natural Environment Research Council Independent Research Fellowship (NE/L011328/1).
+MMQ was supported by the Leeds-York Natural Environment Research Council Doctoral Training Partnership (NE/L002574/1). The authors would like to thank Christopher J Davies for his comments on the paper.
 
 # References
