@@ -84,13 +84,13 @@ where $A_\mathrm{c}$ is the core surface area, $r_\mathrm{c}$ is the core radius
 
 where $\rho_{\mathrm{c}}$ and $C_{\mathrm{c}}$ are the density and heat capacity of the core, and $V_{\mathrm{c}}$ is the volume of the core. Once the core reaches its freezing temperature, the temperature is held constant. Latent heat is extracted until the total latent heat associated with core crystallisation has been removed. This simple eutectic core model ignores inner core formation and treats the liquid and solid fraction as identical, but is implemented in a way that allows the `IsothermalEutecticCore` object to be replaced with a more complex core model where applicable.
 
-![Temperatures and cooling rates in a 250 km radius planetesimal, using temperature dependent material properties. Annotations and lines to show the mantle, core and core crystallisation period are added later, outside of the `pytesimal.load_plot_save` functions. \label{fig:heatmap}](heatmap.pdf){ width=80% }
-
-`Pytesimal` also contains the functionality to quickly plot results, which allows for both on-the-go data visualisation and for saved results to be loaded and plotted at a later time (\autoref{fig:heatmap}).
+`Pytesimal` also contains the functionality to quickly plot results, which allows for both on-the-go data visualisation and for saved results to be loaded and plotted at a later time (\autoref{fig:heatmap}). The `analysis` module can be used to calculate cooling rates, estimate the depth of pallasite meteorite genesis, and find the time when paleomagnetism could be recorded by these meteorite samples.
 
 # Examples of applications
 
-An earlier version of `Pytesimal` has been used in a scientific publication to demonstrate that the inclusion of temperature dependent thermal properties in place of constant values can result in different interpretations of the meteorite record, with pallasite meteorites used as an example [@MurphyQuinlan2021]. \autoref{fig:heatmap} reproduces the results of @MurphyQuinlan2021.
+An earlier version of `Pytesimal` has been used in a scientific publication to demonstrate that the inclusion of temperature dependent thermal properties in place of constant values can result in different interpretations of the meteorite record, with pallasite meteorites used as an example [@MurphyQuinlan2021]. \autoref{fig:heatmap} reproduces the results of @MurphyQuinlan2021. The default values provided by `load_plot_save.make_default_param_file` are from @MurphyQuinlan2021 and citations therein.
+
+![Temperatures and cooling rates in a 250 km radius planetesimal, using temperature dependent material properties. Annotations and lines to show the mantle, core and core crystallisation period are added later, outside of the `pytesimal.load_plot_save` functions. \label{fig:heatmap}](heatmap.pdf){ width=80% }
 
 # Benefits of this package
 
