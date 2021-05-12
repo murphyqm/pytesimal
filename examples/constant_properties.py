@@ -305,7 +305,8 @@ pytesimal.load_plot_save.save_params_and_results(
     temp_init, temp_surface, core_temp_init, core_latent_heat,
     kappa_reg, dr, cond_constant, density_constant,
     heat_cap_constant, time_core_frozen, fully_frozen,
-    meteorite_results=meteorite_results_dict)
+    meteorite_results=meteorite_results_dict,
+    latent_list_len=len(latent))
 
 # %%
 # This results file can then be loaded as a parameter file if you want to
