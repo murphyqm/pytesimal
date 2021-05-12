@@ -144,6 +144,7 @@ def meteorite_depth_and_timing(
     time_core_frozen,
     fully_frozen,
     dr=1000.0,
+    dt=1e11
 ):
     """
     Find depth of genesis given the cooling rate.
@@ -254,7 +255,7 @@ def meteorite_depth_and_timing(
         crossing
     )  # finds the first 'maximum' which is the first TRUE,
     # or the first crossing
-    Time_of_Crossing = crossing_index * (10 ** 11)  # converts to seconds
+    Time_of_Crossing = crossing_index * (dt)  # converts to seconds
     radii_index = int(((d_val)[crossing is True]))
 
     # check to see if the depth crosses the 593K contour during solidification

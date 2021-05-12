@@ -506,6 +506,7 @@ def two_in_one(
     dT_by_dt,
     dT_by_dt_core,
     savefile=None,
+    timestep=1e11
 ):
     """
     Return a heat map of depth vs time; colormap shows variation in temp.
@@ -518,7 +519,7 @@ def two_in_one(
     ax, ax2 = axs
 
     # These probably belong in the data files...
-    timestep = 1e11
+    # timestep = 1e11
     maxtime = 400 * 3.1556926e13
 
     fig, ax = plot_temperature_history(
