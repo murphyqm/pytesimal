@@ -27,7 +27,7 @@ authors:
     family-names: Harvey
     given-names: Jason
 cff-version: "1.1.0"
-doi: "10.1002/essoar.10504913.1"
+doi: "10.1029/2020JE006726"
 keywords: 
   - planetesimal
   - conductivity
@@ -35,7 +35,7 @@ keywords:
 license: MIT
 message: |
     "If you use this software, please cite it using these metadata.
-    This currently points to our preprint and will be updated."
+    This currently points to our paper and will be updated."
 repository-code: "https://github.com/murphyqm/pytesimal"
 title: Pytesimal
 ...
