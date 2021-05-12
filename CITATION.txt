@@ -1,18 +1,27 @@
 Citation
 ========
 
-If you use our model, please cite our preprint:
+If you use our model, please cite our paper:
 
-Murphy Quinlan, M., Walker, A., Davies, C. J., Mound, J. E., Müller, T., & Harvey, J. (2020). The conductive cooling of planetesimals with temperature-dependent properties. Earth and Space Science Open Archive, Wiley. https://doi.org/10.1002/essoar.10504913.1 
+ Murphy Quinlan, M., Walker, A. M., Davies, C. J., Mound, J. E., Müller, T., & Harvey, J. (2021). The conductive cooling of planetesimals with temperature‐dependent properties. Journal of Geophysical Research: Planets, 126, e2020JE006726. https://doi.org/10.1029/2020JE006726
 
 BibTex:
 
-@article{MurphyQuinlan2020, 
-author = {Murphy Quinlan, Maeve and Walker, Andrew and Davies, Christopher J. and Mound, Jonathan E. and Müller, Thomas and Harvey, Jason}, 
-title = {The conductive cooling of planetesimals with temperature-dependent properties}, 
-journal = {Earth and Space Science Open Archive}, 
-pages = {24}, 
-year = {2020}, 
-DOI = {10.1002/essoar.10504913.1}, 
-url = {https://doi.org/10.1002/essoar.10504913.1}, 
+@article{MurphyQuinlan2020,
+author = {Murphy Quinlan, M. and Walker, A. M. and Davies, C. J. and Mound, J. E. and Müller, T. and Harvey, J.},
+title = {The Conductive Cooling of Planetesimals With Temperature-Dependent Properties},
+journal = {Journal of Geophysical Research: Planets},
+volume = {126},
+number = {4},
+pages = {e2020JE006726},
+keywords = {conductivity, meteorite, modeling, pallasite, planetary, planetesimal},
+doi = {https://doi.org/10.1029/2020JE006726},
+url = {https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2020JE006726},
+eprint = {https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2020JE006726},
+note = {e2020JE006726 2020JE006726},
+abstract = {Abstract Modeling the planetary heat transport of small bodies in the early Solar System allows us to understand the geological context of meteorite samples. Conductive cooling in planetesimals is controlled by thermal conductivity, heat capacity, and density, which are functions of temperature (T). We investigate if the incorporation of the T-dependence of thermal properties and the introduction of a nonlinear term to the heat equation could result in different interpretations of the origin of different classes of meteorites. We have developed a finite difference code to perform numerical models of a conductively cooling planetesimal with T-dependent properties and find that including T-dependence produces considerable differences in thermal history, and in turn the estimated timing and depth of meteorite genesis. We interrogate the effects of varying the input parameters to this model and explore the nonlinear T-dependence of conductivity with simple linear functions. Then we apply non-monotonic functions for conductivity, heat capacity, and density fitted to published experimental data. For a representative calculation of a 250 km radius pallasite parent body, T-dependent properties delay the onset of core crystallization and dynamo activity by ∼40 Myr, approximately equivalent to increasing the planetary radius by 10\%, and extend core crystallization by ∼3 Myr. This affects the range of planetesimal radii and core sizes for the pallasite parent body that are compatible with paleomagnetic evidence. This approach can also be used to model the T-evolution of other differentiated minor planets and primitive meteorite parent bodies and constrain the formation of associated meteorite samples.},
+year = {2021}
 }
+
+
+
