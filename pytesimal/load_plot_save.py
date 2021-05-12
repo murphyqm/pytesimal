@@ -56,9 +56,9 @@ def make_default_param_file(filepath="example_params.txt"):
         "reg_fraction": 0.032,
         "max_time": 400,
         "temp_core_melting": 1200.0,
-        "olivine_cp": 819.0,
-        "olivine_density": 3341.0,
-        "cmb_conductivity": 3.0,
+        "mantle_heat_cap_value": 819.0,
+        "mantle_density_value": 3341.0,
+        "mantle_conductivity_value": 3.0,
         "core_cp": 850.0,
         "core_density": 7800.0,
         "temp_init": 1600.0,
@@ -88,9 +88,9 @@ def load_params_from_file(filepath="example_params.txt"):
         reg_fraction = data["reg_fraction"]
         max_time = data["max_time"]
         temp_core_melting = data["temp_core_melting"]
-        olivine_cp = data["olivine_cp"]
-        olivine_density = data["olivine_density"]
-        cmb_conductivity = data["cmb_conductivity"]
+        mantle_heat_cap_value = data["mantle_heat_cap_value"]
+        mantle_density_value = data["mantle_density_value"]
+        mantle_conductivity_value = data["mantle_conductivity_value"]
         core_cp = data["core_cp"]
         core_density = data["core_density"]
         temp_init = data["temp_init"]
@@ -111,9 +111,9 @@ def load_params_from_file(filepath="example_params.txt"):
             reg_fraction,
             max_time,
             temp_core_melting,
-            olivine_cp,
-            olivine_density,
-            cmb_conductivity,
+            mantle_heat_cap_value,
+            mantle_density_value,
+            mantle_conductivity_value,
             core_cp,
             core_density,
             temp_init,
@@ -138,9 +138,9 @@ def save_params_and_results(
     reg_fraction,
     max_time,
     temp_core_melting,
-    olivine_cp,
-    olivine_density,
-    cmb_conductivity,
+    mantle_heat_cap_value,
+    mantle_density_value,
+    mantle_conductivity_value,
     core_cp,
     core_density,
     temp_init,
@@ -155,6 +155,7 @@ def save_params_and_results(
     time_core_frozen,
     fully_frozen,
     meteorite_results="None given",
+    latent_list_len=0,
 ):
     """
     Save parameters and results from model run to a json file.
@@ -188,11 +189,11 @@ def save_params_and_results(
         The total run-time of the model, in millions of years (Myr).
     temp_core_melting : float
         The melting temperature of the core.
-    olivine_cp: float
-        The heat capacity of olivine.
-    olivine_density : float
-         The density of olivine.
-    cmb_conductivity : float
+    mantle_heat_cap_value: float
+        The heat capacity of mantle material.
+    mantle_density_value : float
+         The density of mantle material.
+    mantle_conductivity_value : float
         The conductivity of the mantle.
     core_cp : float
         The heat capacity of the core.
@@ -220,10 +221,13 @@ def save_params_and_results(
         Time when the core begins to freeze in Myr.
     fully_frozen : float
         Time when the core finishes freezing, in Myr.
-    meteorite_results : dict, str, float, list
+    meteorite_results : dict, str, float, list, optional
         Depth and timing results of meteorites, can be passed as a dictionary
         of results for different samples, as a list of results, or as a single
         result in the form of a float or string.
+    latent_list_len : float, optional
+        The length of the latent heat list, needed for further analysis of
+        core crystallisation duration at a later point.
 
     Returns
     -------
@@ -240,9 +244,9 @@ def save_params_and_results(
         "reg_fraction": reg_fraction,
         "max_time": max_time,
         "temp_core_melting": temp_core_melting,
-        "olivine_cp": olivine_cp,
-        "olivine_density": olivine_density,
-        "cmb_conductivity": cmb_conductivity,
+        "mantle_heat_cap_value": mantle_heat_cap_value,
+        "mantle_density_value": mantle_density_value,
+        "mantle_conductivity_value": mantle_conductivity_value,
         "core_cp": core_cp,
         "core_density": core_density,
         "temp_init": temp_init,
@@ -257,6 +261,7 @@ def save_params_and_results(
         "core_begins_to_freeze": time_core_frozen / myr,
         "core finishes freezing": fully_frozen / myr,
         "meteorite_results": meteorite_results,
+        "latent_list_len": latent_list_len,
     }
     with open(f"{folder}/{result_filename}.txt", "w") as file:
         json.dump(data, file, indent=4)
