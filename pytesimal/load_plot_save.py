@@ -274,6 +274,7 @@ def save_result_arrays(
     core_temperature_array,
     mantle_cooling_rates,
     core_cooling_rates,
+    latent=[],
 ):
     """
     Save results as a compressed Numpy array (npz).
@@ -296,7 +297,10 @@ def save_result_arrays(
     mantle_cooling_rates : numpy.ndarray
         Cooling rates in the mantle for all radii through time.
     core_cooling_rates : numpy.ndarray
-        Cooling rates in the core trhough time.
+        Cooling rates in the core through time.
+    latent: list, optional
+        List of latent heat values for the core; needed to
+        calculate timing of core crystallisation.
 
     Returns
     -------
@@ -310,6 +314,7 @@ def save_result_arrays(
         coretemp=core_temperature_array,
         dT_by_dt=mantle_cooling_rates,
         dT_by_dt_core=core_cooling_rates,
+        latent_array=np.array(len(latent))
     )
 
 
@@ -328,6 +333,25 @@ def read_datafile(filepath):
         dT_by_dt_core = data["dT_by_dt_core"]  # core cooling rates in K/1E11 s
 
     return temperatures, coretemp, dT_by_dt, dT_by_dt_core
+
+
+def read_datafile_with_latent(filepath):
+    """
+    Read contents of a model run into numpy arrays, including latent heat.
+
+    Reads the content of the numpy 'npz' data file representing
+    a model run and returns arrays of the mantle temperature,
+    core temperature, cooling rates of the mantle and core,
+    and the number of timesteps the core was crystallising for.
+    """
+    with np.load(filepath) as data:
+        temperatures = data["temperatures"]  # mantle temperatures in K
+        coretemp = data["coretemp"]  # core temperatures in K
+        dT_by_dt = data["dT_by_dt"]  # mantle cooling rates in K/1E11 s
+        dT_by_dt_core = data["dT_by_dt_core"]  # core cooling rates in K/1E11 s
+        latent_array = data["latent_array"]  # tsteps in core crystallisation
+
+    return temperatures, coretemp, dT_by_dt, dT_by_dt_core, latent_array
 
 
 def get_million_years_formatters(timestep, maxtime):
