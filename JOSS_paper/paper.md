@@ -34,14 +34,14 @@ bibliography: paper.bib
 
 # Summary
 
-Planetesimals were small bodies that existed in the protoplanetary disk, some of which coalesced to form the planets, while others are sampled by the meteorite record.
-Thermal processing recorded in meteorites can be linked to the thermal evolution of their parent planetesimals. This can inform us of the size and geometries of these parent bodies and how deep within them the meteorite material resided.
+Planetesimals were small bodies that existed in the protoplanetary disk, some of which coalesced to form the planets, while others are sampled by the meteorite record. *TENSE ISSUE - not sure whether should be past or present? I hop around between them a bit...*
+Thermal processing recorded in meteorites can be linked to the thermal evolution of their parent planetesimals. This can inform us of the size and geometries of these parent bodies and how deep within them the meteorite material resided. *<- PHRASING SEEMS AWKWARD *
 Modelling the temperatures and cooling rates within planetesimals that existed 4.5 billion years ago is one of the key ways to understand the geological context of meteorites.
 The `Pytesimal` package focuses on the conductive cooling stage of planetesimal evolution, and provides a toolkit for modelling the temperature and cooling rate distribution inside meteorite parent bodies in 1D, with and without temperature-dependent material properties.
 
 # Statement of need
 
-`Pytesimal` is a Python package for modelling the thermal evolution of planetesimals and other small planetary bodies. Meteorite parent body modelling is an active field in small-body planetary science. There are two broad categories of models: those focusing on the accretion and differentiation of planetesimals, and those investigating the later conductive cooling of parent bodies [@Bryson2015; @Elkins-Tanton2011; @Haack1990; @MurphyQuinlan2021; @Nichols2016; @Sahijpal2021]. `Pytesimal` models the later conductive-cooling stage.
+~~`Pytesimal` is a Python package for modelling the thermal evolution of planetesimals and other small planetary bodies.~~ *<- REPEATING MYSELF - but not sure whether to keep this line and instead get rid of last line of Summary section...* Meteorite parent body modelling is an active field in small-body planetary science. There are two broad categories of models: those focusing on the accretion and differentiation of planetesimals, and those investigating the later conductive cooling of parent bodies [@Bryson2015; @Elkins-Tanton2011; @Haack1990; @MurphyQuinlan2021; @Nichols2016; @Sahijpal2021]. `Pytesimal` models the later conductive-cooling stage.
 
 `Pytesimal` will enable groups to develop models of planetesimals and investigate the thermal history of meteorite parent bodies without having to rebuild the same basic architecture each time. `Pytesimal` provides a framework for modelling the conductive cooling of planetesimals, and is designed to be modular to allow future contributions and developments to be included. `Pytesimal` also includes plotting functionality to visualise the results of model runs, and a number of specialised tools designed to investigate pallasite meteorites specifically.
 
@@ -49,7 +49,9 @@ The `Pytesimal` package focuses on the conductive cooling stage of planetesimal 
 
 The `Pytesimal` package focuses on the conductive cooling of differentiated planetesimals, with the ability to alter the model set-up to also investigate primitive bodies that have not segregated a core. The basic 1D set-up includes a conductively cooling discretised region which can include a low-diffusivity megaregolith layer, and an isothermal convecting core. The core can be removed to closer approximate primitive meteorite parent bodies, with a zero flux boundary condition applied across the centre to ensure symmetry (\autoref{fig:model}).
 
-![Cartoon sketch of model set-up. PRINTED - COLOURS TOO SIMILAR \label{fig:model}](model_setups.pdf)
+![Cartoon sketch of model set-up. CHANGED COLOUR PROFILE TO CMYK \label{fig:model}](model_setups_CMYK.pdf)
+
+![Cartoon sketch of model set-up. EDITED COLOUR PALETTE \label{fig:model1}](model_setups_edited_colours.pdf)
 
 The 1D conductive cooling of the discretised region is controlled by the heat equation:
 
@@ -89,7 +91,7 @@ where $\rho_{\mathrm{c}}$ and $C_{\mathrm{c}}$ are the density and heat capacity
 
 # Examples of applications
 
-An earlier version of `Pytesimal` has been used in a scientific publication to demonstrate that the inclusion of temperature dependent thermal properties in place of constant values can result in different interpretations of the meteorite record, with pallasite meteorites used as an example [@MurphyQuinlan2021]. \autoref{fig:heatmap} reproduces the results of @MurphyQuinlan2021. The default values provided by `load_plot_save.make_default_param_file` are from @MurphyQuinlan2021 and citations therein.
+~~An earlier version of~~ `Pytesimal` has been used in a scientific publication to demonstrate that the inclusion of temperature dependent thermal properties in place of constant values can result in different interpretations of the meteorite record, with pallasite meteorites used as an example [@MurphyQuinlan2021]. \autoref{fig:heatmap} reproduces the results of @MurphyQuinlan2021. The default values provided by `load_plot_save.make_default_param_file` are from @MurphyQuinlan2021 and citations therein.
 
 ![Temperatures and cooling rates in a 250 km radius planetesimal, using temperature dependent material properties. Annotations and lines to show the mantle, core and core crystallisation period are added later, outside of the `pytesimal.load_plot_save` functions. \label{fig:heatmap}](heatmap.pdf){ width=80% }
 
