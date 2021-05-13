@@ -2,4 +2,4 @@ sphinx
 sphinx-gallery
 sphinx-rtd-theme
 numpy
-matplotlib
+matplotlib==3.4.2
