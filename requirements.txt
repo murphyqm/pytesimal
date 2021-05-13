@@ -1,2 +1,2 @@
 numpy
-pytest
+pytest==6.2.4
