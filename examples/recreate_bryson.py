@@ -1,12 +1,10 @@
 """
-2. Constant Properties
-======================
+5. Reproducing Previous Results
+============================
 
-This example shows step by step how to set up and run a model of a cooling
-planetesimal without using a parameters file. This example uses constant
-material properties in the mantle and reproduces the results of
-`Murphy Quinlan et
-al. (2021) <https://doi.org/10.1029/2020JE006726>`__.
+This example recreates the results of
+`Bryson et al. (2015) <https://www.nature.com/articles/nature14114>`__
+giving the same depths of formation of two pallasite meteorites.
 """
 
 # %%
@@ -23,23 +21,52 @@ import pytesimal.mantle_properties
 
 # %%
 # Instead of creating and loading a parameter file, we're going to
-# define variables here. The values match those of the constant
-# thermal properties case in Murphy Quinlan et al. (2021):
+# define variables here. The values are from and recreate the results
+# of Bryson et al. (2015), with explanatory comments:
 
-timestep = 1E11  # s
-r_planet = 250_000.0  # m
-core_size_factor = 0.5  # fraction of r_planet
-reg_fraction = 0.032  # fraction of r_planet
-max_time = 400  # Myr
-temp_core_melting = 1200.0  # K
+# These values are quoted in Bryson et al. (2015) or
+# the references therein:
+
+# material properties:
+mantle_diffusivity = 5e-7
+mantle_conductivity_value = 3.0
+mantle_density_value = 3000.0
+
+kappa_reg = 5e-8  # m^2/s
+
 core_cp = 850.0  # J/(kg K)
 core_density = 7800.0  # kg/m^3
+
+# geometry:
+r_planet = 200_000.0  # planetesimal radius in m
+reg_m = 8_000.0  # megaregolith thickness in m
+
+# temperatures:
+temp_core_melting = 1200.0  # K
 temp_init = 1600.0  # K
 temp_surface = 250.0  # K
 core_temp_init = 1600.0  # K
 core_latent_heat = 270_000.0  # J/kg
-kappa_reg = 5e-8  # m^2/s
+
+# discretisation:
+timestep = 2E11  # s
 dr = 1000.0  # m
+max_time = 400  # Myr
+
+# This value isn't explicitly listed in Bryson et al., or references
+# as Bryson et al. (2015) uses diffusivity instead
+mantle_heatcap_value = mantle_conductivity_value / (mantle_density_value * mantle_diffusivity)
+
+# Bryson et al. (2015) list regolith in km as opposed to
+# as a fraction of body radius
+reg_fraction = reg_m / r_planet  # fraction of r_planet
+
+# We don't want to incorporate the 8 km regolith when calculating core size:
+# Bryson et al. (2015) don't seem to include the regolith when calculating
+# the core size, ie the core is 50% of the non-regolith body radius.
+# We don't want to incorporate the 8 km regolith when calculating core size:
+core_m = (r_planet - reg_m) * 0.5  # 100_000.0 # core size in m
+core_size_factor = core_m / r_planet  # fraction of r_planet
 
 # %%
 # The `setup_functions.set_up()` function creates empty arrays to
@@ -90,9 +117,19 @@ core_values = pytesimal.core_function.IsothermalEutecticCore(
 
 # %%
 # You can check (or change) the value of these properties after they've been
-# set up using one of the `MantleProperties` methods:
+# set up using one of the `MantleProperties` methods. We want to set these values
+# equal to the values used by Bryson et al. (2015):
+
+mantle_conductivity.setk(mantle_conductivity_value)
+mantle_heatcap.setcp(mantle_heatcap_value)
+mantle_density.setrho(mantle_density_value)
+
+# %%
+# You can check that the correct values have been assigned:
 
 print(mantle_conductivity.getk())
+print(mantle_heatcap.getcp())
+print(mantle_density.getrho())
 
 # %%
 # If temperature dependent properties are used, temperature can be passed in
@@ -104,11 +141,6 @@ print(mantle_conductivity.getk())
 
 top_mantle_bc = pytesimal.numerical_methods.surface_dirichlet_bc
 bottom_mantle_bc = pytesimal.numerical_methods.cmb_dirichlet_bc
-
-# Now we let the temperature inside the planestesimal evolve. This is the
-# slowest part of the code, because it has to iterate over all radii and
-# time.
-# This will take a minute or two!
 
 (mantle_temperature_array,
  core_temperature_array,
@@ -135,6 +167,7 @@ bottom_mantle_bc = pytesimal.numerical_methods.cmb_dirichlet_bc
     mantle_density)
 
 # %%
+#
 # This function fills the empty arrays produced by
 # `setup_functions.set_up()` with calculated temperatures for the mantle and
 # core.
@@ -158,8 +191,9 @@ bottom_mantle_bc = pytesimal.numerical_methods.cmb_dirichlet_bc
 # %%
 # Then, we can calculate arrays of cooling rates from the temperature arrays:
 
-mantle_cooling_rates = pytesimal.analysis.cooling_rate(mantle_temperature_array,
-                                                       timestep)
+mantle_cooling_rates = pytesimal.analysis.cooling_rate(
+    mantle_temperature_array,
+    timestep)
 core_cooling_rates = pytesimal.analysis.cooling_rate(core_temperature_array,
                                                      timestep)
 
@@ -205,6 +239,7 @@ esquel_cooling_rate = pytesimal.analysis.cooling_rate_to_seconds(
     time_core_frozen,
     fully_frozen,
     dr=1000,
+    dt=timestep
 )
 
 (esq_depth,
@@ -221,11 +256,11 @@ esquel_cooling_rate = pytesimal.analysis.cooling_rate_to_seconds(
     time_core_frozen,
     fully_frozen,
     dr=1000,
+    dt=timestep
 )
 
 print(f"Imilac depth: {im_depth}; Imilac timing: {im_string_result}")
 print(f"Esquel depth: {esq_depth}; Esquel timing: {esq_string_result}")
-
 
 # %%
 # If you need to save the meteorite results, they can be saved to a dictionary
@@ -233,13 +268,13 @@ print(f"Esquel depth: {esq_depth}; Esquel timing: {esq_string_result}")
 # This allows for any number of meteorites to be analysed and only the
 # relevant data stored:
 
-meteorite_results_dict = { 'Esq results':
-                               {'depth': esq_depth,
-                                'text result': esq_string_result},
-                           'Im results':
-                               {'depth' : im_depth,
-                                'text result': im_string_result,
-                                'critical radius': im_Critical_Radius}}
+meteorite_results_dict = {'Esq results':
+                              {'depth': esq_depth,
+                               'text result': esq_string_result},
+                          'Im results':
+                              {'depth': im_depth,
+                               'text result': im_string_result,
+                               'critical radius': im_Critical_Radius}}
 
 # %%
 # To get an overview of the cooling history of the body, it's very useful
@@ -259,55 +294,5 @@ pytesimal.load_plot_save.two_in_one(
     mantle_temperature_array,
     core_temperature_array,
     mantle_cooling_rates,
-    core_cooling_rates,)
-
-# %%
-# There are a few formats or ways to save the results. The temperature and
-# cooling rate arrays can be saved as compressed `.npz` arrays, to be loaded
-# at a later time and replotted/new meteorite formation depths calculated etc.
-# The input parameters can be saved as a `.json` file, which allows the run to
-# be documented and provides all the metadata needed to reproduce the results.
-# For either of these, a results folder and results filename is needed. The
-# folder can be defined relative to the working directory, or with an absolute
-# path. An absolute path usually results in less confusion!
-
-
-# define folder and check it exists:
-folder = 'workflow'
-pytesimal.load_plot_save.check_folder_exists(folder)
-# define a results filename prefix:
-result_filename = 'constant_workflow_results'
-
-# %%
-# The result arrays can now be saved:
-
-pytesimal.load_plot_save.save_result_arrays(result_filename,
-                                            folder,
-                                            mantle_temperature_array,
-                                            core_temperature_array,
-                                            mantle_cooling_rates,
-                                            core_cooling_rates)
-
-# %%
-# In order to save the result parameter file, we also need to define a
-# `run_ID`, a descriptive string to identify the model run, and clarify
-# whether we used constant or variable thermal properties:
-
-run_ID = 'Example run with default properties'
-cond_constant = 'y'
-density_constant = 'y'
-heat_cap_constant = 'y'
-
-pytesimal.load_plot_save.save_params_and_results(
-    result_filename, run_ID, folder, timestep, r_planet, core_size_factor,
-    reg_fraction, max_time, temp_core_melting, mantle_heatcap.getcp(),
-    mantle_density.getrho(), mantle_conductivity.getk(), core_cp, core_density,
-    temp_init, temp_surface, core_temp_init, core_latent_heat,
-    kappa_reg, dr, cond_constant, density_constant,
-    heat_cap_constant, time_core_frozen, fully_frozen,
-    meteorite_results=meteorite_results_dict,
-    latent_list_len=len(latent))
-
-# %%
-# This results file can then be loaded as a parameter file if you want to
-# repeat the same set up.
+    core_cooling_rates,
+    timestep=timestep)

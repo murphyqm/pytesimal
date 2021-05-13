@@ -1,6 +1,6 @@
 """
-Quick Start
-===========
+1. Quick Start
+==============
 
 This script produces a default parameter file then uses this to set up a
 model run. The default parameter file reproduces the constant material
@@ -42,8 +42,7 @@ filepath = 'example_default/example_parameters_results.npz'
  dT_by_dt_core) = pytesimal.load_plot_save.read_datafile(filepath)
 
 # %%
-# We can visualise the cooling history of the planeteismal:
-# %%
+# We can visualise the cooling history of the planetesimal:
 
 # Specify a figure width and height
 fig_w = 6

@@ -1,5 +1,5 @@
 """
-Planetesimal Without a Core
+4. Planetesimal Without a Core
 ===========================
 
 This example shows step by step how to set up and run a model of a cooling
@@ -64,19 +64,6 @@ dr = 1000.0  # m
 core_size_factor = 0.001
 
 # %%
-# For this example, we won't save any outputs. If you're working
-# on your local machine, you can specify the folder you want to
-# save your outputs to, and check that this folder exists on your
-# machine (if it doesn't, a folder will be created):
-#
-#     folder = 'workflow'
-#     load_plot_save.check_folder_exists(folder)
-#
-# This folder can also be specified in the parameters file.
-# Any variable loaded from the parameters file can be
-# overwritten before the model runs, which is useful if looping over
-# a parameter space.
-#
 # The `setup_functions.set_up()` function creates empty arrays to
 # be filled with resulting temperatures:
 

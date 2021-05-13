@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 
-with open("README.md", "r", encoding="utf-8") as fh:
+with open("package_description.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
@@ -10,7 +10,7 @@ setup(
     description="Model the conductive cooling of planetesimals with temperature-dependent material properties.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="M. Murphy Quinlan, A.M. Walker, C.J. Davies, P. Selves, L.S.E. Teggin",
+    author="M. Murphy Quinlan, A.M. Walker, P. Selves, L.S.E. Teggin",
     author_email="eememq@leeds.ac.uk",
     url="https://github.com/murphyqm/pytesimal",
     project_urls={
