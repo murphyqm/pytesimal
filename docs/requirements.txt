@@ -1,5 +1,5 @@
 sphinx
 sphinx-gallery
 sphinx-rtd-theme
-numpy
+numpy==1.20.3
 matplotlib
