@@ -1,5 +1,5 @@
 """
-Planetesimal Without a Core
+4. Planetesimal Without a Core
 ===========================
 
 This example shows step by step how to set up and run a model of a cooling

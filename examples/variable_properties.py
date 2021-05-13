@@ -1,5 +1,5 @@
 """
-Variable Properties
+3. Variable Properties
 ===================
 
 This example shows step by step how to set up and run a model of a cooling

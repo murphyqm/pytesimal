@@ -1,5 +1,5 @@
 """
-Reproducing previous results
+5. Reproducing Previous Results
 ============================
 
 This example recreates the results of
