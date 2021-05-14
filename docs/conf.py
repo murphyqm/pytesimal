@@ -77,7 +77,7 @@ sphinx_gallery_conf = {
     # Adding ignore for context python file
     'ignore_pattern': r'context\.py',
     # Remove the "Download all examples" button from the top level gallery
-    # "download_all_examples": False,
+    "download_all_examples": False,
     # Sort gallery example by title instead of number of lines (default)
     "within_subsection_order": ExampleTitleSortKey,
     # directory where function granular galleries are stored
