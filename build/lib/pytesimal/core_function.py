@@ -4,7 +4,7 @@
 Create and track the temperature in the planetesimal core.
 
 This module allows the user to track the temperature of a simple isothermal
-eutectic core and calculate the change in termperature in the core over a
+eutectic core and calculate the change in temperature in the core over a
 timestep based on the heat extracted across the core-mantle boundary.
 
 The class `IsothermalEutecticCore` allows a core object to be instantiated.
@@ -58,15 +58,15 @@ class IsothermalEutecticCore:
     """
 
     def __init__(
-            self,
-            initial_temperature,
-            melting_temperature,
-            outer_r,
-            inner_r,
-            rho,
-            cp,
-            core_latent_heat,
-            lat=0
+        self,
+        initial_temperature,
+        melting_temperature,
+        outer_r,
+        inner_r,
+        rho,
+        cp,
+        core_latent_heat,
+        lat=0,
     ):
         """Create a new core with temperature and latent heat."""
         self.temperature = initial_temperature
