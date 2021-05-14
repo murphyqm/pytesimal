@@ -256,8 +256,19 @@ for unexpected behaviour.
 Contribute
 ==========
 
--  Issue Tracker: github.com/murphyqm/pytesimal/issues
--  Source Code: github.com/murphyqm/pytesimal
+-  `Issue Tracker <https://github.com/murphyqm/pytesimal/issues>`__
+-  `Source Code <https://github.com/murphyqm/pytesimal>`__
+
+Support
+-------
+
+If you are having issues, please let us know.
+You can email us at eememq@leeds.ac.uk
+
+License
+-------
+
+The project is licensed under the MIT license.
 
 Support
 =======

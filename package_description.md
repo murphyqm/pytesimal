@@ -46,3 +46,20 @@ Getting started
 ---------------
 
 Open up some examples on [Binder](https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=example-notebooks) or download some examples from our gallery [here](https://pytesimal.readthedocs.io/en/latest/examples/index.html).
+
+Contribute
+----------
+
+- Issue Tracker: [github.com/murphyqm/pytesimal/issue](https://github.com/murphyqm/pytesimal/issues)
+- Source Code: [github.com/murphyqm/pytesimal](https://github.com/murphyqm/pytesimal)
+
+Support
+-------
+
+If you are having issues, please let us know.
+You can email us at eememq@leeds.ac.uk
+
+License
+-------
+
+The project is licensed under the MIT license.
