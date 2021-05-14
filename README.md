@@ -1,5 +1,5 @@
-Pytesimal
-========
+![Logo](pytesimal_background.png)
+
 
 [![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=example-notebooks)
