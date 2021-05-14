@@ -8,13 +8,14 @@ instead of manually defining 'numpy.ndarrays'.
 """
 import numpy as np
 
+
 def set_up(
-        timestep=1e11,
-        r_planet=250000.0,
-        core_size_factor=0.5,
-        reg_fraction=0.032,
-        max_time=400.0,
-        dr=1000.0,
+    timestep=1e11,
+    r_planet=250000.0,
+    core_size_factor=0.5,
+    reg_fraction=0.032,
+    max_time=400.0,
+    dr=1000.0,
 ):
     """
     Define the geometry and set up corresponding arrays.
