@@ -70,7 +70,7 @@ You can open this `json` file in a text editor and change the default values. On
 
     pytesimal.quick_workflow.workflow(filename, folderpath)
 
-Let your planetesimal evolve! This will take a minute or so to run. Once it has done do, you can load the results (from the folder you specified in the parameters file):
+Let your planetesimal evolve! This will take a minute or so to run. Once it has done so, you can load the results (from the folder you specified in the parameters file):
 
     filepath = 'results_folder/example_parameters_results.npz'
     (temperatures,
@@ -110,3 +110,13 @@ License
 -------
 
 The project is licensed under the MIT license.
+
+Citation
+--------
+
+Please cite our project.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4321771.svg)](https://doi.org/10.5281/zenodo.4321771)
+
+[Murphy Quinlan et
+al. (2021)](https://doi.org/10.1029/2020JE006726).

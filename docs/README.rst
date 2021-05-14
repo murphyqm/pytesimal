@@ -79,7 +79,7 @@ model run:
    pytesimal.quick_workflow.workflow(filename, folderpath)
 
 Let your planetesimal evolve! This will take a minute or so to run. Once
-it has done do, you can load the results (from the folder you specified
+it has done so, you can load the results (from the folder you specified
 in the parameters file):
 
 ::
