@@ -4,6 +4,7 @@
 [![Documentation Status](https://readthedocs.org/projects/pytesimal/badge/?version=latest)](https://pytesimal.readthedocs.io/en/latest/?badge=latest)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/murphyqm/pytesimal/master?filepath=example-notebooks)
 ![GitHub](https://img.shields.io/github/license/murphyqm/pytesimal)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4321772.svg)](https://doi.org/10.5281/zenodo.4321772)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/murphyqm/pytesimal)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/murphyqm/pytesimal/Python%20package)
 [![Updates](https://pyup.io/repos/github/murphyqm/pytesimal/shield.svg)](https://pyup.io/repos/github/murphyqm/pytesimal/)
