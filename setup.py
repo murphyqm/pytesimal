@@ -1,4 +1,9 @@
-from distutils.core import setup
+#Try to use setuptools if present. If not then python_requires,
+#install_requires and setup_requires will be ignored
+try:
+    from setuptools import setup
+except:
+    from distutils.core import setup
 
 
 with open("package_description.md", "r", encoding="utf-8") as fh:
