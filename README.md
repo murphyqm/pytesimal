@@ -8,6 +8,7 @@ Pytesimal
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/murphyqm/pytesimal)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/murphyqm/pytesimal/Python%20package)
 [![Updates](https://pyup.io/repos/github/murphyqm/pytesimal/shield.svg)](https://pyup.io/repos/github/murphyqm/pytesimal/)
+[![PyPI version](https://badge.fury.io/py/pytesimal.svg)](https://badge.fury.io/py/pytesimal)
 
 
 Pytesimal models the conductive cooling of planetesimals with temperature-dependent material properties.
