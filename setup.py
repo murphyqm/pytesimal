@@ -20,7 +20,7 @@ setup(
     url="https://github.com/murphyqm/pytesimal",
     project_urls={
         "Documentation": "https://pytesimal.readthedocs.io/en/latest/",
-        "Bug Tracker": "https://github.com/pypa/sampleproject/issues",
+        "Bug Tracker": "https://github.com/murphyqm/pytesimal/issues",
         "Scientific Background:": "https://doi.org/10.1029/2020JE006726",
     },
     packages=["pytesimal"],
