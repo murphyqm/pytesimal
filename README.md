@@ -17,6 +17,6 @@ You might want to [read our documentation](https://pytesimal.readthedocs.io/), l
 
 If you want to see more, you can look at our [GitHub repository](https://github.com/murphyqm/pytesimal)or read some [scientific background](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020JE006726) to the project.
 
-### If you want to be able to model meteorite parent bodies, calculate meteorite formation depths, and estimate the timing of core-dynamo activity, [install the package](https://pypi.org/project/pytesimal/) on your machine.
+If you want to be able to model meteorite parent bodies, calculate meteorite formation depths, and estimate the timing of core-dynamo activity, [install the package](https://pypi.org/project/pytesimal/) on your machine.
 
-If you're having any issues, just [leave us a message](https://github.com/murphyqm/pytesimal/issues), and **please remember to [cite](https://doi.org/10.5281/zenodo.4321771) [us](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020JE006726).**
+If you're having any issues, just [leave us a message](https://github.com/murphyqm/pytesimal/issues), and please remember to [cite](https://doi.org/10.5281/zenodo.4321771) [us](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020JE006726).
