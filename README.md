@@ -32,8 +32,9 @@ Installation
 ------------
 This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. 
 
-> Package not yet available for install on PyPi, instructions for pip
-> install will be added once this is available.
+    conda create -n=pytesimal python=3.8 jupyter
+    conda activate pytesimal    
+    pip install pytesimal
 
 ### Installation for development
 
