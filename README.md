@@ -30,7 +30,7 @@ Features
 
 Installation
 ------------
-This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. Installation and management of all these dependencies is most easily done in a conda environment. 
+This software relies on python (version 3.6 and up) and various other python packages. Examples are distributed as Jupyter notebooks, which need Jupyter and Matplotlib to run. The software and its dependencies are best installed in a virtual environment of your choice. Installation and management of all these dependencies in an isolated conda environment can be done by running: 
 
     conda create -n=pytesimal python=3.8 jupyter
     conda activate pytesimal    
@@ -48,6 +48,14 @@ The package can be downloaded and installed directly from Github for the most re
 
 The `-e` flag installs the package in editable mode so that any changes
 to modules can be carried through. Examples can be downloaded from the gallery [here](https://pytesimal.readthedocs.io/en/latest/examples/index.html).
+
+### Installation in Google Colab
+
+`Pytesimal` can also be installed and used in Google's hosted Jupyter notebook service, [Colaboratory](https://research.google.com/colaboratory/). In a new notebook, install the package:
+
+    !pip install pytesimal
+
+You can also upload one of our [examples](https://pytesimal.readthedocs.io/en/latest/examples/) and run it, after adding a cell with the installation command above to the start of the notebook.
 
 Quick Start
 -----------
