@@ -38,7 +38,7 @@ Planetesimals are small bodies that existed in the protoplanetary disk, some of 
 The thermal evolution of these early-Solar System bodies is key to understanding the geological context and significance of meteorite samples and the thermal processing that they record.
 Numerical methods are frequently used to model the interiors of meteorite parent bodies and then compare the results with evidence in meteorite samples [@Bryson2015; @Elkins-Tanton2011; @Haack1990; @MurphyQuinlan2021; @Nichols2016; @Sahijpal2021]. While the field of research spans different parent body compositions and different processes, many models share an underlying conductive cooling framework.
 
-The `Pytesimal` package focuses on the conductive cooling of differentiated planetesimals, with the ability to alter the model set-up to also investigate primitive bodies that have not segregated a core. It provides an extensible toolkit for modelling the temperature and cooling rate distribution inside meteorite parent bodies in 1D, with the option of including temperature-dependent material properties. The code returns time-series Numpy arrays of temperatures and cooling rates across all radii for the core and mantle, which can be saved in binary compressed `.npz` format along with a `.json` file containing metadata and parameter values to allow processing at a later time. 
+The `Pytesimal` package focuses on the conductive cooling of differentiated planetesimals, with the ability to alter the model set-up to also investigate primitive bodies that have not segregated a core. It provides an extensible toolkit for modelling the temperature and cooling rate distribution inside meteorite parent bodies in 1D, with the option of including temperature-dependent material properties. The code returns time-series Numpy arrays of temperatures and cooling rates across all radii for the core and mantle, which can be saved in binary compressed `.npz` format along with a `.json` file containing metadata and parameter values to allow processing at a later time. Full documentation of the modules and functions in the package are included in the API reference (`https://pytesimal.readthedocs.io/en/latest/apiref.html`).
 
 ![Cartoon sketch of model set-up, with different boundary conditions indicated by dotted and dashed lines; applications of different boundary conditions can be seen in the examples gallery in the documentation. \label{fig:model}](model_setups_edited_colours.pdf){ width=100% }
 
@@ -46,13 +46,11 @@ The `Pytesimal` package focuses on the conductive cooling of differentiated plan
 
 * Forward-Time Central-Space (FTCS) numerical solver for the 1D conduction equation for the mantle of a planetesimal
 * Extensible boundary condition functions; current implementation includes a fixed temperature condition which can be applied to either the top or bottom boundary of the discretised region/mantle, and a fixed flux boundary condition that can be applied at the bottom boundary when the core is removed
-* Vonn Neumann stability analysis to test the combination of timestep, diffusivity and radial step for potential numerical instabilities
+* Vonn Neumann stability testing to ensure the combination of timestep, diffusivity and radial step will not result in numerical instabilities
 * Simple isothermal eutectic core model
 * Parameter file generator that populates an easy to read `.json` file with default parameters which can then be edited to suit the specific model set up
 * Heatmap plotting functions to visualise data
 * Functions to calculate the depth of formation and timing of paleomagnetic recording in pallasite meteorites [based on equations and theory from @Bryson2015; @Yang2010; used in @MurphyQuinlan2021]
-
-Full documentation of the modules and functions in the package are included in the API reference (`https://pytesimal.readthedocs.io/en/latest/apiref.html`).
 
 # Statement of Need
 
