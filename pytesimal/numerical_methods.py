@@ -121,11 +121,14 @@ def cmb_dirichlet_bc(temperatures, core_boundary_temperature, i):
 
 def cmb_neumann_bc(temperatures, core_boundary_temperature, i):
     """
-    Set a fixed flux boundary condition at the base of the mantle
+    Set a zero flux boundary condition at the base of the mantle
 
     Note that core radius must be set to zero for this to approximate the
     analytical solution of a conductively cooling sphere or to model an
-    undifferentiated meteorite parent body.
+    undifferentiated meteorite parent body. Sets zero flux at base of the
+    mantle by approximating dT/dr using forward differences and finding
+    the necessary temperature. See eq. 6.31 of
+    http://folk.ntnu.no/leifh/teaching/tkt4140/._main056.html
 
     Parameters
     ----------
@@ -234,24 +237,45 @@ def discretisation(
 
     Parameters
     ----------
-    core_values : object
-        Core object
+    core_values : core object
+        An object that represents the state of the layer inside the current
+        layer (normally a metalic core). The object must provide one method
+        and two attributes. The method extract_heat(power, timestep) is called
+        on each timestep and represents the amount of heat that is lost from
+        the the inner layer to the presnet layer (power, in W) over an amount
+        of time (timestep, in s). The attribute temperature gives the temperature
+        at the top of the inner layer and this is used (after calling extract_heat)
+        as input to the basal boundary condition calculation. The attribute latent
+        reports any latent heat released by freezing and this is not explicity used
+        in the evaluation of mantle temperatures.
     latent : list
         Empty list (unless coupling two models) of latent heat extracted from
         the core
     temp_init : float, numpy.ndarray
-        The initial temperature of the mantle with float implying initial
+        The initial temperature (in K) of the mantle with float implying initial
         homogeneous temperature distribution
     core_temp_init : float, numpy.ndarray
         Initial temperature of the core; current core object is isothermal so
         only accepts float but more complex core models could track the
         temperature distribution in the core
-    top_mantle_bc : function
+    top_mantle_bc : callable
         Calleable function that defines the boundary condition at the
-        planetesimal surface
-    bottom_mantle_bc : function
+        planetesimal surface. The calling signature is
+        top_mantle_bc(temperatures, surface_temperature, timestep_index)
+        where temperatures is the temperatures array to be updated with the
+        boundary condition, core_boundary_temperature is the temperature (that
+        may be involved in the calculation) and timestep_index is the column
+        index of the current timestep. The function must return an updated
+        temperatures array. See surface_dirichlet_bc for an example.
+    bottom_mantle_bc : callable
         Calleable function that defines the boundary condition at the base of
-        the planetesimal mantle
+        the planetesimal mantle. The calling signature is 
+        bottom_mantle_bc(temperatures, core_boundary_temperature, timestep_index)
+        where temperatures is the temperatures array to be updated with the
+        boundary condition, core_boundary_temperature is the temperature (that
+        may be involved in the calculation) and timestep_index is the column 
+        index of the current timestep. The function must return an updated 
+        temperatures array. See cmb_neumann_bc for an example.
     temp_surface : float
         Temperature at the surface of the planetesimal
     temperatures : numpy.ndarray
@@ -261,7 +285,7 @@ def discretisation(
     coretemp_array : numpy.ndarray
         Numpy array to fill with core temperatures
     timestep : float
-        Timestep for numerical discretisation
+        Timestep for numerical discretisation in s
     r_core : float
         Radius of the core in m
     radii : numpy.ndarray
