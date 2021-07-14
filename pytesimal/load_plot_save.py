@@ -178,9 +178,9 @@ def save_params_and_results(
         Absolute path to directory where file is to be saved. Existence of
         the directory can be checked with the `check_folder_exists()` function.
     timestep : float
-        The timestep used in numerical method.
+        The timestep used in numerical method, in s.
     r_planet : float
-        The radius of the planet in m
+        The radius of the planet in m.
     core_size_factor : float
         The core size as a fraction of the total planet radius.
     reg_fraction : float
@@ -188,29 +188,29 @@ def save_params_and_results(
     max_time : float
         The total run-time of the model, in millions of years (Myr).
     temp_core_melting : float
-        The melting temperature of the core.
+        The melting temperature of the core, in K.
     mantle_heat_cap_value: float
-        The heat capacity of mantle material.
+        The heat capacity of mantle material, in J kg^-1 K^-1.
     mantle_density_value : float
-         The density of mantle material.
+         The density of mantle material, in kg m^-3.
     mantle_conductivity_value : float
-        The conductivity of the mantle.
+        The conductivity of the mantle, in W m^-1 K^-1.
     core_cp : float
-        The heat capacity of the core.
+        The heat capacity of the core, in J kg^-1 K^-1.
     core_density : float
-        The density of the core.
+        The density of the core, in kg m^-3.
     temp_init : float, list, numpy array
-        The initial temperature of the body.
+        The initial temperature of the body, in K.
     temp_surface : float
-        The surface temperature of the planet.
+        The surface temperature of the planet, in K.
     core_temp_init : float
-        The initial temperature of the core
+        The initial temperature of the core, in K.
     core_latent_heat : float
-        The latent heat of crystallisation of the core.
+        The latent heat of crystallisation of the core, in J kg^-1.
     kappa_reg : float
-        The regolith constant diffusivity
+        The regolith constant diffusivity, m^2 s^-1.
     dr : float
-        The radial step used in the numerical model.
+        The radial step used in the numerical model, in m.
     cond_constant : str
         Flag of `y` or `n` to specify if mantle conductivity is constant.
     density_constant : str
@@ -291,16 +291,16 @@ def save_result_arrays(
         Absolute path to directory where file is to be saved. Existence of
         the directory can be checked with the `check_folder_exists()` function.
     mantle_temperature_array : numpy.ndarray
-        Temperatures in the mantle for all radii through time.
+        Temperatures in the mantle for all radii through time, in K.
     core_temperature_array : numpy.ndarray
-        Temperatures in the core through time.
+        Temperatures in the core through time, in K.
     mantle_cooling_rates : numpy.ndarray
-        Cooling rates in the mantle for all radii through time.
+        Cooling rates in the mantle for all radii through time, in K/dt.
     core_cooling_rates : numpy.ndarray
-        Cooling rates in the core through time.
+        Cooling rates in the core through time, in K/dt.
     latent: list, optional
         List of latent heat values for the core; needed to
-        calculate timing of core crystallisation.
+        calculate timing of core crystallisation, in J kg^-1.
 
     Returns
     -------
@@ -329,8 +329,8 @@ def read_datafile(filepath):
     with np.load(filepath) as data:
         temperatures = data["temperatures"]  # mantle temperatures in K
         coretemp = data["coretemp"]  # core temperatures in K
-        dT_by_dt = data["dT_by_dt"]  # mantle cooling rates in K/1E11 s
-        dT_by_dt_core = data["dT_by_dt_core"]  # core cooling rates in K/1E11 s
+        dT_by_dt = data["dT_by_dt"]  # mantle cooling rates in K/dt
+        dT_by_dt_core = data["dT_by_dt_core"]  # core cooling rates in K/dt
 
     return temperatures, coretemp, dT_by_dt, dT_by_dt_core
 
@@ -360,6 +360,13 @@ def get_million_years_formatters(timestep, maxtime):
 
     Creates two matplotlib formatters, one to go from timesteps to myrs and
     one to go from cooling rate per timestep to cooling rate per million years.
+
+    Parameters
+    ----------
+    timestep : float
+        Numerical timestep, in s.
+    maxtime: float
+        Total time for model run, in s.
     """
     myr = 3.1556926e13  # seconds in a million years
 
@@ -411,7 +418,6 @@ def plot_temperature_history(
     """
     million_years, _, myr = get_million_years_formatters(timestep, maxtime)
 
-    # What if only ax or fig are set? Only need fig for cbar really...
     if (fig is None) and (ax is None):
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
 
