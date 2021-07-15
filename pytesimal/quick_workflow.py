@@ -40,6 +40,13 @@ def workflow(
     Results files will be saved under the `filename` with `_results` and the
     appropriate file extension appended.
 
+    The json (.txt) file contains a list of parameter names and values, while
+    the array file (.npz) contains four different arrays:
+    `mantle_temperature_array` - an array of mantle temperatures in K,
+    `core_temperature_array` - an array of core temperatures in K,
+    `mantle_cooling_rates` - an array of mantle cooling rates in K/dt,
+    `core_cooling_rates` - an array of core cooling rates in K/dt.
+
     Parameters
     ----------
     filename : str

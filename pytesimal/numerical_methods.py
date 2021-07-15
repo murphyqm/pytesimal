@@ -211,16 +211,12 @@ def discretisation(
     core_temp_init,
     top_mantle_bc,
     bottom_mantle_bc,
-    # temp_core_melting,
     temp_surface,
     temperatures,
     dr,
     coretemp_array,
     timestep,
-    # core_density,
-    # core_cp,
     r_core,
-    # core_latent_heat,
     radii,
     times,
     where_regolith,
@@ -304,24 +300,24 @@ def discretisation(
         Constant diffusivity of the regolith, in m^2 s^-1.
     cond : callable
         Callable function or method that defines the mantle conductivity. The
-        calling signature is cond.getk(temperatures[radial_index,
-        timestep_index]), where temperatures is the temperatures array,
+        calling signature is `cond.getk(temperatures[radial_index,
+        timestep_index])`, where temperatures is the temperatures array,
         radial_index is the row index of the radius, and timestep_index is the
         column index of the timestep, that define the value in temperatures at
         which conductivity should be evaluated. The function must return a
         value for conductivity in in W m^-1 K^-1.
     heatcap : callable
         Callable function or method that defines the mantle heat capacity. The
-        calling signature is heatcap.getcp(temperatures[radial_index,
-        timestep_index]), where temperatures is the temperatures array,
+        calling signature is `heatcap.getcp(temperatures[radial_index,
+        timestep_index])`, where temperatures is the temperatures array,
         radial_index is the row index of the radius, and timestep_index is the
         column index of the timestep, that define the value in temperatures at
         which heat capacity should be evaluated. The function must return a
         value for heat capacity in J kg^-1 K^-1.
     dens : callable
         Callable function or method that defines the mantle density. The
-        calling signature is dens.getrho(temperatures[radial_index,
-        timestep_index]), where temperatures is the temperatures array,
+        calling signature is `dens.getrho(temperatures[radial_index,
+        timestep_index])`, where temperatures is the temperatures array,
         radial_index is the row index of the radius, and timestep_index is the
         column index of the timestep, that define the value in temperatures at
         which heat capacity should be evaluated. The function must return a

@@ -24,22 +24,22 @@ def set_up(
     Parameters
     ----------
     timestep : float, default 1e11
-        A timestep for the numerical discretisation
+        A timestep for the numerical discretisation, in s
     r_planet : float, default 250000.0
-        The radius of the planetesimal in m
+        The radius of the planetesimal, in m
     core_size_factor : float, < 1.0, default 0.5
         The core radius expressed as a fraction of `r_planet`
     reg_fraction : float, <1.0, default 0.032
         The core thickness expressed as a fraction of `r_planet`
     max_time : float, default 400.0
-        Total time for model to run, in millions of years
+        Total time for model to run, in millions of years (Myr)
     dr : float, default 1000.0
-        Radial step for the numerical discretisation
+        Radial step for the numerical discretisation, in m
 
     Returns
     -------
     r_core : float,
-        Radius of the core in m
+        Radius of the core, in m
     radii : numpy.ndarray
         Numpy array of radius values in m for the mantle, with spacing defined
         by `dr`
@@ -51,12 +51,12 @@ def set_up(
     where_regolith : numpy.ndarray
         Boolean array with location of regolith
     times : numpy.ndarray
-        Numpy array starting at 0 and going to 400 myr, with timestep
+        Numpy array starting at 0 and going to 400 Myr, with timestep
         controlling the spacing
     mantle_temperature_array : numpy.ndarray
-        Numpy array of zeros to be filled with mantle temperatures
+        Numpy array of zeros to be filled with mantle temperatures in K
     core_temperature_array : numpy.ndarray
-        Numpy array of zeros to be filled with core temperatures
+        Numpy array of zeros to be filled with core temperatures in K
 
     """
     # Set up list of timesteps
