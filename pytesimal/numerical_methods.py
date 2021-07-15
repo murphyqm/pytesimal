@@ -24,15 +24,16 @@ def calculate_diffusivity(conductivity, heat_capacity, density):
     Parameters
     ----------
     conductivity : float
-        Thermal conductivity of the material
+        Thermal conductivity of the material, in W m^-1 K^-1.
     heat_capacity : float
-        Heat capacity of the material
+        Heat capacity of the material, in J kg^-1 K^-1.
     density : float
-        Density of the material
+        Density of the material, in kg m^-3.
 
     Returns
     -------
     diffusivity : float
+        The calculated diffusivity, in m^2 s^-1.
 
     """
     diffusivity = conductivity / (density * heat_capacity)
@@ -52,11 +53,11 @@ def check_stability(max_diffusivity, timestep, dr):
     ----------
     max_diffusivity : float
         The highest diffusivity of the system to impose the most restrictive
-        conditions
+        conditions, , in m^2 s^-1.
     timestep : float
-        The timestep used for the numerical scheme
+        The timestep used for the numerical scheme, in s.
     dr : float
-        The radial step used for the numerical scheme
+        The radial step used for the numerical scheme, in m.
 
     Returns
     -------
@@ -81,16 +82,16 @@ def surface_dirichlet_bc(temperatures, temp_surface, i):
     Parameters
     ----------
     temperatures : numpy.ndarray
-        Numpy array of mantle temperatures to apply condition to
+        Numpy array of mantle temperatures to apply condition to, in K.
     temp_surface : float
-        The temperature at the surface boundary
+        The temperature at the surface boundary, in K.
     i : int
-        Index along time axis where condition is to be set
+        Index along time axis where condition is to be set.
 
     Returns
     -------
     temperatures : numpy.ndarray
-        Temperature array with condition applied
+        Temperature array with condition applied, in K.
 
     """
     temperatures[-1, i] = temp_surface
@@ -104,16 +105,16 @@ def cmb_dirichlet_bc(temperatures, core_boundary_temperature, i):
     Parameters
     ----------
     temperatures : numpy.ndarray
-        Numpy array of mantle temperatures to apply condition to
+        Numpy array of mantle temperatures to apply condition to, in K.
     core_boundary_temperature : float
-        The temperature at the core mantle boundary
+        The temperature at the core mantle boundary, in K.
     i : int
-        Index along time axis where condition is to be set
+        Index along time axis where condition is to be set.
 
     Returns
     -------
     temperatures : numpy.ndarray
-        Temperature array with condition applied
+        Temperature array with condition applied, in K.
     """
     temperatures[0, i] = core_boundary_temperature
     return temperatures
@@ -133,17 +134,18 @@ def cmb_neumann_bc(temperatures, core_boundary_temperature, i):
     Parameters
     ----------
     temperatures : numpy.ndarray
-        Numpy array of mantle temperatures to apply condition to
+        Numpy array of mantle temperatures to apply condition to, in K.
     core_boundary_temperature : float
         The temperature at the core mantle boundary; this is not used by this
-        boundary condition but inclusion allows functions to be easily swapped
+        boundary condition but inclusion allows functions to be easily swapped.
+        In K.
     i : int
-        Index along time axis where condition is to be set
+        Index along time axis where condition is to be set.
 
     Returns
     -------
     temperatures : numpy.ndarray
-        Temperature array with condition applied
+        Temperature array with condition applied, in K.
     """
     temperatures[0, i] = (
         4.0 * (temperatures[1, i]) - temperatures[2, i]
@@ -159,11 +161,11 @@ class EnergyExtractedAcrossCMB:
     Attributes
     ----------
     outer_r : float
-        Core radius
+        Core radius, in m.
     timestep : float
-        Time over which heat is extracted
+        Time over which heat is extracted, in s.
     radius_step : float
-        Radial step for numerical discretisation
+        Radial step for numerical discretisation, in m.
     """
 
     def __init__(self, outer_r, timestep, radius_step):
@@ -239,25 +241,26 @@ def discretisation(
     ----------
     core_values : core object
         An object that represents the state of the layer inside the current
-        layer (normally a metalic core). The object must provide one method
+        layer (normally a metallic core). The object must provide one method
         and two attributes. The method extract_heat(power, timestep) is called
         on each timestep and represents the amount of heat that is lost from
-        the the inner layer to the presnet layer (power, in W) over an amount
-        of time (timestep, in s). The attribute temperature gives the temperature
-        at the top of the inner layer and this is used (after calling extract_heat)
-        as input to the basal boundary condition calculation. The attribute latent
-        reports any latent heat released by freezing and this is not explicity used
-        in the evaluation of mantle temperatures.
+        the the inner layer to the present layer (power, in W) over an amount
+        of time (timestep, in s). The attribute temperature gives the
+        temperature at the top of the inner layer and this is used (after
+        calling extract_heat) as input to the basal boundary condition
+        calculation. The attribute latent reports any latent heat released by
+        freezing and this is not explicitly used in the evaluation of mantle
+        temperatures.
     latent : list
         Empty list (unless coupling two models) of latent heat extracted from
-        the core
+        the core.
     temp_init : float, numpy.ndarray
-        The initial temperature (in K) of the mantle with float implying initial
-        homogeneous temperature distribution
+        The initial temperature (in K) of the mantle with float implying
+        initial homogeneous temperature distribution.
     core_temp_init : float, numpy.ndarray
         Initial temperature of the core; current core object is isothermal so
         only accepts float but more complex core models could track the
-        temperature distribution in the core
+        temperature distribution in the core. In K.
     top_mantle_bc : callable
         Calleable function that defines the boundary condition at the
         planetesimal surface. The calling signature is
@@ -270,46 +273,72 @@ def discretisation(
     bottom_mantle_bc : callable
         Calleable function that defines the boundary condition at the base of
         the planetesimal mantle. The calling signature is 
-        bottom_mantle_bc(temperatures, core_boundary_temperature, timestep_index)
-        where temperatures is the temperatures array to be updated with the
-        boundary condition, core_boundary_temperature is the temperature (that
-        may be involved in the calculation) and timestep_index is the column 
-        index of the current timestep. The function must return an updated 
-        temperatures array. See cmb_neumann_bc for an example.
+        bottom_mantle_bc(temperatures, core_boundary_temperature,
+        timestep_index) where temperatures is the temperatures array to be
+        updated with the boundary condition, core_boundary_temperature is the
+        temperature (that may be involved in the calculation) and
+        timestep_index is the column index of the current timestep. The
+        function must return an updated temperatures array. See cmb_neumann_bc
+        for an example.
     temp_surface : float
-        Temperature at the surface of the planetesimal
+        Temperature at the surface of the planetesimal, in K.
     temperatures : numpy.ndarray
-        Numpy array to fill with mantle temperatures
+        Numpy array to fill with mantle temperatures in K.
     dr : float
-        Radial step for numerical discretisation
+        Radial step for numerical discretisation, in m.
     coretemp_array : numpy.ndarray
         Numpy array to fill with core temperatures
     timestep : float
-        Timestep for numerical discretisation in s
+        Timestep for numerical discretisation, in s.
     r_core : float
-        Radius of the core in m
+        Radius of the core in m.
     radii : numpy.ndarray
-        Numpy array of radii values in the mantle, with spacing defined by `dr`
+        Numpy array of radii values in the mantle, with spacing defined by
+        `dr`, in m.
     times : numpy.ndarray
         Numpy array of time values in s, up to the maximum time, with spacing
-        controlled by `timestep`
+        controlled by `timestep`, in s.
     where_regolith : numpy.ndarray
-        Boolean array recording presence of regolith
+        Boolean array recording presence of regolith.
     kappa_reg : float
-        Constant diffusivity of the regolith
-    cond : function, method
-        Function or method that defines the mantle conductivity
-    heatcap : function, method
-        Function or method that defines the mantle heat capacity
-    dens : function, method
-        Function or method that defines the mantle density
+        Constant diffusivity of the regolith, in m^2 s^-1.
+    cond : callable
+        Callable function or method that defines the mantle conductivity. The
+        calling signature is cond.getk(temperatures[radial_index,
+        timestep_index]), where temperatures is the temperatures array,
+        radial_index is the row index of the radius, and timestep_index is the
+        column index of the timestep, that define the value in temperatures at
+        which conductivity should be evaluated. The function must return a
+        value for conductivity in in W m^-1 K^-1.
+    heatcap : callable
+        Callable function or method that defines the mantle heat capacity. The
+        calling signature is heatcap.getcp(temperatures[radial_index,
+        timestep_index]), where temperatures is the temperatures array,
+        radial_index is the row index of the radius, and timestep_index is the
+        column index of the timestep, that define the value in temperatures at
+        which heat capacity should be evaluated. The function must return a
+        value for heat capacity in J kg^-1 K^-1.
+    dens : callable
+        Callable function or method that defines the mantle density. The
+        calling signature is dens.getrho(temperatures[radial_index,
+        timestep_index]), where temperatures is the temperatures array,
+        radial_index is the row index of the radius, and timestep_index is the
+        column index of the timestep, that define the value in temperatures at
+        which heat capacity should be evaluated. The function must return a
+        value for density in kg m^-3.
     non_lin_term : str, default `'y'`
         Flag to switch off the non-linear term when temperature-dependent
-        conductivity is being used
+        conductivity is being used.
 
 
     Returns
     -------
+    temperatures : numpy.ndarray
+        Array filled with mantle temperatures, in K.
+    coretemp : numpy.ndarray
+        Array filled with core temperatures, in K.
+    latent : list
+        List of latent heat values during core crystallisation, in J kg^-1.
 
     """
 
