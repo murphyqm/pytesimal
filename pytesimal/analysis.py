@@ -29,24 +29,24 @@ def core_freezing(
     Parameters
     ----------
     coretemp : numpy.ndarray
-        Array of temperatures in the core
+        Array of temperatures in the core, in Kelvin.
     max_time : float
-        Length of time the model runs for, in seconds
+        Length of time the model runs for, in seconds.
     times : numpy.ndarray
         Array from 0 to the max time +0.5* the timestep, with a spacing equal
-        to the timestep
+        to the timestep.
     latent : list
         List of total latent heat extracted since core began freezing, at each
-        timestep
+        timestep.
     temp_core_melting : float
-        Melting point of core material (in K)
+        Melting point of core material, in Kelvin.
     timestep : float, default 1e11
         Discretisation timestep in seconds.
 
     Returns
     -------
-    core_frozen: boolean array where temperature <= 1200
-    times_frozen: array of indices of times where the temp <= 1200
+    core_frozen: boolean array where temperature <= 1200 K
+    times_frozen: array of indices of times where the temp <= 1200 K
     time_core_frozen: when the core starts to freeze, in seconds
     fully_frozen: when the core finished freezing, in seconds
 
@@ -91,12 +91,12 @@ def cooling_rate_cloudyzone_diameter(d):
     Parameters
     ----------
     d : float
-        Cloudy zone particle size in nm
+        Cloudy zone particle size in nm.
 
     Returns
     -------
     cz_rate : float
-        The cooling rate in K/Myr
+        The cooling rate in K/Myr.
 
     """
     m = 7620000  # constant
@@ -114,12 +114,12 @@ def cooling_rate_tetra_width(tw):
     Parameters
     ----------
     tw : float
-        Tetrataenite bandwidth in nm
+        Tetrataenite bandwidth in nm.
 
     Returns
     -------
     t_rate : float
-        The cooling rate in K/Myr
+        The cooling rate in K/Myr.
 
     """
     k = 14540000  # constant
@@ -128,9 +128,21 @@ def cooling_rate_tetra_width(tw):
 
 
 def cooling_rate_to_seconds(cooling_rate):
-    """Convert cooling rates to seconds."""
+    """Convert cooling rates to seconds.
+
+    Parameters
+    ----------
+    cooling_rate : float
+        The cooling rate in K/Myr.
+
+    Returns
+    -------
+    new_cooling_rate : float
+        The cooling rate in K/s.
+
+    """
     myr = 3.1556926e13
-    new_cooling_rate = cooling_rate / myr  # /1000000/365/24/60/60 # fix to myr
+    new_cooling_rate = cooling_rate / myr
     return new_cooling_rate
 
 
@@ -156,37 +168,38 @@ def meteorite_depth_and_timing(
     Parameters
     ----------
     CR : float
-        cooling rate of meteorite
+        cooling rate of meteorite, in K/s.
     temperatures : numpy.ndarray
-        Array of mantle temperatures
+        Array of mantle temperatures, in Kelvin.
     dT_by_dt : numpy.ndarray
-        Array of mantle cooling rates
+        Array of mantle cooling rates, in K/dt.
     radii : numpy.ndarray
-        Mantle radii spaced by `dr`
+        Mantle radii spaced by `dr`, in m.
     r_planet : float
-        Planetesimal radius, in m
+        Planetesimal radius, in m.
     core_size_factor : float, <1
-        Radius of the core, expressed as a fraction of `r_planet`
+        Radius of the core, expressed as a fraction of `r_planet`.
     time_core_frozen : float
-        The time the core begins to freeze
+        The time the core begins to freeze, in dt.
     fully_frozen : float
-        The time the core is fully frozen
+        The time the core is fully frozen, in dt.
     dr : float, default 1000.0
-        Radial step for numerical discretisation
+        Radial step for numerical discretisation, in m.
 
     Returns
     -------
     depth : float
-        Depth of genesis of meteorite
+        Depth of genesis of meteorite, in km.
     string : string
         Relative timing of tetrataenite formation and core crystallisation, in
         a string format
     time_core_frozen : float
-        The time the core begins to freeze
+        The time the core begins to freeze, in dt.
     Time_of_Crossing : float
-        When the meteorite cools through tetrataenite formation temperature
+        When the meteorite cools through tetrataenite formation temperature, in
+        dt.
     Critical_Radius : float
-        Depth of meteorite genesis given as radius value
+        Depth of meteorite genesis given as radius value, in m.
 
     """
     # Define two empty lists

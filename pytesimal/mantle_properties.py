@@ -35,11 +35,11 @@ class MantleProperties:
     Attributes
     ----------
     rho : float, default 3341.0
-        The density of the mantle material (constant)
+        The density of the mantle material (constant), in kg m^-3.
     cp : float, default 819.0
-        The heat capacity of mantle material (constant)
+        The heat capacity of mantle material (constant), in J kg^-1 K^-1.
     k : float, default 3.0
-        The conductivity of mantle material (constant)
+        The conductivity of mantle material (constant), in W m^-1 K^-1.
     """
 
     def __init__(self, rho=3341.0, cp=819.0, k=3.0):
@@ -193,11 +193,11 @@ def set_up_mantle_properties(
         Default `'y'` results in constant heat capacity, while any other string
         produces variable heat capacity.
     mantle_density : float, default 3341.0
-        Constant value for mantle density
+        Constant value for mantle density, in kg m^-3.
     mantle_heat_capacity : float, default 819.0
-        Constant value for mantle heat capacity
+        Constant value for mantle heat capacity, in J kg^-1 K^-1.
     mantle_conductivity : float
-        Constant value for mantle conductivity
+        Constant value for mantle conductivity, in W m^-1 K^-1.
 
     Returns
     -------

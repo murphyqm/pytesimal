@@ -46,7 +46,25 @@ def check_folder_exists(folder):
 
 
 def make_default_param_file(filepath="example_params.txt"):
-    """Save an example parameter json file with default parameters."""
+    """
+    Save an example parameter json file with default parameters.
+
+    Save a dictionary of default parameters as a human-readable json txt file.
+    This example file can then be used as an input file as-is, or can be edited
+    in order to modify the model set up. References for the example values can
+    be found in Murphy Quinlan et al. (2021).
+
+    Murphy Quinlan, M., Walker, A. M., Davies, C. J., Mound, J. E., Müller, T.,
+    & Harvey, J. (2021). The conductive cooling of planetesimals with
+    temperature-dependent properties. Journal of Geophysical Research: Planets,
+    126, e2020JE006726. https://doi.org/10.1029/2020JE006726
+
+    Parameters
+    ----------
+    filepath : str, optional
+        Absolute or relative path to save the json parameter file to.
+
+    """
     default_variables = {
         "run_ID": "example_default",
         "folder": "example_default",
@@ -77,7 +95,63 @@ def make_default_param_file(filepath="example_params.txt"):
 
 
 def load_params_from_file(filepath="example_params.txt"):
-    """Load parameters from a json file and return variable values."""
+    """
+    Load parameters from a json file and return variable values.
+
+    Parameters
+    ----------
+    filepath : str
+        Absolute or relative path to load the json parameter file from.
+
+    Returns
+    -------
+    run_ID : str
+        Identifier for the specific model run.
+    folder : str
+        Absolute path to directory where file is to be saved. Existence of
+        the directory can be checked with the `check_folder_exists()` function.
+    timestep : float
+        The timestep used in numerical method, in s.
+    r_planet : float
+        The radius of the planet in m.
+    core_size_factor : float
+        The core size as a fraction of the total planet radius.
+    reg_fraction : float
+        The regolith thickness as a fraction of the total planet radius.
+    max_time : float
+        The total run-time of the model, in millions of years (Myr).
+    temp_core_melting : float
+        The melting temperature of the core, in K.
+    mantle_heat_cap_value: float
+        The heat capacity of mantle material, in J kg^-1 K^-1.
+    mantle_density_value : float
+         The density of mantle material, in kg m^-3.
+    mantle_conductivity_value : float
+        The conductivity of the mantle, in W m^-1 K^-1.
+    core_cp : float
+        The heat capacity of the core, in J kg^-1 K^-1.
+    core_density : float
+        The density of the core, in kg m^-3.
+    temp_init : float, list, numpy array
+        The initial temperature of the body, in K.
+    temp_surface : float
+        The surface temperature of the planet, in K.
+    core_temp_init : float
+        The initial temperature of the core, in K.
+    core_latent_heat : float
+        The latent heat of crystallisation of the core, in J kg^-1.
+    kappa_reg : float
+        The regolith constant diffusivity, m^2 s^-1.
+    dr : float
+        The radial step used in the numerical model, in m.
+    cond_constant : str
+        Flag of `y` or `n` to specify if mantle conductivity is constant.
+    density_constant : str
+        Flag of `y` or `n` to specify if mantle density is constant.
+    heat_cap_constant : str
+        Flag of `y` or `n` to specify if mantle heat capacity is constant.
+
+    """
     with open(filepath) as json_file:
         data = json.load(json_file)
         run_ID = data["run_ID"]
@@ -178,9 +252,9 @@ def save_params_and_results(
         Absolute path to directory where file is to be saved. Existence of
         the directory can be checked with the `check_folder_exists()` function.
     timestep : float
-        The timestep used in numerical method.
+        The timestep used in numerical method, in s.
     r_planet : float
-        The radius of the planet in m
+        The radius of the planet in m.
     core_size_factor : float
         The core size as a fraction of the total planet radius.
     reg_fraction : float
@@ -188,29 +262,29 @@ def save_params_and_results(
     max_time : float
         The total run-time of the model, in millions of years (Myr).
     temp_core_melting : float
-        The melting temperature of the core.
+        The melting temperature of the core, in K.
     mantle_heat_cap_value: float
-        The heat capacity of mantle material.
+        The heat capacity of mantle material, in J kg^-1 K^-1.
     mantle_density_value : float
-         The density of mantle material.
+         The density of mantle material, in kg m^-3.
     mantle_conductivity_value : float
-        The conductivity of the mantle.
+        The conductivity of the mantle, in W m^-1 K^-1.
     core_cp : float
-        The heat capacity of the core.
+        The heat capacity of the core, in J kg^-1 K^-1.
     core_density : float
-        The density of the core.
+        The density of the core, in kg m^-3.
     temp_init : float, list, numpy array
-        The initial temperature of the body.
+        The initial temperature of the body, in K.
     temp_surface : float
-        The surface temperature of the planet.
+        The surface temperature of the planet, in K.
     core_temp_init : float
-        The initial temperature of the core
+        The initial temperature of the core, in K.
     core_latent_heat : float
-        The latent heat of crystallisation of the core.
+        The latent heat of crystallisation of the core, in J kg^-1.
     kappa_reg : float
-        The regolith constant diffusivity
+        The regolith constant diffusivity, m^2 s^-1.
     dr : float
-        The radial step used in the numerical model.
+        The radial step used in the numerical model, in m.
     cond_constant : str
         Flag of `y` or `n` to specify if mantle conductivity is constant.
     density_constant : str
@@ -291,16 +365,16 @@ def save_result_arrays(
         Absolute path to directory where file is to be saved. Existence of
         the directory can be checked with the `check_folder_exists()` function.
     mantle_temperature_array : numpy.ndarray
-        Temperatures in the mantle for all radii through time.
+        Temperatures in the mantle for all radii through time, in K.
     core_temperature_array : numpy.ndarray
-        Temperatures in the core through time.
+        Temperatures in the core through time, in K.
     mantle_cooling_rates : numpy.ndarray
-        Cooling rates in the mantle for all radii through time.
+        Cooling rates in the mantle for all radii through time, in K/dt.
     core_cooling_rates : numpy.ndarray
-        Cooling rates in the core through time.
+        Cooling rates in the core through time, in K/dt.
     latent: list, optional
         List of latent heat values for the core; needed to
-        calculate timing of core crystallisation.
+        calculate timing of core crystallisation, in J kg^-1.
 
     Returns
     -------
@@ -325,12 +399,28 @@ def read_datafile(filepath):
     Reads the content of the numpy 'npz' data file representing
     a model run and returns arrays of the mantle temperature,
     core temperature, and cooling rates of the mantle and core.
+
+    Parameters
+    ----------
+    filepath : str
+        Location of .npz data file, including file name and npz suffix.
+
+    Returns
+    -------
+    temperatures : numpy.ndarray
+        Array filled with mantle temperatures, in K.
+    coretemp : numpy.ndarray
+        Array filled with core temperatures, in K.
+    dT_by_dt : numpy.ndarray
+        Array filled with mantle cooling rates, in K/dt.
+    dT_by_dt_core : numpy.ndarray
+        Array filled with core cooling rates, in K/dt.
     """
     with np.load(filepath) as data:
         temperatures = data["temperatures"]  # mantle temperatures in K
         coretemp = data["coretemp"]  # core temperatures in K
-        dT_by_dt = data["dT_by_dt"]  # mantle cooling rates in K/1E11 s
-        dT_by_dt_core = data["dT_by_dt_core"]  # core cooling rates in K/1E11 s
+        dT_by_dt = data["dT_by_dt"]  # mantle cooling rates in K/dt
+        dT_by_dt_core = data["dT_by_dt_core"]  # core cooling rates in K/dt
 
     return temperatures, coretemp, dT_by_dt, dT_by_dt_core
 
@@ -343,6 +433,24 @@ def read_datafile_with_latent(filepath):
     a model run and returns arrays of the mantle temperature,
     core temperature, cooling rates of the mantle and core,
     and the number of timesteps the core was crystallising for.
+
+    Parameters
+    ----------
+    filepath : str
+        Location of .npz data file, including file name and npz suffix.
+
+    Returns
+    -------
+    temperatures : numpy.ndarray
+        Array filled with mantle temperatures, in K.
+    coretemp : numpy.ndarray
+        Array filled with core temperatures, in K.
+    dT_by_dt : numpy.ndarray
+        Array filled with mantle cooling rates, in K/dt.
+    dT_by_dt_core : numpy.ndarray
+        Array filled with core cooling rates, in K/dt.
+    latent_array : numpy.ndarray
+        Array filled with latent heat of the core, as it crystallises, J kg^-1.
     """
     with np.load(filepath) as data:
         temperatures = data["temperatures"]  # mantle temperatures in K
@@ -360,6 +468,13 @@ def get_million_years_formatters(timestep, maxtime):
 
     Creates two matplotlib formatters, one to go from timesteps to myrs and
     one to go from cooling rate per timestep to cooling rate per million years.
+
+    Parameters
+    ----------
+    timestep : float
+        Numerical timestep, in s.
+    maxtime: float
+        Total time for model run, in s.
     """
     myr = 3.1556926e13  # seconds in a million years
 
@@ -369,8 +484,8 @@ def get_million_years_formatters(timestep, maxtime):
 
         This gets called for each tick value in the plot with the x coordinate
         and a position (which may be None) and returns a string to be used as
-        the value to be plotted on the axis of the graph. This retuns a time
-        in millions of years, rounded to look nice
+        the value to be plotted on the axis of the graph. This returns a time
+        in millions of years, rounded to look nice.
         """
         value = (x * timestep) / myr
         value_rounded = round(value, -2)
@@ -411,7 +526,6 @@ def plot_temperature_history(
     """
     million_years, _, myr = get_million_years_formatters(timestep, maxtime)
 
-    # What if only ax or fig are set? Only need fig for cbar really...
     if (fig is None) and (ax is None):
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
 
@@ -541,7 +655,7 @@ def two_in_one(
     Return a heat map of depth vs time; colormap shows variation in temp.
 
     Change save="n" to save="y" when function is called to produce a png
-    image named after the data filename
+    image named after the data filename.
 
     """
     fig, axs = plt.subplots(2, 1, figsize=(fig_w, fig_h), sharey=True)
@@ -605,7 +719,7 @@ if __name__ == "__main__":
     fig_w = args.fig_width
     fig_h = args.fig_height
 
-    # Read data and make grap
+    # Read data and make graph
     temperatures, coretemp, dT_by_dt, dT_by_dt_core = read_datafile(
         args.datafile
     )

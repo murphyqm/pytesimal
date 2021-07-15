@@ -34,26 +34,26 @@ class IsothermalEutecticCore:
     Attributes
     ----------
     initial_temperature : float
-        Initial uniform temperature of the core
+        Initial uniform temperature of the core, in K.
     melting_temperature : float
-        Temperature at which core crystallisation initiates
+        Temperature at which core crystallisation initiates, in K.
     outer_r : float
-        Outer core radius
+        Outer core radius, in m.
     inner_r : float
         Inner core radius, not used by this simple implementation of the core
         (set to zero), but included so that more complex core models can be
-        coupled to the mantle discretisation function
+        coupled to the mantle discretisation function.
     rho : float
-        Core density
+        Core density, kg m^-3.
     cp : float
-        Core heat capacity
+        Core heat capacity, J kg^-1 K^-1.
     core_latent_heat : float
         Latent heat of crystallisation of the core, used to calculate time for
-        core to solidify fully
+        core to solidify fully, J kg^-1.
     lat : float, optional
         Tracks latent heat of core, always initially zero in current
         implementation but included for forward compatibility with a coupled
-        model where core has already cooled by some degree
+        model where core has already cooled by some degree, in J kg^-1.
 
     """
 
@@ -112,9 +112,9 @@ class IsothermalEutecticCore:
         Parameters
         ----------
         power : float
-            Heat extracted across the CMB in Watts
+            Heat extracted across the CMB in Watts.
         timestep : float
-            The time over which the heat is extracted (in s)
+            The time over which the heat is extracted (in s).
 
         """
         volume_of_core = (4.0 / 3.0) * np.pi * self.radius ** 3
@@ -139,7 +139,7 @@ class IsothermalEutecticCore:
         Returns
         -------
         temp_array : numpy.ndarray
-            Time series of `boundary_temperature`
+            Time series of `boundary_temperature`, in K.
 
         """
         temp_array = np.asarray(self.templist)
@@ -152,12 +152,12 @@ class IsothermalEutecticCore:
         Parameters
         ----------
         coretemp_array : numpy.ndarray
-            Array of zeros to be filled wth core temperature history
+            Array of zeros to be filled wth core temperature history.
 
         Returns
         -------
         coretemp_array : numpy.ndarray
-            Array of core temperature history
+            Array of core temperature history, in K.
 
         """
         for i in range(1, len(self.templist[1:])):
